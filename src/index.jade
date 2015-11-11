@@ -1,0 +1,37 @@
+doctype html
+html
+	head
+		include jade/head
+
+	body
+		#braeco
+			#main
+				#brae-home-page.hide
+					#all-home-content-field
+						.all-page-field
+							#Menu-page.hide
+							#Activity-page.hide
+							#Already-page.hide
+							#Individual-page.hide
+					#nav-field
+						.bottom-filed
+							a(href="#-Menu")
+								#Menu.Menu-unchecked
+							a(href="#-Already")
+								#Already.Already-unchecked
+							a(href="#-Individual")
+								#Individual.Individual-unchecked
+							
+				#brae-content-page.hide
+					#book-dish-field
+					#activity-field
+
+				#brae-extra-form-page.hide
+					.cover
+					#login-filed.center-form
+					#book-choose-field.center-form
+					#remark-for-trolley-field.center-form
+					#alert-field.center-form
+
+
+		include jade/script
