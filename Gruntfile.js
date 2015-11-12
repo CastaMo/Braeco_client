@@ -5,7 +5,7 @@ module.exports = function(grunt) {
   grunt.initConfig({
     // Task configuration.
     pkg: grunt.file.readJSON('package.json'),
-    secret: grunt.file.readJSON('secret.json'),
+    secret: grunt.file.readJSON('../secret.json'),
     dirs: grunt.file.readJSON('dirs.json'),
 
     //这坨东西不用管，init的时候送的
