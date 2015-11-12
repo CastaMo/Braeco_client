@@ -18,7 +18,8 @@
 		toggleClass,
 		getObjectURL,
 		is,
-		deepCopy;
+		deepCopy,
+		getById;
 	if (typeof window.addEventListener === 'function') {
 		addListener = function(el, type, fn) {
 			el.addEventListener(type, fn, false);
@@ -26,7 +27,7 @@
 		removeListener = function(el, type, fn) {
 			el.removeEventListener(type, fn, false);
 		};
-	} else if (typeof document.attachEvent === 'function') {  //'IE'
+	} else if (typeof doc.attachEvent === 'function') {  //'IE'
 		addListener = function(el, type, fn) {
 			el.attachEvent('on'+type, fn);
 		};
@@ -103,7 +104,7 @@
 
 	getElementsByClassName = function(tagName, className) {
 		var result = [];
-		var allTag = document.getElementsByTagName(tagName);
+		var allTag = doc.getElementsByTagName(tagName);
 		for (var i = 0, len_ = allTag.length; i < len_; i++) {
 			if (hasClass(allTag[i], className)) {
 				result.push(allTag[i]);
@@ -124,7 +125,7 @@
     	if (parentNode) {
     		return parentNode.querySelector(string);
     	} else {
-    		return document.querySelector(string);
+    		return doc.querySelector(string);
     	}
     }
 
@@ -132,7 +133,7 @@
     	if (parentNode) {
     		return parentNode.querySelectorAll(string);
     	} else {
-    		return document.querySelectorAll(string);
+    		return doc.querySelectorAll(string);
     	}
     }
 
@@ -203,6 +204,10 @@
 	    return newObj;
     }
 
+    getById = function(id) {
+    	return doc.getElementById(id);
+    }
+
 	return {
 		addListener:addListener,
 		removeListener:removeListener,
@@ -221,6 +226,7 @@
 		toggleClass:toggleClass,
 		getObjectURL:getObjectURL,
 		is:is,
-		deepCopy:deepCopy
-	}
+		deepCopy:deepCopy,
+		getById:getById
+	};
 }(document);

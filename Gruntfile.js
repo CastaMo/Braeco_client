@@ -53,7 +53,11 @@ module.exports = function(grunt) {
       },
       jade: {
         options: {
-          debounceDelay: 250
+          data: {
+            debug: true,
+            debounceDelay: 250,
+            timestamp: "<%= new Date().getTime() %>"
+          }
         },
         files: ['<%= dirs.source_path %>*.jade', '<%= dirs.source_path %>**/*.jade'],
         tasks: ['jade']
@@ -64,8 +68,8 @@ module.exports = function(grunt) {
         },
         files: ['<%= dirs.source_path %>public/**/common/*',
                 '<%= dirs.source_path %>*.html',
-                '<%= dirs.source_path %><dirs.css>*.css',
-                '<%= dirs.source_path %><dirs.js>*.js'],
+                '<%= dirs.source_path %><%= dirs.css %>*.css',
+                '<%= dirs.source_path %><%= dirs.js %>*.js'],
         tasks: ['copy', 'uglify', 'cssmin']
       }
     },
@@ -95,7 +99,8 @@ module.exports = function(grunt) {
     /*把dest_path中的css路径里所有css都压缩为一个main.min.css*/
     cssmin: {
       options: {
-        keepSpecialComments: 0
+        keepSpecialComments: 0,
+        banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
       },
       compress: {
         files: {

@@ -1,3 +1,5 @@
+- var all_page = ['Menu', 'Already', 'Individual']
+
 doctype html
 html
 	head
@@ -6,21 +8,16 @@ html
 	body
 		#braeco
 			#main
-				#brae-home-page.hide
+				#brae-home-page
 					#all-home-content-field
 						.all-page-field
-							#Menu-page.hide
-							#Activity-page.hide
-							#Already-page.hide
-							#Individual-page.hide
+							each elem in all_page
+								div(id="#{elem}-page" class="hide")
 					#nav-field
-						.bottom-filed
-							a(href="#-Menu")
-								#Menu.Menu-unchecked
-							a(href="#-Already")
-								#Already.Already-unchecked
-							a(href="#-Individual")
-								#Individual.Individual-unchecked
+						div(class="bottom-field bottom-touch-num-#{all_page.length}")
+							each elem, i in all_page
+								a(href="#-#{elem}" class="unchecked" id="bottom-touch-#{i}")
+									div(id="#{elem}")
 							
 				#brae-content-page.hide
 					#book-dish-field
