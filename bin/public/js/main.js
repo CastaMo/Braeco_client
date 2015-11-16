@@ -1,8 +1,8 @@
 (function(window, document) {
-  var ActivityDisplay, Bottom, Category, Lock, addClass, addListener, ajax, append, clientWidth, compatibleCssConfig, deepCopy, getById, getElementsByClassName, getObjectURL, hasClass, hashRoute, hidePhone, isPhone, prepend, query, querys, ref, remove, removeClass, removeListener, toggleClass;
+  var Bottom, Category, Lock, addClass, addListener, ajax, append, clientWidth, compatibleCSSConfig, deepCopy, getById, getElementsByClassName, getObjectURL, hasClass, hashRoute, hidePhone, isPhone, prepend, query, querys, ref, remove, removeClass, removeListener, rotateDisplay, toggleClass;
   ref = [util.addListener, util.removeListener, util.hasClass, util.addClass, util.removeClass, util.ajax, util.getElementsByClassName, util.isPhone, util.hidePhone, util.query, util.querys, util.remove, util.append, util.prepend, util.toggleClass, util.getObjectURL, util.deepCopy, util.getById], addListener = ref[0], removeListener = ref[1], hasClass = ref[2], addClass = ref[3], removeClass = ref[4], ajax = ref[5], getElementsByClassName = ref[6], isPhone = ref[7], hidePhone = ref[8], query = ref[9], querys = ref[10], remove = ref[11], append = ref[12], prepend = ref[13], toggleClass = ref[14], getObjectURL = ref[15], deepCopy = ref[16], getById = ref[17];
   clientWidth = document.body.clientWidth;
-  compatibleCssConfig = ["", "-webkit-", "-moz-", "-ms-", "-o-"];
+  compatibleCSSConfig = ["", "-webkit-", "-moz-", "-ms-", "-o-"];
   Bottom = (function() {
     var _allDoms, _state, _switchTargetPage, bottomTouchEventTrigger, uncheckAllForBottomAndHideAllPage;
     _state = "";
@@ -51,71 +51,208 @@
     return Category;
 
   })();
-  ActivityDisplay = (function() {
-    var _activityChooseAllDom, _activityChooseDom, _activityDisplayAllDom, _activityDisplayDom, _activityNum, _currentChoose, _getCompatibleTranslateCss, _initForActivityChoose, _initForActivityDisplay, _setCurrentChoose, _setCurrentChooseAndTranslate;
-    _activityDisplayDom = query("#Menu-page .activity-display-list");
-    _activityChooseDom = query("#Menu-page .choose-dot-list");
-    _activityChooseAllDom = null;
-    _activityDisplayAllDom = null;
-    _activityNum = 0;
-    _currentChoose = 0;
-    _setCurrentChoose = function(index) {
-      _activityChooseAllDom[_currentChoose].className = "inactive";
-      _activityChooseAllDom[index].className = "active";
-      return _currentChoose = index;
+  rotateDisplay = (function() {
+    var _autoRotateEvent, _getCompatibleTranslateCss, _touchEnd, _touchMove, _touchStart;
+
+    _getCompatibleTranslateCss = function(ver, hor) {
+      var config, j, len, result_;
+      result_ = {};
+      for (j = 0, len = compatibleCSSConfig.length; j < len; j++) {
+        config = compatibleCSSConfig[j];
+        result_[config + "transform"] = "translate(" + ver + ", " + hor + ")";
+      }
+      return result_;
     };
-    _initForActivityChoose = function() {
-      var dom, i, j, len, results;
-      _activityChooseAllDom = querys("li", _activityChooseDom);
+
+    _autoRotateEvent = function(rotateDisplay) {
+      var index, self;
+      self = rotateDisplay;
+
+      /*
+      			* 监视autoFlag
+       */
+      if (!self.autoFlag) {
+        self.autoFlag = true;
+      } else {
+        index = (self.currentChoose + 1) % self.activityNum;
+        self.setCurrentChooseAndTranslate(index);
+      }
+      return setTimeout(function() {
+        return _autoRotateEvent(self);
+      }, self.delay);
+    };
+
+
+    /*
+    		* 触摸开始的时候记录初始坐标位置
+     */
+
+    _touchStart = function(e, rotateDisplay) {
+      rotateDisplay.autoFlag = false;
+      e.preventDefault();
+      e.stopPropagation();
+      rotateDisplay.startX = e.touches[0].clientX;
+      rotateDisplay.startY = e.touches[0].clientY;
+      rotateDisplay.currentX = e.touches[0].clientX;
+      return rotateDisplay.currentY = e.touches[0].clientY;
+    };
+
+
+    /*
+    		* 触摸的过程记录触摸所到达的坐标
+     */
+
+    _touchMove = function(e, rotateDisplay) {
+      rotateDisplay.autoFlag = false;
+      rotateDisplay.currentX = e.touches[0].clientX;
+      rotateDisplay.currentY = e.touches[0].clientY;
+      e.preventDefault();
+      return e.stopPropagation();
+    };
+
+
+    /*
+    		* 比较判断用户是倾向于左右滑动还是上下滑动
+    		* 若为左右滑动，则根据用户滑动的地方，反向轮转播放动画(符合正常的滑动逻辑)
+     */
+
+    _touchEnd = function(e, rotateDisplay) {
+      var activityNum, currentChoose, currentX, currentY, startX, startY, transIndex;
+      rotateDisplay.autoFlag = false;
+      currentX = rotateDisplay.currentX;
+      currentY = rotateDisplay.currentY;
+      startX = rotateDisplay.startX;
+      startY = rotateDisplay.startY;
+      if (Math.abs(currentY - startY) >= Math.abs(currentX - startX)) {
+        return;
+      }
+      currentChoose = rotateDisplay.currentChoose;
+      activityNum = rotateDisplay.activityNum;
+      if (currentX < startX) {
+        transIndex = (currentChoose + 1) % activityNum;
+      } else if (currentX > startX) {
+        transIndex = (currentChoose - 1 + activityNum) % activityNum;
+      }
+      return rotateDisplay.setCurrentChooseAndTranslate(transIndex);
+    };
+
+
+    /*
+    		* 图片轮转播放
+    		* @param {Object} options: 组件配置
+    		*
+    		* 调用方法:
+    		* 直接通过构造函数，传入对应的对象配置即可。
+    		* displayCSSSelector为图片所在的ul的css选择器
+    		* chooseCSSSelector为图片对应的标号索引所在的ul的css选择器
+    		* delay为图片每次轮转的时间
+     */
+
+    function rotateDisplay(options) {
+      this.displayUlDom = query(options.displayCSSSelector);
+      this.chooseUlDom = query(options.chooseCSSSelector);
+      this.delay = options.delay;
+      this.init();
+    }
+
+    rotateDisplay.prototype.init = function() {
+      this.initDisplay();
+      this.initChoose();
+      this.initAutoRotate();
+      return this.initTouchEvent();
+    };
+
+    rotateDisplay.prototype.initDisplay = function() {
+      var dom, j, len, ref1;
+      this.displayContainerDom = this.displayUlDom.parentNode;
+      this.displayContainerDom.style.overflow = "auto";
+      this.allDisplayDom = querys("li", this.displayUlDom);
+
+      /*
+      			* 让所有的图片的宽度都能适应屏幕
+       */
+      ref1 = this.allDisplayDom;
+      for (j = 0, len = ref1.length; j < len; j++) {
+        dom = ref1[j];
+        dom.style.width = clientWidth + "px";
+      }
+      this.activityNum = this.allDisplayDom.length;
+
+      /*
+      			* 扩充图片所在ul的长度
+       */
+      return this.displayUlDom.style.width = (clientWidth * this.activityNum) + "px";
+    };
+
+    rotateDisplay.prototype.initChoose = function() {
+      var dom, i, j, len, ref1, results, self;
+      this.chooseUlDom.parentNode.style.overflow = "auto";
+      self = this;
+      this.allChooseDom = querys("li", this.chooseUlDom);
+      this.currentChoose = 0;
+      ref1 = this.allChooseDom;
       results = [];
-      for (i = j = 0, len = _activityChooseAllDom.length; j < len; i = ++j) {
-        dom = _activityChooseAllDom[i];
+      for (i = j = 0, len = ref1.length; j < len; i = ++j) {
+        dom = ref1[i];
         results.push(addListener(dom, "click", (function(i) {
           return function() {
-            return _setCurrentChooseAndTranslate(i);
+            self.autoFlag = false;
+            return self.setCurrentChooseAndTranslate(i);
           };
         })(i)));
       }
       return results;
     };
-    _getCompatibleTranslateCss = function(ver, hor) {
-      var config, j, len, result_;
-      result_ = {};
-      for (j = 0, len = compatibleCssConfig.length; j < len; j++) {
-        config = compatibleCssConfig[j];
-        result_[config + "transform"] = "translate(" + ver + ", " + hor + ")";
-      }
-      return result_;
+
+    rotateDisplay.prototype.initAutoRotate = function() {
+
+      /*
+      			* autoFlag用于监视是否有人工操作，如果有，则当前最近一次不做播放，重新设置autoFlag，使得下一次播放正常进行
+       */
+      var self;
+      self = this;
+      this.autoFlag = true;
+      return setTimeout(function() {
+        return _autoRotateEvent(self);
+      }, self.delay);
     };
-    _setCurrentChooseAndTranslate = function(index) {
+
+    rotateDisplay.prototype.initTouchEvent = function() {
+      var self;
+      self = this;
+      addListener(this.displayContainerDom, "touchstart", function(e) {
+        return _touchStart(e, self);
+      });
+      addListener(this.displayContainerDom, "touchmove", function(e) {
+        return _touchMove(e, self);
+      });
+      return addListener(this.displayContainerDom, "touchend", function(e) {
+        return _touchEnd(e, self);
+      });
+    };
+
+    rotateDisplay.prototype.setCurrentChoose = function(index) {
+      this.allChooseDom[this.currentChoose].className = "inactive";
+      this.allChooseDom[index].className = "active";
+      return this.currentChoose = index;
+    };
+
+    rotateDisplay.prototype.setCurrentChooseAndTranslate = function(index) {
       var compatibleTranslateCss, key, transIndex, value;
-      if (index < 0 || index >= _activityNum || index === _currentChoose) {
+      if (index < 0 || index >= this.activityNum || index === this.currentChoose) {
         return;
       }
       transIndex = -1 * index;
       compatibleTranslateCss = _getCompatibleTranslateCss((transIndex * clientWidth) + "px", 0);
       for (key in compatibleTranslateCss) {
         value = compatibleTranslateCss[key];
-        _activityDisplayDom.style[key] = value;
+        this.displayUlDom.style[key] = value;
       }
-      return _setCurrentChoose(index);
+      return this.setCurrentChoose(index);
     };
-    _initForActivityDisplay = function() {
-      var _allDoms, dom, j, len;
-      _allDoms = querys("li", _activityDisplayDom);
-      for (j = 0, len = _allDoms.length; j < len; j++) {
-        dom = _allDoms[j];
-        dom.style.width = clientWidth + "px";
-      }
-      _activityNum = _allDoms.length;
-      return _activityDisplayDom.style.width = (clientWidth * _activityNum) + "px";
-    };
-    return {
-      initial: function() {
-        _initForActivityDisplay();
-        return _initForActivityChoose();
-      }
-    };
+
+    return rotateDisplay;
+
   })();
   hashRoute = (function() {
     var _getHashStr, _loc, _modifyTitle, _msgs, _parseAndExecuteHash, _popHashStr, _pushHashStr, _recentHash, title_dom;
@@ -282,6 +419,10 @@
   })();
   return window.onload = function() {
     Bottom.bottomTouchEventTrigger("Menu");
-    return ActivityDisplay.initial();
+    return new rotateDisplay({
+      displayCSSSelector: "#Menu-page .activity-display-list",
+      chooseCSSSelector: "#Menu-page .choose-dot-list",
+      delay: 3000
+    });
   };
 })(window, document);

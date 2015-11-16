@@ -4,7 +4,7 @@ do (window, document)->
 
 	clientWidth =  document.body.clientWidth
 
-	compatibleCssConfig = [
+	compatibleCSSConfig = [
 		""
 		"-webkit-"
 		"-moz-"
@@ -46,50 +46,147 @@ do (window, document)->
 		_catergoryDisplayDom = query "#Menu-page .category-display-list"
 
 
-	ActivityDisplay = do ->
-		_activityDisplayDom = query "#Menu-page .activity-display-list"
-		_activityChooseDom = query "#Menu-page .choose-dot-list"
-		_activityChooseAllDom = null
-		_activityDisplayAllDom = null
-		_activityNum = 0
-		_currentChoose = 0
-
-		_setCurrentChoose = (index)->
-			_activityChooseAllDom[_currentChoose].className = "inactive"
-			_activityChooseAllDom[index].className = "active"
-			_currentChoose = index
-
-		_initForActivityChoose = ->
-			_activityChooseAllDom = querys "li", _activityChooseDom
-			for dom, i in _activityChooseAllDom
-				addListener dom, "click", do (i)-> -> _setCurrentChooseAndTranslate(i)
+	class rotateDisplay
 
 		_getCompatibleTranslateCss = (ver, hor)->
 			result_ = {}
-			for config in compatibleCssConfig
+			for config in compatibleCSSConfig
 				result_["#{config}transform"] = "translate(#{ver}, #{hor})"
 			return result_
 
-		_setCurrentChooseAndTranslate = (index)->
-			if index < 0 or index >= _activityNum or index is _currentChoose then return
+		_autoRotateEvent = (rotateDisplay)->
+			self = rotateDisplay
+
+			###
+			* 监视autoFlag
+			###
+			if not self.autoFlag then self.autoFlag = true
+			else
+				index = (self.currentChoose + 1) % self.activityNum
+				self.setCurrentChooseAndTranslate(index)
+			setTimeout(->
+				_autoRotateEvent(self)
+			, self.delay)
+
+
+		###
+		* 触摸开始的时候记录初始坐标位置
+		###
+		_touchStart = (e, rotateDisplay)->
+			rotateDisplay.autoFlag = false
+			e.preventDefault()
+			e.stopPropagation()
+			rotateDisplay.startX = e.touches[0].clientX
+			rotateDisplay.startY = e.touches[0].clientY
+			rotateDisplay.currentX = e.touches[0].clientX
+			rotateDisplay.currentY = e.touches[0].clientY
+
+		###
+		* 触摸的过程记录触摸所到达的坐标
+		###
+		_touchMove = (e, rotateDisplay)->
+			rotateDisplay.autoFlag = false
+			rotateDisplay.currentX = e.touches[0].clientX
+			rotateDisplay.currentY = e.touches[0].clientY
+			e.preventDefault()
+			e.stopPropagation()
+
+		###
+		* 比较判断用户是倾向于左右滑动还是上下滑动
+		* 若为左右滑动，则根据用户滑动的地方，反向轮转播放动画(符合正常的滑动逻辑)
+		###
+		_touchEnd = (e, rotateDisplay)->
+			rotateDisplay.autoFlag = false
+			currentX = rotateDisplay.currentX
+			currentY = rotateDisplay.currentY
+			startX = rotateDisplay.startX
+			startY = rotateDisplay.startY
+			if Math.abs(currentY - startY) >= Math.abs(currentX - startX) then return
+			currentChoose = rotateDisplay.currentChoose; activityNum = rotateDisplay.activityNum
+			if currentX < startX then transIndex = (currentChoose + 1) % activityNum
+			else if currentX > startX then transIndex = (currentChoose - 1 + activityNum) % activityNum
+			rotateDisplay.setCurrentChooseAndTranslate(transIndex)
+
+
+		###
+		* 图片轮转播放
+		* @param {Object} options: 组件配置
+		*
+		* 调用方法:
+		* 直接通过构造函数，传入对应的对象配置即可。
+		* displayCSSSelector为图片所在的ul的css选择器
+		* chooseCSSSelector为图片对应的标号索引所在的ul的css选择器
+		* delay为图片每次轮转的时间
+		###
+
+		constructor: (options)->
+			@displayUlDom = query options.displayCSSSelector
+			@chooseUlDom = query options.chooseCSSSelector
+			@delay = options.delay
+			@init()
+
+		init: ->
+			@initDisplay()
+			@initChoose()
+			@initAutoRotate()
+			@initTouchEvent()
+
+		initDisplay: ->
+			@displayContainerDom = @displayUlDom.parentNode
+			@displayContainerDom.style.overflow = "auto"
+			@allDisplayDom = querys "li", @displayUlDom
+
+			###
+			* 让所有的图片的宽度都能适应屏幕
+			###
+
+			for dom in @allDisplayDom
+				dom.style.width = "#{clientWidth}px"
+			@activityNum = @allDisplayDom.length
+
+			###
+			* 扩充图片所在ul的长度
+			###
+			@displayUlDom.style.width = "#{clientWidth * @activityNum}px"
+
+		initChoose: ->
+			@chooseUlDom.parentNode.style.overflow = "auto"
+			self = @
+			@allChooseDom = querys "li", @chooseUlDom
+			@currentChoose = 0
+			for dom, i in @allChooseDom
+				addListener dom, "click", do (i)-> -> self.autoFlag = false; self.setCurrentChooseAndTranslate(i)
+
+		initAutoRotate: ->
+			###
+			* autoFlag用于监视是否有人工操作，如果有，则当前最近一次不做播放，重新设置autoFlag，使得下一次播放正常进行
+			###
+			self = @
+			@autoFlag = true
+			setTimeout(->
+				_autoRotateEvent(self)
+			, self.delay)
+
+		initTouchEvent: ->
+			self = @
+			addListener @displayContainerDom, "touchstart", (e)-> _touchStart(e, self)
+			addListener @displayContainerDom, "touchmove", (e)-> _touchMove(e, self)
+			addListener @displayContainerDom, "touchend", (e)-> _touchEnd(e, self)
+
+		setCurrentChoose: (index)->
+			@allChooseDom[@currentChoose].className = "inactive"
+			@allChooseDom[index].className = "active"
+			@currentChoose = index
+
+		setCurrentChooseAndTranslate: (index)->
+			if index < 0 or index >= @activityNum or index is @currentChoose then return
 			transIndex =  -1 * index
 			compatibleTranslateCss = _getCompatibleTranslateCss("#{transIndex * clientWidth}px", 0)
 			for key, value of compatibleTranslateCss
-				_activityDisplayDom.style[key] = value
-			_setCurrentChoose(index)
-		
-
-		_initForActivityDisplay = ->
-			_allDoms = querys "li", _activityDisplayDom
-			for dom in _allDoms
-				dom.style.width = "#{clientWidth}px"
-			_activityNum = _allDoms.length
-			_activityDisplayDom.style.width = "#{clientWidth * _activityNum}px"
+				@displayUlDom.style[key] = value
+			@setCurrentChoose(index)
 
 
-		initial: ->
-			_initForActivityDisplay()
-			_initForActivityChoose()
 
 		
 
@@ -213,5 +310,9 @@ do (window, document)->
 
 	window.onload = ->
 		Bottom.bottomTouchEventTrigger("Menu")
-		ActivityDisplay.initial()
+		new rotateDisplay {
+			displayCSSSelector: "#Menu-page .activity-display-list"
+			chooseCSSSelector: "#Menu-page .choose-dot-list"
+			delay: 3000
+		}
 
