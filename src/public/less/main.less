@@ -1,3 +1,170 @@
+/*braeco-home-page*/
+#brae-home-page {
+	#all-home-content-field {
+		#Menu-page {
+			position: relative;
+			#Menu-acitvity-column {
+				width: 100%;
+				height: 95px;
+				position: relative;
+				.activity-wrapper {
+					position: absolute;
+					top: 0;
+					width: 100%;
+					overflow: auto;
+					.activity-display-list {
+						height: 95px;
+						.transition(0.5s);
+						li {
+							float: left;
+							width: 100%;
+							height: 95px;
+							.transition(0.5s);
+							img {
+								background-color: yellow;
+								height: 100%;
+								width: 100%;
+							}
+						}
+					}
+				}
+				.choose-wrapper {
+					.horizontal-center;
+					bottom: 10px;
+					height: 20px;
+					.choose-dot-list {
+						height: 100%;
+						display: inline-block;
+						margin: 0 auto 0 auto;
+						li {
+							float: left;
+							height: 20px;
+							width: 20px;
+							.dot {
+								width: 8px;
+								height: 8px;
+								margin: 6px auto 6px auto;
+								.rounded-corners(50%);
+							}
+						}
+						.active {
+							.dot {
+								background-color: #fff;
+							}
+						}
+						.inactive {
+							.dot {
+								background-color: #979797;
+							}
+						}
+					}
+				}
+			}
+			#Menu-category-column {
+				width: 100%;
+				margin: 10px 0 60px 0;
+				.category-wrapper {
+					margin: 0 10px 0 10px;
+					.category-display-list {
+						li {
+							margin-bottom: 10px;
+							height: 87px;
+							position: relative;
+							.category-img {
+								width: 100%;
+								height: 100%;
+							}
+							.category-name-field {
+								position: absolute;
+								bottom: 0;
+								left: 0;
+								width: 100%;
+								background-color: rgba(0, 0, 0, 0.5);
+								.category-name {
+									margin: 5px 0 5px 8px;
+									color: #fff;
+									line-height: 16px;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		#Already-page {}
+		#Individual-page {}
+	}
+	#nav-field {
+		.bottom-field {
+			width: 100%;
+			height: 45px;
+			background-color: #fff;
+			border-top: solid 1px #C8C7CC;
+			position: fixed;
+			bottom: 0;
+			left: 0;
+			div {
+				float: left;
+				height: 100%;
+				.background-norm();
+			}
+			#Menu {
+				.bottom-touch-background-size("Menu");
+			}
+			#Already {
+				.bottom-touch-background-size("Already");
+			}
+			#Individual {
+				.bottom-touch-background-size("Individual");
+			}
+			.Menu-checked {
+				.bottom-touch-background-image("Menu", "checked");
+			}
+			.Already-checked {
+				.bottom-touch-background-image("Already", "checked");
+			}
+			.Individual-checked {
+				.bottom-touch-background-image("Individual", "checked");
+			}
+			.Menu-unchecked {
+				.bottom-touch-background-image("Menu", "unchecked");
+			}
+			.Already-unchecked {
+				.bottom-touch-background-image("Already", "unchecked");
+			}
+			.Individual-unchecked {
+				.bottom-touch-background-image("Individual", "unchecked");
+			}
+			
+		}
+		.bottom-touch-num-4 div {
+			width: 25%;
+		}
+		.bottom-touch-num-3 div {
+			width: 33%;
+		}
+	}
+}
+
+/*common*/
+* {
+	padding: 0;
+	margin: 0;
+}
+
+body {
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	font-size: 16px;
+}
+
+li {
+	list-style-type: none;
+}
+
+img {
+	border: none;
+}
+
 .background-norm(@elem: "none") {
 	background-repeat: no-repeat;
 	background-position: center;
@@ -36,66 +203,31 @@
     -o-border-radius: @radius;
     border-radius: @radius;
 }
+.transition (@time: .3s) {
+	-webkit-transition: all @time ease-in-out;
+    -moz-transition: all @time ease-in-out;
+    -ms-transition: all @time ease-in-out;
+    -o-transition: all @time ease-in-out;
+    transition: all @time ease-in-out;
+}
+.horizontal-center {
+	position: absolute;
+    left: 50%;
+    .translate(-50%, 0);
+}
+.vertical-center {
+	position: absolute;
+	top: 50%;
+	.translate(0, -50%);
+}
+.translate (@ver: 0, @hor: 0) {
+	transform: translate(@ver, @hor);
+    -webkit-transform: translate(@ver, @hor);
+    -moz-transform: translate(@ver, @hor);
+    -ms-transform: translate(@ver, @hor);
+    -o-transform: translate(@ver, @hor);
+}
 
 .hide {
 	display: none;
-}
-
-/*braeco-home-page*/
-#brae-home-page {
-	#all-home-content-field {
-	}
-	#nav-field {
-		.bottom-field {
-			width: 100%;
-			height: 45px;
-			background-color: #fff;
-			border: solid 1px #C8C7CC;
-			position: fixed;
-			bottom: 0;
-			left: 0;
-			div {
-				float: left;
-				height: 100%;
-				.background-norm();
-			}
-			#Menu {
-				.bottom-touch-background-size("Menu");
-			}
-			#Already {
-				.bottom-touch-background-size("Already");
-			}
-			#Individual {
-				.bottom-touch-background-size("Individual");
-			}
-			.checked {
-				#Menu {
-					.bottom-touch-background-image("Menu", "checked");
-				}
-				#Already {
-					.bottom-touch-background-image("Already", "checked");
-				}
-				#Individual {
-					.bottom-touch-background-image("Individual", "checked");
-				}
-			}
-			.unchecked {
-				#Menu {
-					.bottom-touch-background-image("Menu", "unchecked");
-				}
-				#Already {
-					.bottom-touch-background-image("Already", "unchecked");
-				}
-				#Individual {
-					.bottom-touch-background-image("Individual", "unchecked");
-				}
-			}
-		}
-		.bottom-touch-num-4 div {
-			width: 25%;
-		}
-		.bottom-touch-num-3 div {
-			width: 33%;
-		}
-	}
 }
