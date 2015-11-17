@@ -48,12 +48,12 @@ do (window, document)->
 			for dom in _allDoms
 				id = dom.id; dom.className = "#{id}-unchecked"; allPageManage.hideAllPage()
 
-		bottomTouchEventTrigger = (id) ->
-			if _state is id then return
+		bottomTouchEventTrigger = (id)->
+			if _state isnt id
+				###
+				*WebSocketxxxxx
+				###
 			_state = id
-			###
-			*WebSocketxxxxx
-			###
 			uncheckAllForBottomAndHideAllPage()
 			getById(id).className = "#{id}-checked"
 			allPageManage.switchTargetPage("#{id}-page")
@@ -62,11 +62,21 @@ do (window, document)->
 		bottomTouchEventTrigger: bottomTouchEventTrigger
 		uncheckAllForBottomAndHideAllPage: uncheckAllForBottomAndHideAllPage
 
+	HomeMenu = do ->
+		
+		_activityColumnDom = query "#Menu-page #Menu-acitvity-column"
+
+		addListener _activityColumnDom, "click", -> hashRoute.hashJump("-Activity")
+
 	Lock = do ->
 
 	class Category
 
 		_catergoryDisplayDom = query "#Menu-page .category-display-list"
+
+
+	class Activity
+		_headerDom = query "#Activity-page #Activity-header-column"
 
 
 	class rotateDisplay
@@ -97,8 +107,8 @@ do (window, document)->
 		###
 		_touchStart = (e, rotateDisplay)->
 			rotateDisplay.autoFlag = false
-			e.preventDefault()
-			e.stopPropagation()
+			#e.preventDefault()
+			#e.stopPropagation()
 			rotateDisplay.startX = e.touches[0].clientX
 			rotateDisplay.startY = e.touches[0].clientY
 			rotateDisplay.currentX = e.touches[0].clientX
@@ -146,6 +156,8 @@ do (window, document)->
 			@displayUlDom = query options.displayCSSSelector
 			@chooseUlDom = query options.chooseCSSSelector
 			@delay = options.delay
+			query(options.macroCSSSelector).style.height = "#{options.scale * clientWidth}px"
+
 			@init()
 
 		init: ->
@@ -337,6 +349,58 @@ do (window, document)->
 
 		refresh: -> _loc.reload()
 
+		hashJump: (str)-> _loc.hash = str
+
+	Db = do ->
+		store = window.localStorage;doc = document.documentElement
+		if !store then doc.type.behavior = 'url(#default#userData)'
+		set: (key, val, context)->
+			if store then store.setItem(key, val, context)
+			else doc.setAttribute(key, value); doc.save(context || 'default')
+		get: (key, context)->
+			if store then store.getItem(key, context)
+			else doc.load(context || 'default'); doc.getAttribute(key) || ''
+		rm: (key, context)->
+			if store then store.removeItem(key, context)
+			else context = context || 'default';doc.load(context);doc.removeAttribute(key);doc.save(context)
+		clear: ->
+			if store then store.clear()
+			else doc.expires = -1
+
+	callpay = (options)->
+		self = @
+		if typeof wx isnt "undefined"
+			wxConfigFailed = false
+			wx.config({
+				debug:false
+				appId:"#{options.appid}"
+				timestamp:options.timestamp
+				nonceStr:"#{options.noncestr}"
+				signature: "#{options.signature}"
+				jsApiList: ['chooseWXPay']
+			})
+			wx.ready ->
+				if wxConfigFailed then return
+				wx.chooseWXPay {
+					timestamp: options.timestamp
+					nonceStr: "#{options.noncestr}"
+					package: "#{options.package}"
+					signType: 'MD5'
+					paySign: "#{options.signMD}"
+					success: (res)->
+						options.always?()
+						if res.errMsg is "chooseWXPay:ok" then innerCallback("success"); options.callback?()
+						else innerCallback("fail", error("wx_result_fail", res.errMsg))
+					cancel: (res)-> options.always?(); innerCallback("cancel")
+					fail: (res)-> options.always?(); innerCallback("fail", error("wx_config_fail", res.errMsg))
+				}
+			wx.error (res)-> options.always?(); wxConfigFailed = true; innerCallback("fail", error("wx_config_error", res.errMsg))
+
+
+	innerCallback = (result, err)->
+		if typeof @_resultCallback is "function"
+			if typeof err is "undefined" then err = @_error()
+			@_resultCallback(result, err)
 
 
 	window.onload = ->
@@ -345,6 +409,16 @@ do (window, document)->
 		new rotateDisplay {
 			displayCSSSelector: "#Menu-page .activity-display-list"
 			chooseCSSSelector: "#Menu-page .choose-dot-list"
+			macroCSSSelector: "#Menu-page #Menu-acitvity-column"
+			scale: 110/377
 			delay: 3000
 		}
+		new rotateDisplay {
+			displayCSSSelector: "#Activity-page .header-display-list"
+			chooseCSSSelector: "#Activity-page .choose-dot-list"
+			macroCSSSelector: "#Activity-page #Activity-header-column"
+			scale: 200/375
+			delay: 3000
+		}
+		
 

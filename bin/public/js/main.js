@@ -1,7 +1,7 @@
 var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
 (function(window, document) {
-  var Category, HomeBottom, Lock, addClass, addListener, ajax, allPageManage, append, clientWidth, compatibleCSSConfig, deepCopy, getById, getElementsByClassName, getObjectURL, hasClass, hashRoute, hidePhone, isPhone, prepend, query, querys, ref, remove, removeClass, removeListener, rotateDisplay, toggleClass;
+  var Activity, Category, Db, HomeBottom, HomeMenu, Lock, addClass, addListener, ajax, allPageManage, append, callpay, clientWidth, compatibleCSSConfig, deepCopy, getById, getElementsByClassName, getObjectURL, hasClass, hashRoute, hidePhone, innerCallback, isPhone, prepend, query, querys, ref, remove, removeClass, removeListener, rotateDisplay, toggleClass;
   ref = [util.addListener, util.removeListener, util.hasClass, util.addClass, util.removeClass, util.ajax, util.getElementsByClassName, util.isPhone, util.hidePhone, util.query, util.querys, util.remove, util.append, util.prepend, util.toggleClass, util.getObjectURL, util.deepCopy, util.getById], addListener = ref[0], removeListener = ref[1], hasClass = ref[2], addClass = ref[3], removeClass = ref[4], ajax = ref[5], getElementsByClassName = ref[6], isPhone = ref[7], hidePhone = ref[8], query = ref[9], querys = ref[10], remove = ref[11], append = ref[12], prepend = ref[13], toggleClass = ref[14], getObjectURL = ref[15], deepCopy = ref[16], getById = ref[17];
   clientWidth = document.body.clientWidth;
   compatibleCSSConfig = ["", "-webkit-", "-moz-", "-ms-", "-o-"];
@@ -77,14 +77,13 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
       return results;
     };
     bottomTouchEventTrigger = function(id) {
-      if (_state === id) {
-        return;
+      if (_state !== id) {
+
+        /*
+        				*WebSocketxxxxx
+         */
       }
       _state = id;
-
-      /*
-      			*WebSocketxxxxx
-       */
       uncheckAllForBottomAndHideAllPage();
       getById(id).className = id + "-checked";
       return allPageManage.switchTargetPage(id + "-page");
@@ -93,6 +92,13 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
       bottomTouchEventTrigger: bottomTouchEventTrigger,
       uncheckAllForBottomAndHideAllPage: uncheckAllForBottomAndHideAllPage
     };
+  })();
+  HomeMenu = (function() {
+    var _activityColumnDom;
+    _activityColumnDom = query("#Menu-page #Menu-acitvity-column");
+    return addListener(_activityColumnDom, "click", function() {
+      return hashRoute.hashJump("-Activity");
+    });
   })();
   Lock = (function() {})();
   Category = (function() {
@@ -103,6 +109,16 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
     _catergoryDisplayDom = query("#Menu-page .category-display-list");
 
     return Category;
+
+  })();
+  Activity = (function() {
+    var _headerDom;
+
+    function Activity() {}
+
+    _headerDom = query("#Activity-page #Activity-header-column");
+
+    return Activity;
 
   })();
   rotateDisplay = (function() {
@@ -143,8 +159,6 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
 
     _touchStart = function(e, rotateDisplay) {
       rotateDisplay.autoFlag = false;
-      e.preventDefault();
-      e.stopPropagation();
       rotateDisplay.startX = e.touches[0].clientX;
       rotateDisplay.startY = e.touches[0].clientY;
       rotateDisplay.currentX = e.touches[0].clientX;
@@ -206,6 +220,7 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
       this.displayUlDom = query(options.displayCSSSelector);
       this.chooseUlDom = query(options.chooseCSSSelector);
       this.delay = options.delay;
+      query(options.macroCSSSelector).style.height = (options.scale * clientWidth) + "px";
       this.init();
     }
 
@@ -480,14 +495,134 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
       },
       refresh: function() {
         return _loc.reload();
+      },
+      hashJump: function(str) {
+        return _loc.hash = str;
       }
     };
   })();
+  Db = (function() {
+    var doc, store;
+    store = window.localStorage;
+    doc = document.documentElement;
+    if (!store) {
+      doc.type.behavior = 'url(#default#userData)';
+    }
+    return {
+      set: function(key, val, context) {
+        if (store) {
+          return store.setItem(key, val, context);
+        } else {
+          doc.setAttribute(key, value);
+          return doc.save(context || 'default');
+        }
+      },
+      get: function(key, context) {
+        if (store) {
+          return store.getItem(key, context);
+        } else {
+          doc.load(context || 'default');
+          return doc.getAttribute(key) || '';
+        }
+      },
+      rm: function(key, context) {
+        if (store) {
+          return store.removeItem(key, context);
+        } else {
+          context = context || 'default';
+          doc.load(context);
+          doc.removeAttribute(key);
+          return doc.save(context);
+        }
+      },
+      clear: function() {
+        if (store) {
+          return store.clear();
+        } else {
+          return doc.expires = -1;
+        }
+      }
+    };
+  })();
+  callpay = function(options) {
+    var self, wxConfigFailed;
+    self = this;
+    if (typeof wx !== "undefined") {
+      wxConfigFailed = false;
+      wx.config({
+        debug: false,
+        appId: "" + options.appid,
+        timestamp: options.timestamp,
+        nonceStr: "" + options.noncestr,
+        signature: "" + options.signature,
+        jsApiList: ['chooseWXPay']
+      });
+      wx.ready(function() {
+        if (wxConfigFailed) {
+          return;
+        }
+        return wx.chooseWXPay({
+          timestamp: options.timestamp,
+          nonceStr: "" + options.noncestr,
+          "package": "" + options["package"],
+          signType: 'MD5',
+          paySign: "" + options.signMD,
+          success: function(res) {
+            if (typeof options.always === "function") {
+              options.always();
+            }
+            if (res.errMsg === "chooseWXPay:ok") {
+              innerCallback("success");
+              return typeof options.callback === "function" ? options.callback() : void 0;
+            } else {
+              return innerCallback("fail", error("wx_result_fail", res.errMsg));
+            }
+          },
+          cancel: function(res) {
+            if (typeof options.always === "function") {
+              options.always();
+            }
+            return innerCallback("cancel");
+          },
+          fail: function(res) {
+            if (typeof options.always === "function") {
+              options.always();
+            }
+            return innerCallback("fail", error("wx_config_fail", res.errMsg));
+          }
+        });
+      });
+      return wx.error(function(res) {
+        if (typeof options.always === "function") {
+          options.always();
+        }
+        wxConfigFailed = true;
+        return innerCallback("fail", error("wx_config_error", res.errMsg));
+      });
+    }
+  };
+  innerCallback = function(result, err) {
+    if (typeof this._resultCallback === "function") {
+      if (typeof err === "undefined") {
+        err = this._error();
+      }
+      return this._resultCallback(result, err);
+    }
+  };
   return window.onload = function() {
     allPageManage.switchTargetPage("Activity-page");
-    return new rotateDisplay({
+    new rotateDisplay({
       displayCSSSelector: "#Menu-page .activity-display-list",
       chooseCSSSelector: "#Menu-page .choose-dot-list",
+      macroCSSSelector: "#Menu-page #Menu-acitvity-column",
+      scale: 110 / 377,
+      delay: 3000
+    });
+    return new rotateDisplay({
+      displayCSSSelector: "#Activity-page .header-display-list",
+      chooseCSSSelector: "#Activity-page .choose-dot-list",
+      macroCSSSelector: "#Activity-page #Activity-header-column",
+      scale: 200 / 375,
       delay: 3000
     });
   };
