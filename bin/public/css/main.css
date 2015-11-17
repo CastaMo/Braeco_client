@@ -29,7 +29,7 @@
 .header-wrapper .activity-display-list li img,
 .activity-wrapper .header-display-list li img,
 .header-wrapper .header-display-list li img {
-  background-color: yellow;
+  background-color: #FFF5D6;
   height: 100%;
   width: 100%;
 }
@@ -159,6 +159,7 @@
 #brae-detail-page .all-page-field #Activity-page #Activity-header-column {
   width: 100%;
   position: relative;
+  overflow: hidden;
 }
 #brae-detail-page .all-page-field #Activity-page #Activity-header-column .business-name-wrapper {
   width: 100%;
@@ -178,6 +179,108 @@
   color: #fff;
   line-height: 40px;
   font-size: 18px;
+}
+#brae-detail-page .all-page-field #Activity-page #Activity-header-column .like-wrapper {
+  width: 120px;
+  height: 28px;
+  position: absolute;
+  right: 0;
+  top: 20px;
+  transform: translate(50%, 0);
+  -webkit-transform: translate(50%, 0);
+  -moz-transform: translate(50%, 0);
+  -ms-transform: translate(50%, 0);
+  -o-transform: translate(50%, 0);
+  background-color: #FFC107;
+  -webkit-border-radius: 100px;
+  -moz-border-radius: 100px;
+  -ms-border-radius: 100px;
+  -o-border-radius: 100px;
+  border-radius: 100px;
+}
+#brae-detail-page .all-page-field #Activity-page #Activity-header-column .like-wrapper .like-field {
+  float: left;
+}
+#brae-detail-page .all-page-field #Activity-page #Activity-header-column .like-wrapper .like-field * {
+  float: left;
+}
+#brae-detail-page .all-page-field #Activity-page #Activity-header-column .like-wrapper .like-field .like-icon {
+  margin: 6px 6px 6px 10px;
+  width: 16px;
+  height: 16px;
+  background-color: #fff;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  -ms-border-radius: 100%;
+  -o-border-radius: 100%;
+  border-radius: 100%;
+}
+#brae-detail-page .all-page-field #Activity-page #Activity-header-column .like-wrapper .like-field .like-num {
+  font-size: 16px;
+  line-height: 28px;
+  color: #fff;
+}
+#brae-detail-page .all-page-field #Activity-page #Activity-container-column {
+  width: 100%;
+  position: relative;
+  margin-top: 15px;
+}
+#brae-detail-page .all-page-field #Activity-page #Activity-container-column .activity-container-wrapper .title-field {
+  height: 40px;
+  border-top: solid 1px #c8c7cc;
+  border-bottom: solid 1px #c8c7cc;
+  background-color: #fff;
+}
+#brae-detail-page .all-page-field #Activity-page #Activity-container-column .activity-container-wrapper .title-field p.title {
+  line-height: 40px;
+  margin-left: 5%;
+  font-size: 16px;
+  font-weight: bold;
+}
+#brae-detail-page .all-page-field #Activity-page #Activity-container-column .activity-container-wrapper #activity-promotion-field p.title {
+  color: #910012;
+}
+#brae-detail-page .all-page-field #Activity-page #Activity-container-column .activity-container-wrapper #activity-theme-field p.title {
+  color: #8b572a;
+}
+#brae-detail-page .all-page-field #Activity-page #Activity-container-column .activity-container-wrapper ul li.activity-basic-info {
+  position: relative;
+  height: 100px;
+  width: 100%;
+}
+#brae-detail-page .all-page-field #Activity-page #Activity-container-column .activity-container-wrapper ul li.activity-basic-info * {
+  float: left;
+}
+#brae-detail-page .all-page-field #Activity-page #Activity-container-column .activity-container-wrapper ul li.activity-basic-info img {
+  width: 80px;
+  height: 80px;
+  margin: 10px 5px 10px 5%;
+  background-color: red;
+}
+#brae-detail-page .all-page-field #Activity-page #Activity-container-column .activity-container-wrapper ul li.activity-basic-info .info {
+  height: 80px;
+  width: calc(80% - 80px);
+  width: -moz-calc(80% - 80px);
+  width: -webkit-calc(80% - 80px);
+  margin: 10px 0 10px 5px;
+}
+#brae-detail-page .all-page-field #Activity-page #Activity-container-column .activity-container-wrapper ul li.activity-basic-info .info p.activity-name {
+  line-height: 20px;
+  font-size: 14px;
+  font-weight: bold;
+}
+#brae-detail-page .all-page-field #Activity-page #Activity-container-column .activity-container-wrapper ul li.activity-basic-info .info p.activity-intro {
+  font-size: 12px;
+  margin-top: 5px;
+  line-height: 18px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+#brae-detail-page .all-page-field #Activity-page #Activity-container-column .activity-container-wrapper ul li:active {
+  background-color: #fff5d6;
 }
 /*common*/
 * {
@@ -200,6 +303,21 @@ input {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
+}
+.fivePercentLeftLine {
+  margin-left: 5%;
+  width: 95%;
+  height: 1px;
+  background-color: #b3b3b3;
+}
+.arrow {
+  width: 15%;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACcAAABCBAMAAAAmtNLvAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAPUExURQAAAI+Pj21tbY2NjY+Pj333IT4AAAAEdFJOUwC2B4DQufHfAAAASElEQVQ4y2NgwA4MFTDFmF2EMAVNXBwVMBW6YCplBApiKGUSwaZUcVTpqFKilWIVxKZ9VOEIV4i1CMJaWGEt1rAXgFiLSiwAAKtLQ8GDPhjlAAAAAElFTkSuQmCC") no-repeat center;
+  background-size: 11.81px 20px;
 }
 .horizontal-center {
   position: absolute;
