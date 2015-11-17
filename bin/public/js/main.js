@@ -1,16 +1,70 @@
+var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
+
 (function(window, document) {
-  var Bottom, Category, Lock, addClass, addListener, ajax, append, clientWidth, compatibleCSSConfig, deepCopy, getById, getElementsByClassName, getObjectURL, hasClass, hashRoute, hidePhone, isPhone, prepend, query, querys, ref, remove, removeClass, removeListener, rotateDisplay, toggleClass;
+  var Category, HomeBottom, Lock, addClass, addListener, ajax, allPageManage, append, clientWidth, compatibleCSSConfig, deepCopy, getById, getElementsByClassName, getObjectURL, hasClass, hashRoute, hidePhone, isPhone, prepend, query, querys, ref, remove, removeClass, removeListener, rotateDisplay, toggleClass;
   ref = [util.addListener, util.removeListener, util.hasClass, util.addClass, util.removeClass, util.ajax, util.getElementsByClassName, util.isPhone, util.hidePhone, util.query, util.querys, util.remove, util.append, util.prepend, util.toggleClass, util.getObjectURL, util.deepCopy, util.getById], addListener = ref[0], removeListener = ref[1], hasClass = ref[2], addClass = ref[3], removeClass = ref[4], ajax = ref[5], getElementsByClassName = ref[6], isPhone = ref[7], hidePhone = ref[8], query = ref[9], querys = ref[10], remove = ref[11], append = ref[12], prepend = ref[13], toggleClass = ref[14], getObjectURL = ref[15], deepCopy = ref[16], getById = ref[17];
   clientWidth = document.body.clientWidth;
   compatibleCSSConfig = ["", "-webkit-", "-moz-", "-ms-", "-o-"];
-  Bottom = (function() {
-    var _allDoms, _state, _switchTargetPage, bottomTouchEventTrigger, uncheckAllForBottomAndHideAllPage;
+  allPageManage = (function() {
+    var _allDetailDoms, _allDetailId, _allHomeDoms, _allHomeId, _allMainDoms, _hideAllDetailPage, _hideAllHomePage, _hideAllMainPage, _showPage, hideAllPage;
+    _allMainDoms = querys(".main-page");
+    _allHomeDoms = querys(".main-home-page");
+    _allDetailDoms = querys(".main-detail-page");
+    _allHomeId = ["Menu-page", "Already-page", "Individual-page"];
+    _allDetailId = ["Book-page", "Activity-page"];
+    _hideAllMainPage = function() {
+      var dom, j, len, results;
+      results = [];
+      for (j = 0, len = _allMainDoms.length; j < len; j++) {
+        dom = _allMainDoms[j];
+        results.push(addClass(dom, "hide"));
+      }
+      return results;
+    };
+    _hideAllHomePage = function() {
+      var dom, j, len, results;
+      results = [];
+      for (j = 0, len = _allHomeDoms.length; j < len; j++) {
+        dom = _allHomeDoms[j];
+        results.push(addClass(dom, "hide"));
+      }
+      return results;
+    };
+    _hideAllDetailPage = function() {
+      var dom, j, len, results;
+      results = [];
+      for (j = 0, len = _allDetailDoms.length; j < len; j++) {
+        dom = _allDetailDoms[j];
+        results.push(addClass(dom, "hide"));
+      }
+      return results;
+    };
+    _showPage = function(id) {
+      return removeClass(getById("" + id), "hide");
+    };
+    hideAllPage = function() {
+      _hideAllMainPage();
+      _hideAllHomePage();
+      return _hideAllDetailPage();
+    };
+    return {
+      switchTargetPage: function(id) {
+        hideAllPage();
+        if (indexOf.call(_allHomeId, id) >= 0) {
+          _showPage("brae-home-page");
+        } else if (indexOf.call(_allDetailId, id) >= 0) {
+          _showPage("brae-detail-page");
+        }
+        _showPage(id);
+        return setTimeout(scrollTo, 0, 0, 0);
+      },
+      hideAllPage: hideAllPage
+    };
+  })();
+  HomeBottom = (function() {
+    var _allDoms, _state, bottomTouchEventTrigger, uncheckAllForBottomAndHideAllPage;
     _state = "";
     _allDoms = querys("#nav-field .bottom-field div");
-    _switchTargetPage = function(id) {
-      removeClass(query("#" + id + "-page"), "hide");
-      return setTimeout(scrollTo, 0, 0, 0);
-    };
     uncheckAllForBottomAndHideAllPage = function() {
       var dom, id, j, len, results;
       results = [];
@@ -18,7 +72,7 @@
         dom = _allDoms[j];
         id = dom.id;
         dom.className = id + "-unchecked";
-        results.push(addClass(query("#" + id + "-page"), "hide"));
+        results.push(allPageManage.hideAllPage());
       }
       return results;
     };
@@ -33,7 +87,7 @@
        */
       uncheckAllForBottomAndHideAllPage();
       getById(id).className = id + "-checked";
-      return _switchTargetPage(id);
+      return allPageManage.switchTargetPage(id + "-page");
     };
     return {
       bottomTouchEventTrigger: bottomTouchEventTrigger,
@@ -260,24 +314,36 @@
     _msgs = {
       "Menu": {
         "push": function() {
-          return Bottom.bottomTouchEventTrigger("Menu");
+          return HomeBottom.bottomTouchEventTrigger("Menu");
         },
-        "pop": Bottom.uncheckAllForBottomAndHideAllPage,
+        "pop": HomeBottom.uncheckAllForBottomAndHideAllPage,
         "title": "餐牌"
       },
       "Already": {
         "push": function() {
-          return Bottom.bottomTouchEventTrigger("Already");
+          return HomeBottom.bottomTouchEventTrigger("Already");
         },
-        "pop": Bottom.uncheckAllForBottomAndHideAllPage,
+        "pop": HomeBottom.uncheckAllForBottomAndHideAllPage,
         "title": "已点订单"
       },
       "Individual": {
         "push": function() {
-          return Bottom.bottomTouchEventTrigger("Individual");
+          return HomeBottom.bottomTouchEventTrigger("Individual");
         },
-        "pop": Bottom.uncheckAllForBottomAndHideAllPage,
+        "pop": HomeBottom.uncheckAllForBottomAndHideAllPage,
         "title": "个人信息"
+      },
+      "Book": {
+        "push": function() {
+          return allPageManage.switchTargetPage("Book-page");
+        },
+        "pop": allPageManage.hideAllPage
+      },
+      "Activity": {
+        "push": function() {
+          return allPageManage.switchTargetPage("Activity-page");
+        },
+        "pop": allPageManage.hideAllPage
       },
 
       /*
@@ -418,7 +484,7 @@
     };
   })();
   return window.onload = function() {
-    Bottom.bottomTouchEventTrigger("Menu");
+    allPageManage.switchTargetPage("Activity-page");
     return new rotateDisplay({
       displayCSSSelector: "#Menu-page .activity-display-list",
       chooseCSSSelector: "#Menu-page .choose-dot-list",

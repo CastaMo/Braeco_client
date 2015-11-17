@@ -12,18 +12,41 @@ do (window, document)->
 		"-o-"
 	]
 
-	Bottom = do ->
+	allPageManage = do ->
+		_allMainDoms = querys ".main-page"
+		_allHomeDoms = querys ".main-home-page"
+		_allDetailDoms = querys ".main-detail-page"
+
+		_allHomeId = ["Menu-page", "Already-page", "Individual-page"]
+		_allDetailId = ["Book-page", "Activity-page"]
+
+		_hideAllMainPage = -> addClass dom, "hide" for dom in _allMainDoms
+
+		_hideAllHomePage = -> addClass dom, "hide" for dom in _allHomeDoms
+
+		_hideAllDetailPage = -> addClass dom, "hide" for dom in _allDetailDoms
+
+		_showPage = (id)-> removeClass(getById("#{id}"), "hide")
+
+		hideAllPage = -> _hideAllMainPage(); _hideAllHomePage(); _hideAllDetailPage()
+
+		switchTargetPage: (id)->
+			hideAllPage()
+			if id in _allHomeId then _showPage("brae-home-page")
+			else if id in _allDetailId then _showPage("brae-detail-page")
+			_showPage(id)
+			setTimeout(scrollTo, 0, 0, 0)
+
+		hideAllPage: hideAllPage
+
+	HomeBottom = do ->
 		_state = ""
 		_allDoms = querys "#nav-field .bottom-field div"
-
-		_switchTargetPage = (id)->
-			removeClass(query("##{id}-page"), "hide")
-			setTimeout(scrollTo, 0, 0, 0)
 
 
 		uncheckAllForBottomAndHideAllPage = ->
 			for dom in _allDoms
-				id = dom.id; dom.className = "#{id}-unchecked"; addClass(query("##{id}-page"), "hide")
+				id = dom.id; dom.className = "#{id}-unchecked"; allPageManage.hideAllPage()
 
 		bottomTouchEventTrigger = (id) ->
 			if _state is id then return
@@ -33,7 +56,7 @@ do (window, document)->
 			###
 			uncheckAllForBottomAndHideAllPage()
 			getById(id).className = "#{id}-checked"
-			_switchTargetPage(id)
+			allPageManage.switchTargetPage("#{id}-page")
 
 
 		bottomTouchEventTrigger: bottomTouchEventTrigger
@@ -194,19 +217,27 @@ do (window, document)->
 		_loc = window.location
 		_msgs = {
 			"Menu": {
-				"push": -> Bottom.bottomTouchEventTrigger("Menu")
-				"pop": Bottom.uncheckAllForBottomAndHideAllPage
+				"push": -> HomeBottom.bottomTouchEventTrigger("Menu")
+				"pop": HomeBottom.uncheckAllForBottomAndHideAllPage
 				"title": "餐牌"
 			}
 			"Already": {
-				"push": -> Bottom.bottomTouchEventTrigger("Already")
-				"pop": Bottom.uncheckAllForBottomAndHideAllPage
+				"push": -> HomeBottom.bottomTouchEventTrigger("Already")
+				"pop": HomeBottom.uncheckAllForBottomAndHideAllPage
 				"title": "已点订单"
 			}
 			"Individual": {
-				"push": -> Bottom.bottomTouchEventTrigger("Individual")
-				"pop": Bottom.uncheckAllForBottomAndHideAllPage
+				"push": -> HomeBottom.bottomTouchEventTrigger("Individual")
+				"pop": HomeBottom.uncheckAllForBottomAndHideAllPage
 				"title": "个人信息"
+			}
+			"Book": {
+				"push": -> allPageManage.switchTargetPage("Book-page")
+				"pop": allPageManage.hideAllPage
+			}
+			"Activity": {
+				"push": -> allPageManage.switchTargetPage("Activity-page")
+				"pop": allPageManage.hideAllPage
 			}
 			###
 			"Trolley": {
@@ -309,7 +340,8 @@ do (window, document)->
 
 
 	window.onload = ->
-		Bottom.bottomTouchEventTrigger("Menu")
+		allPageManage.switchTargetPage("Activity-page")
+		
 		new rotateDisplay {
 			displayCSSSelector: "#Menu-page .activity-display-list"
 			chooseCSSSelector: "#Menu-page .choose-dot-list"

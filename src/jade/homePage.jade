@@ -1,0 +1,43 @@
+- var all_page = ['Menu', 'Already', 'Individual']
+
+#brae-home-page.hide.main-page
+	#all-home-content-field
+		.all-page-field
+			#Menu-page.hide.main-home-page
+				#Menu-content
+					.Menu-content-field
+						#Menu-acitvity-column
+							.activity-wrapper
+								ul.activity-display-list
+									li#activity-0
+										img(src="" alt="活动详情" class="activity-img")
+									li#activity-1
+										img(src="" alt="活动详情" class="activity-img")
+									li#activity-2
+										img(src="" alt="活动详情" class="activity-img")
+							.choose-wrapper
+								ul.choose-dot-list
+									li#choose-dot-0.active
+										.dot
+									li#choose-dot-1.inactive
+										.dot
+									li#choose-dot-2.inactive
+										.dot
+						#Menu-category-column
+							.category-wrapper
+								ul.category-display-list
+									li#categroy-0
+										img(src="" alt="标签" class="category-img")
+										.category-name-field
+											p.category-name 墙裂推荐
+									li#categroy-1
+										img(src="" alt="标签" class="category-img")
+										.category-name-field
+											p.category-name 香浓咖啡
+			#Already-page.hide.main-home-page
+			#Individual-page.hide.main-home-page
+	#nav-field
+		div(class="bottom-field bottom-touch-num-#{all_page.length}")
+			each elem, i in all_page
+				a(href="#-#{elem}" id="bottom-touch-#{i}")
+					div(id="#{elem}" class="#{elem}-unchecked")
