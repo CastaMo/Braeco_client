@@ -112,11 +112,15 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
 
   })();
   Activity = (function() {
-    var _headerDom;
+    var _activityInfoImgDom, _activityInformationDom;
 
     function Activity() {}
 
-    _headerDom = query("#Activity-page #Activity-header-column");
+    _activityInformationDom = query(".Activity-information-field");
+
+    _activityInfoImgDom = query("#activity-info-img-field", _activityInformationDom);
+
+    _activityInfoImgDom.style.height = (clientWidth * 0.9 * 167 / 343) + "px";
 
     return Activity;
 

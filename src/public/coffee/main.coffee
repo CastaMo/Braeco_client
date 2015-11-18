@@ -76,7 +76,9 @@ do (window, document)->
 
 
 	class Activity
-		_headerDom = query "#Activity-page #Activity-header-column"
+		_activityInformationDom = query ".Activity-information-field"
+		_activityInfoImgDom = query "#activity-info-img-field", _activityInformationDom
+		_activityInfoImgDom.style.height = "#{clientWidth * 0.9 * 167 / 343}px"
 
 
 	class rotateDisplay
