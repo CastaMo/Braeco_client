@@ -1,105 +1,10 @@
 var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
 (function(window, document) {
-  var Activity, Category, Db, HomeBottom, HomeMenu, Lock, addClass, addListener, ajax, allPageManage, append, callpay, clientWidth, compatibleCSSConfig, deepCopy, getById, getElementsByClassName, getObjectURL, hasClass, hashRoute, hidePhone, innerCallback, isPhone, prepend, query, querys, ref, remove, removeClass, removeListener, rotateDisplay, toggleClass;
+  var Activity, Category, Db, Lock, addClass, addListener, ajax, append, callpay, clientWidth, compatibleCSSConfig, deepCopy, getById, getElementsByClassName, getObjectURL, hasClass, hashRoute, hidePhone, innerCallback, isPhone, prepend, query, querys, ref, remove, removeClass, removeListener, rotateDisplay, toggleClass;
   ref = [util.addListener, util.removeListener, util.hasClass, util.addClass, util.removeClass, util.ajax, util.getElementsByClassName, util.isPhone, util.hidePhone, util.query, util.querys, util.remove, util.append, util.prepend, util.toggleClass, util.getObjectURL, util.deepCopy, util.getById], addListener = ref[0], removeListener = ref[1], hasClass = ref[2], addClass = ref[3], removeClass = ref[4], ajax = ref[5], getElementsByClassName = ref[6], isPhone = ref[7], hidePhone = ref[8], query = ref[9], querys = ref[10], remove = ref[11], append = ref[12], prepend = ref[13], toggleClass = ref[14], getObjectURL = ref[15], deepCopy = ref[16], getById = ref[17];
   clientWidth = document.body.clientWidth;
   compatibleCSSConfig = ["", "-webkit-", "-moz-", "-ms-", "-o-"];
-  allPageManage = (function() {
-    var _allDetailDoms, _allDetailId, _allHomeDoms, _allHomeId, _allMainDoms, _hideAllDetailPage, _hideAllHomePage, _hideAllMainPage, _showPage, hideAllPage;
-    _allMainDoms = querys(".main-page");
-    _allHomeDoms = querys(".main-home-page");
-    _allDetailDoms = querys(".main-detail-page");
-    _allHomeId = ["Menu-page", "Already-page", "Individual-page"];
-    _allDetailId = ["Book-page", "Activity-page"];
-    _hideAllMainPage = function() {
-      var dom, j, len, results;
-      results = [];
-      for (j = 0, len = _allMainDoms.length; j < len; j++) {
-        dom = _allMainDoms[j];
-        results.push(addClass(dom, "hide"));
-      }
-      return results;
-    };
-    _hideAllHomePage = function() {
-      var dom, j, len, results;
-      results = [];
-      for (j = 0, len = _allHomeDoms.length; j < len; j++) {
-        dom = _allHomeDoms[j];
-        results.push(addClass(dom, "hide"));
-      }
-      return results;
-    };
-    _hideAllDetailPage = function() {
-      var dom, j, len, results;
-      results = [];
-      for (j = 0, len = _allDetailDoms.length; j < len; j++) {
-        dom = _allDetailDoms[j];
-        results.push(addClass(dom, "hide"));
-      }
-      return results;
-    };
-    _showPage = function(id) {
-      return removeClass(getById("" + id), "hide");
-    };
-    hideAllPage = function() {
-      _hideAllMainPage();
-      _hideAllHomePage();
-      return _hideAllDetailPage();
-    };
-    return {
-      switchTargetPage: function(id) {
-        hideAllPage();
-        if (indexOf.call(_allHomeId, id) >= 0) {
-          _showPage("brae-home-page");
-        } else if (indexOf.call(_allDetailId, id) >= 0) {
-          _showPage("brae-detail-page");
-        }
-        _showPage(id);
-        return setTimeout(scrollTo, 0, 0, 0);
-      },
-      hideAllPage: hideAllPage
-    };
-  })();
-  HomeBottom = (function() {
-    var _allDoms, _state, bottomTouchEventTrigger, uncheckAllForBottomAndHideAllPage;
-    _state = "";
-    _allDoms = querys("#nav-field .bottom-field div");
-    uncheckAllForBottomAndHideAllPage = function() {
-      var dom, id, j, len, results;
-      results = [];
-      for (j = 0, len = _allDoms.length; j < len; j++) {
-        dom = _allDoms[j];
-        id = dom.id;
-        dom.className = id + "-unchecked";
-        results.push(allPageManage.hideAllPage());
-      }
-      return results;
-    };
-    bottomTouchEventTrigger = function(id) {
-      if (_state !== id) {
-
-        /*
-        				*WebSocketxxxxx
-         */
-      }
-      _state = id;
-      uncheckAllForBottomAndHideAllPage();
-      getById(id).className = id + "-checked";
-      return allPageManage.switchTargetPage(id + "-page");
-    };
-    return {
-      bottomTouchEventTrigger: bottomTouchEventTrigger,
-      uncheckAllForBottomAndHideAllPage: uncheckAllForBottomAndHideAllPage
-    };
-  })();
-  HomeMenu = (function() {
-    var _activityColumnDom;
-    _activityColumnDom = query("#Menu-page #Menu-acitvity-column");
-    return addListener(_activityColumnDom, "click", function() {
-      return hashRoute.hashJump("-Activity");
-    });
-  })();
   Lock = (function() {})();
   Category = (function() {
     var _catergoryDisplayDom;
@@ -112,7 +17,7 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
 
   })();
   Activity = (function() {
-    var _activityInfoImgDom, _activityInformationDom;
+    var _activityInfoImgDom, _activityInformationDom, dom, j, len, ref1;
 
     function Activity() {}
 
@@ -121,6 +26,14 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
     _activityInfoImgDom = query("#activity-info-img-field", _activityInformationDom);
 
     _activityInfoImgDom.style.height = (clientWidth * 0.9 * 167 / 343) + "px";
+
+    ref1 = querys("#Activity-container-column li");
+    for (j = 0, len = ref1.length; j < len; j++) {
+      dom = ref1[j];
+      addListener(dom, "click", function() {
+        return hashRoute.pushHashStr("activityInfo");
+      });
+    }
 
     return Activity;
 
@@ -328,9 +241,58 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
 
   })();
   hashRoute = (function() {
-    var _getHashStr, _loc, _modifyTitle, _msgs, _parseAndExecuteHash, _popHashStr, _pushHashStr, _recentHash, title_dom;
+    var HomeBottom, HomeMenu, _activityInfoDom, _allDetailDoms, _allDetailId, _allHomeDoms, _allHomeId, _allMainDoms, _allSecondary, _getHashStr, _hashStateFunc, _hideAllDetailPage, _hideAllHomePage, _hideAllMainPage, _loc, _modifyTitle, _parseAndExecuteHash, _recentHash, _secondaryInfo, _showPage, _titleDom, hashJump, hideAllPage, hideSecondaryPage, popHashStr, pushHashStr, switchFirstPage, switchSecondaryPage;
+    HomeBottom = (function() {
+      var _allDoms, _state, bottomTouchEventTrigger, uncheckAllForBottomAndHideAllPage;
+      _state = "";
+      _allDoms = querys("#nav-field .bottom-field div");
+      uncheckAllForBottomAndHideAllPage = function() {
+        var dom, id, j, len, results;
+        results = [];
+        for (j = 0, len = _allDoms.length; j < len; j++) {
+          dom = _allDoms[j];
+          id = dom.id;
+          dom.className = id + "-unchecked";
+          results.push(hideAllPage());
+        }
+        return results;
+      };
+      bottomTouchEventTrigger = function(id) {
+        if (_state !== id) {
+
+          /*
+          					*WebSocketxxxxx
+           */
+        }
+        _state = id;
+        uncheckAllForBottomAndHideAllPage();
+        getById(id).className = id + "-checked";
+        return switchFirstPage(id + "-page");
+      };
+      return {
+        bottomTouchEventTrigger: bottomTouchEventTrigger,
+        uncheckAllForBottomAndHideAllPage: uncheckAllForBottomAndHideAllPage
+      };
+    })();
+    HomeMenu = (function() {
+      var _activityColumnDom;
+      _activityColumnDom = query("#Menu-page #Menu-acitvity-column");
+      return addListener(_activityColumnDom, "click", function() {
+        return hashJump("-Activity");
+      });
+    })();
+    _allMainDoms = querys(".main-page");
+    _allHomeDoms = querys(".main-home-page");
+    _allDetailDoms = querys(".main-detail-page");
+    _activityInfoDom = query(".Activity-information-field");
+    _allSecondary = ["activityInfo"];
+    _secondaryInfo = {
+      "Activity": ["activityInfo"]
+    };
+    _allHomeId = ["Menu-page", "Already-page", "Individual-page"];
+    _allDetailId = ["Book-page", "Activity-page"];
     _loc = window.location;
-    _msgs = {
+    _hashStateFunc = {
       "Menu": {
         "push": function() {
           return HomeBottom.bottomTouchEventTrigger("Menu");
@@ -354,15 +316,23 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
       },
       "Book": {
         "push": function() {
-          return allPageManage.switchTargetPage("Book-page");
+          return switchFirstPage("Book-page");
         },
-        "pop": allPageManage.hideAllPage
+        "pop": hideAllPage
       },
       "Activity": {
         "push": function() {
-          return allPageManage.switchTargetPage("Activity-page");
+          return switchFirstPage("Activity-page");
         },
-        "pop": allPageManage.hideAllPage
+        "pop": hideAllPage
+      },
+      "activityInfo": {
+        "push": function() {
+          return switchSecondaryPage("activityInfo", "Activity", _activityInfoDom);
+        },
+        "pop": function() {
+          return hideSecondaryPage(_activityInfoDom);
+        }
       },
 
       /*
@@ -405,12 +375,12 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
       "x": {
         "push": function() {
           return setTimeout(function() {
-            return _popHashStr("x");
+            return popHashStr("x");
           }, 0);
         },
         "pop": function() {
           return setTimeout(function() {
-            return _popHashStr("x");
+            return popHashStr("x");
           }, 0);
         }
       }
@@ -418,22 +388,69 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
     addListener(window, "popstate", function() {
       return _parseAndExecuteHash(_getHashStr());
     });
-    title_dom = util.query("title");
+    _titleDom = util.query("title");
     _recentHash = _loc.hash.replace("#", "");
+    switchFirstPage = function(id) {
+      hideAllPage();
+      if (indexOf.call(_allHomeId, id) >= 0) {
+        _showPage("brae-home-page");
+      } else if (indexOf.call(_allDetailId, id) >= 0) {
+        _showPage("brae-detail-page");
+      }
+      _showPage(id);
+      return setTimeout("scrollTo(0, 0)", 0);
+    };
+    switchSecondaryPage = function(id, previousState, pageDom) {
+      if (indexOf.call(_secondaryInfo[previousState], id) >= 0) {
+        return removeClass(pageDom, "hide-right");
+      }
+    };
+    hideSecondaryPage = function(pageDom) {
+      return addClass(pageDom, "hide-right");
+    };
+    _hideAllMainPage = function() {
+      var dom, j, len, results;
+      results = [];
+      for (j = 0, len = _allMainDoms.length; j < len; j++) {
+        dom = _allMainDoms[j];
+        results.push(addClass(dom, "hide"));
+      }
+      return results;
+    };
+    _hideAllHomePage = function() {
+      var dom, j, len, results;
+      results = [];
+      for (j = 0, len = _allHomeDoms.length; j < len; j++) {
+        dom = _allHomeDoms[j];
+        results.push(addClass(dom, "hide"));
+      }
+      return results;
+    };
+    _hideAllDetailPage = function() {
+      var dom, j, len, results;
+      results = [];
+      for (j = 0, len = _allDetailDoms.length; j < len; j++) {
+        dom = _allDetailDoms[j];
+        results.push(addClass(dom, "hide"));
+      }
+      return results;
+    };
+    _showPage = function(id) {
+      return removeClass(getById("" + id), "hide");
+    };
+    hideAllPage = function() {
+      _hideAllMainPage();
+      _hideAllHomePage();
+      return _hideAllDetailPage();
+    };
     _getHashStr = function() {
       return _loc.hash.replace("#", "");
     };
-    _pushHashStr = function(str) {
-      return _loc.hash = _recentHash + "-" + str;
-    };
-    _popHashStr = function(str) {
-      return _loc.hash = _recentHash.replace("-" + str, "");
-    };
     _modifyTitle = function(str) {
-      return title_dom.innerHTML = str;
+      return _titleDom.innerHTML = str;
     };
     _parseAndExecuteHash = function(str) {
-      var base, base1, base2, entry, hash_arr, i, j, k, l, last_state, len, len1, len2, m, n, old_arr, ref1, ref2, temp_counter;
+      var base, base1, base2, base3, entry, hash_arr, i, j, k, l, last_state, len, len1, len2, m, n, old_arr, ref1, ref2, ref3, ref4, temp_counter;
       hash_arr = str.split("-");
       if (hash_arr.length <= 1 && hash_arr[0] === "") {
         return;
@@ -445,14 +462,14 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
       if (str === _recentHash) {
         for (j = 0, len = hash_arr.length; j < len; j++) {
           entry = hash_arr[j];
-          if (entry && _msgs[entry]) {
-            if (typeof (base = _msgs[entry])["push"] === "function") {
+          if (entry && _hashStateFunc[entry]) {
+            if (typeof (base = _hashStateFunc[entry])["push"] === "function") {
               base["push"]();
             }
           }
         }
         if (str === "-Individual-Login") {
-          setTimeout(hashRoute.back, 0);
+          setTimeout(back, 0);
         }
         return;
       }
@@ -475,20 +492,37 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
         }
       }
       for (i = m = ref1 = old_arr.length - 1; ref1 <= 0 ? m <= 0 : m >= 0; i = ref1 <= 0 ? ++m : --m) {
-        if (old_arr[i] && _msgs[old_arr[i]] && temp_counter[old_arr[i]] === 1) {
-          if (typeof (base1 = _msgs[old_arr[i]])["pop"] === "function") {
+        if (old_arr[i] && _hashStateFunc[old_arr[i]] && temp_counter[old_arr[i]] === 1) {
+          if (typeof (base1 = _hashStateFunc[old_arr[i]])["pop"] === "function") {
             base1["pop"]();
           }
         }
       }
       for (i = n = 0, ref2 = hash_arr.length - 1; 0 <= ref2 ? n <= ref2 : n >= ref2; i = 0 <= ref2 ? ++n : --n) {
-        if (hash_arr[i] && _msgs[hash_arr[i]] && temp_counter[hash_arr[i]] === 1) {
-          if (typeof (base2 = _msgs[hash_arr[i]])["push"] === "function") {
-            base2["push"]();
+        if (hash_arr[i] && _hashStateFunc[hash_arr[i]] && temp_counter[hash_arr[i]] === 1) {
+          if (ref3 = old_arr[i], indexOf.call(_allSecondary, ref3) >= 0) {
+            if (ref4 = old_arr[i], indexOf.call(_secondaryInfo[old_arr[i - 1]], ref4) >= 0) {
+              if (typeof (base2 = _hashStateFunc[hash_arr[i]])["push"] === "function") {
+                base2["push"]();
+              }
+            }
+            continue;
+          }
+          if (typeof (base3 = _hashStateFunc[hash_arr[i]])["push"] === "function") {
+            base3["push"]();
           }
         }
       }
       return _recentHash = str;
+    };
+    pushHashStr = function(str) {
+      return _loc.hash = _recentHash + "-" + str;
+    };
+    popHashStr = function(str) {
+      return _loc.hash = _recentHash.replace("-" + str, "");
+    };
+    hashJump = function(str) {
+      return _loc.hash = str;
     };
     return {
       ahead: function() {
@@ -500,9 +534,9 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
       refresh: function() {
         return _loc.reload();
       },
-      hashJump: function(str) {
-        return _loc.hash = str;
-      }
+      pushHashStr: pushHashStr,
+      popHashStr: popHashStr,
+      hashJump: hashJump
     };
   })();
   Db = (function() {
@@ -614,7 +648,9 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
     }
   };
   return window.onload = function() {
-    allPageManage.switchTargetPage("Activity-page");
+    if (location.hash === "") {
+      hashRoute.hashJump("-Menu-x");
+    }
     new rotateDisplay({
       displayCSSSelector: "#Menu-page .activity-display-list",
       chooseCSSSelector: "#Menu-page .choose-dot-list",

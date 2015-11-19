@@ -12,62 +12,6 @@ do (window, document)->
 		"-o-"
 	]
 
-	allPageManage = do ->
-		_allMainDoms = querys ".main-page"
-		_allHomeDoms = querys ".main-home-page"
-		_allDetailDoms = querys ".main-detail-page"
-
-		_allHomeId = ["Menu-page", "Already-page", "Individual-page"]
-		_allDetailId = ["Book-page", "Activity-page"]
-
-		_hideAllMainPage = -> addClass dom, "hide" for dom in _allMainDoms
-
-		_hideAllHomePage = -> addClass dom, "hide" for dom in _allHomeDoms
-
-		_hideAllDetailPage = -> addClass dom, "hide" for dom in _allDetailDoms
-
-		_showPage = (id)-> removeClass(getById("#{id}"), "hide")
-
-		hideAllPage = -> _hideAllMainPage(); _hideAllHomePage(); _hideAllDetailPage()
-
-		switchTargetPage: (id)->
-			hideAllPage()
-			if id in _allHomeId then _showPage("brae-home-page")
-			else if id in _allDetailId then _showPage("brae-detail-page")
-			_showPage(id)
-			setTimeout(scrollTo, 0, 0, 0)
-
-		hideAllPage: hideAllPage
-
-	HomeBottom = do ->
-		_state = ""
-		_allDoms = querys "#nav-field .bottom-field div"
-
-
-		uncheckAllForBottomAndHideAllPage = ->
-			for dom in _allDoms
-				id = dom.id; dom.className = "#{id}-unchecked"; allPageManage.hideAllPage()
-
-		bottomTouchEventTrigger = (id)->
-			if _state isnt id
-				###
-				*WebSocketxxxxx
-				###
-			_state = id
-			uncheckAllForBottomAndHideAllPage()
-			getById(id).className = "#{id}-checked"
-			allPageManage.switchTargetPage("#{id}-page")
-
-
-		bottomTouchEventTrigger: bottomTouchEventTrigger
-		uncheckAllForBottomAndHideAllPage: uncheckAllForBottomAndHideAllPage
-
-	HomeMenu = do ->
-		
-		_activityColumnDom = query "#Menu-page #Menu-acitvity-column"
-
-		addListener _activityColumnDom, "click", -> hashRoute.hashJump("-Activity")
-
 	Lock = do ->
 
 	class Category
@@ -79,6 +23,9 @@ do (window, document)->
 		_activityInformationDom = query ".Activity-information-field"
 		_activityInfoImgDom = query "#activity-info-img-field", _activityInformationDom
 		_activityInfoImgDom.style.height = "#{clientWidth * 0.9 * 167 / 343}px"
+
+		for dom in querys "#Activity-container-column li"
+			addListener dom, "click", -> hashRoute.pushHashStr("activityInfo")
 
 
 	class rotateDisplay
@@ -228,8 +175,53 @@ do (window, document)->
 		
 
 	hashRoute = do ->
+
+		HomeBottom = do ->
+			_state = ""
+			_allDoms = querys "#nav-field .bottom-field div"
+
+
+			uncheckAllForBottomAndHideAllPage = ->
+				for dom in _allDoms
+					id = dom.id; dom.className = "#{id}-unchecked"; hideAllPage()
+
+			bottomTouchEventTrigger = (id)->
+				if _state isnt id
+					###
+					*WebSocketxxxxx
+					###
+				_state = id
+				uncheckAllForBottomAndHideAllPage()
+				getById(id).className = "#{id}-checked"
+				switchFirstPage("#{id}-page")
+
+
+			bottomTouchEventTrigger: bottomTouchEventTrigger
+			uncheckAllForBottomAndHideAllPage: uncheckAllForBottomAndHideAllPage
+
+		HomeMenu = do ->
+			
+			_activityColumnDom = query "#Menu-page #Menu-acitvity-column"
+
+			addListener _activityColumnDom, "click", -> hashJump("-Activity")
+
+
+		_allMainDoms = querys ".main-page"
+		_allHomeDoms = querys ".main-home-page"
+		_allDetailDoms = querys ".main-detail-page"
+
+		_activityInfoDom = query ".Activity-information-field"
+
+		_allSecondary = ["activityInfo"]
+
+		_secondaryInfo =
+			"Activity": ["activityInfo"]
+
+		_allHomeId = ["Menu-page", "Already-page", "Individual-page"]
+		_allDetailId = ["Book-page", "Activity-page"]
+
 		_loc = window.location
-		_msgs = {
+		_hashStateFunc = {
 			"Menu": {
 				"push": -> HomeBottom.bottomTouchEventTrigger("Menu")
 				"pop": HomeBottom.uncheckAllForBottomAndHideAllPage
@@ -246,12 +238,16 @@ do (window, document)->
 				"title": "个人信息"
 			}
 			"Book": {
-				"push": -> allPageManage.switchTargetPage("Book-page")
-				"pop": allPageManage.hideAllPage
+				"push": -> switchFirstPage("Book-page")
+				"pop": hideAllPage
 			}
 			"Activity": {
-				"push": -> allPageManage.switchTargetPage("Activity-page")
-				"pop": allPageManage.hideAllPage
+				"push": -> switchFirstPage("Activity-page")
+				"pop": hideAllPage
+			}
+			"activityInfo": {
+				"push": -> switchSecondaryPage("activityInfo", "Activity", _activityInfoDom)
+				"pop": -> hideSecondaryPage(_activityInfoDom)
 			}
 			###
 			"Trolley": {
@@ -292,27 +288,45 @@ do (window, document)->
 			###
 			"x": {
 				"push": -> setTimeout(->
-					_popHashStr("x")
+					popHashStr("x")
 				,0)
 				"pop": -> setTimeout(->
-					_popHashStr("x")
+					popHashStr("x")
 				,0)
 			}
 		}
 		addListener window, "popstate", ->
 			_parseAndExecuteHash _getHashStr()
 
-		title_dom = util.query("title")
+		_titleDom = util.query("title")
 
 		_recentHash = _loc.hash.replace("#", "")
 
+		switchFirstPage = (id)->
+			hideAllPage()
+			if id in _allHomeId then _showPage("brae-home-page")
+			else if id in _allDetailId then _showPage("brae-detail-page")
+			_showPage(id)
+			setTimeout("scrollTo(0, 0)", 0)
+
+		switchSecondaryPage = (id, previousState, pageDom)->
+			if id in _secondaryInfo[previousState] then removeClass(pageDom, "hide-right")
+
+		hideSecondaryPage = (pageDom)-> addClass(pageDom, "hide-right")
+
+		_hideAllMainPage = -> addClass dom, "hide" for dom in _allMainDoms
+
+		_hideAllHomePage = -> addClass dom, "hide" for dom in _allHomeDoms
+
+		_hideAllDetailPage = -> addClass dom, "hide" for dom in _allDetailDoms
+
+		_showPage = (id)-> removeClass(getById("#{id}"), "hide")
+
+		hideAllPage = -> _hideAllMainPage(); _hideAllHomePage(); _hideAllDetailPage()
+
 		_getHashStr =  -> _loc.hash.replace("#", "")
 
-		_pushHashStr = (str)-> _loc.hash = "#{_recentHash}-#{str}"
-
-		_popHashStr = (str)-> _loc.hash = _recentHash.replace("-#{str}", "")
-
-		_modifyTitle = (str)-> title_dom.innerHTML = str
+		_modifyTitle = (str)-> _titleDom.innerHTML = str
 
 		_parseAndExecuteHash = (str)->
 			hash_arr = str.split("-")
@@ -326,8 +340,8 @@ do (window, document)->
 
 			if str is _recentHash
 				for entry in hash_arr
-					if entry and _msgs[entry] then _msgs[entry]["push"]?()
-				if str is "-Individual-Login" then setTimeout(hashRoute.back, 0)
+					if entry and _hashStateFunc[entry] then _hashStateFunc[entry]["push"]?()
+				if str is "-Individual-Login" then setTimeout(back, 0)
 				return
 
 			temp_counter = {}
@@ -339,11 +353,21 @@ do (window, document)->
 				else temp_counter[entry] = 1
 
 			for i in [old_arr.length-1..0]
-				if old_arr[i] and _msgs[old_arr[i]] and temp_counter[old_arr[i]] is 1 then _msgs[old_arr[i]]["pop"]?()
+				if old_arr[i] and _hashStateFunc[old_arr[i]] and temp_counter[old_arr[i]] is 1 then _hashStateFunc[old_arr[i]]["pop"]?()
 			for i in [0..hash_arr.length-1]
-				if hash_arr[i] and _msgs[hash_arr[i]] and temp_counter[hash_arr[i]] is 1 then _msgs[hash_arr[i]]["push"]?()
+				if hash_arr[i] and _hashStateFunc[hash_arr[i]] and temp_counter[hash_arr[i]] is 1
+					if old_arr[i] in _allSecondary
+						if old_arr[i] in _secondaryInfo[old_arr[i-1]] then _hashStateFunc[hash_arr[i]]["push"]?()
+						continue
+					_hashStateFunc[hash_arr[i]]["push"]?()
 
 			_recentHash = str
+
+		pushHashStr = (str)-> _loc.hash = "#{_recentHash}-#{str}"
+
+		popHashStr = (str)-> _loc.hash = _recentHash.replace("-#{str}", "")
+
+		hashJump = (str)-> _loc.hash = str
 
 		ahead: -> history.go(1)
 
@@ -351,7 +375,12 @@ do (window, document)->
 
 		refresh: -> _loc.reload()
 
-		hashJump: (str)-> _loc.hash = str
+
+		pushHashStr: pushHashStr
+		popHashStr: popHashStr
+		hashJump: hashJump
+
+		
 
 	Db = do ->
 		store = window.localStorage;doc = document.documentElement
@@ -406,7 +435,7 @@ do (window, document)->
 
 
 	window.onload = ->
-		allPageManage.switchTargetPage("Activity-page")
+		if location.hash is "" then hashRoute.hashJump("-Menu-x")
 		
 		new rotateDisplay {
 			displayCSSSelector: "#Menu-page .activity-display-list"

@@ -185,17 +185,18 @@ module.exports = function(grunt) {
     sftp: {
       test: {
         options: {
-          path: '<%= secret.path %>/application/public',
+          path: '<%= secret.path %>/application/public/testH5',
           host: '<%= secret.host %>',
           username: '<%= secret.username %>',
           password: '<%= secret.password %>',
           showProgress: true,
-          srcBasePath: "<%= dirs.dest_path %><%= dirs.js %>",
+          srcBasePath: "<%= dirs.dest_path %>",
           port: '<%= secret.port %>',
           createDirectories: true
         },
         files: {
-          "./": ["<%= dirs.dest_path %><%= dirs.js %>main.js"]
+          "./": ["<%= dirs.dest_path %>*",
+                  "<%= dirs.dest_path %>**/*"]
         }
       }
     },
