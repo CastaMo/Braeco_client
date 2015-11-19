@@ -107,8 +107,7 @@
 #brae-home-page #nav-field .bottom-field {
   width: 100%;
   height: 45px;
-  background-color: #fff;
-  border-top: solid 1px #C8C7CC;
+  background-color: #000;
   position: fixed;
   bottom: 0;
   left: 0;
@@ -126,7 +125,7 @@
   background-size: 25.778px 40px;
 }
 #brae-home-page #nav-field .bottom-field #Individual {
-  background-size: 17.7px 40px;
+  background-size: 19.556px 40px;
 }
 #brae-home-page #nav-field .bottom-field .Menu-checked {
   background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADYAAABaBAMAAAABXbjPAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAhUExURQAAAP/BBv+/BP/ABv/BBv/ABf/ABv++BP+7AP/BBv/BB4ria0cAAAAKdFJOUwDLRJ7mYX8pFLTZP4+MAAAB+0lEQVRIx+2Vz2/SYBjHvys/7YkmsISeujIz5UTGnBk3STOBE1OmjlPJSDE9vcTNup2qc5H0RHDO0NvowqR/pS8UeKuuvYt+D0+e5NP3eZ/3+7Rv0XUDNDEhBjG3gEDkplaG3bywA1kFa/SBItMOY33EXfcHmDjGUoi47lhmyjE2RjO4z9vV9jrsfGG+hPkZNoew+YXNfdXfeXcYzEY4CWQzr0c+r2O/sbv72R0+06gw1Xy97Nb+yTnYgUzFhRCgdfzXX6IH/UWWMHs0XvvZ+vFr7fBVB+D7eRWJMUORs2/a1q7WTlGmnhPjXaVnPJoz/WBbJg/RlICoapGS92nNlKwWi2mykZlWitYt0qKRm9+Ka4M6VwZKz+9h3U/VxlbmwrHVJZO45W16Uv7oXNVjionoE13TlZqizFky53zJdgfAJV2XHQ5bRt44nbO8QzY10n6L2X5ACwdY1OTMs3KkkrC3l+x6yfDYzRZv9q7EagfRjmGWhFshPT9fY1IyqM4/HFXAKzVJ3hi05Tcei5PmIVWT0JyXeAl50mCGMmaZvJTch5/1qKz3FObBv2yNNVs7VhdMEJ4JabEw7ZE/ov8OsbhXWDBAfLr5nWZf6Y7T9nw1kbsUnalF+38wvT0xYyJdFx95TGesljHpnSkSxPqw6r8y2fPOc34aTmfpT5Wsn/iXZ5A0AAAAAElFTkSuQmCC");
