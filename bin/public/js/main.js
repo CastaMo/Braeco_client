@@ -1,7 +1,7 @@
 var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
 (function(window, document) {
-  var Activity, Category, Db, Lock, addClass, addListener, ajax, append, callpay, clientWidth, compatibleCSSConfig, deepCopy, getById, getElementsByClassName, getObjectURL, hasClass, hashRoute, hidePhone, innerCallback, isPhone, prepend, query, querys, ref, remove, removeClass, removeListener, rotateDisplay, toggleClass;
+  var Activity, Category, Db, Lock, addClass, addListener, ajax, append, callpay, clientWidth, compatibleCSSConfig, deepCopy, extraPageManage, getById, getElementsByClassName, getObjectURL, hasClass, hashRoute, hidePhone, innerCallback, isPhone, prepend, query, querys, ref, remove, removeClass, removeListener, rotateDisplay, toggleClass;
   ref = [util.addListener, util.removeListener, util.hasClass, util.addClass, util.removeClass, util.ajax, util.getElementsByClassName, util.isPhone, util.hidePhone, util.query, util.querys, util.remove, util.append, util.prepend, util.toggleClass, util.getObjectURL, util.deepCopy, util.getById], addListener = ref[0], removeListener = ref[1], hasClass = ref[2], addClass = ref[3], removeClass = ref[4], ajax = ref[5], getElementsByClassName = ref[6], isPhone = ref[7], hidePhone = ref[8], query = ref[9], querys = ref[10], remove = ref[11], append = ref[12], prepend = ref[13], toggleClass = ref[14], getObjectURL = ref[15], deepCopy = ref[16], getById = ref[17];
   clientWidth = document.body.clientWidth;
   compatibleCSSConfig = ["", "-webkit-", "-moz-", "-ms-", "-o-"];
@@ -542,6 +542,10 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
       HomeBottom: HomeBottom
     };
   })();
+  extraPageManage = (function() {
+    var _extraDom;
+    return _extraDom = getById("extra");
+  })();
   Db = (function() {
     var doc, store;
     store = window.localStorage;
@@ -651,11 +655,11 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
     }
   };
   return window.onload = function() {
-    hashRoute.HomeBottom.bottomTouchEventTrigger("Already");
+    hashRoute.HomeBottom.bottomTouchEventTrigger("Individual");
     new rotateDisplay({
       displayCSSSelector: "#Menu-page .activity-display-list",
       chooseCSSSelector: "#Menu-page .choose-dot-list",
-      macroCSSSelector: "#Menu-page #Menu-acitvity-column",
+      macroCSSSelector: "#Menu-page #Menu-activity-column",
       scale: 110 / 377,
       delay: 3000
     });

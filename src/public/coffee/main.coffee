@@ -381,7 +381,8 @@ do (window, document)->
 		HomeBottom: HomeBottom
 
 	extraPageManage = do ->
-		
+		_extraDom = getById "extra"
+
 
 		
 
@@ -438,12 +439,12 @@ do (window, document)->
 
 
 	window.onload = ->
-		hashRoute.HomeBottom.bottomTouchEventTrigger("Already")
+		hashRoute.HomeBottom.bottomTouchEventTrigger("Individual")
 		
 		new rotateDisplay {
 			displayCSSSelector: "#Menu-page .activity-display-list"
 			chooseCSSSelector: "#Menu-page .choose-dot-list"
-			macroCSSSelector: "#Menu-page #Menu-acitvity-column"
+			macroCSSSelector: "#Menu-page #Menu-activity-column"
 			scale: 110/377
 			delay: 3000
 		}
