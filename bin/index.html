@@ -118,14 +118,28 @@
                         </div>
                       </div>
                       <div class="Individual-EXP-bar-wrapper">
-                        <div class="EXP-bar field">
+                        <div class="EXP-bar-field">
                           <div class="full-bar">
-                            <div class="inner-bar"></div>
+                            <div style="width:69%" class="inner-bar"></div>
                           </div>
                         </div>
                       </div>
                     </div>
-                    <div id="Individual-func-column"></div>
+                    <div id="Individual-operation-column">
+                      <div class="Individual-func-wrapper">
+                        <ul class="Individual-func-list">
+                          <li id="Recharge-func" class="Individual-func">
+                            <div class="func-img-field">
+                              <div class="func-img"></div>
+                            </div>
+                            <div class="name-field">
+                              <p class="name">会员充值</p>
+                            </div>
+                            <div class="arrow"></div>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
                   </div>
                   <div class="not-yet-login-field hide">
                     <div id="not-yet-login-column">
@@ -275,19 +289,44 @@
         </div>
       </div>
       <div id="extra" class="hide">
-        <div id="brae-extra-form-page" class="extra-page">
+        <div id="brae-form-page" class="extra-page hide">
           <div class="cover"></div>
-          <div id="login-filed" class="center-form hide"></div>
-          <div id="book-choose-field" class="center-form hide"></div>
-          <div id="remark-for-trolley-field" class="center-form hide"></div>
-          <div id="alert-field" class="center-form hide"></div>
-          <div id="confirm-field" class="center-form hide"></div>
+          <div class="all-page-field">
+            <div id="login-page" class="extra-form-page center-form hide"></div>
+            <div id="book-choose-page" class="extra-form-page center-form hide"></div>
+            <div id="remark-for-trolley-page" class="extra-form-page center-form hide"></div>
+            <div id="alert-page" class="extra-form-page center-form hide"></div>
+            <div id="confirm-page" class="extra-form-page center-form hide"></div>
+          </div>
+        </div>
+        <div id="brae-payment-page" class="extra-page">
+          <div id="all-payment-content-field">
+            <div class="all-page-field">
+              <div id="Recharge-page" class="hide-right extra-content-page">
+                <div id="Recharge-content">
+                  <div class="Recharge-content-field">
+                    <div id="Recharge-container-column"></div>
+                    <div id="recharge-confirm-column">
+                      <div class="recharge-confirm-wrapper">
+                        <div id="recharge-confirm-field">
+                          <div class="confirm-field">
+                            <p class="confirm">确认充值</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div id="Confirm-pay-page" class="hide extra-content-page"></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
     <script type="text/javascript">document.addEventListener("touchstart", function(){}, true);</script>
     <!--script(src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript")-->
     <script src="./public/js/common/extra.min.js" type="text/javascript"></script>
-    <script src="./public/js/main.min.js" type="text/javascript"></script>
+    <script src="./public/js/main.js" type="text/javascript"></script>
   </body>
 </html>

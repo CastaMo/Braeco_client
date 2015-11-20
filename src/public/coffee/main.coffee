@@ -105,7 +105,7 @@ do (window, document)->
 			@displayUlDom = query options.displayCSSSelector
 			@chooseUlDom = query options.chooseCSSSelector
 			@delay = options.delay
-			query(options.macroCSSSelector).style.height = "#{options.scale * clientWidth}px"
+			dom.style.height = "#{options.scale * clientWidth}px" for dom in querys "img", @displayUlDom
 
 			@init()
 
@@ -117,7 +117,7 @@ do (window, document)->
 
 		initDisplay: ->
 			@displayContainerDom = @displayUlDom.parentNode
-			@displayContainerDom.style.overflow = "auto"
+			@displayContainerDom.style.overflowX = "auto"
 			@allDisplayDom = querys "li", @displayUlDom
 
 			###
@@ -134,7 +134,7 @@ do (window, document)->
 			@displayUlDom.style.width = "#{clientWidth * @activityNum}px"
 
 		initChoose: ->
-			@chooseUlDom.parentNode.style.overflow = "auto"
+			@chooseUlDom.parentNode.style.overflow = "hidden"
 			self = @
 			@allChooseDom = querys "li", @chooseUlDom
 			@currentChoose = 0
@@ -181,9 +181,9 @@ do (window, document)->
 			_allDoms = querys "#nav-field .bottom-field div"
 
 
-			uncheckAllForBottomAndHideAllPage = ->
+			uncheckAllForBottomAnd_hideAllMain = ->
 				for dom in _allDoms
-					id = dom.id; dom.className = "#{id}-unchecked"; hideAllPage()
+					id = dom.id; dom.className = "#{id}-unchecked"; _hideAllMain()
 
 			bottomTouchEventTrigger = (id)->
 				if _state isnt id
@@ -191,13 +191,13 @@ do (window, document)->
 					*WebSocketxxxxx
 					###
 				_state = id
-				uncheckAllForBottomAndHideAllPage()
+				uncheckAllForBottomAnd_hideAllMain()
 				getById(id).className = "#{id}-checked"
-				switchFirstPage("#{id}-page")
+				_switchFirstPage("#{id}-page")
 
 
 			bottomTouchEventTrigger: bottomTouchEventTrigger
-			uncheckAllForBottomAndHideAllPage: uncheckAllForBottomAndHideAllPage
+			uncheckAllForBottomAnd_hideAllMain: uncheckAllForBottomAnd_hideAllMain
 
 		HomeMenu = do ->
 			
@@ -205,49 +205,62 @@ do (window, document)->
 
 			addListener _activityColumnDom, "click", -> hashJump("-Activity")
 
+		_extraMainDom = getById "#extra"
 
 		_allMainDoms = querys ".main-page"
-		_allHomeDoms = querys ".main-home-page"
-		_allDetailDoms = querys ".main-detail-page"
+		_allMainHomeDoms = querys ".main-home-page"
+		_allMainDetailDoms = querys ".main-detail-page"
+
+		_allExtraDoms = querys ".extra-page"
+		_allExtraFormDoms = querys ".extra-form-page"
+		_allExtraContentDoms = querys ".extra-content-page"
 
 		_activityInfoDom = query ".Activity-information-field"
+
 
 		_allSecondary = ["activityInfo"]
 
 		_secondaryInfo =
 			"Activity": ["activityInfo"]
 
-		_allHomeId = ["Menu-page", "Already-page", "Individual-page"]
-		_allDetailId = ["Book-page", "Activity-page"]
+		_allMainHomeId = ["Menu-page", "Already-page", "Individual-page"]
+		_allMainDetailId = ["Book-page", "Activity-page"]
+		_allExtraFormId = ["login-page", "book-choose-page", "remark-for-trolley-page", "alert-page", "confirm-page"]
+		_allExtraContentId = ["Recharge-page", "Confirm-pay-page"]
+
 
 		_loc = window.location
 		_hashStateFunc = {
 			"Menu": {
 				"push": -> HomeBottom.bottomTouchEventTrigger("Menu")
-				"pop": HomeBottom.uncheckAllForBottomAndHideAllPage
+				"pop": HomeBottom.uncheckAllForBottomAnd_hideAllMain
 				"title": "餐牌"
 			}
 			"Already": {
 				"push": -> HomeBottom.bottomTouchEventTrigger("Already")
-				"pop": HomeBottom.uncheckAllForBottomAndHideAllPage
+				"pop": HomeBottom.uncheckAllForBottomAnd_hideAllMain
 				"title": "已点订单"
 			}
 			"Individual": {
 				"push": -> HomeBottom.bottomTouchEventTrigger("Individual")
-				"pop": HomeBottom.uncheckAllForBottomAndHideAllPage
+				"pop": HomeBottom.uncheckAllForBottomAnd_hideAllMain
 				"title": "个人信息"
 			}
 			"Book": {
-				"push": -> switchFirstPage("Book-page")
-				"pop": hideAllPage
+				"push": -> _switchFirstPage("Book-page")
+				"pop": _hideAllMain
 			}
 			"Activity": {
-				"push": -> switchFirstPage("Activity-page")
-				"pop": hideAllPage
+				"push": -> _switchFirstPage("Activity-page")
+				"pop": _hideAllMain
 			}
 			"activityInfo": {
-				"push": -> switchSecondaryPage("activityInfo", "Activity", _activityInfoDom)
-				"pop": -> hideSecondaryPage(_activityInfoDom)
+				"push": -> _switchSecondaryPage("activityInfo", "Activity", _activityInfoDom)
+				"pop": -> _hideSecondaryPage(_activityInfoDom)
+			}
+			"Recharge": {
+				"push": -> _switchExtraPage("Recharge-page")
+				"pop": _hideAllExtra
 			}
 			###
 			"Trolley": {
@@ -301,27 +314,50 @@ do (window, document)->
 
 		_recentHash = _loc.hash.replace("#", "")
 
-		switchFirstPage = (id)->
-			hideAllPage()
-			if id in _allHomeId then _showPage("brae-home-page")
-			else if id in _allDetailId then _showPage("brae-detail-page")
-			_showPage(id)
+		_switchExtraPage = (id)->
+			_hideAllExtra()
+			_staticShowTarget("extra")
+			if id in _allExtraContentId
+				_staticShowTarget("brae-payment-page")
+				_dynamicShowTarget(id, "hide-right")
+			else if id in _allExtraFormId then _staticShowTarget("brae-form-page")
+
+		_hideAllExtraPage = -> addClass dom, "hide" for dom in _allExtraDoms
+
+		_hideAllExtraFormPage = -> addClass dom, "hide" for dom in _allExtraFormDoms
+
+		_hideAllExtraContentPage = -> addClass dom, "hide-right" for dom in _allExtraContentDoms
+
+		_hideAllExtra = -> _hideAllExtraFormPage(); _hideAllExtraContentPage(); _hideAllExtraPage(); _hideTarget("extra")
+
+		_switchFirstPage = (id)->
+			_hideAllMain()
+			if id in _allMainHomeId then _staticShowTarget("brae-home-page")
+			else if id in _allMainDetailId then _staticShowTarget("brae-detail-page")
+			_staticShowTarget(id)
 			setTimeout("scrollTo(0, 0)", 0)
 
-		switchSecondaryPage = (id, previousState, pageDom)->
-			if id in _secondaryInfo[previousState] then removeClass(pageDom, "hide-right")
+		_switchSecondaryPage = (currentState, previousState, pageDom)->
+			if currentState in _secondaryInfo[previousState] then removeClass(pageDom, "hide-right")
 
-		hideSecondaryPage = (pageDom)-> addClass(pageDom, "hide-right")
+		_hideSecondaryPage = (pageDom)-> addClass(pageDom, "hide-right")
 
 		_hideAllMainPage = -> addClass dom, "hide" for dom in _allMainDoms
 
-		_hideAllHomePage = -> addClass dom, "hide" for dom in _allHomeDoms
+		_hideAllMainHomePage = -> addClass dom, "hide" for dom in _allMainHomeDoms
 
-		_hideAllDetailPage = -> addClass dom, "hide" for dom in _allDetailDoms
+		_hideAllMainDetailPage = -> addClass dom, "hide" for dom in _allMainDetailDoms
 
-		_showPage = (id)-> removeClass(getById("#{id}"), "hide")
+		_hideAllMain = -> _hideAllMainHomePage(); _hideAllMainDetailPage(); _hideAllMainPage()
 
-		hideAllPage = -> _hideAllMainPage(); _hideAllHomePage(); _hideAllDetailPage()
+		_staticShowTarget = (id)-> removeClass(getById(id), "hide")
+
+		_dynamicShowTarget = (id, className)-> removeClass(getById(id), className)
+
+		_hideTarget = (id, className)->
+			_target = getById id
+			if className then removeClass _target, className
+			else removeClass _target, "hide"
 
 		_getHashStr =  -> _loc.hash.replace("#", "")
 
@@ -379,6 +415,7 @@ do (window, document)->
 		popHashStr: popHashStr
 		hashJump: hashJump
 		HomeBottom: HomeBottom
+		_switchExtraPage: _switchExtraPage
 
 	extraPageManage = do ->
 		_extraDom = getById "extra"
@@ -440,18 +477,17 @@ do (window, document)->
 
 	window.onload = ->
 		hashRoute.HomeBottom.bottomTouchEventTrigger("Individual")
-		
+		hashRoute._switchExtraPage("Recharge-page")
+
 		new rotateDisplay {
 			displayCSSSelector: "#Menu-page .activity-display-list"
 			chooseCSSSelector: "#Menu-page .choose-dot-list"
-			macroCSSSelector: "#Menu-page #Menu-activity-column"
 			scale: 110/377
 			delay: 3000
 		}
 		new rotateDisplay {
 			displayCSSSelector: "#Activity-page .header-display-list"
 			chooseCSSSelector: "#Activity-page .choose-dot-list"
-			macroCSSSelector: "#Activity-page #Activity-header-column"
 			scale: 200/375
 			delay: 3000
 		}

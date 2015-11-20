@@ -134,10 +134,15 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
      */
 
     function rotateDisplay(options) {
+      var dom, j, len, ref1;
       this.displayUlDom = query(options.displayCSSSelector);
       this.chooseUlDom = query(options.chooseCSSSelector);
       this.delay = options.delay;
-      query(options.macroCSSSelector).style.height = (options.scale * clientWidth) + "px";
+      ref1 = querys("img", this.displayUlDom);
+      for (j = 0, len = ref1.length; j < len; j++) {
+        dom = ref1[j];
+        dom.style.height = (options.scale * clientWidth) + "px";
+      }
       this.init();
     }
 
@@ -151,7 +156,7 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
     rotateDisplay.prototype.initDisplay = function() {
       var dom, j, len, ref1;
       this.displayContainerDom = this.displayUlDom.parentNode;
-      this.displayContainerDom.style.overflow = "auto";
+      this.displayContainerDom.style.overflowX = "auto";
       this.allDisplayDom = querys("li", this.displayUlDom);
 
       /*
@@ -172,7 +177,7 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
 
     rotateDisplay.prototype.initChoose = function() {
       var dom, i, j, len, ref1, results, self;
-      this.chooseUlDom.parentNode.style.overflow = "auto";
+      this.chooseUlDom.parentNode.style.overflow = "hidden";
       self = this;
       this.allChooseDom = querys("li", this.chooseUlDom);
       this.currentChoose = 0;
@@ -243,19 +248,19 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
 
   })();
   hashRoute = (function() {
-    var HomeBottom, HomeMenu, _activityInfoDom, _allDetailDoms, _allDetailId, _allHomeDoms, _allHomeId, _allMainDoms, _allSecondary, _getHashStr, _hashStateFunc, _hideAllDetailPage, _hideAllHomePage, _hideAllMainPage, _loc, _modifyTitle, _parseAndExecuteHash, _recentHash, _secondaryInfo, _showPage, _titleDom, hashJump, hideAllPage, hideSecondaryPage, popHashStr, pushHashStr, switchFirstPage, switchSecondaryPage;
+    var HomeBottom, HomeMenu, _activityInfoDom, _allExtraContentDoms, _allExtraContentId, _allExtraDoms, _allExtraFormDoms, _allExtraFormId, _allMainDetailDoms, _allMainDetailId, _allMainDoms, _allMainHomeDoms, _allMainHomeId, _allSecondary, _dynamicShowTarget, _extraMainDom, _getHashStr, _hashStateFunc, _hideAllExtra, _hideAllExtraContentPage, _hideAllExtraFormPage, _hideAllExtraPage, _hideAllMain, _hideAllMainDetailPage, _hideAllMainHomePage, _hideAllMainPage, _hideSecondaryPage, _hideTarget, _loc, _modifyTitle, _parseAndExecuteHash, _recentHash, _secondaryInfo, _staticShowTarget, _switchExtraPage, _switchFirstPage, _switchSecondaryPage, _titleDom, hashJump, popHashStr, pushHashStr;
     HomeBottom = (function() {
-      var _allDoms, _state, bottomTouchEventTrigger, uncheckAllForBottomAndHideAllPage;
+      var _allDoms, _state, bottomTouchEventTrigger, uncheckAllForBottomAnd_hideAllMain;
       _state = "";
       _allDoms = querys("#nav-field .bottom-field div");
-      uncheckAllForBottomAndHideAllPage = function() {
+      uncheckAllForBottomAnd_hideAllMain = function() {
         var dom, id, j, len, results;
         results = [];
         for (j = 0, len = _allDoms.length; j < len; j++) {
           dom = _allDoms[j];
           id = dom.id;
           dom.className = id + "-unchecked";
-          results.push(hideAllPage());
+          results.push(_hideAllMain());
         }
         return results;
       };
@@ -267,13 +272,13 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
            */
         }
         _state = id;
-        uncheckAllForBottomAndHideAllPage();
+        uncheckAllForBottomAnd_hideAllMain();
         getById(id).className = id + "-checked";
-        return switchFirstPage(id + "-page");
+        return _switchFirstPage(id + "-page");
       };
       return {
         bottomTouchEventTrigger: bottomTouchEventTrigger,
-        uncheckAllForBottomAndHideAllPage: uncheckAllForBottomAndHideAllPage
+        uncheckAllForBottomAnd_hideAllMain: uncheckAllForBottomAnd_hideAllMain
       };
     })();
     HomeMenu = (function() {
@@ -283,58 +288,70 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
         return hashJump("-Activity");
       });
     })();
+    _extraMainDom = getById("#extra");
     _allMainDoms = querys(".main-page");
-    _allHomeDoms = querys(".main-home-page");
-    _allDetailDoms = querys(".main-detail-page");
+    _allMainHomeDoms = querys(".main-home-page");
+    _allMainDetailDoms = querys(".main-detail-page");
+    _allExtraDoms = querys(".extra-page");
+    _allExtraFormDoms = querys(".extra-form-page");
+    _allExtraContentDoms = querys(".extra-content-page");
     _activityInfoDom = query(".Activity-information-field");
     _allSecondary = ["activityInfo"];
     _secondaryInfo = {
       "Activity": ["activityInfo"]
     };
-    _allHomeId = ["Menu-page", "Already-page", "Individual-page"];
-    _allDetailId = ["Book-page", "Activity-page"];
+    _allMainHomeId = ["Menu-page", "Already-page", "Individual-page"];
+    _allMainDetailId = ["Book-page", "Activity-page"];
+    _allExtraFormId = ["login-page", "book-choose-page", "remark-for-trolley-page", "alert-page", "confirm-page"];
+    _allExtraContentId = ["Recharge-page", "Confirm-pay-page"];
     _loc = window.location;
     _hashStateFunc = {
       "Menu": {
         "push": function() {
           return HomeBottom.bottomTouchEventTrigger("Menu");
         },
-        "pop": HomeBottom.uncheckAllForBottomAndHideAllPage,
+        "pop": HomeBottom.uncheckAllForBottomAnd_hideAllMain,
         "title": "餐牌"
       },
       "Already": {
         "push": function() {
           return HomeBottom.bottomTouchEventTrigger("Already");
         },
-        "pop": HomeBottom.uncheckAllForBottomAndHideAllPage,
+        "pop": HomeBottom.uncheckAllForBottomAnd_hideAllMain,
         "title": "已点订单"
       },
       "Individual": {
         "push": function() {
           return HomeBottom.bottomTouchEventTrigger("Individual");
         },
-        "pop": HomeBottom.uncheckAllForBottomAndHideAllPage,
+        "pop": HomeBottom.uncheckAllForBottomAnd_hideAllMain,
         "title": "个人信息"
       },
       "Book": {
         "push": function() {
-          return switchFirstPage("Book-page");
+          return _switchFirstPage("Book-page");
         },
-        "pop": hideAllPage
+        "pop": _hideAllMain
       },
       "Activity": {
         "push": function() {
-          return switchFirstPage("Activity-page");
+          return _switchFirstPage("Activity-page");
         },
-        "pop": hideAllPage
+        "pop": _hideAllMain
       },
       "activityInfo": {
         "push": function() {
-          return switchSecondaryPage("activityInfo", "Activity", _activityInfoDom);
+          return _switchSecondaryPage("activityInfo", "Activity", _activityInfoDom);
         },
         "pop": function() {
-          return hideSecondaryPage(_activityInfoDom);
+          return _hideSecondaryPage(_activityInfoDom);
         }
+      },
+      "Recharge": {
+        "push": function() {
+          return _switchExtraPage("Recharge-page");
+        },
+        "pop": _hideAllExtra
       },
 
       /*
@@ -392,22 +409,65 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
     });
     _titleDom = util.query("title");
     _recentHash = _loc.hash.replace("#", "");
-    switchFirstPage = function(id) {
-      hideAllPage();
-      if (indexOf.call(_allHomeId, id) >= 0) {
-        _showPage("brae-home-page");
-      } else if (indexOf.call(_allDetailId, id) >= 0) {
-        _showPage("brae-detail-page");
+    _switchExtraPage = function(id) {
+      _hideAllExtra();
+      _staticShowTarget("extra");
+      if (indexOf.call(_allExtraContentId, id) >= 0) {
+        _staticShowTarget("brae-payment-page");
+        return _dynamicShowTarget(id, "hide-right");
+      } else if (indexOf.call(_allExtraFormId, id) >= 0) {
+        return _staticShowTarget("brae-form-page");
       }
-      _showPage(id);
+    };
+    _hideAllExtraPage = function() {
+      var dom, j, len, results;
+      results = [];
+      for (j = 0, len = _allExtraDoms.length; j < len; j++) {
+        dom = _allExtraDoms[j];
+        results.push(addClass(dom, "hide"));
+      }
+      return results;
+    };
+    _hideAllExtraFormPage = function() {
+      var dom, j, len, results;
+      results = [];
+      for (j = 0, len = _allExtraFormDoms.length; j < len; j++) {
+        dom = _allExtraFormDoms[j];
+        results.push(addClass(dom, "hide"));
+      }
+      return results;
+    };
+    _hideAllExtraContentPage = function() {
+      var dom, j, len, results;
+      results = [];
+      for (j = 0, len = _allExtraContentDoms.length; j < len; j++) {
+        dom = _allExtraContentDoms[j];
+        results.push(addClass(dom, "hide-right"));
+      }
+      return results;
+    };
+    _hideAllExtra = function() {
+      _hideAllExtraFormPage();
+      _hideAllExtraContentPage();
+      _hideAllExtraPage();
+      return _hideTarget("extra");
+    };
+    _switchFirstPage = function(id) {
+      _hideAllMain();
+      if (indexOf.call(_allMainHomeId, id) >= 0) {
+        _staticShowTarget("brae-home-page");
+      } else if (indexOf.call(_allMainDetailId, id) >= 0) {
+        _staticShowTarget("brae-detail-page");
+      }
+      _staticShowTarget(id);
       return setTimeout("scrollTo(0, 0)", 0);
     };
-    switchSecondaryPage = function(id, previousState, pageDom) {
-      if (indexOf.call(_secondaryInfo[previousState], id) >= 0) {
+    _switchSecondaryPage = function(currentState, previousState, pageDom) {
+      if (indexOf.call(_secondaryInfo[previousState], currentState) >= 0) {
         return removeClass(pageDom, "hide-right");
       }
     };
-    hideSecondaryPage = function(pageDom) {
+    _hideSecondaryPage = function(pageDom) {
       return addClass(pageDom, "hide-right");
     };
     _hideAllMainPage = function() {
@@ -419,31 +479,43 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
       }
       return results;
     };
-    _hideAllHomePage = function() {
+    _hideAllMainHomePage = function() {
       var dom, j, len, results;
       results = [];
-      for (j = 0, len = _allHomeDoms.length; j < len; j++) {
-        dom = _allHomeDoms[j];
+      for (j = 0, len = _allMainHomeDoms.length; j < len; j++) {
+        dom = _allMainHomeDoms[j];
         results.push(addClass(dom, "hide"));
       }
       return results;
     };
-    _hideAllDetailPage = function() {
+    _hideAllMainDetailPage = function() {
       var dom, j, len, results;
       results = [];
-      for (j = 0, len = _allDetailDoms.length; j < len; j++) {
-        dom = _allDetailDoms[j];
+      for (j = 0, len = _allMainDetailDoms.length; j < len; j++) {
+        dom = _allMainDetailDoms[j];
         results.push(addClass(dom, "hide"));
       }
       return results;
     };
-    _showPage = function(id) {
-      return removeClass(getById("" + id), "hide");
+    _hideAllMain = function() {
+      _hideAllMainHomePage();
+      _hideAllMainDetailPage();
+      return _hideAllMainPage();
     };
-    hideAllPage = function() {
-      _hideAllMainPage();
-      _hideAllHomePage();
-      return _hideAllDetailPage();
+    _staticShowTarget = function(id) {
+      return removeClass(getById(id), "hide");
+    };
+    _dynamicShowTarget = function(id, className) {
+      return removeClass(getById(id), className);
+    };
+    _hideTarget = function(id, className) {
+      var _target;
+      _target = getById(id);
+      if (className) {
+        return removeClass(_target, className);
+      } else {
+        return removeClass(_target, "hide");
+      }
     };
     _getHashStr = function() {
       return _loc.hash.replace("#", "");
@@ -539,7 +611,8 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
       pushHashStr: pushHashStr,
       popHashStr: popHashStr,
       hashJump: hashJump,
-      HomeBottom: HomeBottom
+      HomeBottom: HomeBottom,
+      _switchExtraPage: _switchExtraPage
     };
   })();
   extraPageManage = (function() {
@@ -656,17 +729,16 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
   };
   return window.onload = function() {
     hashRoute.HomeBottom.bottomTouchEventTrigger("Individual");
+    hashRoute._switchExtraPage("Recharge-page");
     new rotateDisplay({
       displayCSSSelector: "#Menu-page .activity-display-list",
       chooseCSSSelector: "#Menu-page .choose-dot-list",
-      macroCSSSelector: "#Menu-page #Menu-activity-column",
       scale: 110 / 377,
       delay: 3000
     });
     return new rotateDisplay({
       displayCSSSelector: "#Activity-page .header-display-list",
       chooseCSSSelector: "#Activity-page .choose-dot-list",
-      macroCSSSelector: "#Activity-page #Activity-header-column",
       scale: 200 / 375,
       delay: 3000
     });

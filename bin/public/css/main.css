@@ -1,16 +1,12 @@
 .activity-wrapper,
 .header-wrapper {
-  position: absolute;
-  top: 0;
   width: 100%;
   overflow: auto;
-  height: 100%;
 }
 .activity-wrapper .activity-display-list,
 .header-wrapper .activity-display-list,
 .activity-wrapper .header-display-list,
 .header-wrapper .header-display-list {
-  height: 100%;
   -webkit-transition: all 0.5s ease-in-out;
   -moz-transition: all 0.5s ease-in-out;
   -ms-transition: all 0.5s ease-in-out;
@@ -74,6 +70,7 @@
 /*braeco-home-page*/
 #brae-home-page .all-page-field #Menu-page #Menu-activity-column {
   width: 100%;
+  height: auto;
   position: relative;
 }
 #brae-home-page .all-page-field #Menu-page #Menu-category-column {
@@ -162,13 +159,13 @@
 #brae-home-page .all-page-field #Individual-page #Individual-content .Already-login-field #Individual-info-column {
   margin-top: 15px;
   width: 100%;
-  height: 200px;
+  height: auto;
   border-top: solid 1px #979797;
-  border-bottom: solid 1px #979797;
   background-color: #fff;
 }
 #brae-home-page .all-page-field #Individual-page #Individual-content .Already-login-field #Individual-info-column .Individual-basic-info-wrapper {
   margin-top: 15px;
+  height: 125px;
 }
 #brae-home-page .all-page-field #Individual-page #Individual-content .Already-login-field #Individual-info-column .Individual-basic-info-wrapper > * {
   float: left;
@@ -187,10 +184,12 @@
   width: -webkit-calc(100% - 175px);
 }
 #brae-home-page .all-page-field #Individual-page #Individual-content .Already-login-field #Individual-info-column .Individual-basic-info-wrapper .member-info-pos .rank-field p.rank {
+  line-height: 24px;
   font-size: 20px;
   font-weight: lighter;
 }
 #brae-home-page .all-page-field #Individual-page #Individual-content .Already-login-field #Individual-info-column .Individual-basic-info-wrapper .member-info-pos .rank-field p.member-name {
+  line-height: 28px;
   font-size: 20px;
   margin-top: 1px;
   font-weight: bold;
@@ -199,6 +198,7 @@
   margin-top: 1px;
 }
 #brae-home-page .all-page-field #Individual-page #Individual-content .Already-login-field #Individual-info-column .Individual-basic-info-wrapper .member-info-pos .discount-field p.discount {
+  line-height: 20px;
   font-size: 14px;
   color: #910012;
   font-weight: bold;
@@ -206,6 +206,7 @@
 #brae-home-page .all-page-field #Individual-page #Individual-content .Already-login-field #Individual-info-column .Individual-basic-info-wrapper .member-info-pos .remainder-EXP-Blend {
   margin-top: 10px;
   font-size: 14px;
+  line-height: 20px;
 }
 #brae-home-page .all-page-field #Individual-page #Individual-content .Already-login-field #Individual-info-column .Individual-basic-info-wrapper .member-info-pos .remainder-EXP-Blend .remainder-field {
   float: left;
@@ -220,6 +221,57 @@
 #brae-home-page .all-page-field #Individual-page #Individual-content .Already-login-field #Individual-info-column .Individual-basic-info-wrapper .member-info-pos .remainder-EXP-Blend .EXP-field {
   float: right;
   text-align: right;
+}
+#brae-home-page .all-page-field #Individual-page #Individual-content .Already-login-field #Individual-info-column .Individual-EXP-bar-wrapper {
+  margin-top: 10px;
+}
+#brae-home-page .all-page-field #Individual-page #Individual-content .Already-login-field #Individual-info-column .Individual-EXP-bar-wrapper .EXP-bar-field {
+  border-top: solid 1px #979797;
+  border-bottom: solid 1px #979797;
+}
+#brae-home-page .all-page-field #Individual-page #Individual-content .Already-login-field #Individual-info-column .Individual-EXP-bar-wrapper .EXP-bar-field .full-bar {
+  width: 100%;
+  height: 8px;
+  background-color: #efeff4;
+}
+#brae-home-page .all-page-field #Individual-page #Individual-content .Already-login-field #Individual-info-column .Individual-EXP-bar-wrapper .EXP-bar-field .full-bar .inner-bar {
+  height: 100%;
+  background-color: #ffc107;
+  border-right: solid 1px #979797;
+}
+#brae-home-page .all-page-field #Individual-page #Individual-content .Already-login-field #Individual-operation-column {
+  margin-top: 20px;
+}
+#brae-home-page .all-page-field #Individual-page #Individual-content .Already-login-field #Individual-operation-column .Individual-func-wrapper {
+  border-top: solid 1px #979797;
+  border-bottom: solid 1px #979797;
+  height: auto;
+  width: 100%;
+}
+#brae-home-page .all-page-field #Individual-page #Individual-content .Already-login-field #Individual-operation-column .Individual-func-wrapper ul.Individual-func-list li.Individual-func {
+  height: 38px;
+  position: relative;
+  background-color: #fff;
+}
+#brae-home-page .all-page-field #Individual-page #Individual-content .Already-login-field #Individual-operation-column .Individual-func-wrapper ul.Individual-func-list li.Individual-func .func-img-field {
+  float: left;
+  margin: 7.5px 20px;
+}
+#brae-home-page .all-page-field #Individual-page #Individual-content .Already-login-field #Individual-operation-column .Individual-func-wrapper ul.Individual-func-list li.Individual-func .func-img-field .func-img {
+  width: 23px;
+  height: 23px;
+  background-size: 23px 23px;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABQCAMAAAC5zwKfAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAzUExURQAAAP++Av/11v/BB//ABf/BBv/ABf/BBv+1AP/BBv/JJf/ttv/eef/xx//mmP/WW//QQzJ0zRQAAAAKdFJOUwAf//9Jmm3mC8uMJPw0AAACxklEQVRYw7VZ2baDIAysCCJLgP//2tsqV2VJQA/msbbTJJPdz4eWlS9CKSnnWUqlxMLXz3NZuVBzIUo8BOVCzohIwW8rt6BoEXNZR8LdhOQdcBtkn+GTSH6lvXXGAGNgjLNeJw/FdFO9YA3LxNhwR8n1op62wKoC9qKnID25nnEXHCPEnWoqAnE68DQJt0EeWirUkdPhPss6xB6OnBp42rAuMZpEPPwXgHUKBMKPB55nN8TjiIJ2n3O0I0URzw06QmhQw+uEYPaaeTa01Rkx0eBA+Ar1bagYHQ3WgCuIqwi6MHqNBhuSTFRFE40+mV4a+QH7c2jkzJIpqFvRhkeoTlWMCrqGgoSKLlVR0gyfVQCvGTvTMqHYNQwineKuRIvGl+1Znm3jT8WFEttWsP2vGy28z+F9xPHD4tCjIKViOGxWpMXg0ubugLRZfV2IZd2vrQddzgs6/Fo/ln9rdOHVFPhC1ZBy3C8sFK7hMU3OrPJ6viHaZ/m5RE5sUYw6ASFzooicOPYI8VpAXWRFFZz0IyYF2URAWZLci5gWeBPrg6zkSR9i1jAgAu4PsSGDwstjcf+4DtiBWA5AEVDWS0MLscSDxIeG3UPUWO7JSth0INYGPpPEocPbbU0MWjdVkXo9iAavX6IoDo8B/4sDxyuxwwAdXtk5XmCTdpeKxc1ZqRbgMUBPtQCiSaFxo8kmhbdRPGzINoo2+ltxeGn06CjicEBHjSLosGRxQEsOS9g4dyXZA3iK5mScwwbOc4MNm8/M5QN64ERG4nLVPVdaeiSuD+3wv9cnftW1IMuH9vpasZuRnwnAlu4p14rq4mM3Lioh7DNjKotPdTXzkYtKHQgJzbXVrLY8euLs4HxreWyut82Rnt9cwFt44v0TwfAjxvgzy/hD0PhT1fhj2vhz3/iD5Asn0/FH3RfOzuMP4y+c7t94ufDw9ccfMMZDsfHcn6wAAAAASUVORK5CYII=");
+}
+#brae-home-page .all-page-field #Individual-page #Individual-content .Already-login-field #Individual-operation-column .Individual-func-wrapper ul.Individual-func-list li.Individual-func .name-field {
+  margin-left: 5px;
+}
+#brae-home-page .all-page-field #Individual-page #Individual-content .Already-login-field #Individual-operation-column .Individual-func-wrapper ul.Individual-func-list li.Individual-func .name-field p.name {
+  font-size: 14px;
+  line-height: 38px;
+}
+#brae-home-page .all-page-field #Individual-page #Individual-content .Already-login-field #Individual-operation-column .Individual-func-wrapper ul.Individual-func-list li:active {
+  background-color: #fff5d6;
 }
 #brae-home-page .all-page-field #Individual-page #Individual-content .not-yet-login-field #not-yet-login-column {
   margin-top: 15px;
@@ -531,6 +583,27 @@
 #brae-detail-page .all-page-field #Activity-page .Activity-information-field #Activity-information-column .activity-information-wrapper #activity-info-content-field .content-field p.content {
   font-size: 14px;
 }
+/*brae-payment-page-*/
+#brae-payment-page {
+  z-index: 2;
+}
+#brae-payment-page #all-payment-content-field .all-page-field {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+#brae-payment-page #all-payment-content-field .all-page-field #Recharge-page {
+  -webkit-transition: all 0.4s ease-in-out;
+  -moz-transition: all 0.4s ease-in-out;
+  -ms-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #fffcf6;
+}
 /*common*/
 * {
   padding: 0;
@@ -546,7 +619,7 @@ li {
   list-style-type: none;
 }
 img {
-  border: none;
+  border: 0;
 }
 input {
   -moz-box-sizing: border-box;
