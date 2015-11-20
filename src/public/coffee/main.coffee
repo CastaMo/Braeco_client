@@ -295,8 +295,7 @@ do (window, document)->
 				,0)
 			}
 		}
-		addListener window, "popstate", ->
-			_parseAndExecuteHash _getHashStr()
+		addListener window, "popstate", -> _parseAndExecuteHash _getHashStr()
 
 		_titleDom = util.query("title")
 
@@ -379,6 +378,7 @@ do (window, document)->
 		pushHashStr: pushHashStr
 		popHashStr: popHashStr
 		hashJump: hashJump
+		HomeBottom: HomeBottom
 
 		
 
@@ -435,7 +435,7 @@ do (window, document)->
 
 
 	window.onload = ->
-		if location.hash is "" then hashRoute.hashJump("-Menu-x")
+		hashRoute.HomeBottom.bottomTouchEventTrigger("Already")
 		
 		new rotateDisplay {
 			displayCSSSelector: "#Menu-page .activity-display-list"

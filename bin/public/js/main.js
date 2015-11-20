@@ -536,7 +536,8 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
       },
       pushHashStr: pushHashStr,
       popHashStr: popHashStr,
-      hashJump: hashJump
+      hashJump: hashJump,
+      HomeBottom: HomeBottom
     };
   })();
   Db = (function() {
@@ -648,9 +649,7 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
     }
   };
   return window.onload = function() {
-    if (location.hash === "") {
-      hashRoute.hashJump("-Menu-x");
-    }
+    hashRoute.HomeBottom.bottomTouchEventTrigger("Already");
     new rotateDisplay({
       displayCSSSelector: "#Menu-page .activity-display-list",
       chooseCSSSelector: "#Menu-page .choose-dot-list",
