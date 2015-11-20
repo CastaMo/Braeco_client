@@ -622,8 +622,10 @@
 
 #brae-payment-page {
     .transition(0.4s);
-    height: auto;
+    height: 100%;
     width: 100%;
+    overflow: auto;
+    -webkit-overflow-scrolling:touch;
     background-color: @homePageBackgroundColor;
     #all-payment-content-field {
         .all-page-field {
