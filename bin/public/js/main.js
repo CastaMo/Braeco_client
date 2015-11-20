@@ -1,7 +1,7 @@
 var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
 (function(window, document) {
-  var Activity, Category, Db, Lock, addClass, addListener, ajax, append, callpay, clientWidth, compatibleCSSConfig, deepCopy, extraPageManage, getById, getElementsByClassName, getObjectURL, hasClass, hashRoute, hidePhone, innerCallback, isPhone, prepend, query, querys, ref, remove, removeClass, removeListener, rotateDisplay, toggleClass;
+  var Activity, Category, Db, Individual, Lock, addClass, addListener, ajax, append, callpay, clientWidth, compatibleCSSConfig, deepCopy, extraPageManage, getById, getElementsByClassName, getObjectURL, hasClass, hashRoute, hidePhone, innerCallback, isPhone, prepend, query, querys, ref, remove, removeClass, removeListener, rotateDisplay, toggleClass;
   ref = [util.addListener, util.removeListener, util.hasClass, util.addClass, util.removeClass, util.ajax, util.getElementsByClassName, util.isPhone, util.hidePhone, util.query, util.querys, util.remove, util.append, util.prepend, util.toggleClass, util.getObjectURL, util.deepCopy, util.getById], addListener = ref[0], removeListener = ref[1], hasClass = ref[2], addClass = ref[3], removeClass = ref[4], ajax = ref[5], getElementsByClassName = ref[6], isPhone = ref[7], hidePhone = ref[8], query = ref[9], querys = ref[10], remove = ref[11], append = ref[12], prepend = ref[13], toggleClass = ref[14], getObjectURL = ref[15], deepCopy = ref[16], getById = ref[17];
   clientWidth = document.body.clientWidth;
   compatibleCSSConfig = ["", "-webkit-", "-moz-", "-ms-", "-o-"];
@@ -247,6 +247,13 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
     return rotateDisplay;
 
   })();
+  Individual = (function() {
+    var _rechargeFuncDom;
+    _rechargeFuncDom = getById("Recharge-func");
+    return addListener(_rechargeFuncDom, "click", function() {
+      return hashRoute.pushHashStr("Recharge");
+    });
+  })();
   hashRoute = (function() {
     var HomeBottom, HomeMenu, _activityInfoDom, _allExtraContentDoms, _allExtraContentId, _allExtraDoms, _allExtraFormDoms, _allExtraFormId, _allMainDetailDoms, _allMainDetailId, _allMainDoms, _allMainHomeDoms, _allMainHomeId, _allSecondary, _dynamicShowTarget, _extraMainDom, _getHashStr, _hashStateFunc, _hideAllExtra, _hideAllExtraContentPage, _hideAllExtraFormPage, _hideAllExtraPage, _hideAllMain, _hideAllMainDetailPage, _hideAllMainHomePage, _hideAllMainPage, _hideSecondaryPage, _hideTarget, _loc, _modifyTitle, _parseAndExecuteHash, _recentHash, _secondaryInfo, _staticShowTarget, _switchExtraPage, _switchFirstPage, _switchSecondaryPage, _titleDom, hashJump, popHashStr, pushHashStr;
     HomeBottom = (function() {
@@ -351,7 +358,9 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
         "push": function() {
           return _switchExtraPage("Recharge-page");
         },
-        "pop": _hideAllExtra
+        "pop": function() {
+          return _hideAllExtra(true);
+        }
       },
 
       /*
@@ -414,7 +423,9 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
       _staticShowTarget("extra");
       if (indexOf.call(_allExtraContentId, id) >= 0) {
         _staticShowTarget("brae-payment-page");
-        return _dynamicShowTarget(id, "hide-right");
+        return setTimeout(function() {
+          return _dynamicShowTarget(id, "hide-right");
+        }, 0);
       } else if (indexOf.call(_allExtraFormId, id) >= 0) {
         return _staticShowTarget("brae-form-page");
       }
@@ -446,11 +457,18 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
       }
       return results;
     };
-    _hideAllExtra = function() {
+    _hideAllExtra = function(async) {
       _hideAllExtraFormPage();
       _hideAllExtraContentPage();
-      _hideAllExtraPage();
-      return _hideTarget("extra");
+      if (async) {
+        return setTimeout(function() {
+          _hideAllExtraPage();
+          return _hideTarget("extra");
+        }, 400);
+      } else {
+        _hideAllExtraPage();
+        return _hideTarget("extra");
+      }
     };
     _switchFirstPage = function(id) {
       _hideAllMain();
@@ -512,9 +530,9 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
       var _target;
       _target = getById(id);
       if (className) {
-        return removeClass(_target, className);
+        return addClass(_target, className);
       } else {
-        return removeClass(_target, "hide");
+        return addClass(_target, "hide");
       }
     };
     _getHashStr = function() {
@@ -728,8 +746,9 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
     }
   };
   return window.onload = function() {
-    hashRoute.HomeBottom.bottomTouchEventTrigger("Individual");
-    hashRoute._switchExtraPage("Recharge-page");
+    if (location.hash === "") {
+      hashRoute.hashJump("-Menu-x");
+    }
     new rotateDisplay({
       displayCSSSelector: "#Menu-page .activity-display-list",
       chooseCSSSelector: "#Menu-page .choose-dot-list",

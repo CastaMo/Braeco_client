@@ -172,7 +172,9 @@ do (window, document)->
 
 
 
-		
+	Individual = do ->
+		_rechargeFuncDom = getById "Recharge-func"
+		addListener _rechargeFuncDom, "click", -> hashRoute.pushHashStr("Recharge")
 
 	hashRoute = do ->
 
@@ -260,7 +262,7 @@ do (window, document)->
 			}
 			"Recharge": {
 				"push": -> _switchExtraPage("Recharge-page")
-				"pop": _hideAllExtra
+				"pop": -> _hideAllExtra(true)
 			}
 			###
 			"Trolley": {
@@ -319,7 +321,9 @@ do (window, document)->
 			_staticShowTarget("extra")
 			if id in _allExtraContentId
 				_staticShowTarget("brae-payment-page")
-				_dynamicShowTarget(id, "hide-right")
+				setTimeout(->
+					_dynamicShowTarget(id, "hide-right")
+				, 0)
 			else if id in _allExtraFormId then _staticShowTarget("brae-form-page")
 
 		_hideAllExtraPage = -> addClass dom, "hide" for dom in _allExtraDoms
@@ -328,7 +332,13 @@ do (window, document)->
 
 		_hideAllExtraContentPage = -> addClass dom, "hide-right" for dom in _allExtraContentDoms
 
-		_hideAllExtra = -> _hideAllExtraFormPage(); _hideAllExtraContentPage(); _hideAllExtraPage(); _hideTarget("extra")
+		_hideAllExtra = (async)->
+			_hideAllExtraFormPage(); _hideAllExtraContentPage()
+			if async
+				setTimeout(->
+					_hideAllExtraPage(); _hideTarget("extra")
+				, 400)
+			else _hideAllExtraPage(); _hideTarget("extra")
 
 		_switchFirstPage = (id)->
 			_hideAllMain()
@@ -356,8 +366,8 @@ do (window, document)->
 
 		_hideTarget = (id, className)->
 			_target = getById id
-			if className then removeClass _target, className
-			else removeClass _target, "hide"
+			if className then addClass _target, className
+			else addClass _target, "hide"
 
 		_getHashStr =  -> _loc.hash.replace("#", "")
 
@@ -476,8 +486,7 @@ do (window, document)->
 
 
 	window.onload = ->
-		hashRoute.HomeBottom.bottomTouchEventTrigger("Individual")
-		hashRoute._switchExtraPage("Recharge-page")
+		if location.hash is "" then hashRoute.hashJump("-Menu-x")
 
 		new rotateDisplay {
 			displayCSSSelector: "#Menu-page .activity-display-list"

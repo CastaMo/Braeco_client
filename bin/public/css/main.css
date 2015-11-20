@@ -67,6 +67,26 @@
 .choose-wrapper .choose-dot-list .inactive .dot {
   background-color: #979797;
 }
+.confirm-column {
+  margin: 20px 0 20px 0;
+}
+.confirm-column .confirm-wrapper {
+  margin: 0 auto;
+  width: 85%;
+}
+.confirm-column .confirm-wrapper .confirm-field {
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+  text-align: center;
+  background-color: #ffc107;
+}
+.confirm-column .confirm-wrapper .confirm-field p.confirm {
+  line-height: 40px;
+  color: #fff;
+}
 /*braeco-home-page*/
 #brae-home-page .all-page-field #Menu-page #Menu-activity-column {
   width: 100%;
@@ -313,6 +333,9 @@
 }
 #brae-home-page .all-page-field #Individual-page #Individual-content .not-yet-login-field #not-yet-login-column:active {
   background-color: #fff5d6;
+}
+#brae-home-page #nav-field {
+  z-index: 1;
 }
 #brae-home-page #nav-field .bottom-field {
   width: 100%;
@@ -583,14 +606,24 @@
 #brae-detail-page .all-page-field #Activity-page .Activity-information-field #Activity-information-column .activity-information-wrapper #activity-info-content-field .content-field p.content {
   font-size: 14px;
 }
+#extra {
+  z-index: 2;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: auto;
+  background-color: #fffcf6;
+}
 /*brae-payment-page-*/
 #brae-payment-page {
-  z-index: 2;
-}
-#brae-payment-page #all-payment-content-field .all-page-field {
-  position: relative;
+  -webkit-transition: all 0.4s ease-in-out;
+  -moz-transition: all 0.4s ease-in-out;
+  -ms-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+  height: auto;
   width: 100%;
-  height: 100%;
+  background-color: #fffcf6;
 }
 #brae-payment-page #all-payment-content-field .all-page-field #Recharge-page {
   -webkit-transition: all 0.4s ease-in-out;
@@ -598,11 +631,68 @@
   -ms-transition: all 0.4s ease-in-out;
   -o-transition: all 0.4s ease-in-out;
   transition: all 0.4s ease-in-out;
-  position: absolute;
-  top: 0;
-  width: 100%;
+}
+#brae-payment-page #all-payment-content-field .all-page-field #Recharge-page #recharge-amount-column {
+  margin-top: 10px;
+  background-color: #fff;
+  border-top: solid 1px #979797;
+  border-bottom: solid 1px #979797;
+}
+#brae-payment-page #all-payment-content-field .all-page-field #Recharge-page #recharge-amount-column .amount-wrapper ul.amount-list li {
+  height: 90px;
+}
+#brae-payment-page #all-payment-content-field .all-page-field #Recharge-page #recharge-amount-column .amount-wrapper ul.amount-list li .amount-li-field {
   height: 100%;
-  background-color: #fffcf6;
+  width: 90%;
+  margin: 0 auto 0 auto;
+}
+#brae-payment-page #all-payment-content-field .all-page-field #Recharge-page #recharge-amount-column .amount-wrapper ul.amount-list li .amount-li-field > * {
+  float: left;
+}
+#brae-payment-page #all-payment-content-field .all-page-field #Recharge-page #recharge-amount-column .amount-wrapper ul.amount-list li .amount-li-field .img-field {
+  margin: 7.5px 10px 7.5px 0;
+}
+#brae-payment-page #all-payment-content-field .all-page-field #Recharge-page #recharge-amount-column .amount-wrapper ul.amount-list li .amount-li-field .img-field #rank-img {
+  height: 75px;
+  width: 85px;
+  background-size: 85px 75px;
+}
+#brae-payment-page #all-payment-content-field .all-page-field #Recharge-page #recharge-amount-column .amount-wrapper ul.amount-list li .amount-li-field .recharge-info-field {
+  margin: 7.5px 0;
+  height: 75px;
+}
+#brae-payment-page #all-payment-content-field .all-page-field #Recharge-page #recharge-amount-column .amount-wrapper ul.amount-list li .amount-li-field .recharge-info-field .rank-field > * {
+  line-height: 25px;
+  float: left;
+  font-size: 18px;
+}
+#brae-payment-page #all-payment-content-field .all-page-field #Recharge-page #recharge-amount-column .amount-wrapper ul.amount-list li .amount-li-field .recharge-info-field .rank-field p.member-name {
+  margin-left: 3px;
+  font-weight: bold;
+}
+#brae-payment-page #all-payment-content-field .all-page-field #Recharge-page #recharge-amount-column .amount-wrapper ul.amount-list li .amount-li-field .recharge-info-field .discount-field p.discount {
+  color: #910012;
+  font-size: 14px;
+  font-weight: bold;
+}
+#brae-payment-page #all-payment-content-field .all-page-field #Recharge-page #recharge-amount-column .amount-wrapper ul.amount-list li .amount-li-field .recharge-info-field .amount-field {
+  line-height: 20px;
+  margin-top: 10px;
+  height: 20px;
+}
+#brae-payment-page #all-payment-content-field .all-page-field #Recharge-page #recharge-amount-column .amount-wrapper ul.amount-list li .amount-li-field .recharge-info-field .amount-field > * {
+  font-size: 14px;
+  float: left;
+}
+#brae-payment-page #all-payment-content-field .all-page-field #Recharge-page #recharge-amount-column .amount-wrapper ul.amount-list li .amount-li-field .recharge-info-field .amount-field p.amount {
+  color: #910012;
+}
+#brae-payment-page #all-payment-content-field .all-page-field #Recharge-page #recharge-amount-column .amount-wrapper ul.amount-list li .amount-li-field .recharge-info-field .amount-field p.amount:before {
+  font-size: 12px;
+  content: "￥";
+}
+#brae-payment-page #all-payment-content-field .all-page-field #Recharge-page #recharge-amount-column .amount-wrapper ul.amount-list li:active {
+  background-color: #fff5d6;
 }
 /*common*/
 * {
