@@ -139,7 +139,7 @@ do (window, document)->
 			@allChooseDom = querys "li", @chooseUlDom
 			@currentChoose = 0
 			for dom, i in @allChooseDom
-				addListener dom, "click", do (i)-> -> self.autoFlag = false; self.setCurrentChooseAndTranslate(i)
+				addListener dom, "click", do (i)-> (e)-> e.preventDefault(); e.stopPropagation(); self.autoFlag = false; self.setCurrentChooseAndTranslate(i)
 
 		initAutoRotate: ->
 			###
@@ -201,7 +201,7 @@ do (window, document)->
 
 		HomeMenu = do ->
 			
-			_activityColumnDom = query "#Menu-page #Menu-acitvity-column"
+			_activityColumnDom = query "#Menu-page .activity-wrapper"
 
 			addListener _activityColumnDom, "click", -> hashJump("-Activity")
 
@@ -379,6 +379,9 @@ do (window, document)->
 		popHashStr: popHashStr
 		hashJump: hashJump
 		HomeBottom: HomeBottom
+
+	extraPageManage = do ->
+		
 
 		
 

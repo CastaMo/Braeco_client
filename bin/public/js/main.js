@@ -181,7 +181,9 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
       for (i = j = 0, len = ref1.length; j < len; i = ++j) {
         dom = ref1[i];
         results.push(addListener(dom, "click", (function(i) {
-          return function() {
+          return function(e) {
+            e.preventDefault();
+            e.stopPropagation();
             self.autoFlag = false;
             return self.setCurrentChooseAndTranslate(i);
           };
@@ -276,7 +278,7 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
     })();
     HomeMenu = (function() {
       var _activityColumnDom;
-      _activityColumnDom = query("#Menu-page #Menu-acitvity-column");
+      _activityColumnDom = query("#Menu-page .activity-wrapper");
       return addListener(_activityColumnDom, "click", function() {
         return hashJump("-Activity");
       });

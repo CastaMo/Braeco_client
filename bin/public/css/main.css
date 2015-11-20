@@ -107,6 +107,39 @@
 #brae-home-page .all-page-field #Already-page {
   position: relative;
 }
+#brae-home-page .all-page-field #Already-page #Already-content .Already-not-order-field #Already-not-order-column {
+  margin-top: 55px;
+}
+#brae-home-page .all-page-field #Already-page #Already-content .Already-not-order-field #Already-not-order-column .not-order-img-wrapper {
+  width: 150px;
+  margin: 0 auto 0 auto;
+}
+#brae-home-page .all-page-field #Already-page #Already-content .Already-not-order-field #Already-not-order-column .not-order-img-wrapper #not-order-img {
+  width: 150px;
+  height: 150px;
+  background-image: url("data:image/png;base64,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");
+  background-size: 150px 150px;
+}
+#brae-home-page .all-page-field #Already-page #Already-content .Already-not-order-field #Already-not-order-column .not-order-reminder-wrapper {
+  margin-top: 55px;
+  text-align: center;
+}
+#brae-home-page .all-page-field #Already-page #Already-content .Already-not-order-field #Already-not-order-column .not-order-tip-wrapper {
+  position: fixed;
+  bottom: 45px;
+  left: 80px;
+}
+#brae-home-page .all-page-field #Already-page #Already-content .Already-not-order-field #Already-not-order-column .not-order-tip-wrapper #not-order-tip {
+  margin-left: 20px;
+  margin-bottom: 30px;
+  height: 40px;
+  width: 200px;
+}
+#brae-home-page .all-page-field #Already-page #Already-content .Already-not-order-field #Already-not-order-column .not-order-tip-wrapper #not-order-tip p.tip {
+  font-size: 12px;
+  line-height: 20px;
+  color: #9B9B9B;
+}
 #brae-home-page .all-page-field #Already-page #Already-service {
   position: fixed;
   bottom: 45px;
