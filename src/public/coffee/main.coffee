@@ -281,6 +281,7 @@ do (window, document)->
 				"push": -> _staticShowTarget("Choose-payment-method-page")
 				"pop": -> _hideTarget("Choose-payment-method-page")
 			}
+
 			###
 			"Trolley": {
 				"push": -> util.removeClass(Trolley.trolley_page_dom, "hide"); WS.checkSocket(); util.query("#container", Trolley.trolley_page_dom).focus()
@@ -439,13 +440,8 @@ do (window, document)->
 		HomeBottom: HomeBottom
 		_switchExtraPage: _switchExtraPage
 
-	extraPageManage = do ->
-		_extraDom = getById "extra"
 
-
-		
-
-	Db = do ->
+	LocalStorage = do ->
 		store = window.localStorage;doc = document.documentElement
 		if !store then doc.type.behavior = 'url(#default#userData)'
 		set: (key, val, context)->
@@ -498,9 +494,13 @@ do (window, document)->
 
 
 	window.onload = ->
-		if location.hash is "" then hashRoute.hashJump("-Menu-x")
-
-
+		#if location.hash is "" then hashRoute.hashJump("-Menu-x")
+		hashRoute.hashJump("-Menu"); setTimeout(->
+			hashRoute.pushHashStr("x")
+			setTimeout(->
+				hashRoute.pushHashStr("Book")
+			, 100)
+		, 100)
 		new rotateDisplay {
 			displayCSSSelector: "#Menu-page .activity-display-list"
 			chooseCSSSelector: "#Menu-page .choose-dot-list"

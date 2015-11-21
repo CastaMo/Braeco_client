@@ -1,7 +1,7 @@
 var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
 (function(window, document) {
-  var Activity, Category, Db, Individual, Lock, addClass, addListener, ajax, append, callpay, clientHeight, clientWidth, compatibleCSSConfig, deepCopy, extraPageManage, getById, getElementsByClassName, getObjectURL, hasClass, hashRoute, hidePhone, innerCallback, isPhone, prepend, query, querys, ref, remove, removeClass, removeListener, rotateDisplay, toggleClass;
+  var Activity, Category, Individual, LocalStorage, Lock, addClass, addListener, ajax, append, callpay, clientHeight, clientWidth, compatibleCSSConfig, deepCopy, getById, getElementsByClassName, getObjectURL, hasClass, hashRoute, hidePhone, innerCallback, isPhone, prepend, query, querys, ref, remove, removeClass, removeListener, rotateDisplay, toggleClass;
   ref = [util.addListener, util.removeListener, util.hasClass, util.addClass, util.removeClass, util.ajax, util.getElementsByClassName, util.isPhone, util.hidePhone, util.query, util.querys, util.remove, util.append, util.prepend, util.toggleClass, util.getObjectURL, util.deepCopy, util.getById], addListener = ref[0], removeListener = ref[1], hasClass = ref[2], addClass = ref[3], removeClass = ref[4], ajax = ref[5], getElementsByClassName = ref[6], isPhone = ref[7], hidePhone = ref[8], query = ref[9], querys = ref[10], remove = ref[11], append = ref[12], prepend = ref[13], toggleClass = ref[14], getObjectURL = ref[15], deepCopy = ref[16], getById = ref[17];
   clientWidth = document.body.clientWidth;
   clientHeight = document.documentElement.clientHeight;
@@ -655,11 +655,7 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
       _switchExtraPage: _switchExtraPage
     };
   })();
-  extraPageManage = (function() {
-    var _extraDom;
-    return _extraDom = getById("extra");
-  })();
-  Db = (function() {
+  LocalStorage = (function() {
     var doc, store;
     store = window.localStorage;
     doc = document.documentElement;
@@ -768,9 +764,13 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
     }
   };
   return window.onload = function() {
-    if (location.hash === "") {
-      hashRoute.hashJump("-Menu-x");
-    }
+    hashRoute.hashJump("-Menu");
+    setTimeout(function() {
+      hashRoute.pushHashStr("x");
+      return setTimeout(function() {
+        return hashRoute.pushHashStr("Book");
+      }, 100);
+    }, 100);
     new rotateDisplay({
       displayCSSSelector: "#Menu-page .activity-display-list",
       chooseCSSSelector: "#Menu-page .choose-dot-list",
