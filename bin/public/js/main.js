@@ -542,19 +542,22 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
       return _hideAllMainPage();
     };
     _staticShowTarget = function(id) {
-      return removeClass(getById(id), "hide");
+      removeClass(getById(id), "hide");
+      return setTimeout("scrollTo(0, 0)", 0);
     };
     _dynamicShowTarget = function(id, className) {
-      return removeClass(getById(id), className);
+      removeClass(getById(id), className);
+      return setTimeout("scrollTo(0, 0)", 0);
     };
     _hideTarget = function(id, className) {
       var _target;
       _target = getById(id);
       if (className) {
-        return addClass(_target, className);
+        addClass(_target, className);
       } else {
-        return addClass(_target, "hide");
+        addClass(_target, "hide");
       }
+      return setTimeout("scrollTo(0, 0)", 0);
     };
     _getHashStr = function() {
       return _loc.hash.replace("#", "");

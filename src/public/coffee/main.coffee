@@ -371,14 +371,15 @@ do (window, document)->
 
 		_hideAllMain = -> _hideAllMainHomePage(); _hideAllMainDetailPage(); _hideAllMainPage()
 
-		_staticShowTarget = (id)-> removeClass(getById(id), "hide")
+		_staticShowTarget = (id)-> removeClass(getById(id), "hide"); setTimeout("scrollTo(0, 0)", 0)
 
-		_dynamicShowTarget = (id, className)-> removeClass(getById(id), className)
+		_dynamicShowTarget = (id, className)-> removeClass(getById(id), className); setTimeout("scrollTo(0, 0)", 0)
 
 		_hideTarget = (id, className)->
 			_target = getById id
 			if className then addClass _target, className
 			else addClass _target, "hide"
+			setTimeout("scrollTo(0, 0)", 0)
 
 		_getHashStr =  -> _loc.hash.replace("#", "")
 
