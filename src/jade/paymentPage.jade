@@ -1,7 +1,7 @@
 #brae-payment-page.extra-page.hide
 	#all-payment-content-field
 		.all-page-field
-			#Recharge-page.hide-right.extra-content-page
+			#Recharge-page.hide.extra-content-page
 				#Recharge-content
 					.Recharge-content-field
 						#recharge-amount-column
@@ -80,15 +80,95 @@
 							.recharge-confirm-wrapper.confirm-wrapper
 								.confirm-field
 									p.confirm 确认充值
-			#Choose-payment-method-page.hide-right.extra-content-page
+			#Choose-payment-method-page.hide.extra-content-page
 				#Choose-payment-method-content
 					.Choose-payment-method-content-field
 						#payment-total-column
 							.payment-total-wrapper
 								.total-field
-									p.word 订单总结:
-									p.total-price 46
+									p.word 订单总价:
+									p.total-price.money 46
 						#choose-payment-via-member-column
+							.via-member-title-field.via-title-field
+								.title-wrapper
+									.title-field
+										p.title 使用会员余额支付
+							ul.via-member-list
+								li#choose-member.via-member
+									.via-member-wrapper.li-wrapper
+										.VIP-img-field.img-field
+											.img
+										.member-info-field.info-field
+											.remainder-field.up-field
+												p.word 您的会员余额: 
+												p.remainder-number.money 66
+											.discount-field.down-field
+												p.discount 青铜级会员, 尊享9.5折优惠
+
+								.fivePercentLeftLine.hide
+								li#recharge-btn.via-member.hide
+									.via-member-wrapper.li-wrapper
+										.VIP-img-field.img-field
+											.img
+										.member-info-field.info-field
+											.remainder-field.up-field
+												p.word 您的会员余额: 
+												p.remainder-number.money 0
+											.discount-field.down-field
+												p.remind 余额不足以支付，马上充值
+										.arrow
 						#choose-payment-via-online-column
+							.via-online-title-field.via-title-field
+								.title-wrapper
+									.title-field
+										p.title 使用在线支付
+										p.total-price.money 46
+							ul.via-online-list
+								li#p2p_wx_pub.via-online
+									.via-online-wrapper.li-wrapper
+										.img-field
+											.img.weixinLogo
+										.online-info-field.info-field
+											.name-field.up-field
+												p.word 微信支付
+											.recommend-field.down-field
+												p.recommond 推荐已安装微信客户端的用户使用
+								.fivePercentLeftLine.hide
+								li#wx_pub.via-online.hide
+									.via-online-wrapper.li-wrapper
+										.img-field
+											.img.weixinLogo
+										.online-info-field.info-field
+											.name-field.up-field
+												p.word 微信支付
+											.recommend-field.down-field
+												p.recommond 推荐已安装微信客户端的用户使用
+								.fivePercentLeftLine
+								li#alipay_wap.via-online
+									.via-online-wrapper.li-wrapper
+										.img-field
+											.img.aliPayLogo
+										.online-info-field.info-field
+											.name-field.up-field
+												p.word 支付宝
+											.recommend-field.down-field
+												p.recommond 推荐已安装支付宝客户端的用户使用
+								.fivePercentLeftLine
+								li#yilian_pay.via-online
+									.via-online-wrapper.li-wrapper
+										.img-field
+											.img.unionPayLogo
+										.online-info-field.info-field
+											.name-field.up-field
+												p.word 银联支付
+											.recommend-field.down-field
+												p.recommond.special 使用银联支付立减¥5元
 						#choose-payment-via-cash-column
-						#confirm-pay-column
+							.via-cash-title-field.via-title-field
+								.title-wrapper
+									.title-field
+										p.title 使用现金支付
+						#confirm-pay-column.confirm-column
+							.confirm-wrapper
+								.confirm-field
+									p.confirm 确认支付

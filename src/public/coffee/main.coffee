@@ -175,7 +175,10 @@ do (window, document)->
 
 	Individual = do ->
 		_rechargeFuncDom = getById "Recharge-func"
-		addListener _rechargeFuncDom, "click", -> hashRoute.pushHashStr("Recharge")
+		addListener _rechargeFuncDom, "click", -> hashRoute.pushHashStr("Extra-extraContent-Recharge")
+
+		_confirmRechargebtn = getById "recharge-confirm-column"
+		addListener _confirmRechargebtn, "click", -> hashRoute.pushHashStr("choosePaymentMethod")
 
 	hashRoute = do ->
 
@@ -262,13 +265,21 @@ do (window, document)->
 				"push": -> _switchSecondaryPage("activityInfo", "Activity", _activityInfoDom)
 				"pop": -> _hideSecondaryPage(_activityInfoDom)
 			}
-			"Recharge": {
-				"push": -> _switchExtraPage("Recharge-page")
-				"pop": -> _hideAllExtra(true)
+			"Extra": {
+				"push": -> _staticShowTarget("extra")
+				"pop": -> _hideTarget("extra")
 			}
-			"ChoosePaymentMethod": {
-				"push": -> _switchExtraPage("Choose-payment-method-page")
-				"pop": -> _hideAllExtra(true)
+			"extraContent": {
+				"push": -> _staticShowTarget("brae-payment-page")
+				"pop": -> _hideTarget("brae-payment-page")
+			}
+			"Recharge": {
+				"push": -> _staticShowTarget("Recharge-page")
+				"pop": -> _hideTarget("Recharge-page")
+			}
+			"choosePaymentMethod": {
+				"push": -> _staticShowTarget("Choose-payment-method-page")
+				"pop": -> _hideTarget("Choose-payment-method-page")
 			}
 			###
 			"Trolley": {
@@ -327,7 +338,7 @@ do (window, document)->
 					_staticShowTarget("brae-payment-page")
 				, 50)
 				setTimeout(->
-					_dynamicShowTarget(id, "hide-right")
+					_dynamicShowTarget(id, "hide")
 				, 100)
 			else if id in _allExtraFormId then _staticShowTarget("brae-form-page")
 
@@ -335,15 +346,10 @@ do (window, document)->
 
 		_hideAllExtraFormPage = -> addClass dom, "hide" for dom in _allExtraFormDoms
 
-		_hideAllExtraContentPage = -> addClass dom, "hide-right" for dom in _allExtraContentDoms
+		_hideAllExtraContentPage = -> addClass dom, "hide" for dom in _allExtraContentDoms
 
 		_hideAllExtra = (async)->
-			_hideAllExtraFormPage(); _hideAllExtraContentPage()
-			if async
-				setTimeout(->
-					_hideAllExtraPage(); _hideTarget("extra")
-				, 400)
-			else _hideAllExtraPage(); _hideTarget("extra")
+			_hideAllExtraFormPage(); _hideAllExtraContentPage(); _hideAllExtraPage(); _hideTarget("extra")
 
 		_switchFirstPage = (id)->
 			_hideAllMain()
@@ -491,12 +497,7 @@ do (window, document)->
 
 
 	window.onload = ->
-		#if location.hash is "" then hashRoute.hashJump("-Menu-x")
-
-		hashRoute.hashJump("-Menu-x")
-		setTimeout(->
-			hashRoute.pushHashStr("ChoosePaymentMethod")
-		, 1000)
+		if location.hash is "" then hashRoute.hashJump("-Menu-x")
 
 
 		new rotateDisplay {

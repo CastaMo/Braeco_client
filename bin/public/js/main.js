@@ -249,10 +249,14 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
 
   })();
   Individual = (function() {
-    var _rechargeFuncDom;
+    var _confirmRechargebtn, _rechargeFuncDom;
     _rechargeFuncDom = getById("Recharge-func");
-    return addListener(_rechargeFuncDom, "click", function() {
-      return hashRoute.pushHashStr("Recharge");
+    addListener(_rechargeFuncDom, "click", function() {
+      return hashRoute.pushHashStr("Extra-extraContent-Recharge");
+    });
+    _confirmRechargebtn = getById("recharge-confirm-column");
+    return addListener(_confirmRechargebtn, "click", function() {
+      return hashRoute.pushHashStr("choosePaymentMethod");
     });
   })();
   hashRoute = (function() {
@@ -355,20 +359,36 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
           return _hideSecondaryPage(_activityInfoDom);
         }
       },
-      "Recharge": {
+      "Extra": {
         "push": function() {
-          return _switchExtraPage("Recharge-page");
+          return _staticShowTarget("extra");
         },
         "pop": function() {
-          return _hideAllExtra(true);
+          return _hideTarget("extra");
         }
       },
-      "ChoosePaymentMethod": {
+      "extraContent": {
         "push": function() {
-          return _switchExtraPage("Choose-payment-method-page");
+          return _staticShowTarget("brae-payment-page");
         },
         "pop": function() {
-          return _hideAllExtra(true);
+          return _hideTarget("brae-payment-page");
+        }
+      },
+      "Recharge": {
+        "push": function() {
+          return _staticShowTarget("Recharge-page");
+        },
+        "pop": function() {
+          return _hideTarget("Recharge-page");
+        }
+      },
+      "choosePaymentMethod": {
+        "push": function() {
+          return _staticShowTarget("Choose-payment-method-page");
+        },
+        "pop": function() {
+          return _hideTarget("Choose-payment-method-page");
         }
       },
 
@@ -432,7 +452,7 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
           return _staticShowTarget("brae-payment-page");
         }, 50);
         return setTimeout(function() {
-          return _dynamicShowTarget(id, "hide-right");
+          return _dynamicShowTarget(id, "hide");
         }, 100);
       } else if (indexOf.call(_allExtraFormId, id) >= 0) {
         return _staticShowTarget("brae-form-page");
@@ -461,22 +481,15 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
       results = [];
       for (j = 0, len = _allExtraContentDoms.length; j < len; j++) {
         dom = _allExtraContentDoms[j];
-        results.push(addClass(dom, "hide-right"));
+        results.push(addClass(dom, "hide"));
       }
       return results;
     };
     _hideAllExtra = function(async) {
       _hideAllExtraFormPage();
       _hideAllExtraContentPage();
-      if (async) {
-        return setTimeout(function() {
-          _hideAllExtraPage();
-          return _hideTarget("extra");
-        }, 400);
-      } else {
-        _hideAllExtraPage();
-        return _hideTarget("extra");
-      }
+      _hideAllExtraPage();
+      return _hideTarget("extra");
     };
     _switchFirstPage = function(id) {
       _hideAllMain();
@@ -752,10 +765,9 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
     }
   };
   return window.onload = function() {
-    hashRoute.hashJump("-Menu-x");
-    setTimeout(function() {
-      return hashRoute.pushHashStr("ChoosePaymentMethod");
-    }, 1000);
+    if (location.hash === "") {
+      hashRoute.hashJump("-Menu-x");
+    }
     new rotateDisplay({
       displayCSSSelector: "#Menu-page .activity-display-list",
       chooseCSSSelector: "#Menu-page .choose-dot-list",
