@@ -18,6 +18,7 @@
     "grunt-contrib-nodeunit": "~0.4.1",
     "grunt-contrib-uglify": "^0.10.0",
     "grunt-contrib-watch": "^0.6.1",
+    "grunt-hashmap": "^0.1.5",
     "grunt-ssh": "^0.12.8"
   },
   "engines": {

@@ -181,6 +181,31 @@ module.exports = function(grunt) {
     },
 
 
+    hashmap: {
+      options: {
+        // These are default options
+        output: '#{= dest}/hash.json',
+        etag: null, // See below([#](#option-etag))
+        algorithm: 'md5', // the algorithm to create the hash
+        rename: '#{= dirname}/#{= basename}_#{= hash}#{= extname}', // save the original file as what
+        keep: true, // should we keep the original file or not
+        merge: false, // merge hash results into existing `hash.json` file or override it.
+        hashlen: 10, // length for hashsum digest
+      },
+      your_target: {
+        // Target-specific file lists and/or options go here.
+        options: {
+          output: 'static/versions.json',
+        },
+        files: {
+          cwd: 'static/dist',
+          src: ['js/**/*.js', 'css/**/*.css'],
+          dest: 'static/dist'
+        },
+      },
+    },
+
+
     /*好吧，这堆有点麻烦，看README.MD吧*/
     sftp: {
       test: {
@@ -226,6 +251,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-ssh');
+  grunt.loadNpmTasks('grunt-hashmap');
 
   // Default task.
   grunt.registerTask('default', [

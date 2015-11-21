@@ -3,6 +3,7 @@ do (window, document)->
 	[addListener, removeListener, hasClass, addClass, removeClass, ajax, getElementsByClassName, isPhone, hidePhone, query, querys, remove, append, prepend, toggleClass, getObjectURL, deepCopy, getById] = [util.addListener, util.removeListener, util.hasClass, util.addClass, util.removeClass, util.ajax, util.getElementsByClassName, util.isPhone, util.hidePhone, util.query, util.querys, util.remove, util.append, util.prepend, util.toggleClass, util.getObjectURL, util.deepCopy, util.getById]
 
 	clientWidth =  document.body.clientWidth
+	clientHeight = document.documentElement.clientHeight
 
 	compatibleCSSConfig = [
 		""
@@ -209,6 +210,7 @@ do (window, document)->
 
 		_extraMainDom = getById "#extra"
 
+
 		_allMainDoms = querys ".main-page"
 		_allMainHomeDoms = querys ".main-home-page"
 		_allMainDetailDoms = querys ".main-detail-page"
@@ -228,7 +230,7 @@ do (window, document)->
 		_allMainHomeId = ["Menu-page", "Already-page", "Individual-page"]
 		_allMainDetailId = ["Book-page", "Activity-page"]
 		_allExtraFormId = ["login-page", "book-choose-page", "remark-for-trolley-page", "alert-page", "confirm-page"]
-		_allExtraContentId = ["Recharge-page", "Confirm-pay-page"]
+		_allExtraContentId = ["Recharge-page", "Choose-payment-method-page"]
 
 
 		_loc = window.location
@@ -264,6 +266,10 @@ do (window, document)->
 				"push": -> _switchExtraPage("Recharge-page")
 				"pop": -> _hideAllExtra(true)
 			}
+			"ChoosePaymentMethod": {
+				"push": -> _switchExtraPage("Choose-payment-method-page")
+				"pop": -> _hideAllExtra(true)
+			}
 			###
 			"Trolley": {
 				"push": -> util.removeClass(Trolley.trolley_page_dom, "hide"); WS.checkSocket(); util.query("#container", Trolley.trolley_page_dom).focus()
@@ -278,10 +284,6 @@ do (window, document)->
 			"Prompt_pay": {
 				"push": -> util.removeClass(Trolley.prompt_pay_dom, "hide")
 				"pop": Trolley.resetForPromptPayDom
-			}
-			"Activity_info": {
-				"push": Activity.showActivityInfo
-				"pop": -> util.addClass(Activity.detail_dom, "hide")
 			}
 			"Already": {
 				"push": Login.showAlreadyPage
@@ -387,9 +389,10 @@ do (window, document)->
 			#if last_state and msgs[last_state] and msgs[last_state]["title"] then hashRoute.modifyTitle(msgs[last_state]["title"])
 
 			if str is _recentHash
-				for entry in hash_arr
-					if entry and _hashStateFunc[entry] then _hashStateFunc[entry]["push"]?()
-				if str is "-Individual-Login" then setTimeout(back, 0)
+				for entry, i in hash_arr
+					if entry and _hashStateFunc[entry] then setTimeout(->
+						_hashStateFunc[entry]["push"]?()
+					, i * 100)
 				return
 
 			temp_counter = {}
@@ -422,7 +425,6 @@ do (window, document)->
 		back: -> history.go(-1)
 
 		refresh: -> _loc.reload()
-
 
 		pushHashStr: pushHashStr
 		popHashStr: popHashStr
@@ -489,7 +491,13 @@ do (window, document)->
 
 
 	window.onload = ->
-		if location.hash is "" then hashRoute.hashJump("-Menu-x")
+		#if location.hash is "" then hashRoute.hashJump("-Menu-x")
+
+		hashRoute.hashJump("-Menu-x")
+		setTimeout(->
+			hashRoute.pushHashStr("ChoosePaymentMethod")
+		, 1000)
+
 
 		new rotateDisplay {
 			displayCSSSelector: "#Menu-page .activity-display-list"
@@ -503,5 +511,6 @@ do (window, document)->
 			scale: 200/375
 			delay: 3000
 		}
+
 		
 

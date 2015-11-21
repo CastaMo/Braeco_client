@@ -1,9 +1,10 @@
 var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
 (function(window, document) {
-  var Activity, Category, Db, Individual, Lock, addClass, addListener, ajax, append, callpay, clientWidth, compatibleCSSConfig, deepCopy, extraPageManage, getById, getElementsByClassName, getObjectURL, hasClass, hashRoute, hidePhone, innerCallback, isPhone, prepend, query, querys, ref, remove, removeClass, removeListener, rotateDisplay, toggleClass;
+  var Activity, Category, Db, Individual, Lock, addClass, addListener, ajax, append, callpay, clientHeight, clientWidth, compatibleCSSConfig, deepCopy, extraPageManage, getById, getElementsByClassName, getObjectURL, hasClass, hashRoute, hidePhone, innerCallback, isPhone, prepend, query, querys, ref, remove, removeClass, removeListener, rotateDisplay, toggleClass;
   ref = [util.addListener, util.removeListener, util.hasClass, util.addClass, util.removeClass, util.ajax, util.getElementsByClassName, util.isPhone, util.hidePhone, util.query, util.querys, util.remove, util.append, util.prepend, util.toggleClass, util.getObjectURL, util.deepCopy, util.getById], addListener = ref[0], removeListener = ref[1], hasClass = ref[2], addClass = ref[3], removeClass = ref[4], ajax = ref[5], getElementsByClassName = ref[6], isPhone = ref[7], hidePhone = ref[8], query = ref[9], querys = ref[10], remove = ref[11], append = ref[12], prepend = ref[13], toggleClass = ref[14], getObjectURL = ref[15], deepCopy = ref[16], getById = ref[17];
   clientWidth = document.body.clientWidth;
+  clientHeight = document.documentElement.clientHeight;
   compatibleCSSConfig = ["", "-webkit-", "-moz-", "-ms-", "-o-"];
   Lock = (function() {})();
   Category = (function() {
@@ -310,7 +311,7 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
     _allMainHomeId = ["Menu-page", "Already-page", "Individual-page"];
     _allMainDetailId = ["Book-page", "Activity-page"];
     _allExtraFormId = ["login-page", "book-choose-page", "remark-for-trolley-page", "alert-page", "confirm-page"];
-    _allExtraContentId = ["Recharge-page", "Confirm-pay-page"];
+    _allExtraContentId = ["Recharge-page", "Choose-payment-method-page"];
     _loc = window.location;
     _hashStateFunc = {
       "Menu": {
@@ -362,6 +363,14 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
           return _hideAllExtra(true);
         }
       },
+      "ChoosePaymentMethod": {
+        "push": function() {
+          return _switchExtraPage("Choose-payment-method-page");
+        },
+        "pop": function() {
+          return _hideAllExtra(true);
+        }
+      },
 
       /*
       			"Trolley": {
@@ -377,10 +386,6 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
       			"Prompt_pay": {
       				"push": -> util.removeClass(Trolley.prompt_pay_dom, "hide")
       				"pop": Trolley.resetForPromptPayDom
-      			}
-      			"Activity_info": {
-      				"push": Activity.showActivityInfo
-      				"pop": -> util.addClass(Activity.detail_dom, "hide")
       			}
       			"Already": {
       				"push": Login.showAlreadyPage
@@ -545,7 +550,7 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
       return _titleDom.innerHTML = str;
     };
     _parseAndExecuteHash = function(str) {
-      var base, base1, base2, base3, entry, hash_arr, i, j, k, l, last_state, len, len1, len2, m, n, old_arr, ref1, ref2, ref3, ref4, temp_counter;
+      var base, base1, base2, entry, hash_arr, i, j, k, l, last_state, len, len1, len2, m, n, old_arr, ref1, ref2, ref3, ref4, temp_counter;
       hash_arr = str.split("-");
       if (hash_arr.length <= 1 && hash_arr[0] === "") {
         return;
@@ -555,16 +560,14 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
       old_arr.splice(0, 1);
       last_state = hash_arr[hash_arr.length - 1];
       if (str === _recentHash) {
-        for (j = 0, len = hash_arr.length; j < len; j++) {
-          entry = hash_arr[j];
+        for (i = j = 0, len = hash_arr.length; j < len; i = ++j) {
+          entry = hash_arr[i];
           if (entry && _hashStateFunc[entry]) {
-            if (typeof (base = _hashStateFunc[entry])["push"] === "function") {
-              base["push"]();
-            }
+            setTimeout(function() {
+              var base;
+              return typeof (base = _hashStateFunc[entry])["push"] === "function" ? base["push"]() : void 0;
+            }, i * 100);
           }
-        }
-        if (str === "-Individual-Login") {
-          setTimeout(back, 0);
         }
         return;
       }
@@ -588,8 +591,8 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
       }
       for (i = m = ref1 = old_arr.length - 1; ref1 <= 0 ? m <= 0 : m >= 0; i = ref1 <= 0 ? ++m : --m) {
         if (old_arr[i] && _hashStateFunc[old_arr[i]] && temp_counter[old_arr[i]] === 1) {
-          if (typeof (base1 = _hashStateFunc[old_arr[i]])["pop"] === "function") {
-            base1["pop"]();
+          if (typeof (base = _hashStateFunc[old_arr[i]])["pop"] === "function") {
+            base["pop"]();
           }
         }
       }
@@ -597,14 +600,14 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
         if (hash_arr[i] && _hashStateFunc[hash_arr[i]] && temp_counter[hash_arr[i]] === 1) {
           if (ref3 = old_arr[i], indexOf.call(_allSecondary, ref3) >= 0) {
             if (ref4 = old_arr[i], indexOf.call(_secondaryInfo[old_arr[i - 1]], ref4) >= 0) {
-              if (typeof (base2 = _hashStateFunc[hash_arr[i]])["push"] === "function") {
-                base2["push"]();
+              if (typeof (base1 = _hashStateFunc[hash_arr[i]])["push"] === "function") {
+                base1["push"]();
               }
             }
             continue;
           }
-          if (typeof (base3 = _hashStateFunc[hash_arr[i]])["push"] === "function") {
-            base3["push"]();
+          if (typeof (base2 = _hashStateFunc[hash_arr[i]])["push"] === "function") {
+            base2["push"]();
           }
         }
       }
@@ -749,9 +752,10 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
     }
   };
   return window.onload = function() {
-    if (location.hash === "") {
-      hashRoute.hashJump("-Menu-x");
-    }
+    hashRoute.hashJump("-Menu-x");
+    setTimeout(function() {
+      return hashRoute.pushHashStr("ChoosePaymentMethod");
+    }, 1000);
     new rotateDisplay({
       displayCSSSelector: "#Menu-page .activity-display-list",
       chooseCSSSelector: "#Menu-page .choose-dot-list",
