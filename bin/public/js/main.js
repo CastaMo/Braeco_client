@@ -419,13 +419,16 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
     _titleDom = util.query("title");
     _recentHash = _loc.hash.replace("#", "");
     _switchExtraPage = function(id) {
-      _hideAllExtra();
-      _staticShowTarget("extra");
+      setTimeout(function() {
+        return _staticShowTarget("extra");
+      }, 0);
       if (indexOf.call(_allExtraContentId, id) >= 0) {
-        _staticShowTarget("brae-payment-page");
+        setTimeout(function() {
+          return _staticShowTarget("brae-payment-page");
+        }, 50);
         return setTimeout(function() {
           return _dynamicShowTarget(id, "hide-right");
-        }, 0);
+        }, 100);
       } else if (indexOf.call(_allExtraFormId, id) >= 0) {
         return _staticShowTarget("brae-form-page");
       }

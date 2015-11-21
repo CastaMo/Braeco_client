@@ -613,22 +613,25 @@
     position: absolute;
     top: 0;
     width: 100%;
-    height: auto;
-    background-color: @homePageBackgroundColor;
+    height: 100%;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 
 /*brae-payment-page-*/
 
 #brae-payment-page {
-    .transition(0.4s);
-    width: 100%;
-    overflow: auto;
-    -webkit-overflow-scrolling:touch;
-    background-color: @homePageBackgroundColor;
+    position: relative;
     #all-payment-content-field {
         .all-page-field {
             #Recharge-page {
+                width: 100%;
+                height: auto;
+                position: absolute;
+                top: 0;
+                left: 0;
+                background-color: @homePageBackgroundColor;
                 .transition(0.4s);
                 #recharge-amount-column {
                     margin-top: 10px;

@@ -317,13 +317,16 @@ do (window, document)->
 		_recentHash = _loc.hash.replace("#", "")
 
 		_switchExtraPage = (id)->
-			_hideAllExtra()
-			_staticShowTarget("extra")
+			setTimeout(->
+				_staticShowTarget("extra")
+			, 0)
 			if id in _allExtraContentId
-				_staticShowTarget("brae-payment-page")
+				setTimeout(->
+					_staticShowTarget("brae-payment-page")
+				, 50)
 				setTimeout(->
 					_dynamicShowTarget(id, "hide-right")
-				, 0)
+				, 100)
 			else if id in _allExtraFormId then _staticShowTarget("brae-form-page")
 
 		_hideAllExtraPage = -> addClass dom, "hide" for dom in _allExtraDoms
