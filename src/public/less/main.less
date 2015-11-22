@@ -451,8 +451,80 @@
         #Book-page {
             #Book-content {
                 .book-content-field {
+                    .food-info-field {
+                        width: 100%;
+                        height: 95px;
+                        padding: 12.5px 0 12.5px 0;
+                        .nintyPercentCenter;
+                        .left-part {
+                            float: left;
+                            .img-field {
+                                margin-right: 10px;
+                                .img {
+                                    width: 95px;
+                                    height: 95px;
+                                    background-size: 95px 95px;
+                                    background-image: url(@defaultDishUrl);
+                                }
+                            }
+                        }
+                        .right-part,
+                        .full-part {
+                            float: right;
+                            width: calc(~"100% - 110px");
+                            width: -moz-calc(~"100% - 110px");
+                            width: -webkit-calc(~"100% - 110px");
+                            min-width: 160px;
+                            height: 100%;
+                            .top-wrap {
+                                height: 62.5px;
+                                width: 100%;
+                                .name-field {
+                                    p.c-name {
+                                        font-size: 16px;
+                                        font-weight: bold;
+                                        line-height: 20px;
+                                    }
+                                    p.e-name {
+                                        line-height: 20px;
+                                        font-size: 12px;
+                                    }
+                                }
+                                .label-field {
+                                    margin-top: 3px;
+                                }
+                            }
+                            .bottom-wrap {
+                                height: 36px;
+                                .price-field {
+                                    float: left;
+                                    height: 23.5px;
+                                    line-height: 23.5px;
+                                    margin-top: 12px;
+                                    > * {
+                                        float: left;
+                                    }
+                                    p.min-price {
+                                        line-height: 23.5px;
+                                        font-size: 20px;
+                                        color: @deepCoffeeColor;
+                                    }
+                                    p.init-price {
+                                        font-size: 14px;
+                                        line-height: 15px;
+                                        margin: 5px 0 0 5px;
+                                        text-decoration: line-through;
+                                    }
+                                }
+                            }
+                        }
+                        .full-part {
+                            width: 100%;
+                            height: 100%;
+                        }
+                    }
                     #book-order-column {
-                        #book-menu-wrap {
+                        #book-top-wrap {
                             #book-category-wrap {
                                 position: fixed;
                                 width: 100%;
@@ -484,91 +556,67 @@
                                     }
                                 }
                             }
+                        }
+                        #book-menu-wrap {
                             #book-dish-wrap {
                                 position: absolute;
                                 top: 0;
+                                left: 0;
                                 width: 100%;
+                                height: auto;
+                                overflow-x: hidden;
                                 #book-main-wrap {
                                     margin-top: 41px;
                                     .food-list-wrap {
                                         ul {
                                             margin-bottom: 77px;
-                                            li {
-                                                .food-info-field {
-                                                    width: 100%;
-                                                    height: 95px;
-                                                    padding: 12.5px 0 12.5px 0;
-                                                    .nintyPercentCenter;
-                                                    .left-part {
-                                                        float: left;
-                                                        .img-field {
-                                                            margin-right: 10px;
-                                                            .img {
-                                                                width: 95px;
-                                                                height: 95px;
-                                                                background-size: 95px 95px;
-                                                                background-image: url(@defaultDishUrl);
-                                                            }
-                                                        }
-                                                    }
-                                                    .right-part {
-                                                        float: right;
-                                                        width: calc(~"100% - 110px");
-                                                        width: -moz-calc(~"100% - 110px");
-                                                        width: -webkit-calc(~"100% - 110px");
-                                                        min-width: 160px;
-                                                        height: 100%;
-                                                        .top-wrap {
-                                                            height: 62.5px;
-                                                            width: 100%;
-                                                            .name-field {
-                                                                p.c-name {
-                                                                    font-size: 16px;
-                                                                    font-weight: bold;
-                                                                    line-height: 20px;
-                                                                }
-                                                                p.e-name {
-                                                                    line-height: 20px;
-                                                                    font-size: 12px;
-                                                                }
-                                                            }
-                                                            .label-field {
-                                                                margin-top: 3px;
-                                                            }
-                                                        }
-                                                        .bottom-wrap {
-                                                            height: 36px;
-                                                            .price-field {
-                                                                float: left;
-                                                                height: 23.5px;
-                                                                line-height: 23.5px;
-                                                                margin-top: 12px;
-                                                                > * {
-                                                                    float: left;
-                                                                }
-                                                                p.min-price {
-                                                                    line-height: 23.5px;
-                                                                    font-size: 20px;
-                                                                    color: @deepCoffeeColor;
-                                                                }
-                                                                p.init-price {
-                                                                    font-size: 14px;
-                                                                    line-height: 15px;
-                                                                    margin: 5px 0 0 5px;
-                                                                    text-decoration: line-through;
-                                                                }
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                                .no-pic {
-                                                    .right-part {
-                                                        width: 100%;
-                                                    }
-                                                }
-                                            }
+                                            li {}
                                             li:active {
                                                 background-color: @touchColor;
+                                            }
+                                        }
+                                    }
+                                }
+                                #book-info-wrap {
+                                    position: absolute;
+                                    top: 0;
+                                    left: 0;
+                                    .transition(0.4s);
+                                    width: 100%;
+                                    height: 100%;
+                                    z-index: 3;
+                                    background-color: @homePageBackgroundColor;
+                                    .food-img-wrapper {
+                                        .img-field {
+                                            img {
+                                                width: 100%;
+                                                height: 320 * 200 / 375px;
+                                            }
+                                        }
+                                    }
+                                    .food-info-wrapper {
+                                        .borderTopBottom();
+                                        background-color: #fff;
+                                        margin-top: 15px;
+                                    }
+                                    .food-intro-wrapper {
+                                        .borderTopBottom();
+                                        margin-top: 15px;
+                                        background-color: #fff;
+                                        .food-intro-field {
+                                            > *:not(.fivePercentLeftLine) {
+                                                .nintyPercentCenter;
+                                            }
+                                            .title-wrap {
+                                                p.title {
+                                                    line-height: 37px;
+                                                    font-weight: bold;
+                                                }
+                                            }
+                                            .intro-wrap {
+                                                margin-top: 10px;
+                                                margin-bottom: 10px;
+                                                font-size: 14px;
                                             }
                                         }
                                     }
@@ -582,6 +630,7 @@
                         height: 41px;
                         width: 100%;
                         background-color: rgba(126, 63, 0, 0.79);
+                        z-index: 4;
                         .bottom-wrapper {
                             .total-order-field {
                                 float: left;

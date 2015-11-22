@@ -249,13 +249,20 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
 
   })();
   Menu = (function() {
-    var _allCategoryDoms, dom, j, len, results;
+    var _allCategoryDoms, _allDishDoms, dom, j, k, len, len1, results;
     _allCategoryDoms = querys(".category-display-list");
-    results = [];
     for (j = 0, len = _allCategoryDoms.length; j < len; j++) {
       dom = _allCategoryDoms[j];
+      addListener(dom, "click", function() {
+        return hashRoute.hashJump("-Detail-Book-bookCol");
+      });
+    }
+    _allDishDoms = querys("#book-dish-wrap .food-list-wrap li");
+    results = [];
+    for (k = 0, len1 = _allDishDoms.length; k < len1; k++) {
+      dom = _allDishDoms[k];
       results.push(addListener(dom, "click", function() {
-        return hashRoute.hashJump("-Detail-Book-bookInfo");
+        return hashRoute.pushHashStr("bookInfo");
       }));
     }
     return results;
@@ -375,12 +382,20 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
           return _hideTarget("Book-page");
         }
       },
-      "bookInfo": {
+      "bookCol": {
         "push": function() {
           return _staticShowTarget("book-order-column");
         },
         "pop": function() {
           return _hideTarget("book-order-column");
+        }
+      },
+      "bookInfo": {
+        "push": function() {
+          return _dynamicShowTarget("book-info-wrap", "hide-right");
+        },
+        "pop": function() {
+          return _hideTarget("book-info-wrap", "hide-right");
         }
       },
       "Activity": {
@@ -774,10 +789,16 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
     setTimeout(function() {
       hashRoute.pushHashStr("Menu");
       return setTimeout(function() {
-        hashRoute.pushHashStr("x");
-        return setTimeout(function() {
-          return hashRoute.hashJump("-Detail-Book-bookInfo");
-        }, 100);
+        return hashRoute.pushHashStr("x");
+
+        /*
+        				setTimeout(->
+        					hashRoute.hashJump("-Detail-Book-bookCol")
+        					setTimeout(->
+        						hashRoute.pushHashStr("bookInfo")
+        					, 100)
+        				, 100)
+         */
       }, 100);
     }, 100);
     new rotateDisplay({

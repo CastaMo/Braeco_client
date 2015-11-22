@@ -174,7 +174,11 @@ do (window, document)->
 	Menu = do ->
 		_allCategoryDoms = querys ".category-display-list"
 		for dom in _allCategoryDoms
-			addListener dom, "click", -> hashRoute.hashJump("-Detail-Book-bookInfo")
+			addListener dom, "click", -> hashRoute.hashJump("-Detail-Book-bookCol")
+
+		_allDishDoms = querys "#book-dish-wrap .food-list-wrap li"
+		for dom in _allDishDoms
+			addListener dom, "click", -> hashRoute.pushHashStr("bookInfo")
 
 	Individual = do ->
 		_rechargeFuncDom = getById "Recharge-func"
@@ -268,9 +272,13 @@ do (window, document)->
 				"push": -> _staticShowTarget("Book-page")
 				"pop": -> _hideTarget("Book-page")
 			}
-			"bookInfo": {
+			"bookCol": {
 				"push": -> _staticShowTarget("book-order-column")
 				"pop": -> _hideTarget("book-order-column")
+			}
+			"bookInfo": {
+				"push": -> _dynamicShowTarget("book-info-wrap", "hide-right")
+				"pop": -> _hideTarget("book-info-wrap", "hide-right")
 			}
 			"Activity": {
 				"push": -> _staticShowTarget("Activity-page")
@@ -480,9 +488,14 @@ do (window, document)->
 			hashRoute.pushHashStr("Menu")
 			setTimeout(->
 				hashRoute.pushHashStr("x")
+				###
 				setTimeout(->
-					hashRoute.hashJump("-Detail-Book-bookInfo")
+					hashRoute.hashJump("-Detail-Book-bookCol")
+					setTimeout(->
+						hashRoute.pushHashStr("bookInfo")
+					, 100)
 				, 100)
+				###
 			, 100)
 		, 100)
 		new rotateDisplay {
