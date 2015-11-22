@@ -1,7 +1,7 @@
 var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
 (function(window, document) {
-  var Activity, Category, Individual, LocalStorage, Lock, addClass, addListener, ajax, append, callpay, clientHeight, clientWidth, compatibleCSSConfig, deepCopy, getById, getElementsByClassName, getObjectURL, hasClass, hashRoute, hidePhone, innerCallback, isPhone, prepend, query, querys, ref, remove, removeClass, removeListener, rotateDisplay, toggleClass;
+  var Activity, Category, Individual, LocalStorage, Lock, Menu, addClass, addListener, ajax, append, callpay, clientHeight, clientWidth, compatibleCSSConfig, deepCopy, getById, getElementsByClassName, getObjectURL, hasClass, hashRoute, hidePhone, innerCallback, isPhone, prepend, query, querys, ref, remove, removeClass, removeListener, rotateDisplay, toggleClass;
   ref = [util.addListener, util.removeListener, util.hasClass, util.addClass, util.removeClass, util.ajax, util.getElementsByClassName, util.isPhone, util.hidePhone, util.query, util.querys, util.remove, util.append, util.prepend, util.toggleClass, util.getObjectURL, util.deepCopy, util.getById], addListener = ref[0], removeListener = ref[1], hasClass = ref[2], addClass = ref[3], removeClass = ref[4], ajax = ref[5], getElementsByClassName = ref[6], isPhone = ref[7], hidePhone = ref[8], query = ref[9], querys = ref[10], remove = ref[11], append = ref[12], prepend = ref[13], toggleClass = ref[14], getObjectURL = ref[15], deepCopy = ref[16], getById = ref[17];
   clientWidth = document.body.clientWidth;
   clientHeight = document.documentElement.clientHeight;
@@ -248,6 +248,18 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
     return rotateDisplay;
 
   })();
+  Menu = (function() {
+    var _allCategoryDoms, dom, j, len, results;
+    _allCategoryDoms = querys(".category-display-list");
+    results = [];
+    for (j = 0, len = _allCategoryDoms.length; j < len; j++) {
+      dom = _allCategoryDoms[j];
+      results.push(addListener(dom, "click", function() {
+        return hashRoute.hashJump("-Detail-Book");
+      }));
+    }
+    return results;
+  })();
   Individual = (function() {
     var _confirmRechargebtn, _rechargeFuncDom;
     _rechargeFuncDom = getById("Recharge-func");
@@ -297,7 +309,7 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
       var _activityColumnDom;
       _activityColumnDom = query("#Menu-page .activity-wrapper");
       return addListener(_activityColumnDom, "click", function() {
-        return hashJump("-Activity");
+        return hashJump("-Detail-Activity");
       });
     })();
     _extraMainDom = getById("#extra");
@@ -500,7 +512,7 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
       results = [];
       for (j = 0, len = _allMainDoms.length; j < len; j++) {
         dom = _allMainDoms[j];
-        results.push([addClass(dom, "hide"), console.log(dom)]);
+        results.push(addClass(dom, "hide"));
       }
       return results;
     };
@@ -573,7 +585,6 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
         }
         return;
       }
-      console.log(old_arr, hash_arr);
       temp_counter = {};
       for (k = 0, len1 = old_arr.length; k < len1; k++) {
         entry = old_arr[k];
@@ -597,7 +608,6 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
           if (typeof (base = _hashStateFunc[old_arr[i]])["pop"] === "function") {
             base["pop"]();
           }
-          console.log(old_arr[i]);
         }
       }
       for (i = n = 0, ref2 = hash_arr.length - 1; 0 <= ref2 ? n <= ref2 : n >= ref2; i = 0 <= ref2 ? ++n : --n) {
@@ -759,9 +769,9 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
         hashRoute.pushHashStr("x");
         return setTimeout(function() {
           return hashRoute.hashJump("-Detail-Book");
-        }, 500);
-      }, 500);
-    }, 500);
+        }, 100);
+      }, 100);
+    }, 100);
     new rotateDisplay({
       displayCSSSelector: "#Menu-page .activity-display-list",
       chooseCSSSelector: "#Menu-page .choose-dot-list",

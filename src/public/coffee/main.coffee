@@ -171,7 +171,10 @@ do (window, document)->
 				@displayUlDom.style[key] = value
 			@setCurrentChoose(index)
 
-
+	Menu = do ->
+		_allCategoryDoms = querys ".category-display-list"
+		for dom in _allCategoryDoms
+			addListener dom, "click", -> hashRoute.hashJump("-Detail-Book")
 
 	Individual = do ->
 		_rechargeFuncDom = getById "Recharge-func"
@@ -209,7 +212,7 @@ do (window, document)->
 			
 			_activityColumnDom = query "#Menu-page .activity-wrapper"
 
-			addListener _activityColumnDom, "click", -> hashJump("-Activity")
+			addListener _activityColumnDom, "click", -> hashJump("-Detail-Activity")
 
 		_extraMainDom = getById "#extra"
 
@@ -338,7 +341,7 @@ do (window, document)->
 
 		_hideSecondaryPage = (pageDom)-> addClass(pageDom, "hide-right")
 
-		_hideAllMainPage = -> [addClass dom, "hide"; console.log(dom)] for dom in _allMainDoms
+		_hideAllMainPage = -> addClass dom, "hide" for dom in _allMainDoms
 
 		_hideAllMainHomePage = -> addClass dom, "hide" for dom in _allMainHomeDoms
 
@@ -376,7 +379,6 @@ do (window, document)->
 						_hashStateFunc[entry]["push"]?()
 					, i * 100)
 				return
-			console.log old_arr, hash_arr
 			temp_counter = {}
 			for entry in old_arr
 				if entry then temp_counter[entry] = 1
@@ -386,7 +388,7 @@ do (window, document)->
 				else temp_counter[entry] = 1
 
 			for i in [old_arr.length-1..0]
-				if old_arr[i] and _hashStateFunc[old_arr[i]] and temp_counter[old_arr[i]] is 1 then _hashStateFunc[old_arr[i]]["pop"]?(); console.log old_arr[i]
+				if old_arr[i] and _hashStateFunc[old_arr[i]] and temp_counter[old_arr[i]] is 1 then _hashStateFunc[old_arr[i]]["pop"]?()
 			for i in [0..hash_arr.length-1]
 				if hash_arr[i] and _hashStateFunc[hash_arr[i]] and temp_counter[hash_arr[i]] is 1
 					if hash_arr[i] in _allSecondary
@@ -476,9 +478,9 @@ do (window, document)->
 				hashRoute.pushHashStr("x")
 				setTimeout(->
 					hashRoute.hashJump("-Detail-Book")
-				, 500)
-			, 500)
-		, 500)
+				, 100)
+			, 100)
+		, 100)
 		new rotateDisplay {
 			displayCSSSelector: "#Menu-page .activity-display-list"
 			chooseCSSSelector: "#Menu-page .choose-dot-list"
