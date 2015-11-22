@@ -174,7 +174,7 @@ do (window, document)->
 	Menu = do ->
 		_allCategoryDoms = querys ".category-display-list"
 		for dom in _allCategoryDoms
-			addListener dom, "click", -> hashRoute.hashJump("-Detail-Book")
+			addListener dom, "click", -> hashRoute.hashJump("-Detail-Book-bookInfo")
 
 	Individual = do ->
 		_rechargeFuncDom = getById "Recharge-func"
@@ -267,6 +267,10 @@ do (window, document)->
 			"Book": {
 				"push": -> _staticShowTarget("Book-page")
 				"pop": -> _hideTarget("Book-page")
+			}
+			"bookInfo": {
+				"push": -> _staticShowTarget("book-order-column")
+				"pop": -> _hideTarget("book-order-column")
 			}
 			"Activity": {
 				"push": -> _staticShowTarget("Activity-page")
@@ -477,7 +481,7 @@ do (window, document)->
 			setTimeout(->
 				hashRoute.pushHashStr("x")
 				setTimeout(->
-					hashRoute.hashJump("-Detail-Book")
+					hashRoute.hashJump("-Detail-Book-bookInfo")
 				, 100)
 			, 100)
 		, 100)

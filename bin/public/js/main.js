@@ -255,7 +255,7 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
     for (j = 0, len = _allCategoryDoms.length; j < len; j++) {
       dom = _allCategoryDoms[j];
       results.push(addListener(dom, "click", function() {
-        return hashRoute.hashJump("-Detail-Book");
+        return hashRoute.hashJump("-Detail-Book-bookInfo");
       }));
     }
     return results;
@@ -373,6 +373,14 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
         },
         "pop": function() {
           return _hideTarget("Book-page");
+        }
+      },
+      "bookInfo": {
+        "push": function() {
+          return _staticShowTarget("book-order-column");
+        },
+        "pop": function() {
+          return _hideTarget("book-order-column");
         }
       },
       "Activity": {
@@ -768,7 +776,7 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
       return setTimeout(function() {
         hashRoute.pushHashStr("x");
         return setTimeout(function() {
-          return hashRoute.hashJump("-Detail-Book");
+          return hashRoute.hashJump("-Detail-Book-bookInfo");
         }, 100);
       }, 100);
     }, 100);
