@@ -262,17 +262,17 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
   hashRoute = (function() {
     var HomeBottom, HomeMenu, _activityInfoDom, _allExtraContentDoms, _allExtraContentId, _allExtraDoms, _allExtraFormDoms, _allExtraFormId, _allMainDetailDoms, _allMainDetailId, _allMainDoms, _allMainHomeDoms, _allMainHomeId, _allSecondary, _dynamicShowTarget, _extraMainDom, _getHashStr, _hashStateFunc, _hideAllExtra, _hideAllExtraContentPage, _hideAllExtraFormPage, _hideAllExtraPage, _hideAllMain, _hideAllMainDetailPage, _hideAllMainHomePage, _hideAllMainPage, _hideSecondaryPage, _hideTarget, _loc, _modifyTitle, _parseAndExecuteHash, _recentHash, _secondaryInfo, _staticShowTarget, _switchExtraPage, _switchFirstPage, _switchSecondaryPage, _titleDom, hashJump, popHashStr, pushHashStr;
     HomeBottom = (function() {
-      var _allDoms, _state, bottomTouchEventTrigger, uncheckAllForBottomAnd_hideAllMain;
+      var _allDoms, _state, bottomTouchEventTrigger, uncheckAllForBottomAndHideTarget;
       _state = "";
       _allDoms = querys("#nav-field .bottom-field div");
-      uncheckAllForBottomAnd_hideAllMain = function() {
+      uncheckAllForBottomAndHideTarget = function() {
         var dom, id, j, len, results;
         results = [];
         for (j = 0, len = _allDoms.length; j < len; j++) {
           dom = _allDoms[j];
           id = dom.id;
           dom.className = id + "-unchecked";
-          results.push(_hideAllMain());
+          results.push(_hideTarget(id + "-page"));
         }
         return results;
       };
@@ -284,13 +284,13 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
            */
         }
         _state = id;
-        uncheckAllForBottomAnd_hideAllMain();
+        uncheckAllForBottomAndHideTarget();
         getById(id).className = id + "-checked";
-        return _switchFirstPage(id + "-page");
+        return _staticShowTarget(id + "-page");
       };
       return {
         bottomTouchEventTrigger: bottomTouchEventTrigger,
-        uncheckAllForBottomAnd_hideAllMain: uncheckAllForBottomAnd_hideAllMain
+        uncheckAllForBottomAndHideTarget: uncheckAllForBottomAndHideTarget
       };
     })();
     HomeMenu = (function() {
@@ -318,38 +318,58 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
     _allExtraContentId = ["Recharge-page", "Choose-payment-method-page"];
     _loc = window.location;
     _hashStateFunc = {
+      "Home": {
+        "push": function() {
+          return _staticShowTarget("brae-home-page");
+        },
+        "pop": function() {
+          return _hideAllMain();
+        }
+      },
       "Menu": {
         "push": function() {
           return HomeBottom.bottomTouchEventTrigger("Menu");
         },
-        "pop": HomeBottom.uncheckAllForBottomAnd_hideAllMain,
+        "pop": HomeBottom.uncheckAllForBottomAndHideTarget,
         "title": "餐牌"
       },
       "Already": {
         "push": function() {
           return HomeBottom.bottomTouchEventTrigger("Already");
         },
-        "pop": HomeBottom.uncheckAllForBottomAnd_hideAllMain,
+        "pop": HomeBottom.uncheckAllForBottomAndHideTarget,
         "title": "已点订单"
       },
       "Individual": {
         "push": function() {
           return HomeBottom.bottomTouchEventTrigger("Individual");
         },
-        "pop": HomeBottom.uncheckAllForBottomAnd_hideAllMain,
+        "pop": HomeBottom.uncheckAllForBottomAndHideTarget,
         "title": "个人信息"
+      },
+      "Detail": {
+        "push": function() {
+          return _staticShowTarget("brae-detail-page");
+        },
+        "pop": function() {
+          return _hideAllMain();
+        }
       },
       "Book": {
         "push": function() {
-          return _switchFirstPage("Book-page");
+          return _staticShowTarget("Book-page");
         },
-        "pop": _hideAllMain
+        "pop": function() {
+          return _hideTarget("Book-page");
+        }
       },
       "Activity": {
         "push": function() {
-          return _switchFirstPage("Activity-page");
+          return _staticShowTarget("Activity-page");
         },
-        "pop": _hideAllMain
+        "pop": function() {
+          return _hideTarget("Activity-page");
+        }
       },
       "activityInfo": {
         "push": function() {
@@ -391,40 +411,6 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
           return _hideTarget("Choose-payment-method-page");
         }
       },
-
-      /*
-      			"Trolley": {
-      				"push": -> util.removeClass(Trolley.trolley_page_dom, "hide"); WS.checkSocket(); util.query("#container", Trolley.trolley_page_dom).focus()
-      				"pop": -> util.addClass(Trolley.trolley_page_dom, "hide")
-      				"title": "购物车"
-      			}
-      			"Trolley_online_pay": {
-      				"push": -> util.removeClass(Trolley.online_pay_dom, "hide-right"); if Membership.balance >= OrderDish.all_orders_price then setTimeout(Trolley.payByMemberBalance, 100)
-      				"pop": -> util.addClass(Trolley.online_pay_dom, "hide-right")
-      				"title": "在线支付"
-      			}
-      			"Prompt_pay": {
-      				"push": -> util.removeClass(Trolley.prompt_pay_dom, "hide")
-      				"pop": Trolley.resetForPromptPayDom
-      			}
-      			"Already": {
-      				"push": Login.showAlreadyPage
-      				"pop": Login.hideAlreadyPage
-      				"title": "已点订单"
-      			}
-      			"Member_recharge": {
-      				"push": Membership_pay.showMemberRechargeDom
-      				"pop": Membership_pay.hideMemberRechargeDom
-      				"title": "会员卡充值"
-      			}
-      			"Login": {
-      				"push": ->
-      					if not Login.is_login then Login.showLoginPage()
-      					else setTimeout(hashRoute.back, 0)
-      				"pop": Login.hideLoginPage
-      				"title": "登录"
-      			}
-       */
       "x": {
         "push": function() {
           return setTimeout(function() {
@@ -514,7 +500,7 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
       results = [];
       for (j = 0, len = _allMainDoms.length; j < len; j++) {
         dom = _allMainDoms[j];
-        results.push(addClass(dom, "hide"));
+        results.push([addClass(dom, "hide"), console.log(dom)]);
       }
       return results;
     };
@@ -587,6 +573,7 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
         }
         return;
       }
+      console.log(old_arr, hash_arr);
       temp_counter = {};
       for (k = 0, len1 = old_arr.length; k < len1; k++) {
         entry = old_arr[k];
@@ -610,12 +597,13 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
           if (typeof (base = _hashStateFunc[old_arr[i]])["pop"] === "function") {
             base["pop"]();
           }
+          console.log(old_arr[i]);
         }
       }
       for (i = n = 0, ref2 = hash_arr.length - 1; 0 <= ref2 ? n <= ref2 : n >= ref2; i = 0 <= ref2 ? ++n : --n) {
         if (hash_arr[i] && _hashStateFunc[hash_arr[i]] && temp_counter[hash_arr[i]] === 1) {
-          if (ref3 = old_arr[i], indexOf.call(_allSecondary, ref3) >= 0) {
-            if (ref4 = old_arr[i], indexOf.call(_secondaryInfo[old_arr[i - 1]], ref4) >= 0) {
+          if (ref3 = hash_arr[i], indexOf.call(_allSecondary, ref3) >= 0) {
+            if (ref4 = hash_arr[i], indexOf.call(_secondaryInfo[hash_arr[i - 1]], ref4) >= 0) {
               if (typeof (base1 = _hashStateFunc[hash_arr[i]])["push"] === "function") {
                 base1["push"]();
               }
@@ -764,13 +752,16 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
     }
   };
   return window.onload = function() {
-    hashRoute.hashJump("-Menu");
+    hashRoute.hashJump("-Home");
     setTimeout(function() {
-      hashRoute.pushHashStr("x");
+      hashRoute.pushHashStr("Menu");
       return setTimeout(function() {
-        return hashRoute.pushHashStr("Book");
-      }, 100);
-    }, 100);
+        hashRoute.pushHashStr("x");
+        return setTimeout(function() {
+          return hashRoute.hashJump("-Detail-Book");
+        }, 500);
+      }, 500);
+    }, 500);
     new rotateDisplay({
       displayCSSSelector: "#Menu-page .activity-display-list",
       chooseCSSSelector: "#Menu-page .choose-dot-list",

@@ -187,9 +187,9 @@ do (window, document)->
 			_allDoms = querys "#nav-field .bottom-field div"
 
 
-			uncheckAllForBottomAnd_hideAllMain = ->
+			uncheckAllForBottomAndHideTarget = ->
 				for dom in _allDoms
-					id = dom.id; dom.className = "#{id}-unchecked"; _hideAllMain()
+					id = dom.id; dom.className = "#{id}-unchecked"; _hideTarget("#{id}-page")
 
 			bottomTouchEventTrigger = (id)->
 				if _state isnt id
@@ -197,13 +197,13 @@ do (window, document)->
 					*WebSocketxxxxx
 					###
 				_state = id
-				uncheckAllForBottomAnd_hideAllMain()
+				uncheckAllForBottomAndHideTarget()
 				getById(id).className = "#{id}-checked"
-				_switchFirstPage("#{id}-page")
+				_staticShowTarget("#{id}-page")
 
 
 			bottomTouchEventTrigger: bottomTouchEventTrigger
-			uncheckAllForBottomAnd_hideAllMain: uncheckAllForBottomAnd_hideAllMain
+			uncheckAllForBottomAndHideTarget: uncheckAllForBottomAndHideTarget
 
 		HomeMenu = do ->
 			
@@ -238,28 +238,36 @@ do (window, document)->
 
 		_loc = window.location
 		_hashStateFunc = {
+			"Home": {
+				"push": -> _staticShowTarget("brae-home-page")
+				"pop": -> _hideAllMain()
+			}
 			"Menu": {
 				"push": -> HomeBottom.bottomTouchEventTrigger("Menu")
-				"pop": HomeBottom.uncheckAllForBottomAnd_hideAllMain
+				"pop": HomeBottom.uncheckAllForBottomAndHideTarget
 				"title": "餐牌"
 			}
 			"Already": {
 				"push": -> HomeBottom.bottomTouchEventTrigger("Already")
-				"pop": HomeBottom.uncheckAllForBottomAnd_hideAllMain
+				"pop": HomeBottom.uncheckAllForBottomAndHideTarget
 				"title": "已点订单"
 			}
 			"Individual": {
 				"push": -> HomeBottom.bottomTouchEventTrigger("Individual")
-				"pop": HomeBottom.uncheckAllForBottomAnd_hideAllMain
+				"pop": HomeBottom.uncheckAllForBottomAndHideTarget
 				"title": "个人信息"
 			}
+			"Detail": {
+				"push": -> _staticShowTarget("brae-detail-page")
+				"pop": -> _hideAllMain()
+			}
 			"Book": {
-				"push": -> _switchFirstPage("Book-page")
-				"pop": _hideAllMain
+				"push": -> _staticShowTarget("Book-page")
+				"pop": -> _hideTarget("Book-page")
 			}
 			"Activity": {
-				"push": -> _switchFirstPage("Activity-page")
-				"pop": _hideAllMain
+				"push": -> _staticShowTarget("Activity-page")
+				"pop": -> _hideTarget("Activity-page")
 			}
 			"activityInfo": {
 				"push": -> _switchSecondaryPage("activityInfo", "Activity", _activityInfoDom)
@@ -281,40 +289,6 @@ do (window, document)->
 				"push": -> _staticShowTarget("Choose-payment-method-page")
 				"pop": -> _hideTarget("Choose-payment-method-page")
 			}
-
-			###
-			"Trolley": {
-				"push": -> util.removeClass(Trolley.trolley_page_dom, "hide"); WS.checkSocket(); util.query("#container", Trolley.trolley_page_dom).focus()
-				"pop": -> util.addClass(Trolley.trolley_page_dom, "hide")
-				"title": "购物车"
-			}
-			"Trolley_online_pay": {
-				"push": -> util.removeClass(Trolley.online_pay_dom, "hide-right"); if Membership.balance >= OrderDish.all_orders_price then setTimeout(Trolley.payByMemberBalance, 100)
-				"pop": -> util.addClass(Trolley.online_pay_dom, "hide-right")
-				"title": "在线支付"
-			}
-			"Prompt_pay": {
-				"push": -> util.removeClass(Trolley.prompt_pay_dom, "hide")
-				"pop": Trolley.resetForPromptPayDom
-			}
-			"Already": {
-				"push": Login.showAlreadyPage
-				"pop": Login.hideAlreadyPage
-				"title": "已点订单"
-			}
-			"Member_recharge": {
-				"push": Membership_pay.showMemberRechargeDom
-				"pop": Membership_pay.hideMemberRechargeDom
-				"title": "会员卡充值"
-			}
-			"Login": {
-				"push": ->
-					if not Login.is_login then Login.showLoginPage()
-					else setTimeout(hashRoute.back, 0)
-				"pop": Login.hideLoginPage
-				"title": "登录"
-			}
-			###
 			"x": {
 				"push": -> setTimeout(->
 					popHashStr("x")
@@ -364,7 +338,7 @@ do (window, document)->
 
 		_hideSecondaryPage = (pageDom)-> addClass(pageDom, "hide-right")
 
-		_hideAllMainPage = -> addClass dom, "hide" for dom in _allMainDoms
+		_hideAllMainPage = -> [addClass dom, "hide"; console.log(dom)] for dom in _allMainDoms
 
 		_hideAllMainHomePage = -> addClass dom, "hide" for dom in _allMainHomeDoms
 
@@ -402,7 +376,7 @@ do (window, document)->
 						_hashStateFunc[entry]["push"]?()
 					, i * 100)
 				return
-
+			console.log old_arr, hash_arr
 			temp_counter = {}
 			for entry in old_arr
 				if entry then temp_counter[entry] = 1
@@ -412,11 +386,11 @@ do (window, document)->
 				else temp_counter[entry] = 1
 
 			for i in [old_arr.length-1..0]
-				if old_arr[i] and _hashStateFunc[old_arr[i]] and temp_counter[old_arr[i]] is 1 then _hashStateFunc[old_arr[i]]["pop"]?()
+				if old_arr[i] and _hashStateFunc[old_arr[i]] and temp_counter[old_arr[i]] is 1 then _hashStateFunc[old_arr[i]]["pop"]?(); console.log old_arr[i]
 			for i in [0..hash_arr.length-1]
 				if hash_arr[i] and _hashStateFunc[hash_arr[i]] and temp_counter[hash_arr[i]] is 1
-					if old_arr[i] in _allSecondary
-						if old_arr[i] in _secondaryInfo[old_arr[i-1]] then _hashStateFunc[hash_arr[i]]["push"]?()
+					if hash_arr[i] in _allSecondary
+						if hash_arr[i] in _secondaryInfo[hash_arr[i-1]] then _hashStateFunc[hash_arr[i]]["push"]?()
 						continue
 					_hashStateFunc[hash_arr[i]]["push"]?()
 
@@ -495,12 +469,16 @@ do (window, document)->
 
 	window.onload = ->
 		#if location.hash is "" then hashRoute.hashJump("-Menu-x")
-		hashRoute.hashJump("-Menu"); setTimeout(->
-			hashRoute.pushHashStr("x")
+		hashRoute.hashJump("-Home")
+		setTimeout(->
+			hashRoute.pushHashStr("Menu")
 			setTimeout(->
-				hashRoute.pushHashStr("Book")
-			, 100)
-		, 100)
+				hashRoute.pushHashStr("x")
+				setTimeout(->
+					hashRoute.hashJump("-Detail-Book")
+				, 500)
+			, 500)
+		, 500)
 		new rotateDisplay {
 			displayCSSSelector: "#Menu-page .activity-display-list"
 			chooseCSSSelector: "#Menu-page .choose-dot-list"
