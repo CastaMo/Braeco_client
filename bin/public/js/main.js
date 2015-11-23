@@ -1,11 +1,12 @@
 var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
 (function(window, document) {
-  var Activity, Category, Individual, LocStor, Lock, Menu, addClass, addListener, ajax, append, callpay, clientHeight, clientWidth, compatibleCSSConfig, createDom, deepCopy, getById, getElementsByClassName, getJSON, getObjectURL, hasClass, hashRoute, hidePhone, initDishJSON, innerCallback, isPhone, prepend, query, querys, ref, remove, removeClass, removeListener, rotateDisplay, toggleClass;
+  var Activity, Category, Food, Individual, LocStorSingleton, Lock, Menu, addClass, addListener, ajax, append, callpay, clientHeight, clientWidth, compatibleCSSConfig, createDom, deepCopy, getById, getElementsByClassName, getJSON, getObjectURL, hasClass, hashRoute, hidePhone, innerCallback, isPhone, numToChinese, prepend, query, querys, ref, remove, removeClass, removeListener, rotateDisplay, toggleClass;
   ref = [util.addListener, util.removeListener, util.hasClass, util.addClass, util.removeClass, util.ajax, util.getElementsByClassName, util.isPhone, util.hidePhone, util.query, util.querys, util.remove, util.append, util.prepend, util.toggleClass, util.getObjectURL, util.deepCopy, util.getById, util.createDom], addListener = ref[0], removeListener = ref[1], hasClass = ref[2], addClass = ref[3], removeClass = ref[4], ajax = ref[5], getElementsByClassName = ref[6], isPhone = ref[7], hidePhone = ref[8], query = ref[9], querys = ref[10], remove = ref[11], append = ref[12], prepend = ref[13], toggleClass = ref[14], getObjectURL = ref[15], deepCopy = ref[16], getById = ref[17], createDom = ref[18];
   clientWidth = document.body.clientWidth;
   clientHeight = document.documentElement.clientHeight;
   compatibleCSSConfig = ["", "-webkit-", "-moz-", "-ms-", "-o-"];
+  numToChinese = ["零", "一", "二", "三", "四", "五", "六", "七", "八", "九", "十"];
   getJSON = function(json) {
     if (typeof json === "string") {
       json = JSON.parse(json);
@@ -16,23 +17,29 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
   Category = (function() {
 
     /*
-    		* 六个静态私有变量
+    		* 八个静态私有变量
     		* 1. 用于首页展示的ul的Dom, 里面存放displayDom
     		* 2. 用于点餐页面顶栏ul的Dom, 里面存放bookCategoryDom
-    		* 3. 点餐页面用于给顶栏ul纪录调整宽度的值
-    		* 4. 所有category类的容器
-    		* 5. 当前选中的品类
-    		* 6. 调整宽度按照字符来计算, 1个字母为10px, 1个数字为11px, 1个空格为6px, 1个中文为16px
+    		* 3. 用于收揽展示餐品的Dom, 里面存放foodListDom
+    		* 4. 点餐页面用于给顶栏ul纪录调整宽度的值
+    		* 5. 所有category类的容器
+    		* 6. 当前选中的品类
+    		* 7. localStorage单例对象, 初始化放在静态公有函数initial中
+    		* 8. 调整宽度按照字符来计算, 1个字母为10px, 1个数字为11px, 1个空格为6px, 1个中文为16px
      */
-    var _categoryBookCategoryUlDom, _categoryBookCategoryUlWidth, _cateogries, _catergoryDisplayUlDom, _chooseBookCategoryByCurrentChoose, _currentChoose, _getBookCategoryDom, _getDisplayDom, _getWidthByContent, _unChooseAllBookCategoryDom, _updateBookCategoryDomWidth, _widthByContent;
+    var _categoryBookCategoryUlDom, _categoryBookCategoryUlWidth, _cateogries, _catergoryDisplayUlDom, _chooseBookCategoryByCurrentChoose, _currentChoose, _foodListAllDom, _getBookCategoryDom, _getCurrentChooseFromLocStor, _getDisplayDom, _getFoodListDom, _getWidthByContent, _hideAllFoodListDom, _locStor, _setCurrentChoose, _unChooseAllBookCategoryDom, _updateBookCategoryDomWidth, _widthByContent;
 
     _catergoryDisplayUlDom = query("#Menu-page .category-display-list");
 
     _categoryBookCategoryUlDom = query("#book-category-wrap .tag-list");
 
+    _foodListAllDom = query("#book-dish-wrap .food-list-wrap");
+
     _categoryBookCategoryUlWidth = 0;
 
     _cateogries = [];
+
+    _locStor = null;
 
     _currentChoose = 0;
 
@@ -65,7 +72,7 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
 
     /*
     		* 静态私有函数
-    		* 创建和返回bookbookCategory的dom, 并投放在_categoryBookCategoryUlDom中
+    		* 创建和返回bookCategory的dom, 并投放在_categoryBookCategoryUlDom中
     		* @param {Object} category类变量
      */
 
@@ -78,6 +85,22 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
       dom.style.width = width + "px";
       append(_categoryBookCategoryUlDom, dom);
       _categoryBookCategoryUlWidth += width + 30;
+      return dom;
+    };
+
+
+    /*
+    		* 静态私有函数
+    		* 创建和返回foodList的dom, 并投放在_foodListAllDomm中
+    		* @param {Object} category类变量
+     */
+
+    _getFoodListDom = function(category) {
+      var dom;
+      dom = createDom("ul");
+      dom.id = "food-list-" + category.seqNum;
+      dom.className = "hide";
+      append(_foodListAllDom, dom);
       return dom;
     };
 
@@ -104,20 +127,46 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
       return _categoryBookCategoryUlDom.style.width = _categoryBookCategoryUlWidth + "px";
     };
 
-    _unChooseAllBookCategoryDom = function() {
-      var dom, j, len, ref1, results;
-      ref1 = querys("li", _categoryBookCategoryUlDom);
+    _hideAllFoodListDom = function() {
+      var category, k, len, results;
       results = [];
-      for (j = 0, len = ref1.length; j < len; j++) {
-        dom = ref1[j];
-        results.push(removeClass(dom, "choose"));
+      for (k = 0, len = _cateogries.length; k < len; k++) {
+        category = _cateogries[k];
+        results.push(addClass(category.foodListDom, "hide"));
+      }
+      return results;
+    };
+
+    _unChooseAllBookCategoryDom = function() {
+      var category, k, len, results;
+      results = [];
+      for (k = 0, len = _cateogries.length; k < len; k++) {
+        category = _cateogries[k];
+        results.push(removeClass(category.bookCategoryDom, "choose"));
       }
       return results;
     };
 
     _chooseBookCategoryByCurrentChoose = function() {
       _unChooseAllBookCategoryDom();
-      return addClass(_cateogries[_currentChoose].bookCategoryDom, "choose");
+      _hideAllFoodListDom();
+      _getCurrentChooseFromLocStor();
+      addClass(_cateogries[_currentChoose].bookCategoryDom, "choose");
+      removeClass(_cateogries[_currentChoose].foodListDom, "hide");
+      return setTimeout(function() {
+        return _cateogries[_currentChoose].bookCategoryDom.scrollIntoView();
+      }, 0);
+    };
+
+    _setCurrentChoose = function(seqNum) {
+      _currentChoose = seqNum;
+      return _locStor.set("categoryCurrentChoose", seqNum);
+    };
+
+    _getCurrentChooseFromLocStor = function() {
+      var choose;
+      choose = _locStor.get("categoryCurrentChoose") || 0;
+      return _currentChoose = Number(choose);
     };
 
     function Category(options) {
@@ -130,6 +179,7 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
     Category.prototype.init = function() {
       this.initDisplayDom();
       this.initBookCategoryDom();
+      this.initFoodListDom();
       return this.initEvent();
     };
 
@@ -141,39 +191,231 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
       return this.bookCategoryDom = _getBookCategoryDom(this);
     };
 
+    Category.prototype.initFoodListDom = function() {
+      return this.foodListDom = _getFoodListDom(this);
+    };
+
     Category.prototype.initEvent = function() {
       var self;
       self = this;
       addListener(self.displayDom, "click", function() {
+        _setCurrentChoose(self.seqNum);
         return hashRoute.hashJump("-Detail-Book-bookCol");
       });
       return addListener(self.bookCategoryDom, "click", function() {
-        _currentChoose = self.seqNum;
+        _setCurrentChoose(self.seqNum);
         return _chooseBookCategoryByCurrentChoose();
       });
     };
 
-    Category.getCurrentChoose = function() {};
+    Category.initial = function() {
+      var category, dishJSON, i, k, len, results, tempOuter;
+      _locStor = LocStorSingleton.getInstance();
+      dishJSON = getJSON(getDishJSON());
+      results = [];
+      for (i = k = 0, len = dishJSON.length; k < len; i = ++k) {
+        tempOuter = dishJSON[i];
+        results.push(category = new Category({
+          name: tempOuter.categoryname,
+          id: tempOuter.id,
+          seqNum: i
+        }));
+      }
+      return results;
+    };
+
+    Category.chooseBookCategoryByCurrentChoose = _chooseBookCategoryByCurrentChoose;
 
     return Category;
 
   })();
-  initDishJSON = function() {
-    var category, dishJSON, i, j, len, results, tempOuter;
-    dishJSON = getJSON(getDishJSON());
-    results = [];
-    for (i = j = 0, len = dishJSON.length; j < len; i = ++j) {
-      tempOuter = dishJSON[i];
-      results.push(category = new Category({
-        name: tempOuter.categoryname,
-        id: tempOuter.id,
-        seqNum: i
-      }));
+  Food = (function() {
+    var _foodInfo, _foods, _getBottomWrapForInfoDom, _getDCLabelForTopWrapDom, _getFoodDom, _getImgDomForFoodDom, _getInfoDomForFoodDom, _getInitPriceForBottomWrapDom, _getMinPriceForBottomWrapDom, _getTagLabelForTopWrapDom, _getTopWrapDomForInfoDom, _locStor;
+
+    _foodInfo = getById("book-info-wrap");
+
+    _foods = [];
+
+    _locStor = null;
+
+    _getDCLabelForTopWrapDom = function(food) {
+      var dcDom, num;
+      dcDom = "";
+      if (food.dcType === "discount") {
+        num = food.dc;
+        if (food.dc % 10 === 0) {
+          num = numToChinese[Math.round(food.dc / 10)];
+        } else {
+          num = food.dc / 10;
+        }
+        dcDom = "<p class='dc-label'>" + num + "折</p>";
+      } else if (food.dcType === "sale") {
+        dcDom = "<p class='dc-label'>减" + food.dc + "元</p>";
+      } else if (food.dcType === "half") {
+        dcDom = "<p class='dc-label'>第二杯半价</p>";
+      } else if (food.dcType === "limit") {
+        dcDom = "<p class='dc-label'>剩" + food.dc + "件</p>";
+      }
+      return dcDom;
+    };
+
+    _getTagLabelForTopWrapDom = function(food) {
+      var tagDom;
+      tagDom = "";
+      if (food.tag) {
+        tagDom = "<p class='tag-label'>" + food.tag + "</p>";
+      }
+      return tagDom;
+    };
+
+    _getTopWrapDomForInfoDom = function(food) {
+      var labelField, nameField, topWrapDom;
+      topWrapDom = createDom("div");
+      topWrapDom.className = "top-wrap";
+      nameField = "<div class='name-field'> <p class='c-name'>" + food.cName + "</p> <p class='e-name'>" + food.eName + "</p> </div>";
+      labelField = "<div class='label-field'> " + (_getDCLabelForTopWrapDom(food)) + " " + (_getTagLabelForTopWrapDom(food)) + " </div>";
+      append(topWrapDom, nameField);
+      append(topWrapDom, labelField);
+      return topWrapDom;
+    };
+
+    _getMinPriceForBottomWrapDom = function(food) {
+      var minPrice;
+      if (food.dcType === "none" || food.dcType === "half" || !food.dcType || food.dcType === "limit") {
+        minPrice = "<p class='min-price money'>" + food.defaultPrice + "</p>";
+      } else if (food.dcType === "discount") {
+        minPrice = "<p class='min-price money'>" + (Number((food.defaultPrice * food.dc / 100).toFixed(2))) + "</p>";
+      } else if (food.dcType === "sale") {
+        minPrice = "<p class='min-price money'>" + (Number((food.defaultPrice - food.dc).toFixed(2))) + "</p>";
+      }
+      return minPrice;
+    };
+
+    _getInitPriceForBottomWrapDom = function(food) {
+      var initPrice;
+      initPrice = "<p class='init-price money'>" + food.defaultPrice + "</p>";
+      if (food.dcType === "none" || food.dcType === "half" || !food.dcType || food.dcType === "limit") {
+        initPrice = "";
+      }
+      return initPrice;
+    };
+
+    _getBottomWrapForInfoDom = function(food) {
+      var bottomWrapDom, controllField, priceField;
+      bottomWrapDom = createDom("div");
+      bottomWrapDom.className = "bottom-wrap font-number-word";
+      priceField = "<div class='price-field'> " + (_getMinPriceForBottomWrapDom(food)) + " " + (_getInitPriceForBottomWrapDom(food)) + " </div>";
+      controllField = "<div class='controll-field'> <div class='minus-field btn'> <div class='img'></div> </div> <div class='number-field'> <p class='num'>0</p> </div> <div class='plus-field btn'> <div class='img'></div> </div> </div>";
+      append(bottomWrapDom, priceField);
+      append(bottomWrapDom, controllField);
+      return bottomWrapDom;
+    };
+
+    _getImgDomForFoodDom = function(food) {
+      var imgDom;
+      if (!food.url) {
+        return null;
+      }
+      imgDom = createDom("div");
+      imgDom.className = "left-part";
+      imgDom.innerHTML = "<div class='img-field'><img src='" + food.url + "'></div>";
+      return imgDom;
+    };
+
+    _getInfoDomForFoodDom = function(food) {
+      var bottomWrapDom, infoDom, topWrapDom;
+      infoDom = createDom("div");
+      if (food.url) {
+        infoDom.className = "right-part";
+      } else {
+        infoDom.className = "full-part";
+      }
+      topWrapDom = _getTopWrapDomForInfoDom(food);
+      bottomWrapDom = _getBottomWrapForInfoDom(food);
+      append(infoDom, topWrapDom);
+      append(infoDom, bottomWrapDom);
+      return infoDom;
+    };
+
+    _getFoodDom = function(food) {
+      var corresFoodListDom, dom, fivePercentLeftLine, foodInfoDom, imgDom, infoDom;
+      dom = createDom("li");
+      dom.id = "food-" + food.seqNum;
+      foodInfoDom = createDom("div");
+      foodInfoDom.className = "food-info-field";
+      imgDom = _getImgDomForFoodDom(food);
+      infoDom = _getInfoDomForFoodDom(food);
+      if (imgDom) {
+        append(foodInfoDom, imgDom);
+      }
+      append(foodInfoDom, infoDom);
+      append(dom, foodInfoDom);
+      fivePercentLeftLine = createDom("div");
+      fivePercentLeftLine.className = "fivePercentLeftLine";
+      corresFoodListDom = query(".food-list-wrap #food-list-" + food.categorySeqNum);
+      append(corresFoodListDom, dom);
+      append(corresFoodListDom, fivePercentLeftLine);
+      return dom;
+    };
+
+    function Food(options) {
+      deepCopy(options, this);
+      this.init();
+      _foods[this.categorySeqNum].push(this);
     }
-    return results;
-  };
+
+    Food.prototype.init = function() {
+      return this.initFoodDom();
+    };
+
+    Food.prototype.initFoodDom = function() {
+      return this.foodDom = _getFoodDom(this);
+    };
+
+    Food.initial = function() {
+      var dishJSON, food, i, j, k, l, len, ref1, results, tempOuter;
+      _locStor = LocStorSingleton.getInstance();
+      dishJSON = getJSON(getDishJSON());
+      for (i = k = 0, ref1 = dishJSON.length - 1; 0 <= ref1 ? k <= ref1 : k >= ref1; i = 0 <= ref1 ? ++k : --k) {
+        if (!dishJSON[i]) {
+          continue;
+        }
+        _foods[i] = [];
+      }
+      results = [];
+      for (i = l = 0, len = dishJSON.length; l < len; i = ++l) {
+        tempOuter = dishJSON[i];
+        j = 0;
+        results.push((function() {
+          var results1;
+          results1 = [];
+          while (tempOuter[j]) {
+            console.log(tempOuter[j]);
+            food = new Food({
+              dc: tempOuter[j].dc,
+              dcType: tempOuter[j].dc_type,
+              defaultPrice: tempOuter[j].defaultprice,
+              id: tempOuter[j].dishid,
+              cName: tempOuter[j].dishname,
+              eName: tempOuter[j].dishname2,
+              url: tempOuter[j].dishpic,
+              categorySeqNum: i,
+              tag: tempOuter[j].tag
+            });
+            console.log(food);
+            results1.push(j++);
+          }
+          return results1;
+        })());
+      }
+      return results;
+    };
+
+    return Food;
+
+  })();
   Activity = (function() {
-    var _activityInfoImgDom, _activityInformationDom, dom, j, len, ref1;
+    var _activityInfoImgDom, _activityInformationDom, dom, k, len, ref1;
 
     function Activity() {}
 
@@ -184,8 +426,8 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
     _activityInfoImgDom.style.height = (clientWidth * 0.9 * 167 / 343) + "px";
 
     ref1 = querys("#Activity-container-column li");
-    for (j = 0, len = ref1.length; j < len; j++) {
-      dom = ref1[j];
+    for (k = 0, len = ref1.length; k < len; k++) {
+      dom = ref1[k];
       addListener(dom, "click", function() {
         return hashRoute.pushHashStr("activityInfo");
       });
@@ -198,10 +440,10 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
     var _autoRotateEvent, _getCompatibleTranslateCss, _touchEnd, _touchMove, _touchStart;
 
     _getCompatibleTranslateCss = function(ver, hor) {
-      var config, j, len, result_;
+      var config, k, len, result_;
       result_ = {};
-      for (j = 0, len = compatibleCSSConfig.length; j < len; j++) {
-        config = compatibleCSSConfig[j];
+      for (k = 0, len = compatibleCSSConfig.length; k < len; k++) {
+        config = compatibleCSSConfig[k];
         result_[config + "transform"] = "translate(" + ver + ", " + hor + ")";
       }
       return result_;
@@ -290,13 +532,13 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
      */
 
     function rotateDisplay(options) {
-      var dom, j, len, ref1;
+      var dom, k, len, ref1;
       this.displayUlDom = query(options.displayCSSSelector);
       this.chooseUlDom = query(options.chooseCSSSelector);
       this.delay = options.delay;
       ref1 = querys("img", this.displayUlDom);
-      for (j = 0, len = ref1.length; j < len; j++) {
-        dom = ref1[j];
+      for (k = 0, len = ref1.length; k < len; k++) {
+        dom = ref1[k];
         dom.style.height = (options.scale * clientWidth) + "px";
       }
       this.init();
@@ -310,7 +552,7 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
     };
 
     rotateDisplay.prototype.initDisplay = function() {
-      var dom, j, len, ref1;
+      var dom, k, len, ref1;
       this.displayContainerDom = this.displayUlDom.parentNode;
       this.displayContainerDom.style.overflowX = "auto";
       this.allDisplayDom = querys("li", this.displayUlDom);
@@ -319,8 +561,8 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
       			* 让所有的图片的宽度都能适应屏幕
        */
       ref1 = this.allDisplayDom;
-      for (j = 0, len = ref1.length; j < len; j++) {
-        dom = ref1[j];
+      for (k = 0, len = ref1.length; k < len; k++) {
+        dom = ref1[k];
         dom.style.width = clientWidth + "px";
       }
       this.activityNum = this.allDisplayDom.length;
@@ -332,14 +574,14 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
     };
 
     rotateDisplay.prototype.initChoose = function() {
-      var dom, i, j, len, ref1, results, self;
+      var dom, i, k, len, ref1, results, self;
       this.chooseUlDom.parentNode.style.overflow = "hidden";
       self = this;
       this.allChooseDom = querys("li", this.chooseUlDom);
       this.currentChoose = 0;
       ref1 = this.allChooseDom;
       results = [];
-      for (i = j = 0, len = ref1.length; j < len; i = ++j) {
+      for (i = k = 0, len = ref1.length; k < len; i = ++k) {
         dom = ref1[i];
         results.push(addListener(dom, "click", (function(i) {
           return function(e) {
@@ -404,11 +646,11 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
 
   })();
   Menu = (function() {
-    var _allDishDoms, dom, j, len, results;
+    var _allDishDoms, dom, k, len, results;
     _allDishDoms = querys("#book-dish-wrap .food-list-wrap li");
     results = [];
-    for (j = 0, len = _allDishDoms.length; j < len; j++) {
-      dom = _allDishDoms[j];
+    for (k = 0, len = _allDishDoms.length; k < len; k++) {
+      dom = _allDishDoms[k];
       results.push(addListener(dom, "click", function() {
         return hashRoute.pushHashStr("bookInfo");
       }));
@@ -433,10 +675,10 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
       _state = "";
       _allDoms = querys("#nav-field .bottom-field div");
       uncheckAllForBottomAndHideTarget = function() {
-        var dom, id, j, len, results;
+        var dom, id, k, len, results;
         results = [];
-        for (j = 0, len = _allDoms.length; j < len; j++) {
-          dom = _allDoms[j];
+        for (k = 0, len = _allDoms.length; k < len; k++) {
+          dom = _allDoms[k];
           id = dom.id;
           dom.className = id + "-unchecked";
           results.push(_hideTarget(id + "-page"));
@@ -532,6 +774,7 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
       },
       "bookCol": {
         "push": function() {
+          Category.chooseBookCategoryByCurrentChoose();
           return _staticShowTarget("book-order-column");
         },
         "pop": function() {
@@ -628,28 +871,28 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
       }
     };
     _hideAllExtraPage = function() {
-      var dom, j, len, results;
+      var dom, k, len, results;
       results = [];
-      for (j = 0, len = _allExtraDoms.length; j < len; j++) {
-        dom = _allExtraDoms[j];
+      for (k = 0, len = _allExtraDoms.length; k < len; k++) {
+        dom = _allExtraDoms[k];
         results.push(addClass(dom, "hide"));
       }
       return results;
     };
     _hideAllExtraFormPage = function() {
-      var dom, j, len, results;
+      var dom, k, len, results;
       results = [];
-      for (j = 0, len = _allExtraFormDoms.length; j < len; j++) {
-        dom = _allExtraFormDoms[j];
+      for (k = 0, len = _allExtraFormDoms.length; k < len; k++) {
+        dom = _allExtraFormDoms[k];
         results.push(addClass(dom, "hide"));
       }
       return results;
     };
     _hideAllExtraContentPage = function() {
-      var dom, j, len, results;
+      var dom, k, len, results;
       results = [];
-      for (j = 0, len = _allExtraContentDoms.length; j < len; j++) {
-        dom = _allExtraContentDoms[j];
+      for (k = 0, len = _allExtraContentDoms.length; k < len; k++) {
+        dom = _allExtraContentDoms[k];
         results.push(addClass(dom, "hide"));
       }
       return results;
@@ -679,28 +922,28 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
       return addClass(pageDom, "hide-right");
     };
     _hideAllMainPage = function() {
-      var dom, j, len, results;
+      var dom, k, len, results;
       results = [];
-      for (j = 0, len = _allMainDoms.length; j < len; j++) {
-        dom = _allMainDoms[j];
+      for (k = 0, len = _allMainDoms.length; k < len; k++) {
+        dom = _allMainDoms[k];
         results.push(addClass(dom, "hide"));
       }
       return results;
     };
     _hideAllMainHomePage = function() {
-      var dom, j, len, results;
+      var dom, k, len, results;
       results = [];
-      for (j = 0, len = _allMainHomeDoms.length; j < len; j++) {
-        dom = _allMainHomeDoms[j];
+      for (k = 0, len = _allMainHomeDoms.length; k < len; k++) {
+        dom = _allMainHomeDoms[k];
         results.push(addClass(dom, "hide"));
       }
       return results;
     };
     _hideAllMainDetailPage = function() {
-      var dom, j, len, results;
+      var dom, k, len, results;
       results = [];
-      for (j = 0, len = _allMainDetailDoms.length; j < len; j++) {
-        dom = _allMainDetailDoms[j];
+      for (k = 0, len = _allMainDetailDoms.length; k < len; k++) {
+        dom = _allMainDetailDoms[k];
         results.push(addClass(dom, "hide"));
       }
       return results;
@@ -735,7 +978,7 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
       return _titleDom.innerHTML = str;
     };
     _parseAndExecuteHash = function(str) {
-      var base, base1, base2, entry, hash_arr, i, j, k, l, last_state, len, len1, len2, m, n, old_arr, ref1, ref2, ref3, ref4, temp_counter;
+      var base, base1, base2, entry, hash_arr, i, k, l, last_state, len, len1, len2, m, n, o, old_arr, ref1, ref2, ref3, ref4, temp_counter;
       hash_arr = str.split("-");
       if (hash_arr.length <= 1 && hash_arr[0] === "") {
         return;
@@ -745,26 +988,28 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
       old_arr.splice(0, 1);
       last_state = hash_arr[hash_arr.length - 1];
       if (str === _recentHash) {
-        for (i = j = 0, len = hash_arr.length; j < len; i = ++j) {
+        for (i = k = 0, len = hash_arr.length; k < len; i = ++k) {
           entry = hash_arr[i];
           if (entry && _hashStateFunc[entry]) {
-            setTimeout(function() {
-              var base;
-              return typeof (base = _hashStateFunc[entry])["push"] === "function" ? base["push"]() : void 0;
-            }, i * 100);
+            setTimeout((function(entry) {
+              return function() {
+                var base;
+                return typeof (base = _hashStateFunc[entry])["push"] === "function" ? base["push"]() : void 0;
+              };
+            })(entry), i * 100);
           }
         }
         return;
       }
       temp_counter = {};
-      for (k = 0, len1 = old_arr.length; k < len1; k++) {
-        entry = old_arr[k];
+      for (l = 0, len1 = old_arr.length; l < len1; l++) {
+        entry = old_arr[l];
         if (entry) {
           temp_counter[entry] = 1;
         }
       }
-      for (l = 0, len2 = hash_arr.length; l < len2; l++) {
-        entry = hash_arr[l];
+      for (m = 0, len2 = hash_arr.length; m < len2; m++) {
+        entry = hash_arr[m];
         if (!entry) {
           continue;
         }
@@ -774,14 +1019,14 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
           temp_counter[entry] = 1;
         }
       }
-      for (i = m = ref1 = old_arr.length - 1; ref1 <= 0 ? m <= 0 : m >= 0; i = ref1 <= 0 ? ++m : --m) {
+      for (i = n = ref1 = old_arr.length - 1; ref1 <= 0 ? n <= 0 : n >= 0; i = ref1 <= 0 ? ++n : --n) {
         if (old_arr[i] && _hashStateFunc[old_arr[i]] && temp_counter[old_arr[i]] === 1) {
           if (typeof (base = _hashStateFunc[old_arr[i]])["pop"] === "function") {
             base["pop"]();
           }
         }
       }
-      for (i = n = 0, ref2 = hash_arr.length - 1; 0 <= ref2 ? n <= ref2 : n >= ref2; i = 0 <= ref2 ? ++n : --n) {
+      for (i = o = 0, ref2 = hash_arr.length - 1; 0 <= ref2 ? o <= ref2 : o >= ref2; i = 0 <= ref2 ? ++o : --o) {
         if (hash_arr[i] && _hashStateFunc[hash_arr[i]] && temp_counter[hash_arr[i]] === 1) {
           if (ref3 = hash_arr[i], indexOf.call(_allSecondary, ref3) >= 0) {
             if (ref4 = hash_arr[i], indexOf.call(_secondaryInfo[hash_arr[i - 1]], ref4) >= 0) {
@@ -821,34 +1066,46 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
       popHashStr: popHashStr,
       hashJump: hashJump,
       HomeBottom: HomeBottom,
-      _switchExtraPage: _switchExtraPage
+      parseAndExecuteHash: function() {
+        return _parseAndExecuteHash(_getHashStr());
+      }
     };
   })();
-  LocStor = (function() {
-    var doc, store;
-    store = window.localStorage;
-    doc = document.documentElement;
-    if (!store) {
-      doc.type.behavior = 'url(#default#userData)';
-    }
-    return {
-      set: function(key, val, context) {
+  LocStorSingleton = (function() {
+    var LocStor, _instance;
+    _instance = null;
+    LocStor = (function() {
+      var doc, store;
+
+      function LocStor() {}
+
+      store = window.localStorage;
+
+      doc = document.documentElement;
+
+      if (!store) {
+        doc.type.behavior = 'url(#default#userData)';
+      }
+
+      LocStor.prototype.set = function(key, val, context) {
         if (store) {
           return store.setItem(key, val, context);
         } else {
           doc.setAttribute(key, value);
           return doc.save(context || 'default');
         }
-      },
-      get: function(key, context) {
+      };
+
+      LocStor.prototype.get = function(key, context) {
         if (store) {
           return store.getItem(key, context);
         } else {
           doc.load(context || 'default');
           return doc.getAttribute(key) || '';
         }
-      },
-      rm: function(key, context) {
+      };
+
+      LocStor.prototype.rm = function(key, context) {
         if (store) {
           return store.removeItem(key, context);
         } else {
@@ -857,13 +1114,25 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
           doc.removeAttribute(key);
           return doc.save(context);
         }
-      },
-      clear: function() {
+      };
+
+      LocStor.prototype.clear = function() {
         if (store) {
           return store.clear();
         } else {
           return doc.expires = -1;
         }
+      };
+
+      return LocStor;
+
+    })();
+    return {
+      getInstance: function() {
+        if (_instance === null) {
+          _instance = new LocStor();
+        }
+        return _instance;
       }
     };
   })();
@@ -933,23 +1202,39 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
     }
   };
   return window.onload = function() {
-    initDishJSON();
-    hashRoute.hashJump("-Home");
-    setTimeout(function() {
-      hashRoute.pushHashStr("Menu");
-      return setTimeout(function() {
-        return hashRoute.pushHashStr("x");
-
-        /*
-        				setTimeout(->
-        					hashRoute.hashJump("-Detail-Book-bookCol")
-        					setTimeout(->
-        						hashRoute.pushHashStr("bookInfo")
-        					, 100)
-        				, 100)
-         */
+    Category.initial();
+    Food.initial();
+    if (location.hash === "") {
+      setTimeout(function() {
+        hashRoute.hashJump("-Home");
+        return setTimeout(function() {
+          hashRoute.pushHashStr("Menu");
+          return setTimeout(function() {
+            return hashRoute.pushHashStr("x");
+          }, 100);
+        }, 100);
       }, 100);
-    }, 100);
+    } else {
+      hashRoute.parseAndExecuteHash();
+    }
+
+    /*
+    		hashRoute.hashJump("-Home")
+    		setTimeout(->
+    			hashRoute.pushHashStr("Menu")
+    			setTimeout(->
+    				hashRoute.pushHashStr("x")
+    				
+    				setTimeout(->
+    					hashRoute.hashJump("-Detail-Book-bookCol")
+    					setTimeout(->
+    						hashRoute.pushHashStr("bookInfo")
+    					, 100)
+    				, 100)
+    				
+    			, 100)
+    		, 100)
+     */
     new rotateDisplay({
       displayCSSSelector: "#Menu-page .activity-display-list",
       chooseCSSSelector: "#Menu-page .choose-dot-list",

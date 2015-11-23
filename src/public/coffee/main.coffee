@@ -13,6 +13,8 @@ do (window, document)->
 		"-o-"
 	]
 
+	numToChinese = ["零","一","二","三","四","五","六","七","八","九","十"]
+
 	getJSON = (json)->
 		if typeof json is "string" then json = JSON.parse(json)
 		return json
@@ -22,18 +24,22 @@ do (window, document)->
 	class Category
 
 		###
-		* 六个静态私有变量
+		* 八个静态私有变量
 		* 1. 用于首页展示的ul的Dom, 里面存放displayDom
 		* 2. 用于点餐页面顶栏ul的Dom, 里面存放bookCategoryDom
-		* 3. 点餐页面用于给顶栏ul纪录调整宽度的值
-		* 4. 所有category类的容器
-		* 5. 当前选中的品类
-		* 6. 调整宽度按照字符来计算, 1个字母为10px, 1个数字为11px, 1个空格为6px, 1个中文为16px
+		* 3. 用于收揽展示餐品的Dom, 里面存放foodListDom
+		* 4. 点餐页面用于给顶栏ul纪录调整宽度的值
+		* 5. 所有category类的容器
+		* 6. 当前选中的品类
+		* 7. localStorage单例对象, 初始化放在静态公有函数initial中
+		* 8. 调整宽度按照字符来计算, 1个字母为10px, 1个数字为11px, 1个空格为6px, 1个中文为16px
 		###
 		_catergoryDisplayUlDom = query "#Menu-page .category-display-list"
 		_categoryBookCategoryUlDom = query "#book-category-wrap .tag-list"
+		_foodListAllDom = query "#book-dish-wrap .food-list-wrap"
 		_categoryBookCategoryUlWidth = 0
 		_cateogries = []
+		_locStor = null
 		_currentChoose = 0
 
 		_widthByContent = {
@@ -59,7 +65,7 @@ do (window, document)->
 
 		###
 		* 静态私有函数
-		* 创建和返回bookbookCategory的dom, 并投放在_categoryBookCategoryUlDom中
+		* 创建和返回bookCategory的dom, 并投放在_categoryBookCategoryUlDom中
 		* @param {Object} category类变量
 		###
 		_getBookCategoryDom = (category)->
@@ -69,6 +75,16 @@ do (window, document)->
 			dom.style.width = "#{width}px"
 			append _categoryBookCategoryUlDom, dom
 			_categoryBookCategoryUlWidth += (width + 30)
+			return dom
+
+		###
+		* 静态私有函数
+		* 创建和返回foodList的dom, 并投放在_foodListAllDomm中
+		* @param {Object} category类变量
+		###
+		_getFoodListDom = (category)->
+			dom = createDom("ul"); dom.id = "food-list-#{category.seqNum}"; dom.className = "hide"
+			append _foodListAllDom, dom
 			return dom
 
 		###
@@ -93,12 +109,26 @@ do (window, document)->
 
 		_updateBookCategoryDomWidth = -> _categoryBookCategoryUlDom.style.width = "#{_categoryBookCategoryUlWidth}px"
 
-		_unChooseAllBookCategoryDom = -> removeClass dom, "choose" for dom in querys "li", _categoryBookCategoryUlDom
+		_hideAllFoodListDom = -> addClass category.foodListDom, "hide" for category in _cateogries
 
-		_chooseBookCategoryByCurrentChoose = -> _unChooseAllBookCategoryDom(); addClass _cateogries[_currentChoose].bookCategoryDom, "choose"
+		_unChooseAllBookCategoryDom = -> removeClass category.bookCategoryDom, "choose" for category in _cateogries
+
+		_chooseBookCategoryByCurrentChoose = ->
+			_unChooseAllBookCategoryDom()
+			_hideAllFoodListDom()
+			_getCurrentChooseFromLocStor()
+			addClass _cateogries[_currentChoose].bookCategoryDom, "choose"
+			removeClass _cateogries[_currentChoose].foodListDom, "hide"
+			setTimeout(->
+				_cateogries[_currentChoose].bookCategoryDom.scrollIntoView()
+			, 0)
+
+		_setCurrentChoose = (seqNum)-> _currentChoose = seqNum; _locStor.set("categoryCurrentChoose", seqNum)
+
+		_getCurrentChooseFromLocStor = -> choose = _locStor.get("categoryCurrentChoose") || 0; _currentChoose = Number(choose)
 
 		constructor: (options)->
-			deepCopy(options, @)
+			deepCopy options, @
 			@init()
 			_updateBookCategoryDomWidth()
 			_cateogries.push @
@@ -106,28 +136,170 @@ do (window, document)->
 		init: ->
 			@initDisplayDom()
 			@initBookCategoryDom()
+			@initFoodListDom()
 			@initEvent()
 
 		initDisplayDom: -> @displayDom = _getDisplayDom @
 
 		initBookCategoryDom: -> @bookCategoryDom = _getBookCategoryDom @
 
+		initFoodListDom: -> @foodListDom = _getFoodListDom @
+
 		initEvent: -> 
 			self = @
-			addListener self.displayDom, "click", -> hashRoute.hashJump "-Detail-Book-bookCol"
-			addListener self.bookCategoryDom, "click", -> _currentChoose = self.seqNum; _chooseBookCategoryByCurrentChoose()
+			addListener self.displayDom, "click", -> _setCurrentChoose(self.seqNum); hashRoute.hashJump "-Detail-Book-bookCol"
+			addListener self.bookCategoryDom, "click", -> _setCurrentChoose(self.seqNum); _chooseBookCategoryByCurrentChoose()
 
-		@getCurrentChoose: ->
+		@initial: ->
+			_locStor = LocStorSingleton.getInstance()
+			dishJSON = getJSON getDishJSON()
+			for tempOuter, i in dishJSON
+				category = new Category {
+					name 		:		tempOuter.categoryname
+					id 			:		tempOuter.id
+					seqNum 		:		i
+				}
+		@chooseBookCategoryByCurrentChoose: _chooseBookCategoryByCurrentChoose
+
+	class Food
+		_foodInfo = getById "book-info-wrap"
+		_foods = []
+		_locStor = null
+
+		_getDCLabelForTopWrapDom = (food)->
+			dcDom = ""
+			if food.dcType is "discount"
+				num = food.dc; if food.dc % 10 is 0 then num = numToChinese[Math.round(food.dc / 10)] else num = food.dc/10
+				dcDom = "<p class='dc-label'>#{num}折</p>"
+			else if food.dcType is "sale" then dcDom = "<p class='dc-label'>减#{food.dc}元</p>"
+			else if food.dcType is "half" then dcDom = "<p class='dc-label'>第二杯半价</p>"
+			else if food.dcType is "limit" then dcDom = "<p class='dc-label'>剩#{food.dc}件</p>"
+			return dcDom
+
+		_getTagLabelForTopWrapDom = (food)->
+			tagDom = ""
+			if food.tag then tagDom = "<p class='tag-label'>#{food.tag}</p>"
+			return tagDom
+
+		_getTopWrapDomForInfoDom = (food)->
+			topWrapDom = createDom("div"); topWrapDom.className = "top-wrap"
+			nameField = "<div class='name-field'>
+							<p class='c-name'>#{food.cName}</p>
+							<p class='e-name'>#{food.eName}</p>
+						</div>"
+			labelField = "<div class='label-field'>
+							#{_getDCLabelForTopWrapDom(food)}
+							#{_getTagLabelForTopWrapDom(food)}
+						</div>"
+			
+			append topWrapDom, nameField
+			append topWrapDom, labelField
+			return topWrapDom
+
+		_getMinPriceForBottomWrapDom = (food)->
+			if food.dcType is "none" or food.dcType is "half" or not food.dcType or food.dcType is "limit" then minPrice = "<p class='min-price money'>#{food.defaultPrice}</p>"
+			else if food.dcType is "discount" then minPrice = "<p class='min-price money'>#{Number((food.defaultPrice * food.dc / 100).toFixed(2))}</p>"
+			else if food.dcType is "sale" then minPrice = "<p class='min-price money'>#{Number((food.defaultPrice - food.dc).toFixed(2))}</p>"
+			return minPrice
+
+		_getInitPriceForBottomWrapDom = (food)->
+			initPrice = "<p class='init-price money'>#{food.defaultPrice}</p>"
+			if food.dcType is "none" or food.dcType is "half" or not food.dcType or food.dcType is "limit" then initPrice = ""
+			return initPrice
+
+		_getBottomWrapForInfoDom = (food)->
+			bottomWrapDom = createDom("div"); bottomWrapDom.className = "bottom-wrap font-number-word"
+			priceField = "<div class='price-field'>
+							#{_getMinPriceForBottomWrapDom(food)}
+							#{_getInitPriceForBottomWrapDom(food)}
+						</div>"
+			controllField = "<div class='controll-field'>
+								<div class='minus-field btn'>
+									<div class='img'></div>
+								</div>
+								<div class='number-field'>
+									<p class='num'>0</p>
+								</div>
+								<div class='plus-field btn'>
+									<div class='img'></div>
+								</div>
+							</div>"
+			append bottomWrapDom, priceField
+			append bottomWrapDom, controllField
+			return bottomWrapDom
+			
+
+		_getImgDomForFoodDom = (food)->
+			if not food.url then return null
+			imgDom = createDom("div"); imgDom.className = "left-part"
+			imgDom.innerHTML = "<div class='img-field'><img src='#{food.url}'></div>"
+			return imgDom
+
+		_getInfoDomForFoodDom = (food)->
+			infoDom = createDom("div")
+			if food.url then infoDom.className = "right-part"
+			else infoDom.className = "full-part"
+			topWrapDom = _getTopWrapDomForInfoDom(food)
+			bottomWrapDom = _getBottomWrapForInfoDom(food)
+			append infoDom, topWrapDom
+			append infoDom, bottomWrapDom
+			return infoDom
+
+		_getFoodDom = (food)->
+			dom = createDom("li"); dom.id = "food-#{food.seqNum}"
+			foodInfoDom = createDom("div"); foodInfoDom.className = "food-info-field"
+
+			imgDom = _getImgDomForFoodDom(food)
+			infoDom = _getInfoDomForFoodDom(food)
+			if imgDom then append foodInfoDom, imgDom
+			append foodInfoDom, infoDom
+			append dom, foodInfoDom
+
+			fivePercentLeftLine = createDom("div"); fivePercentLeftLine.className = "fivePercentLeftLine"
+
+			corresFoodListDom = query ".food-list-wrap #food-list-#{food.categorySeqNum}"
+			append corresFoodListDom, dom
+			append corresFoodListDom, fivePercentLeftLine
+
+			return dom
 
 
-	initDishJSON = ->
-		dishJSON = getJSON getDishJSON()
-		for tempOuter,i  in dishJSON
-			category = new Category {
-				name 		:		tempOuter.categoryname
-				id 			:		tempOuter.id
-				seqNum 		:		i
-			}
+
+		constructor: (options)->
+			deepCopy options, @
+			@init()
+			_foods[@categorySeqNum].push @
+
+		init: ->
+			@initFoodDom()
+
+		initFoodDom: ->
+			@foodDom = _getFoodDom @
+
+		@initial: ->
+			_locStor = LocStorSingleton.getInstance()
+			dishJSON = getJSON getDishJSON()
+			for i in [0..dishJSON.length-1]
+				if not dishJSON[i] then continue
+				_foods[i] = []
+			for tempOuter, i in dishJSON
+				j = 0
+				while tempOuter[j]
+					console.log(tempOuter[j])
+					food = new Food {
+						dc 				:		tempOuter[j].dc
+						dcType 			:		tempOuter[j].dc_type
+						defaultPrice	:		tempOuter[j].defaultprice
+						id 				:		tempOuter[j].dishid
+						cName 			:		tempOuter[j].dishname
+						eName 			:		tempOuter[j].dishname2
+						url 			:		tempOuter[j].dishpic
+						categorySeqNum 	:		i
+						tag 			:		tempOuter[j].tag
+					}
+					console.log food
+					j++
+
 
 
 	class Activity
@@ -379,7 +551,7 @@ do (window, document)->
 				"pop": -> _hideTarget("Book-page")
 			}
 			"bookCol": {
-				"push": -> _staticShowTarget("book-order-column")
+				"push": -> Category.chooseBookCategoryByCurrentChoose(); _staticShowTarget("book-order-column")
 				"pop": -> _hideTarget("book-order-column")
 			}
 			"bookInfo": {
@@ -491,10 +663,11 @@ do (window, document)->
 
 			#if last_state and msgs[last_state] and msgs[last_state]["title"] then hashRoute.modifyTitle(msgs[last_state]["title"])
 
+
 			if str is _recentHash
 				for entry, i in hash_arr
-					if entry and _hashStateFunc[entry] then setTimeout(->
-						_hashStateFunc[entry]["push"]?()
+					if entry and _hashStateFunc[entry] then setTimeout(do (entry)->
+						-> _hashStateFunc[entry]["push"]?()
 					, i * 100)
 				return
 			temp_counter = {}
@@ -532,24 +705,30 @@ do (window, document)->
 		popHashStr: popHashStr
 		hashJump: hashJump
 		HomeBottom: HomeBottom
-		_switchExtraPage: _switchExtraPage
+		parseAndExecuteHash: -> _parseAndExecuteHash _getHashStr()
 
 
-	LocStor = do ->
-		store = window.localStorage;doc = document.documentElement
-		if !store then doc.type.behavior = 'url(#default#userData)'
-		set: (key, val, context)->
-			if store then store.setItem(key, val, context)
-			else doc.setAttribute(key, value); doc.save(context || 'default')
-		get: (key, context)->
-			if store then store.getItem(key, context)
-			else doc.load(context || 'default'); doc.getAttribute(key) || ''
-		rm: (key, context)->
-			if store then store.removeItem(key, context)
-			else context = context || 'default';doc.load(context);doc.removeAttribute(key);doc.save(context)
-		clear: ->
-			if store then store.clear()
-			else doc.expires = -1
+	LocStorSingleton = do ->
+		_instance = null
+		class LocStor
+			store = window.localStorage;doc = document.documentElement
+			if !store then doc.type.behavior = 'url(#default#userData)'
+			set: (key, val, context)->
+				if store then store.setItem(key, val, context)
+				else doc.setAttribute(key, value); doc.save(context || 'default')
+			get: (key, context)->
+				if store then store.getItem(key, context)
+				else doc.load(context || 'default'); doc.getAttribute(key) || ''
+			rm: (key, context)->
+				if store then store.removeItem(key, context)
+				else context = context || 'default';doc.load(context);doc.removeAttribute(key);doc.save(context)
+			clear: ->
+				if store then store.clear()
+				else doc.expires = -1
+
+		getInstance: ->
+			if _instance is null then _instance = new LocStor()
+			return _instance
 
 	callpay = (options)->
 		self = @
@@ -588,23 +767,35 @@ do (window, document)->
 
 
 	window.onload = ->
-		initDishJSON()
-		#if location.hash is "" then hashRoute.hashJump("-Menu-x")
+		Category.initial()
+		Food.initial()
+		if location.hash is "" then setTimeout(->
+			hashRoute.hashJump("-Home")
+			setTimeout(->
+				hashRoute.pushHashStr("Menu")
+				setTimeout(->
+					hashRoute.pushHashStr("x")
+				, 100)
+			, 100)
+		, 100)
+		else hashRoute.parseAndExecuteHash()
+		###
 		hashRoute.hashJump("-Home")
 		setTimeout(->
 			hashRoute.pushHashStr("Menu")
 			setTimeout(->
 				hashRoute.pushHashStr("x")
-				###
+				
 				setTimeout(->
 					hashRoute.hashJump("-Detail-Book-bookCol")
 					setTimeout(->
 						hashRoute.pushHashStr("bookInfo")
 					, 100)
 				, 100)
-				###
+				
 			, 100)
 		, 100)
+		###
 		new rotateDisplay {
 			displayCSSSelector: "#Menu-page .activity-display-list"
 			chooseCSSSelector: "#Menu-page .choose-dot-list"
