@@ -539,6 +539,12 @@
   width: 1000px;
 }
 #brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-top-wrap #book-category-wrap #book-aside-wrap ul.tag-list li {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  text-align: center;
   padding: 0 7.5px 0 7.5px;
   margin: 0 7.5px 0 7.5px;
   float: left;

@@ -1,22 +1,177 @@
 var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
 (function(window, document) {
-  var Activity, Category, Individual, LocalStorage, Lock, Menu, addClass, addListener, ajax, append, callpay, clientHeight, clientWidth, compatibleCSSConfig, deepCopy, getById, getElementsByClassName, getObjectURL, hasClass, hashRoute, hidePhone, innerCallback, isPhone, prepend, query, querys, ref, remove, removeClass, removeListener, rotateDisplay, toggleClass;
-  ref = [util.addListener, util.removeListener, util.hasClass, util.addClass, util.removeClass, util.ajax, util.getElementsByClassName, util.isPhone, util.hidePhone, util.query, util.querys, util.remove, util.append, util.prepend, util.toggleClass, util.getObjectURL, util.deepCopy, util.getById], addListener = ref[0], removeListener = ref[1], hasClass = ref[2], addClass = ref[3], removeClass = ref[4], ajax = ref[5], getElementsByClassName = ref[6], isPhone = ref[7], hidePhone = ref[8], query = ref[9], querys = ref[10], remove = ref[11], append = ref[12], prepend = ref[13], toggleClass = ref[14], getObjectURL = ref[15], deepCopy = ref[16], getById = ref[17];
+  var Activity, Category, Individual, LocStor, Lock, Menu, addClass, addListener, ajax, append, callpay, clientHeight, clientWidth, compatibleCSSConfig, createDom, deepCopy, getById, getElementsByClassName, getJSON, getObjectURL, hasClass, hashRoute, hidePhone, initDishJSON, innerCallback, isPhone, prepend, query, querys, ref, remove, removeClass, removeListener, rotateDisplay, toggleClass;
+  ref = [util.addListener, util.removeListener, util.hasClass, util.addClass, util.removeClass, util.ajax, util.getElementsByClassName, util.isPhone, util.hidePhone, util.query, util.querys, util.remove, util.append, util.prepend, util.toggleClass, util.getObjectURL, util.deepCopy, util.getById, util.createDom], addListener = ref[0], removeListener = ref[1], hasClass = ref[2], addClass = ref[3], removeClass = ref[4], ajax = ref[5], getElementsByClassName = ref[6], isPhone = ref[7], hidePhone = ref[8], query = ref[9], querys = ref[10], remove = ref[11], append = ref[12], prepend = ref[13], toggleClass = ref[14], getObjectURL = ref[15], deepCopy = ref[16], getById = ref[17], createDom = ref[18];
   clientWidth = document.body.clientWidth;
   clientHeight = document.documentElement.clientHeight;
   compatibleCSSConfig = ["", "-webkit-", "-moz-", "-ms-", "-o-"];
+  getJSON = function(json) {
+    if (typeof json === "string") {
+      json = JSON.parse(json);
+    }
+    return json;
+  };
   Lock = (function() {})();
   Category = (function() {
-    var _catergoryDisplayDom;
 
-    function Category() {}
+    /*
+    		* 六个静态私有变量
+    		* 1. 用于首页展示的ul的Dom, 里面存放displayDom
+    		* 2. 用于点餐页面顶栏ul的Dom, 里面存放bookCategoryDom
+    		* 3. 点餐页面用于给顶栏ul纪录调整宽度的值
+    		* 4. 所有category类的容器
+    		* 5. 当前选中的品类
+    		* 6. 调整宽度按照字符来计算, 1个字母为10px, 1个数字为11px, 1个空格为6px, 1个中文为16px
+     */
+    var _categoryBookCategoryUlDom, _categoryBookCategoryUlWidth, _cateogries, _catergoryDisplayUlDom, _chooseBookCategoryByCurrentChoose, _currentChoose, _getBookCategoryDom, _getDisplayDom, _getWidthByContent, _unChooseAllBookCategoryDom, _updateBookCategoryDomWidth, _widthByContent;
 
-    _catergoryDisplayDom = query("#Menu-page .category-display-list");
+    _catergoryDisplayUlDom = query("#Menu-page .category-display-list");
+
+    _categoryBookCategoryUlDom = query("#book-category-wrap .tag-list");
+
+    _categoryBookCategoryUlWidth = 0;
+
+    _cateogries = [];
+
+    _currentChoose = 0;
+
+    _widthByContent = {
+      "letter": 10,
+      "number": 11,
+      "space": 6,
+      "chinese": 16
+    };
+
+
+    /*
+    		* 静态私有函数
+    		* 创建和返回displayDom, 并投放到_catergoryDisplayUlDom中
+    		* @param {Object} category类变量
+     */
+
+    _getDisplayDom = function(category) {
+      var dom, imgDomStr, nameDomStr, url;
+      dom = createDom("li");
+      dom.id = "category-" + category.seqNum;
+      url = category.url || "";
+      imgDomStr = "<img alt='标签' class='category-img' src=" + url + ">";
+      nameDomStr = "<div class='category-name-field'><p class='category-name'>" + category.name + "</div>";
+      dom.innerHTML = "" + imgDomStr + nameDomStr;
+      append(_catergoryDisplayUlDom, dom);
+      return dom;
+    };
+
+
+    /*
+    		* 静态私有函数
+    		* 创建和返回bookbookCategory的dom, 并投放在_categoryBookCategoryUlDom中
+    		* @param {Object} category类变量
+     */
+
+    _getBookCategoryDom = function(category) {
+      var dom, width;
+      dom = createDom("li");
+      dom.id = "tag-list-" + category.seqNum;
+      dom.innerHTML = category.name;
+      width = _getWidthByContent(category.name);
+      dom.style.width = width + "px";
+      append(_categoryBookCategoryUlDom, dom);
+      _categoryBookCategoryUlWidth += width + 30;
+      return dom;
+    };
+
+
+    /*
+    		* 静态私有函数
+    		* 得到对应的dom的长度
+    		* @param {String} dom的内容
+     */
+
+    _getWidthByContent = function(str) {
+      var allChineseWordLength, allLetter, allLetterLength, allNumber, allNumberLength, allSpace, allSpaceLength;
+      allLetter = str.match(/[a-z]/ig) || [];
+      allNumber = str.match(/[0-9]/ig) || [];
+      allSpace = str.match(/\s/ig) || [];
+      allLetterLength = allLetter.length;
+      allNumberLength = allNumber.length;
+      allSpaceLength = allSpace.length;
+      allChineseWordLength = str.length - allLetterLength - allNumberLength - allSpaceLength;
+      return _widthByContent["letter"] * allLetterLength + _widthByContent["number"] * allNumberLength + _widthByContent["space"] * allSpaceLength + _widthByContent["chinese"] * allChineseWordLength + 1;
+    };
+
+    _updateBookCategoryDomWidth = function() {
+      return _categoryBookCategoryUlDom.style.width = _categoryBookCategoryUlWidth + "px";
+    };
+
+    _unChooseAllBookCategoryDom = function() {
+      var dom, j, len, ref1, results;
+      ref1 = querys("li", _categoryBookCategoryUlDom);
+      results = [];
+      for (j = 0, len = ref1.length; j < len; j++) {
+        dom = ref1[j];
+        results.push(removeClass(dom, "choose"));
+      }
+      return results;
+    };
+
+    _chooseBookCategoryByCurrentChoose = function() {
+      _unChooseAllBookCategoryDom();
+      return addClass(_cateogries[_currentChoose].bookCategoryDom, "choose");
+    };
+
+    function Category(options) {
+      deepCopy(options, this);
+      this.init();
+      _updateBookCategoryDomWidth();
+      _cateogries.push(this);
+    }
+
+    Category.prototype.init = function() {
+      this.initDisplayDom();
+      this.initBookCategoryDom();
+      return this.initEvent();
+    };
+
+    Category.prototype.initDisplayDom = function() {
+      return this.displayDom = _getDisplayDom(this);
+    };
+
+    Category.prototype.initBookCategoryDom = function() {
+      return this.bookCategoryDom = _getBookCategoryDom(this);
+    };
+
+    Category.prototype.initEvent = function() {
+      var self;
+      self = this;
+      addListener(self.displayDom, "click", function() {
+        return hashRoute.hashJump("-Detail-Book-bookCol");
+      });
+      return addListener(self.bookCategoryDom, "click", function() {
+        _currentChoose = self.seqNum;
+        return _chooseBookCategoryByCurrentChoose();
+      });
+    };
+
+    Category.getCurrentChoose = function() {};
 
     return Category;
 
   })();
+  initDishJSON = function() {
+    var category, dishJSON, i, j, len, results, tempOuter;
+    dishJSON = getJSON(getDishJSON());
+    results = [];
+    for (i = j = 0, len = dishJSON.length; j < len; i = ++j) {
+      tempOuter = dishJSON[i];
+      results.push(category = new Category({
+        name: tempOuter.categoryname,
+        id: tempOuter.id,
+        seqNum: i
+      }));
+    }
+    return results;
+  };
   Activity = (function() {
     var _activityInfoImgDom, _activityInformationDom, dom, j, len, ref1;
 
@@ -249,18 +404,11 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
 
   })();
   Menu = (function() {
-    var _allCategoryDoms, _allDishDoms, dom, j, k, len, len1, results;
-    _allCategoryDoms = querys(".category-display-list");
-    for (j = 0, len = _allCategoryDoms.length; j < len; j++) {
-      dom = _allCategoryDoms[j];
-      addListener(dom, "click", function() {
-        return hashRoute.hashJump("-Detail-Book-bookCol");
-      });
-    }
+    var _allDishDoms, dom, j, len, results;
     _allDishDoms = querys("#book-dish-wrap .food-list-wrap li");
     results = [];
-    for (k = 0, len1 = _allDishDoms.length; k < len1; k++) {
-      dom = _allDishDoms[k];
+    for (j = 0, len = _allDishDoms.length; j < len; j++) {
+      dom = _allDishDoms[j];
       results.push(addListener(dom, "click", function() {
         return hashRoute.pushHashStr("bookInfo");
       }));
@@ -676,7 +824,7 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
       _switchExtraPage: _switchExtraPage
     };
   })();
-  LocalStorage = (function() {
+  LocStor = (function() {
     var doc, store;
     store = window.localStorage;
     doc = document.documentElement;
@@ -785,6 +933,7 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
     }
   };
   return window.onload = function() {
+    initDishJSON();
     hashRoute.hashJump("-Home");
     setTimeout(function() {
       hashRoute.pushHashStr("Menu");

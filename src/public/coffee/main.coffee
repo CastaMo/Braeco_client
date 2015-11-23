@@ -1,6 +1,6 @@
 do (window, document)->
 
-	[addListener, removeListener, hasClass, addClass, removeClass, ajax, getElementsByClassName, isPhone, hidePhone, query, querys, remove, append, prepend, toggleClass, getObjectURL, deepCopy, getById] = [util.addListener, util.removeListener, util.hasClass, util.addClass, util.removeClass, util.ajax, util.getElementsByClassName, util.isPhone, util.hidePhone, util.query, util.querys, util.remove, util.append, util.prepend, util.toggleClass, util.getObjectURL, util.deepCopy, util.getById]
+	[addListener, removeListener, hasClass, addClass, removeClass, ajax, getElementsByClassName, isPhone, hidePhone, query, querys, remove, append, prepend, toggleClass, getObjectURL, deepCopy, getById, createDom] = [util.addListener, util.removeListener, util.hasClass, util.addClass, util.removeClass, util.ajax, util.getElementsByClassName, util.isPhone, util.hidePhone, util.query, util.querys, util.remove, util.append, util.prepend, util.toggleClass, util.getObjectURL, util.deepCopy, util.getById, util.createDom]
 
 	clientWidth =  document.body.clientWidth
 	clientHeight = document.documentElement.clientHeight
@@ -13,11 +13,121 @@ do (window, document)->
 		"-o-"
 	]
 
+	getJSON = (json)->
+		if typeof json is "string" then json = JSON.parse(json)
+		return json
+
 	Lock = do ->
 
 	class Category
 
-		_catergoryDisplayDom = query "#Menu-page .category-display-list"
+		###
+		* 六个静态私有变量
+		* 1. 用于首页展示的ul的Dom, 里面存放displayDom
+		* 2. 用于点餐页面顶栏ul的Dom, 里面存放bookCategoryDom
+		* 3. 点餐页面用于给顶栏ul纪录调整宽度的值
+		* 4. 所有category类的容器
+		* 5. 当前选中的品类
+		* 6. 调整宽度按照字符来计算, 1个字母为10px, 1个数字为11px, 1个空格为6px, 1个中文为16px
+		###
+		_catergoryDisplayUlDom = query "#Menu-page .category-display-list"
+		_categoryBookCategoryUlDom = query "#book-category-wrap .tag-list"
+		_categoryBookCategoryUlWidth = 0
+		_cateogries = []
+		_currentChoose = 0
+
+		_widthByContent = {
+			"letter"	:	10
+			"number"	:	11
+			"space"		:	6
+			"chinese"	:	16
+		}
+
+		###
+		* 静态私有函数
+		* 创建和返回displayDom, 并投放到_catergoryDisplayUlDom中
+		* @param {Object} category类变量
+		###
+		_getDisplayDom = (category)->
+			dom = createDom("li"); dom.id = "category-#{category.seqNum}"
+			url = category.url || ""
+			imgDomStr = "<img alt='标签' class='category-img' src=#{url}>"
+			nameDomStr = "<div class='category-name-field'><p class='category-name'>#{category.name}</div>"
+			dom.innerHTML = "#{imgDomStr}#{nameDomStr}"
+			append _catergoryDisplayUlDom, dom
+			return dom
+
+		###
+		* 静态私有函数
+		* 创建和返回bookbookCategory的dom, 并投放在_categoryBookCategoryUlDom中
+		* @param {Object} category类变量
+		###
+		_getBookCategoryDom = (category)->
+			dom = createDom("li"); dom.id = "tag-list-#{category.seqNum}"
+			dom.innerHTML = category.name
+			width = _getWidthByContent(category.name)
+			dom.style.width = "#{width}px"
+			append _categoryBookCategoryUlDom, dom
+			_categoryBookCategoryUlWidth += (width + 30)
+			return dom
+
+		###
+		* 静态私有函数
+		* 得到对应的dom的长度
+		* @param {String} dom的内容
+		###
+		_getWidthByContent = (str)->
+			allLetter = str.match(/[a-z]/ig) || []
+			allNumber = str.match(/[0-9]/ig) || []
+			allSpace = str.match(/\s/ig) || []
+
+			allLetterLength = allLetter.length
+			allNumberLength = allNumber.length
+			allSpaceLength = allSpace.length
+			allChineseWordLength = str.length - allLetterLength - allNumberLength - allSpaceLength
+
+			return (_widthByContent["letter"] * allLetterLength + 
+					_widthByContent["number"] * allNumberLength +
+					_widthByContent["space"] * allSpaceLength +
+					_widthByContent["chinese"] * allChineseWordLength + 1)
+
+		_updateBookCategoryDomWidth = -> _categoryBookCategoryUlDom.style.width = "#{_categoryBookCategoryUlWidth}px"
+
+		_unChooseAllBookCategoryDom = -> removeClass dom, "choose" for dom in querys "li", _categoryBookCategoryUlDom
+
+		_chooseBookCategoryByCurrentChoose = -> _unChooseAllBookCategoryDom(); addClass _cateogries[_currentChoose].bookCategoryDom, "choose"
+
+		constructor: (options)->
+			deepCopy(options, @)
+			@init()
+			_updateBookCategoryDomWidth()
+			_cateogries.push @
+
+		init: ->
+			@initDisplayDom()
+			@initBookCategoryDom()
+			@initEvent()
+
+		initDisplayDom: -> @displayDom = _getDisplayDom @
+
+		initBookCategoryDom: -> @bookCategoryDom = _getBookCategoryDom @
+
+		initEvent: -> 
+			self = @
+			addListener self.displayDom, "click", -> hashRoute.hashJump "-Detail-Book-bookCol"
+			addListener self.bookCategoryDom, "click", -> _currentChoose = self.seqNum; _chooseBookCategoryByCurrentChoose()
+
+		@getCurrentChoose: ->
+
+
+	initDishJSON = ->
+		dishJSON = getJSON getDishJSON()
+		for tempOuter,i  in dishJSON
+			category = new Category {
+				name 		:		tempOuter.categoryname
+				id 			:		tempOuter.id
+				seqNum 		:		i
+			}
 
 
 	class Activity
@@ -107,7 +217,6 @@ do (window, document)->
 			@chooseUlDom = query options.chooseCSSSelector
 			@delay = options.delay
 			dom.style.height = "#{options.scale * clientWidth}px" for dom in querys "img", @displayUlDom
-
 			@init()
 
 		init: ->
@@ -172,9 +281,6 @@ do (window, document)->
 			@setCurrentChoose(index)
 
 	Menu = do ->
-		_allCategoryDoms = querys ".category-display-list"
-		for dom in _allCategoryDoms
-			addListener dom, "click", -> hashRoute.hashJump("-Detail-Book-bookCol")
 
 		_allDishDoms = querys "#book-dish-wrap .food-list-wrap li"
 		for dom in _allDishDoms
@@ -429,7 +535,7 @@ do (window, document)->
 		_switchExtraPage: _switchExtraPage
 
 
-	LocalStorage = do ->
+	LocStor = do ->
 		store = window.localStorage;doc = document.documentElement
 		if !store then doc.type.behavior = 'url(#default#userData)'
 		set: (key, val, context)->
@@ -482,6 +588,7 @@ do (window, document)->
 
 
 	window.onload = ->
+		initDishJSON()
 		#if location.hash is "" then hashRoute.hashJump("-Menu-x")
 		hashRoute.hashJump("-Home")
 		setTimeout(->

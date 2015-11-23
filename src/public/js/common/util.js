@@ -19,7 +19,8 @@
 		getObjectURL,
 		is,
 		deepCopy,
-		getById;
+		getById,
+		createDom;
 	if (typeof window.addEventListener === 'function') {
 		addListener = function(el, type, fn) {
 			el.addEventListener(type, fn, false);
@@ -208,6 +209,10 @@
     	return doc.getElementById(id);
     }
 
+    createDom = function(tagName) {
+    	return document.createElement(tagName);
+    }
+
 	return {
 		addListener:addListener,
 		removeListener:removeListener,
@@ -227,6 +232,7 @@
 		getObjectURL:getObjectURL,
 		is:is,
 		deepCopy:deepCopy,
-		getById:getById
+		getById:getById,
+		createDom: createDom
 	};
 }(document);
