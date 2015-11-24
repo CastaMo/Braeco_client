@@ -83,10 +83,10 @@
   border-radius: 2px;
 }
 .label-field p.dc-label {
-  background-color: #d0021b;
+  background-color: #D0021B;
 }
 .label-field p.tag-label {
-  background-color: #f58623;
+  background-color: #F58623;
 }
 .controll-field {
   float: right;
@@ -131,7 +131,7 @@
   -o-border-radius: 2px;
   border-radius: 2px;
   text-align: center;
-  background-color: #ffc107;
+  background-color: #FFC107;
 }
 .confirm-column .confirm-wrapper .confirm-field p.confirm {
   line-height: 40px;
@@ -205,7 +205,7 @@
 #brae-home-page .all-page-field #Already-page #Already-content .Already-not-order-field #Already-not-order-column .not-order-tip-wrapper #not-order-tip p.tip {
   font-size: 12px;
   line-height: 20px;
-  color: #9b9b9b;
+  color: #9B9B9B;
 }
 #brae-home-page .all-page-field #Already-page #Already-service {
   position: fixed;
@@ -302,11 +302,11 @@
 #brae-home-page .all-page-field #Individual-page #Individual-content .Already-login-field #Individual-info-column .Individual-EXP-bar-wrapper .EXP-bar-field .full-bar {
   width: 100%;
   height: 8px;
-  background-color: #efeff4;
+  background-color: #EFEFF4;
 }
 #brae-home-page .all-page-field #Individual-page #Individual-content .Already-login-field #Individual-info-column .Individual-EXP-bar-wrapper .EXP-bar-field .full-bar .inner-bar {
   height: 100%;
-  background-color: #ffc107;
+  background-color: #FFC107;
   border-right: solid 1px #979797;
 }
 #brae-home-page .all-page-field #Individual-page #Individual-content .Already-login-field #Individual-operation-column {
@@ -341,7 +341,7 @@
   line-height: 38px;
 }
 #brae-home-page .all-page-field #Individual-page #Individual-content .Already-login-field #Individual-operation-column .Individual-func-wrapper ul.Individual-func-list li:active {
-  background-color: #fff5d6;
+  background-color: #FFF5D6;
 }
 #brae-home-page .all-page-field #Individual-page #Individual-content .not-yet-login-field #not-yet-login-column {
   margin-top: 15px;
@@ -382,7 +382,7 @@
   color: #969696;
 }
 #brae-home-page .all-page-field #Individual-page #Individual-content .not-yet-login-field #not-yet-login-column:active {
-  background-color: #fff5d6;
+  background-color: #FFF5D6;
 }
 #brae-home-page #nav-field {
   z-index: 1;
@@ -521,7 +521,7 @@
   width: 100%;
   height: 41px;
   z-index: 3;
-  background-color: #8b572a;
+  background-color: #8B572A;
 }
 #brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-top-wrap #book-category-wrap #book-aside-wrap {
   width: 100%;
@@ -550,7 +550,7 @@
 }
 #brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-top-wrap #book-category-wrap #book-aside-wrap ul.tag-list li.choose {
   background-color: #fff;
-  color: #8b572a;
+  color: #8B572A;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
   -ms-border-radius: 2px;
@@ -572,7 +572,7 @@
   margin-bottom: 77px;
 }
 #brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-menu-wrap #book-dish-wrap #book-main-wrap .food-list-wrap ul li:active {
-  background-color: #fff5d6;
+  background-color: #FFF5D6;
 }
 #brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-menu-wrap #book-dish-wrap #book-info-wrap {
   position: absolute;
@@ -586,7 +586,7 @@
   width: 100%;
   height: 100%;
   z-index: 3;
-  background-color: #fffcf6;
+  background-color: #FFFCF6;
 }
 #brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-menu-wrap #book-dish-wrap #book-info-wrap .food-img-wrapper .img-field img {
   width: 100%;
@@ -650,7 +650,7 @@
   -ms-border-radius: 50%;
   -o-border-radius: 50%;
   border-radius: 50%;
-  background-color: #d0021b;
+  background-color: #D0021B;
   color: #fff;
   line-height: 15px;
 }
@@ -682,7 +682,7 @@
 #brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-bottom-column .bottom-wrapper .confirm-field div {
   height: 41px;
   width: 83px;
-  background-color: #ffc107;
+  background-color: #FFC107;
 }
 #brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-bottom-column .bottom-wrapper .confirm-field div p {
   line-height: 41px;
@@ -779,7 +779,7 @@
   color: #910012;
 }
 #brae-detail-page .all-page-field #Activity-page .Activity-content-field #Activity-container-column .activity-container-wrapper #activity-theme-field p.title {
-  color: #8b572a;
+  color: #8B572A;
 }
 #brae-detail-page .all-page-field #Activity-page .Activity-content-field #Activity-container-column .activity-container-wrapper ul li.activity-basic-info {
   position: relative;
@@ -818,7 +818,7 @@
   -webkit-box-orient: vertical;
 }
 #brae-detail-page .all-page-field #Activity-page .Activity-content-field #Activity-container-column .activity-container-wrapper ul li:active {
-  background-color: #fff5d6;
+  background-color: #FFF5D6;
 }
 #brae-detail-page .all-page-field #Activity-page .Activity-information-field {
   -webkit-transition: all 0.4s ease-in-out;
@@ -828,7 +828,7 @@
   transition: all 0.4s ease-in-out;
   position: absolute;
   top: 0;
-  background-color: #fffcf6;
+  background-color: #FFFCF6;
   z-index: 1;
   width: 100%;
   height: 100%;
@@ -862,7 +862,7 @@
   line-height: 22px;
 }
 #brae-detail-page .all-page-field #Activity-page .Activity-information-field #Activity-information-column .activity-information-wrapper #activity-info-title-field .name-field .title-type {
-  background-color: #8b572a;
+  background-color: #8B572A;
   color: #fff;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
@@ -887,7 +887,7 @@
   margin-bottom: 10px;
 }
 #brae-detail-page .all-page-field #Activity-page .Activity-information-field #Activity-information-column .activity-information-wrapper #activity-info-time-field .name-field p.name {
-  color: #8b572a;
+  color: #8B572A;
   font-size: 16px;
   font-weight: bold;
 }
@@ -901,7 +901,7 @@
   margin-top: 10px;
 }
 #brae-detail-page .all-page-field #Activity-page .Activity-information-field #Activity-information-column .activity-information-wrapper #activity-info-content-field .name-field p.name {
-  color: #8b572a;
+  color: #8B572A;
   font-weight: bold;
 }
 #brae-detail-page .all-page-field #Activity-page .Activity-information-field #Activity-information-column .activity-information-wrapper #activity-info-content-field .content-field {
@@ -929,7 +929,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  background-color: #fffcf6;
+  background-color: #FFFCF6;
 }
 #brae-payment-page #all-payment-content-field .all-page-field #Recharge-page #recharge-amount-column {
   margin-top: 10px;
@@ -991,7 +991,7 @@
   content: "￥";
 }
 #brae-payment-page #all-payment-content-field .all-page-field #Recharge-page #recharge-amount-column .amount-wrapper ul.amount-list li:active {
-  background-color: #fff5d6;
+  background-color: #FFF5D6;
 }
 #brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page {
   width: 100%;
@@ -999,13 +999,13 @@
   position: absolute;
   top: 0;
   left: 0;
-  background-color: #fffcf6;
+  background-color: #FFFCF6;
 }
 #brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field > * {
   background-color: #fff;
 }
 #brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field #payment-total-column {
-  background-color: #fff5d6;
+  background-color: #FFF5D6;
   border-bottom: solid 1px #979797;
 }
 #brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field #payment-total-column .payment-total-wrapper {
@@ -1074,7 +1074,7 @@
 #brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field ul li .li-wrapper .info-field .down-field p {
   font-size: 14px;
   float: left;
-  color: #9b9b9b;
+  color: #9B9B9B;
 }
 #brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field #choose-payment-via-member-column {
   margin-top: 15px;
@@ -1117,7 +1117,7 @@
 }
 #brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field li:active,
 #brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field #choose-payment-via-cash-column:active {
-  background-color: #fff5d6;
+  background-color: #FFF5D6;
 }
 /*common*/
 * {
@@ -1128,7 +1128,7 @@ body {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   font-size: 16px;
   font-family: Verdana, Arial, Helvetica;
-  background-color: #fffcf6;
+  background-color: #FFFCF6;
 }
 li {
   list-style-type: none;
