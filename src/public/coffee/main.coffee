@@ -272,9 +272,13 @@ do (window, document)->
 
 		init: ->
 			@initFoodDom()
+			@initAllEvent()
 
 		initFoodDom: ->
 			@foodDom = _getFoodDom @
+
+		initAllEvent: ->
+			
 
 		@initial: ->
 			_locStor = LocStorSingleton.getInstance()

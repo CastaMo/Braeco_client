@@ -365,12 +365,15 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
     }
 
     Food.prototype.init = function() {
-      return this.initFoodDom();
+      this.initFoodDom();
+      return this.initAllEvent();
     };
 
     Food.prototype.initFoodDom = function() {
       return this.foodDom = _getFoodDom(this);
     };
+
+    Food.prototype.initAllEvent = function() {};
 
     Food.initial = function() {
       var dishJSON, food, i, j, k, l, len, ref1, results, tempOuter;
