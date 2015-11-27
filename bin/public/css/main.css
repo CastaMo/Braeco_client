@@ -43,7 +43,6 @@
 }
 .choose-wrapper .choose-dot-list {
   height: 100%;
-  display: inline-block;
   margin: 0 auto 0 auto;
 }
 .choose-wrapper .choose-dot-list li {
@@ -786,14 +785,13 @@
   height: 100px;
   width: 100%;
 }
-#brae-detail-page .all-page-field #Activity-page .Activity-content-field #Activity-container-column .activity-container-wrapper ul li.activity-basic-info * {
+#brae-detail-page .all-page-field #Activity-page .Activity-content-field #Activity-container-column .activity-container-wrapper ul li.activity-basic-info > * {
   float: left;
 }
 #brae-detail-page .all-page-field #Activity-page .Activity-content-field #Activity-container-column .activity-container-wrapper ul li.activity-basic-info img {
   width: 80px;
   height: 80px;
   margin: 10px 5px 10px 5%;
-  background-color: red;
 }
 #brae-detail-page .all-page-field #Activity-page .Activity-content-field #Activity-container-column .activity-container-wrapper ul li.activity-basic-info .info {
   height: 80px;

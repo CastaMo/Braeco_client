@@ -27,7 +27,7 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
     		* 7. localStorage单例对象, 初始化放在静态公有函数initial中
     		* 8. 调整宽度按照字符来计算, 1个字母为10px, 1个数字为11px, 1个空格为6px, 1个中文为16px
      */
-    var _categoryBookCategoryUlDom, _categoryBookCategoryUlWidth, _cateogries, _catergoryDisplayUlDom, _chooseBookCategoryByCurrentChoose, _currentChoose, _foodListAllDom, _getBookCategoryDom, _getCurrentChooseFromLocStor, _getDisplayDom, _getFoodListDom, _getWidthByContent, _hideAllFoodListDom, _locStor, _setCurrentChoose, _unChooseAllBookCategoryDom, _updateBookCategoryDomWidth, _widthByContent;
+    var _categoryBookCategoryUlDom, _categoryBookCategoryUlWidth, _categoryCurrentChoose, _cateogries, _catergoryDisplayUlDom, _chooseBookCategoryByCurrentChoose, _foodListAllDom, _getBookCategoryDom, _getCurrentChooseFromLocStor, _getDisplayDom, _getFoodListDom, _getWidthByContent, _hideAllFoodListDom, _locStor, _setCurrentChoose, _unChooseAllBookCategoryDom, _updateBookCategoryDomWidth, _widthByContent;
 
     _catergoryDisplayUlDom = query("#Menu-page .category-display-list");
 
@@ -41,7 +41,7 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
 
     _locStor = null;
 
-    _currentChoose = 0;
+    _categoryCurrentChoose = 0;
 
     _widthByContent = {
       "letter": 10,
@@ -151,22 +151,22 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
       _unChooseAllBookCategoryDom();
       _hideAllFoodListDom();
       _getCurrentChooseFromLocStor();
-      addClass(_cateogries[_currentChoose].bookCategoryDom, "choose");
-      removeClass(_cateogries[_currentChoose].foodListDom, "hide");
+      addClass(_cateogries[_categoryCurrentChoose].bookCategoryDom, "choose");
+      removeClass(_cateogries[_categoryCurrentChoose].foodListDom, "hide");
       return setTimeout(function() {
-        return _cateogries[_currentChoose].bookCategoryDom.scrollIntoView();
+        return _cateogries[_categoryCurrentChoose].bookCategoryDom.scrollIntoView();
       }, 0);
     };
 
     _setCurrentChoose = function(seqNum) {
-      _currentChoose = seqNum;
+      _categoryCurrentChoose = seqNum;
       return _locStor.set("categoryCurrentChoose", seqNum);
     };
 
     _getCurrentChooseFromLocStor = function() {
       var choose;
       choose = _locStor.get("categoryCurrentChoose") || 0;
-      return _currentChoose = Number(choose);
+      return _categoryCurrentChoose = Number(choose);
     };
 
     function Category(options) {
@@ -393,7 +393,6 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
           var results1;
           results1 = [];
           while (tempOuter[j]) {
-            console.log(tempOuter[j]);
             food = new Food({
               dc: tempOuter[j].dc,
               dcType: tempOuter[j].dc_type,
@@ -405,7 +404,6 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
               categorySeqNum: i,
               tag: tempOuter[j].tag
             });
-            console.log(food);
             results1.push(j++);
           }
           return results1;
@@ -418,23 +416,240 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
 
   })();
   Activity = (function() {
-    var _activityInfoImgDom, _activityInformationDom, dom, k, len, ref1;
+    var _activities, _activityContainerDom, _activityCurrentChoose, _activityHomeDisplayChooseUlDom, _activityHomeDisplayUlDom, _activityInfoContentDom, _activityInfoImgDom, _activityInfoImgFieldDom, _activityInfoIntroDom, _activityInfoTimeDom, _activityInfoTitleNameDom, _activityInfoTypeDom, _activityInformationDom, _activityPromotionUlDom, _activityThemeUlDom, _activityTypeNum, _allActivityType, _getActivityDetailInfoDom, _getActivityDisplayChooseDom, _getActivityDisplayDom, _getActivityTypeContainerDom, _getCurrentChooseFromLocStor, _initContainerDomByAllActivity, _initTypeUlDom, _locStor, _selectActivityDisplayByCurrentChoose, _setCurrentChoose;
 
-    function Activity() {}
+    _allActivityType = ["promotion", "theme"];
+
+    _activityHomeDisplayUlDom = query("#Menu-page .activity-display-list");
+
+    _activityHomeDisplayChooseUlDom = query("#Menu-page .choose-dot-list");
+
+    _activityContainerDom = query("#Activity-page #Activity-container-column .activity-container-wrapper");
+
+    _activityPromotionUlDom = null;
+
+    _activityThemeUlDom = null;
+
+    _activityTypeNum = {
+      "promotion": 0,
+      "theme": 0
+    };
+
+    _locStor = null;
+
+    _activities = [];
+
+    _activityCurrentChoose = 0;
 
     _activityInformationDom = query(".Activity-information-field");
 
-    _activityInfoImgDom = query("#activity-info-img-field", _activityInformationDom);
+    _activityInfoImgFieldDom = query("#activity-info-img-field .img-field", _activityInformationDom);
 
-    _activityInfoImgDom.style.height = (clientWidth * 0.9 * 167 / 343) + "px";
+    _activityInfoImgDom = query("img", _activityInfoImgFieldDom);
 
-    ref1 = querys("#Activity-container-column li");
-    for (k = 0, len = ref1.length; k < len; k++) {
-      dom = ref1[k];
-      addListener(dom, "click", function() {
+    _activityInfoTypeDom = query(".title-type", _activityInformationDom);
+
+    _activityInfoTitleNameDom = query("#activity-info-title-field .name", _activityInformationDom);
+
+    _activityInfoIntroDom = query("#activity-info-title-field .intro", _activityInformationDom);
+
+    _activityInfoTimeDom = query("#activity-info-time-field .time", _activityInformationDom);
+
+    _activityInfoContentDom = query("#activity-info-content-field .content", _activityInformationDom);
+
+    _activityInfoImgFieldDom.style.height = (clientWidth * 0.9 * 167 / 343) + "px";
+
+
+    /*
+    		for dom in querys "#Activity-container-column li"
+    			addListener dom, "click", -> hashRoute.pushHashStr("activityInfo")
+     */
+
+    _getActivityDisplayDom = function(activity) {
+      var dom;
+      dom = createDom("li");
+      dom.id = "activity-" + activity.seqNum;
+      dom.innerHTML = "<img src='" + activity.displayUrl + "' alt='活动详情' class='activity-img'>";
+      append(_activityHomeDisplayUlDom, dom);
+      return dom;
+    };
+
+    _getActivityDisplayChooseDom = function(activity) {
+      var dom;
+      dom = createDom("li");
+      dom.id = "choose-dot-" + activity.seqNum;
+      dom.className = "inactive";
+      dom.innerHTML = "<div class='dot'></div>";
+      append(_activityHomeDisplayChooseUlDom, dom);
+      return dom;
+    };
+
+    _getActivityDetailInfoDom = function(activity) {
+      var dom, lineDom, type, ulDom;
+      dom = createDom("li");
+      dom.id = "activity-basic-info-" + activity.seqNum;
+      dom.className = "activity-basic-info";
+      dom.innerHTML = "<img src='" + activity.detailUrl + "' alt='活动详情'> <div class='info'> <p class='activity-name'>" + activity.title + "</p> <p class='activity-intro'>" + activity.intro + "</p> </div> <div class='arrow'></div>";
+      if (activity.type === "theme") {
+        ulDom = _activityThemeUlDom;
+        type = "theme";
+      } else {
+        ulDom = _activityPromotionUlDom;
+        type = "promotion";
+      }
+      if (_activityTypeNum[type] !== 0) {
+        lineDom = createDom("div");
+        lineDom.className = "fivePercentLeftLine";
+        append(ulDom, lineDom);
+      }
+      _activityTypeNum[type]++;
+      append(ulDom, dom);
+      return dom;
+    };
+
+    _getActivityTypeContainerDom = function(type, title) {
+      var dom;
+      dom = createDom("div");
+      dom.id = "activity-" + type + "-field";
+      dom.innerHTML = "<div class='title-field'> <p class='title'>" + title + "</p> </div> <ul class='activity-" + type + "-list'></ul>";
+      return append(_activityContainerDom, dom);
+    };
+
+    _initContainerDomByAllActivity = function(activities) {
+      var activity, allTypeExist, k, l, len, len1, len2, m, results, title, type;
+      allTypeExist = {};
+      for (k = 0, len = _allActivityType.length; k < len; k++) {
+        type = _allActivityType[k];
+        allTypeExist[type] = false;
+      }
+      for (l = 0, len1 = activities.length; l < len1; l++) {
+        activity = activities[l];
+        type = activity.type || "";
+        if (type === "theme") {
+          allTypeExist[type] = true;
+        } else if (type) {
+          allTypeExist["promotion"] = true;
+        }
+      }
+      results = [];
+      for (m = 0, len2 = _allActivityType.length; m < len2; m++) {
+        type = _allActivityType[m];
+        if (allTypeExist[type]) {
+          if (type === "promotion") {
+            title = "促销优惠";
+          } else {
+            title = "主题活动";
+          }
+          results.push(_getActivityTypeContainerDom(type, title));
+        } else {
+          results.push(void 0);
+        }
+      }
+      return results;
+    };
+
+    _initTypeUlDom = function() {
+      _activityPromotionUlDom = query(".activity-promotion-list", _activityContainerDom);
+      return _activityThemeUlDom = query(".activity-theme-list", _activityContainerDom);
+    };
+
+    _setCurrentChoose = function(seqNum) {
+      _activityCurrentChoose = seqNum;
+      return _locStor.set("activityCurrentChoose", seqNum);
+    };
+
+    _getCurrentChooseFromLocStor = function() {
+      var choose;
+      choose = _locStor.get("activityCurrentChoose") || 0;
+      return _activityCurrentChoose = Number(choose);
+    };
+
+    _selectActivityDisplayByCurrentChoose = function() {
+      var corresActivity, typeName;
+      corresActivity = _activities[_activityCurrentChoose];
+      if (corresActivity.type === "theme") {
+        typeName = "主题";
+      } else {
+        typeName = "促销";
+      }
+      _activityInfoImgDom.setAttribute("src", corresActivity.detailUrl);
+      _activityInfoTypeDom.innerHTML = typeName;
+      _activityInfoTitleNameDom.innerHTML = corresActivity.title;
+      _activityInfoIntroDom.innerHTML = corresActivity.intro;
+      _activityInfoTimeDom.innerHTML = corresActivity.dateBegin + " - " + corresActivity.dateEnd;
+      return _activityInfoContentDom.innerHTML = corresActivity.content;
+    };
+
+    function Activity(options) {
+      deepCopy(options, this);
+      this.init();
+      _activities.push(this);
+    }
+
+    Activity.prototype.init = function() {
+      this.initActivityHomeDisplayDom();
+      this.initActivityHomeDisplayChooseDom();
+      this.initActivityDetailInfoDom();
+      return this.initAllEvent();
+    };
+
+    Activity.prototype.initActivityHomeDisplayDom = function() {
+      return this._activityHomeDisplayDom = _getActivityDisplayDom(this);
+    };
+
+    Activity.prototype.initActivityHomeDisplayChooseDom = function() {
+      return this._activityHomeDisplayChooseDom = _getActivityDisplayChooseDom(this);
+    };
+
+    Activity.prototype.initActivityDetailInfoDom = function() {
+      return this._activityDetailInfoDom = _getActivityDetailInfoDom(this);
+    };
+
+    Activity.prototype.initAllEvent = function() {
+      var self;
+      self = this;
+      return addListener(self._activityDetailInfoDom, "click", function() {
+        _setCurrentChoose(self.seqNum);
         return hashRoute.pushHashStr("activityInfo");
       });
-    }
+    };
+
+    Activity.initial = function() {
+      var activity, activityJSON, i, k, len;
+      _locStor = LocStorSingleton.getInstance();
+      activityJSON = getJSON(getActivityJSON());
+      _initContainerDomByAllActivity(activityJSON);
+      _initTypeUlDom();
+      for (i = k = 0, len = activityJSON.length; k < len; i = ++k) {
+        activity = activityJSON[i];
+        console.log(activity);
+        activity = new Activity({
+          seqNum: i,
+          id: activity.id,
+          displayUrl: activity.pic,
+          infoUrl: activity.pic,
+          detailUrl: activity.pic,
+          dateBegin: activity.date_begin,
+          dateEnd: activity.date_end,
+          intro: activity.intro || "",
+          content: activity.content,
+          isValid: activity.is_valid,
+          title: activity.title,
+          type: activity.type
+        });
+      }
+      return new rotateDisplay({
+        displayCSSSelector: "#Menu-page .activity-display-list",
+        chooseCSSSelector: "#Menu-page .choose-dot-list",
+        scale: 110 / 377,
+        delay: 3000
+      });
+    };
+
+    Activity.chooseActivityByCurrentChoose = function() {
+      _getCurrentChooseFromLocStor();
+      return _selectActivityDisplayByCurrentChoose();
+    };
 
     return Activity;
 
@@ -459,8 +674,8 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
       /*
       			* 监视autoFlag
        */
-      if (!self.autoFlag) {
-        self.autoFlag = true;
+      if (!self._autoFlag) {
+        self._autoFlag = true;
       } else {
         index = (self.currentChoose + 1) % self.activityNum;
         self.setCurrentChooseAndTranslate(index);
@@ -476,7 +691,7 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
      */
 
     _touchStart = function(e, rotateDisplay) {
-      rotateDisplay.autoFlag = false;
+      rotateDisplay._autoFlag = false;
       rotateDisplay.startX = e.touches[0].clientX;
       rotateDisplay.startY = e.touches[0].clientY;
       rotateDisplay.currentX = e.touches[0].clientX;
@@ -489,11 +704,11 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
      */
 
     _touchMove = function(e, rotateDisplay) {
-      rotateDisplay.autoFlag = false;
-      rotateDisplay.currentX = e.touches[0].clientX;
-      rotateDisplay.currentY = e.touches[0].clientY;
       e.preventDefault();
-      return e.stopPropagation();
+      e.stopPropagation();
+      rotateDisplay._autoFlag = false;
+      rotateDisplay.currentX = e.touches[0].clientX;
+      return rotateDisplay.currentY = e.touches[0].clientY;
     };
 
 
@@ -504,7 +719,7 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
 
     _touchEnd = function(e, rotateDisplay) {
       var activityNum, currentChoose, currentX, currentY, startX, startY, transIndex;
-      rotateDisplay.autoFlag = false;
+      rotateDisplay._autoFlag = false;
       currentX = rotateDisplay.currentX;
       currentY = rotateDisplay.currentY;
       startX = rotateDisplay.startX;
@@ -536,13 +751,13 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
 
     function rotateDisplay(options) {
       var dom, k, len, ref1;
-      this.displayUlDom = query(options.displayCSSSelector);
-      this.chooseUlDom = query(options.chooseCSSSelector);
-      this.delay = options.delay;
+      deepCopy(options, this);
+      this.displayUlDom = query(this.displayCSSSelector);
+      this.chooseUlDom = query(this.chooseCSSSelector);
       ref1 = querys("img", this.displayUlDom);
       for (k = 0, len = ref1.length; k < len; k++) {
         dom = ref1[k];
-        dom.style.height = (options.scale * clientWidth) + "px";
+        dom.style.height = (this.scale * clientWidth) + "px";
       }
       this.init();
     }
@@ -581,7 +796,9 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
       this.chooseUlDom.parentNode.style.overflow = "hidden";
       self = this;
       this.allChooseDom = querys("li", this.chooseUlDom);
+      this.chooseUlDom.style.width = (this.allChooseDom.length * 20) + "px";
       this.currentChoose = 0;
+      this.allChooseDom[0].className = "active";
       ref1 = this.allChooseDom;
       results = [];
       for (i = k = 0, len = ref1.length; k < len; i = ++k) {
@@ -590,7 +807,7 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
           return function(e) {
             e.preventDefault();
             e.stopPropagation();
-            self.autoFlag = false;
+            self._autoFlag = false;
             return self.setCurrentChooseAndTranslate(i);
           };
         })(i)));
@@ -605,7 +822,7 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
        */
       var self;
       self = this;
-      this.autoFlag = true;
+      this._autoFlag = true;
       return setTimeout(function() {
         return _autoRotateEvent(self);
       }, self.delay);
@@ -614,13 +831,13 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
     rotateDisplay.prototype.initTouchEvent = function() {
       var self;
       self = this;
-      addListener(this.displayContainerDom, "touchstart", function(e) {
+      addListener(self.displayContainerDom, "touchstart", function(e) {
         return _touchStart(e, self);
       });
-      addListener(this.displayContainerDom, "touchmove", function(e) {
+      addListener(self.displayContainerDom, "touchmove", function(e) {
         return _touchMove(e, self);
       });
-      return addListener(this.displayContainerDom, "touchend", function(e) {
+      return addListener(self.displayContainerDom, "touchend", function(e) {
         return _touchEnd(e, self);
       });
     };
@@ -802,6 +1019,7 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
       },
       "activityInfo": {
         "push": function() {
+          Activity.chooseActivityByCurrentChoose();
           return _switchSecondaryPage("activityInfo", "Activity", _activityInfoDom);
         },
         "pop": function() {
@@ -918,8 +1136,9 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
     };
     _switchSecondaryPage = function(currentState, previousState, pageDom) {
       if (indexOf.call(_secondaryInfo[previousState], currentState) >= 0) {
-        return removeClass(pageDom, "hide-right");
+        removeClass(pageDom, "hide-right");
       }
+      return setTimeout("scrollTo(0, 0)", 0);
     };
     _hideSecondaryPage = function(pageDom) {
       return addClass(pageDom, "hide-right");
@@ -1205,6 +1424,7 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
     }
   };
   return window.onload = function() {
+    Activity.initial();
     Category.initial();
     Food.initial();
     if (location.hash === "") {
@@ -1238,12 +1458,6 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
     			, 100)
     		, 100)
      */
-    new rotateDisplay({
-      displayCSSSelector: "#Menu-page .activity-display-list",
-      chooseCSSSelector: "#Menu-page .choose-dot-list",
-      scale: 110 / 377,
-      delay: 3000
-    });
     return new rotateDisplay({
       displayCSSSelector: "#Activity-page .header-display-list",
       chooseCSSSelector: "#Activity-page .choose-dot-list",

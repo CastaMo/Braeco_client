@@ -40,7 +40,7 @@ do (window, document)->
 		_categoryBookCategoryUlWidth = 0
 		_cateogries = []
 		_locStor = null
-		_currentChoose = 0
+		_categoryCurrentChoose = 0
 
 		_widthByContent = {
 			"letter"	:	10
@@ -117,15 +117,15 @@ do (window, document)->
 			_unChooseAllBookCategoryDom()
 			_hideAllFoodListDom()
 			_getCurrentChooseFromLocStor()
-			addClass _cateogries[_currentChoose].bookCategoryDom, "choose"
-			removeClass _cateogries[_currentChoose].foodListDom, "hide"
+			addClass _cateogries[_categoryCurrentChoose].bookCategoryDom, "choose"
+			removeClass _cateogries[_categoryCurrentChoose].foodListDom, "hide"
 			setTimeout(->
-				_cateogries[_currentChoose].bookCategoryDom.scrollIntoView()
+				_cateogries[_categoryCurrentChoose].bookCategoryDom.scrollIntoView()
 			, 0)
 
-		_setCurrentChoose = (seqNum)-> _currentChoose = seqNum; _locStor.set("categoryCurrentChoose", seqNum)
+		_setCurrentChoose = (seqNum)-> _categoryCurrentChoose = seqNum; _locStor.set("categoryCurrentChoose", seqNum)
 
-		_getCurrentChooseFromLocStor = -> choose = _locStor.get("categoryCurrentChoose") || 0; _currentChoose = Number(choose)
+		_getCurrentChooseFromLocStor = -> choose = _locStor.get("categoryCurrentChoose") || 0; _categoryCurrentChoose = Number(choose)
 
 		constructor: (options)->
 			deepCopy options, @
@@ -278,7 +278,7 @@ do (window, document)->
 			@foodDom = _getFoodDom @
 
 		initAllEvent: ->
-			
+
 
 		@initial: ->
 			_locStor = LocStorSingleton.getInstance()
@@ -289,7 +289,6 @@ do (window, document)->
 			for tempOuter, i in dishJSON
 				j = 0
 				while tempOuter[j]
-					console.log(tempOuter[j])
 					food = new Food {
 						dc 				:		tempOuter[j].dc
 						dcType 			:		tempOuter[j].dc_type
@@ -301,18 +300,168 @@ do (window, document)->
 						categorySeqNum 	:		i
 						tag 			:		tempOuter[j].tag
 					}
-					console.log food
 					j++
 
 
 
 	class Activity
-		_activityInformationDom = query ".Activity-information-field"
-		_activityInfoImgDom = query "#activity-info-img-field", _activityInformationDom
-		_activityInfoImgDom.style.height = "#{clientWidth * 0.9 * 167 / 343}px"
+		_allActivityType = ["promotion", "theme"]
 
+		_activityHomeDisplayUlDom = query "#Menu-page .activity-display-list"
+		_activityHomeDisplayChooseUlDom = query "#Menu-page .choose-dot-list"
+
+		_activityContainerDom = query "#Activity-page #Activity-container-column .activity-container-wrapper"
+		_activityPromotionUlDom = null
+		_activityThemeUlDom = null
+		_activityTypeNum = {
+			"promotion": 0
+			"theme": 0
+		}
+
+		_locStor = null
+		_activities = []
+		_activityCurrentChoose = 0
+
+		_activityInformationDom = query ".Activity-information-field"
+		_activityInfoImgFieldDom = query "#activity-info-img-field .img-field", _activityInformationDom
+		_activityInfoImgDom = query "img", _activityInfoImgFieldDom
+		_activityInfoTypeDom = query ".title-type", _activityInformationDom
+		_activityInfoTitleNameDom = query "#activity-info-title-field .name", _activityInformationDom
+		_activityInfoIntroDom = query "#activity-info-title-field .intro", _activityInformationDom
+		_activityInfoTimeDom = query "#activity-info-time-field .time", _activityInformationDom
+		_activityInfoContentDom = query "#activity-info-content-field .content", _activityInformationDom
+
+		_activityInfoImgFieldDom.style.height = "#{clientWidth * 0.9 * 167 / 343}px"
+
+		###
 		for dom in querys "#Activity-container-column li"
 			addListener dom, "click", -> hashRoute.pushHashStr("activityInfo")
+		###
+
+		_getActivityDisplayDom = (activity)->
+			dom = createDom("li"); dom.id = "activity-#{activity.seqNum}"
+			dom.innerHTML = "<img src='#{activity.displayUrl}' alt='活动详情' class='activity-img'>"
+			append _activityHomeDisplayUlDom, dom
+			dom
+
+		_getActivityDisplayChooseDom = (activity)->
+			dom = createDom("li"); dom.id = "choose-dot-#{activity.seqNum}"; dom.className = "inactive"
+			dom.innerHTML = "<div class='dot'></div>"
+			append _activityHomeDisplayChooseUlDom, dom
+			dom
+
+		_getActivityDetailInfoDom = (activity)->
+			dom = createDom("li"); dom.id = "activity-basic-info-#{activity.seqNum}"; dom.className = "activity-basic-info"
+			dom.innerHTML = "<img src='#{activity.detailUrl}' alt='活动详情'>
+							<div class='info'>
+								<p class='activity-name'>#{activity.title}</p>
+								<p class='activity-intro'>#{activity.intro}</p>
+							</div>
+							<div class='arrow'></div>"
+			if activity.type is "theme" then ulDom = _activityThemeUlDom; type = "theme"
+			else ulDom = _activityPromotionUlDom; type = "promotion"
+			if _activityTypeNum[type] isnt 0
+				lineDom = createDom("div"); lineDom.className = "fivePercentLeftLine"
+				append ulDom, lineDom
+			_activityTypeNum[type]++
+			append ulDom, dom
+			dom
+
+		_getActivityTypeContainerDom = (type, title)->
+			dom = createDom("div"); dom.id = "activity-#{type}-field"
+			dom.innerHTML = "<div class='title-field'>
+								<p class='title'>#{title}</p>
+							</div>
+							<ul class='activity-#{type}-list'></ul>"
+			append _activityContainerDom, dom
+
+		_initContainerDomByAllActivity = (activities)->
+			allTypeExist = {}
+			allTypeExist[type] = false for type in _allActivityType
+			for activity in activities
+				type = activity.type || ""
+				if type is "theme" then allTypeExist[type] = true
+				else if type then allTypeExist["promotion"] = true
+			for type in _allActivityType
+				if allTypeExist[type]
+					if type is "promotion" then title = "促销优惠"
+					else title = "主题活动"
+					_getActivityTypeContainerDom(type, title)
+
+		_initTypeUlDom = -> _activityPromotionUlDom = query ".activity-promotion-list", _activityContainerDom; _activityThemeUlDom = query ".activity-theme-list", _activityContainerDom
+
+		_setCurrentChoose = (seqNum)-> _activityCurrentChoose = seqNum; _locStor.set("activityCurrentChoose", seqNum)
+
+		_getCurrentChooseFromLocStor = -> choose = _locStor.get("activityCurrentChoose") || 0; _activityCurrentChoose = Number(choose)
+
+		_selectActivityDisplayByCurrentChoose = ->
+			corresActivity = _activities[_activityCurrentChoose]
+			if corresActivity.type is "theme" then typeName = "主题"
+			else typeName = "促销"
+			_activityInfoImgDom.setAttribute("src", corresActivity.detailUrl)
+			_activityInfoTypeDom.innerHTML = typeName
+			_activityInfoTitleNameDom.innerHTML = corresActivity.title
+			_activityInfoIntroDom.innerHTML = corresActivity.intro
+			_activityInfoTimeDom.innerHTML = "#{corresActivity.dateBegin} - #{corresActivity.dateEnd}"
+			_activityInfoContentDom.innerHTML = corresActivity.content
+
+
+		constructor: (options)->
+			deepCopy options, @
+			@init()
+			_activities.push @
+
+		init: ->
+			@initActivityHomeDisplayDom()
+			@initActivityHomeDisplayChooseDom()
+			@initActivityDetailInfoDom()
+			@initAllEvent()
+
+		initActivityHomeDisplayDom: ->
+			@_activityHomeDisplayDom = _getActivityDisplayDom @
+
+		initActivityHomeDisplayChooseDom: ->
+			@_activityHomeDisplayChooseDom = _getActivityDisplayChooseDom @
+
+		initActivityDetailInfoDom: ->
+			@_activityDetailInfoDom = _getActivityDetailInfoDom @
+
+		initAllEvent: ->
+			self = @
+			addListener self._activityDetailInfoDom, "click", -> _setCurrentChoose self.seqNum; hashRoute.pushHashStr("activityInfo")
+
+		@initial: ->
+			_locStor = LocStorSingleton.getInstance()
+			activityJSON = getJSON getActivityJSON()
+			_initContainerDomByAllActivity(activityJSON)
+			_initTypeUlDom()
+			for activity, i in activityJSON
+				console.log activity
+				activity = new Activity {
+					seqNum 			:		i
+					id 				:		activity.id
+					displayUrl 		:		activity.pic
+					infoUrl 		:		activity.pic
+					detailUrl 		:		activity.pic
+					dateBegin 		:		activity.date_begin
+					dateEnd 		:		activity.date_end
+					intro 			:		activity.intro || ""
+					content 		:		activity.content
+					isValid 		:		activity.is_valid
+					title 			:		activity.title
+					type 			:		activity.type
+				}
+			new rotateDisplay {
+				displayCSSSelector: "#Menu-page .activity-display-list"
+				chooseCSSSelector: "#Menu-page .choose-dot-list"
+				scale: 110/377
+				delay: 3000
+			}
+
+		@chooseActivityByCurrentChoose: -> _getCurrentChooseFromLocStor(); _selectActivityDisplayByCurrentChoose()
+
+
+
 
 
 	class rotateDisplay
@@ -329,7 +478,7 @@ do (window, document)->
 			###
 			* 监视autoFlag
 			###
-			if not self.autoFlag then self.autoFlag = true
+			if not self._autoFlag then self._autoFlag = true
 			else
 				index = (self.currentChoose + 1) % self.activityNum
 				self.setCurrentChooseAndTranslate(index)
@@ -342,7 +491,7 @@ do (window, document)->
 		* 触摸开始的时候记录初始坐标位置
 		###
 		_touchStart = (e, rotateDisplay)->
-			rotateDisplay.autoFlag = false
+			rotateDisplay._autoFlag = false
 			#e.preventDefault()
 			#e.stopPropagation()
 			rotateDisplay.startX = e.touches[0].clientX
@@ -354,18 +503,18 @@ do (window, document)->
 		* 触摸的过程记录触摸所到达的坐标
 		###
 		_touchMove = (e, rotateDisplay)->
-			rotateDisplay.autoFlag = false
-			rotateDisplay.currentX = e.touches[0].clientX
-			rotateDisplay.currentY = e.touches[0].clientY
 			e.preventDefault()
 			e.stopPropagation()
+			rotateDisplay._autoFlag = false
+			rotateDisplay.currentX = e.touches[0].clientX
+			rotateDisplay.currentY = e.touches[0].clientY
 
 		###
 		* 比较判断用户是倾向于左右滑动还是上下滑动
 		* 若为左右滑动，则根据用户滑动的地方，反向轮转播放动画(符合正常的滑动逻辑)
 		###
 		_touchEnd = (e, rotateDisplay)->
-			rotateDisplay.autoFlag = false
+			rotateDisplay._autoFlag = false
 			currentX = rotateDisplay.currentX
 			currentY = rotateDisplay.currentY
 			startX = rotateDisplay.startX
@@ -389,10 +538,10 @@ do (window, document)->
 		###
 
 		constructor: (options)->
-			@displayUlDom = query options.displayCSSSelector
-			@chooseUlDom = query options.chooseCSSSelector
-			@delay = options.delay
-			dom.style.height = "#{options.scale * clientWidth}px" for dom in querys "img", @displayUlDom
+			deepCopy options, @
+			@displayUlDom = query @displayCSSSelector
+			@chooseUlDom = query @chooseCSSSelector
+			dom.style.height = "#{@scale * clientWidth}px" for dom in querys "img", @displayUlDom
 			@init()
 
 		init: ->
@@ -423,25 +572,27 @@ do (window, document)->
 			@chooseUlDom.parentNode.style.overflow = "hidden"
 			self = @
 			@allChooseDom = querys "li", @chooseUlDom
+			@chooseUlDom.style.width = "#{@allChooseDom.length * 20}px"
 			@currentChoose = 0
+			@allChooseDom[0].className = "active"
 			for dom, i in @allChooseDom
-				addListener dom, "click", do (i)-> (e)-> e.preventDefault(); e.stopPropagation(); self.autoFlag = false; self.setCurrentChooseAndTranslate(i)
+				addListener dom, "click", do (i)-> (e)-> e.preventDefault(); e.stopPropagation(); self._autoFlag = false; self.setCurrentChooseAndTranslate(i)
 
 		initAutoRotate: ->
 			###
 			* autoFlag用于监视是否有人工操作，如果有，则当前最近一次不做播放，重新设置autoFlag，使得下一次播放正常进行
 			###
 			self = @
-			@autoFlag = true
+			@_autoFlag = true
 			setTimeout(->
 				_autoRotateEvent(self)
 			, self.delay)
 
 		initTouchEvent: ->
 			self = @
-			addListener @displayContainerDom, "touchstart", (e)-> _touchStart(e, self)
-			addListener @displayContainerDom, "touchmove", (e)-> _touchMove(e, self)
-			addListener @displayContainerDom, "touchend", (e)-> _touchEnd(e, self)
+			addListener self.displayContainerDom, "touchstart", (e)-> _touchStart(e, self)
+			addListener self.displayContainerDom, "touchmove", (e)-> _touchMove(e, self)
+			addListener self.displayContainerDom, "touchend", (e)-> _touchEnd(e, self)
 
 		setCurrentChoose: (index)->
 			@allChooseDom[@currentChoose].className = "inactive"
@@ -567,7 +718,9 @@ do (window, document)->
 				"pop": -> _hideTarget("Activity-page")
 			}
 			"activityInfo": {
-				"push": -> _switchSecondaryPage("activityInfo", "Activity", _activityInfoDom)
+				"push": ->
+					Activity.chooseActivityByCurrentChoose()
+					_switchSecondaryPage("activityInfo", "Activity", _activityInfoDom)
 				"pop": -> _hideSecondaryPage(_activityInfoDom)
 			}
 			"Extra": {
@@ -632,6 +785,7 @@ do (window, document)->
 
 		_switchSecondaryPage = (currentState, previousState, pageDom)->
 			if currentState in _secondaryInfo[previousState] then removeClass(pageDom, "hide-right")
+			setTimeout("scrollTo(0, 0)", 0)
 
 		_hideSecondaryPage = (pageDom)-> addClass(pageDom, "hide-right")
 
@@ -771,6 +925,7 @@ do (window, document)->
 
 
 	window.onload = ->
+		Activity.initial()
 		Category.initial()
 		Food.initial()
 		if location.hash is "" then setTimeout(->
@@ -801,17 +956,12 @@ do (window, document)->
 		, 100)
 		###
 		new rotateDisplay {
-			displayCSSSelector: "#Menu-page .activity-display-list"
-			chooseCSSSelector: "#Menu-page .choose-dot-list"
-			scale: 110/377
-			delay: 3000
-		}
-		new rotateDisplay {
 			displayCSSSelector: "#Activity-page .header-display-list"
 			chooseCSSSelector: "#Activity-page .choose-dot-list"
 			scale: 200/375
 			delay: 3000
 		}
+
 
 		
 
