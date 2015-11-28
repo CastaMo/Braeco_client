@@ -163,6 +163,7 @@ do (window, document)->
 
 	class Food
 		_foodInfo = getById "book-info-wrap"
+		
 		_foods = []
 		_locStor = null
 
@@ -214,10 +215,10 @@ do (window, document)->
 							#{_getInitPriceForBottomWrapDom(food)}
 						</div>"
 			controllField = "<div class='controll-field'>
-								<div class='minus-field btn'>
+								<div class='minus-field btn hide'>
 									<div class='img'></div>
 								</div>
-								<div class='number-field'>
+								<div class='number-field hide'>
 									<p class='num'>0</p>
 								</div>
 								<div class='plus-field btn'>
@@ -436,7 +437,6 @@ do (window, document)->
 			_initContainerDomByAllActivity(activityJSON)
 			_initTypeUlDom()
 			for activity, i in activityJSON
-				console.log activity
 				activity = new Activity {
 					seqNum 			:		i
 					id 				:		activity.id
@@ -712,6 +712,10 @@ do (window, document)->
 			"bookInfo": {
 				"push": -> _dynamicShowTarget("book-info-wrap", "hide-right")
 				"pop": -> _hideTarget("book-info-wrap", "hide-right")
+			}
+			"bookOrder": {
+				"push": -> _dynamicShowTarget("book-order-wrap", "hide-left")
+				"pop": -> _hideTarget("book-order-wrap", "hide-left")
 			}
 			"Activity": {
 				"push": -> _staticShowTarget("Activity-page")

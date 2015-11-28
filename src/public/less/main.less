@@ -620,6 +620,17 @@
                                         }
                                     }
                                 }
+                                #book-order-wrap {
+                                    position: absolute;
+                                    top: 0;
+                                    left: 0;
+                                    .transition(0.4s);
+                                    width: 100%;
+                                    height: 100%;
+                                    z-index: 3;
+                                    background-color: @homePageBackgroundColor;
+                                    padding-top: 15px;
+                                }
                             }
                         }
                     }
@@ -1357,6 +1368,10 @@ input {
     top: 0;
     background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACcAAABCBAMAAAAmtNLvAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAPUExURQAAAI+Pj21tbY2NjY+Pj333IT4AAAAEdFJOUwC2B4DQufHfAAAASElEQVQ4y2NgwA4MFTDFmF2EMAVNXBwVMBW6YCplBApiKGUSwaZUcVTpqFKilWIVxKZ9VOEIV4i1CMJaWGEt1rAXgFiLSiwAAKtLQ8GDPhjlAAAAAElFTkSuQmCC") no-repeat center;
     background-size: 11.81px 20px;
+}
+
+.hide-left {
+    .translate(-100%)
 }
 
 .hide-right {

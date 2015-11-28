@@ -305,7 +305,7 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
       bottomWrapDom = createDom("div");
       bottomWrapDom.className = "bottom-wrap font-number-word";
       priceField = "<div class='price-field'> " + (_getMinPriceForBottomWrapDom(food)) + " " + (_getInitPriceForBottomWrapDom(food)) + " </div>";
-      controllField = "<div class='controll-field'> <div class='minus-field btn'> <div class='img'></div> </div> <div class='number-field'> <p class='num'>0</p> </div> <div class='plus-field btn'> <div class='img'></div> </div> </div>";
+      controllField = "<div class='controll-field'> <div class='minus-field btn hide'> <div class='img'></div> </div> <div class='number-field hide'> <p class='num'>0</p> </div> <div class='plus-field btn'> <div class='img'></div> </div> </div>";
       append(bottomWrapDom, priceField);
       append(bottomWrapDom, controllField);
       return bottomWrapDom;
@@ -622,7 +622,6 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
       _initTypeUlDom();
       for (i = k = 0, len = activityJSON.length; k < len; i = ++k) {
         activity = activityJSON[i];
-        console.log(activity);
         activity = new Activity({
           seqNum: i,
           id: activity.id,
@@ -1007,6 +1006,14 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
         },
         "pop": function() {
           return _hideTarget("book-info-wrap", "hide-right");
+        }
+      },
+      "bookOrder": {
+        "push": function() {
+          return _dynamicShowTarget("book-order-wrap", "hide-left");
+        },
+        "pop": function() {
+          return _hideTarget("book-order-wrap", "hide-left");
         }
       },
       "Activity": {
