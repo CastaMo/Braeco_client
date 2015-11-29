@@ -1,0 +1,8 @@
+{
+	"css": "public/css/",
+	"js": "public/js/",
+	"coffee": "public/coffee",
+	"less": "public/less",
+	"source_path": "src/",
+	"dest_path": "bin/"
+}

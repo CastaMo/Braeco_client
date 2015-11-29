@@ -1,0 +1,83 @@
+- var all_page = ['Menu', 'Already', 'Individual']
+
+#brae-home-page.hide.main-page
+	#all-home-content-field
+		.all-page-field
+			#Menu-page.hide.main-home-page
+				#Menu-content
+					.Menu-content-field
+						#Menu-activity-column
+							.activity-wrapper
+								ul.activity-display-list
+							.choose-wrapper
+								ul.choose-dot-list
+						#Menu-category-column
+							.category-wrapper
+								ul.category-display-list
+			#Already-page.hide.main-home-page
+				#Already-content
+					.Already-not-order-field
+						#Already-not-order-column
+							.not-order-img-wrapper
+								#not-order-img
+							.not-order-reminder-wrapper
+								#not-order-reminder
+									p.reminder 您现在还没有订单哦，快去点餐吧～
+							.not-order-tip-wrapper
+								#not-order-tip
+									p.tip Tips: 如果无法成功下单，请点击左侧按钮呼叫服务员为您解决问题。
+					.Already-content-field.hide
+				#Already-service
+					.Already-service-field
+						#Already-service-column
+							.service-wrapper
+								#service-button
+			#Individual-page.hide.main-home-page
+				#Individual-content
+					.Already-login-field
+						#Individual-info-column
+							.Individual-basic-info-wrapper
+								.member-img-pos
+									#rank-img.member-rank-3
+								.member-info-pos
+									.rank-field
+										p.rank Lv.0
+										p.member-name 普通会员
+									.discount-field
+										p.discount 升级后尊享更多优惠
+									.remainder-EXP-Blend
+										.remainder-field
+											p.name 余额
+											p.remainder-number.font-number-word 0
+										.EXP-field
+											p.name 经验值
+											p.EXP.font-number-word
+												span.current-value 0
+												span /
+												span.full-value 0
+							.Individual-EXP-bar-wrapper
+								.EXP-bar-field
+									.full-bar
+										.inner-bar(style='width:#{34500/500}%')
+						#Individual-operation-column
+							.Individual-func-wrapper
+								ul.Individual-func-list
+									li#Recharge-func.Individual-func
+										.func-img-field
+											.func-img
+										.name-field
+											p.name 会员充值
+										.arrow
+
+					.not-yet-login-field.hide
+						#not-yet-login-column
+							.not-yet-login-wrapper
+								.avater-field
+									#not-yet-login-avater
+								.word-field
+									p.word 点击登录
+	#nav-field
+		div(class="bottom-field bottom-touch-num-#{all_page.length}")
+			each elem, i in all_page
+				a(href="#-Home-#{elem}" id="bottom-touch-#{i}")
+					div(id="#{elem}" class="#{elem}-unchecked")
