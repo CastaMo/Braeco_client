@@ -4,6 +4,8 @@ do (window, document)->
 
 	clientWidth =  document.body.clientWidth
 	clientHeight = document.documentElement.clientHeight
+	locStor = null
+	user = null
 
 	compatibleCSSConfig = [
 		""
@@ -18,8 +20,6 @@ do (window, document)->
 	getJSON = (json)->
 		if typeof json is "string" then json = JSON.parse(json)
 		return json
-
-	Lock = do ->
 
 	class Category
 
@@ -39,7 +39,6 @@ do (window, document)->
 		_foodListAllDom = query "#book-dish-wrap .food-list-wrap"
 		_categoryBookCategoryUlWidth = 0
 		_cateogries = []
-		_locStor = null
 		_categoryCurrentChoose = 0
 
 		_widthByContent = {
@@ -123,9 +122,12 @@ do (window, document)->
 				_cateogries[_categoryCurrentChoose].bookCategoryDom.scrollIntoView()
 			, 0)
 
-		_setCurrentChoose = (seqNum)-> _categoryCurrentChoose = seqNum; _locStor.set("categoryCurrentChoose", seqNum)
+		_setCurrentChoose = (seqNum)-> _categoryCurrentChoose = seqNum; locStor.set("categoryCurrentChoose", seqNum)
 
-		_getCurrentChooseFromLocStor = -> choose = _locStor.get("categoryCurrentChoose") || 0; _categoryCurrentChoose = Number(choose)
+		_getCurrentChooseFromLocStor = ->
+			choose = locStor.get("categoryCurrentChoose") || 0
+			if _cateogries[choose] then _categoryCurrentChoose = Number(choose)
+			else _categoryCurrentChoose = 0
 
 		constructor: (options)->
 			deepCopy options, @
@@ -151,7 +153,6 @@ do (window, document)->
 			addListener self.bookCategoryDom, "click", -> _setCurrentChoose(self.seqNum); _chooseBookCategoryByCurrentChoose()
 
 		@initial: ->
-			_locStor = LocStorSingleton.getInstance()
 			dishJSON = getJSON getDishJSON()
 			for tempOuter, i in dishJSON
 				category = new Category {
@@ -163,9 +164,13 @@ do (window, document)->
 
 	class Food
 		_foodInfo = getById "book-info-wrap"
-		
+		_foodInfoImgDom = query ".food-img-wrapper img", _foodInfo
+		_foodInfoImgDom.style.height = "#{clientWidth * 200 / 375}px"
+		_foodInfoDom = query ".full-part", _foodInfo
+		_foodInfoIntroDom = query ".intro-wrap .intro", _foodInfo
+
 		_foods = []
-		_locStor = null
+		_foodCurrentChoose = [0, 0]
 
 		_getDCLabelForTopWrapDom = (food)->
 			dcDom = ""
@@ -228,7 +233,6 @@ do (window, document)->
 			append bottomWrapDom, priceField
 			append bottomWrapDom, controllField
 			return bottomWrapDom
-			
 
 		_getImgDomForFoodDom = (food)->
 			if not food.url then return null
@@ -264,6 +268,22 @@ do (window, document)->
 
 			return dom
 
+		_setCurrentChoose = (categorySeqNum, seqNum)->
+			_foodCurrentChoose[0] = categorySeqNum; _foodCurrentChoose[1] = seqNum
+			locStor.set("foodCurrentChoose", JSON.stringify(_foodCurrentChoose))
+
+		_getCurrentChooseFromLocStor = ->
+			choose = locStor.get("foodCurrentChoose") || "[0, 0]"
+			choose = JSON.parse(choose)
+			if _foods[choose[0]][choose[1]] then deepCopy choose, _foodCurrentChoose
+			else _foodCurrentChoose = [0, 0]
+
+		_selectFoodDisplayByCurrentChoose = ->
+			food = _foods[_foodCurrentChoose[0]][_foodCurrentChoose[1]]
+			_foodInfoImgDom.src = food.url
+			currentFooInfoDom = query(".full-part", food.foodDom) || query(".right-part", food.foodDom)
+			_foodInfoDom.innerHTML = currentFooInfoDom.innerHTML
+			_foodInfoIntroDom.innerHTML = food.intro
 
 
 		constructor: (options)->
@@ -279,10 +299,10 @@ do (window, document)->
 			@foodDom = _getFoodDom @
 
 		initAllEvent: ->
-
+			self = @
+			addListener self.foodDom, "click", -> _setCurrentChoose(self.categorySeqNum, self.seqNum); hashRoute.pushHashStr("bookInfo")
 
 		@initial: ->
-			_locStor = LocStorSingleton.getInstance()
 			dishJSON = getJSON getDishJSON()
 			for i in [0..dishJSON.length-1]
 				if not dishJSON[i] then continue
@@ -299,11 +319,13 @@ do (window, document)->
 						eName 			:		tempOuter[j].dishname2
 						url 			:		tempOuter[j].dishpic
 						categorySeqNum 	:		i
+						seqNum 			:		j
 						tag 			:		tempOuter[j].tag
+						intro 			: 		tempOuter[j].intro || ""
 					}
 					j++
 
-
+		@chooseFoodByCurrentChoose: -> _getCurrentChooseFromLocStor(); _selectFoodDisplayByCurrentChoose()
 
 	class Activity
 		_allActivityType = ["promotion", "theme"]
@@ -319,7 +341,6 @@ do (window, document)->
 			"theme": 0
 		}
 
-		_locStor = null
 		_activities = []
 		_activityCurrentChoose = 0
 
@@ -333,11 +354,6 @@ do (window, document)->
 		_activityInfoContentDom = query "#activity-info-content-field .content", _activityInformationDom
 
 		_activityInfoImgFieldDom.style.height = "#{clientWidth * 0.9 * 167 / 343}px"
-
-		###
-		for dom in querys "#Activity-container-column li"
-			addListener dom, "click", -> hashRoute.pushHashStr("activityInfo")
-		###
 
 		_getActivityDisplayDom = (activity)->
 			dom = createDom("li"); dom.id = "activity-#{activity.seqNum}"
@@ -391,9 +407,12 @@ do (window, document)->
 
 		_initTypeUlDom = -> _activityPromotionUlDom = query ".activity-promotion-list", _activityContainerDom; _activityThemeUlDom = query ".activity-theme-list", _activityContainerDom
 
-		_setCurrentChoose = (seqNum)-> _activityCurrentChoose = seqNum; _locStor.set("activityCurrentChoose", seqNum)
+		_setCurrentChoose = (seqNum)-> _activityCurrentChoose = seqNum; locStor.set("activityCurrentChoose", seqNum)
 
-		_getCurrentChooseFromLocStor = -> choose = _locStor.get("activityCurrentChoose") || 0; _activityCurrentChoose = Number(choose)
+		_getCurrentChooseFromLocStor = ->
+			choose = locStor.get("activityCurrentChoose") || 0
+			if _activities[choose] then _activityCurrentChoose = Number(choose)
+			else _activityCurrentChoose = 0
 
 		_selectActivityDisplayByCurrentChoose = ->
 			corresActivity = _activities[_activityCurrentChoose]
@@ -432,7 +451,6 @@ do (window, document)->
 			addListener self._activityDetailInfoDom, "click", -> _setCurrentChoose self.seqNum; hashRoute.pushHashStr("activityInfo")
 
 		@initial: ->
-			_locStor = LocStorSingleton.getInstance()
 			activityJSON = getJSON getActivityJSON()
 			_initContainerDomByAllActivity(activityJSON)
 			_initTypeUlDom()
@@ -459,6 +477,107 @@ do (window, document)->
 			}
 
 		@chooseActivityByCurrentChoose: -> _getCurrentChooseFromLocStor(); _selectActivityDisplayByCurrentChoose()
+
+	class User
+		_IndividualDom = getById "Individual-page"
+		_alreadyLoginDom = query ".Already-login-field", _IndividualDom
+		_lvDom = query ".rank-field p.rank", _alreadyLoginDom
+		_memberNameDom = query ".rank-field p.member-name", _alreadyLoginDom
+		_memberImgDom = query ".member-img-pos #rank-img", _alreadyLoginDom
+		_discountDom = query ".discount-field p.discount", _alreadyLoginDom
+		_balanceDom = query ".remainder-EXP-Blend p.remainder-number", _alreadyLoginDom
+		_currentEXPValueDom = query ".current-value", _alreadyLoginDom
+		_currentEXPFullValueDom = query ".full-value", _alreadyLoginDom
+		_currentEXPBarDom = query ".inner-bar", _alreadyLoginDom
+		_isOverlap = {}
+		_ladder = []
+
+		_initIsOverlap = (comPre)->
+			_isOverlap["discount"] = Boolean(comPre & 1)
+			_isOverlap["sale"] = Boolean(comPre & 2)
+			_isOverlap["half"] = Boolean(comPre & 4)
+			_isOverlap["limit"] = Boolean(comPre & 8)
+
+		_initLadder = (ladder)-> deepCopy ladder, _ladder
+
+		_getCorresIndexFromLadder = (user)->
+			fullFlag = true; index = 0
+			for expInfo, i in _ladder
+				if expInfo.EXP > user.EXP
+					index = i - 1; fullFlag = false; break
+			{fullFlag: fullFlag, index: index}
+
+		_updateCurrentMemberRankDom = (user)->
+			_lvDom.innerHTML = "Lv.#{user.currentRank}"
+			_memberImgDom.className = "member-rank-#{user.currentRank}"
+			_memberNameDom.innerHTML = "#{user.rankName}级会员"
+			_currentEXPFullValueDom.innerHTML = user.currentFullEXP
+			_currentEXPBarDom.style.width = ""
+
+			if user.discount >= 100 then discountStr = "升级后尊享更多优惠" else discountStr = "VIP尊享#{(user.discount/10).toFixed(1)}折"
+			_discountDom.innerHTML = discountStr
+
+
+		_setCurrentMemberRankInfo = (user, index, fullIndex)->
+			user.currentRank = index;
+			user.rankName = _ladder[index].name;
+			user.discount = _ladder[index].discount;
+			user.currentFullEXP = _ladder[fullIndex].EXP
+
+		_checkEXPByLadder = (user)->
+			result = _getCorresIndexFromLadder user
+			if result.fullFlag then index = _ladder.length - 1; fullIndex = index
+			else index = result.index; fullIndex = index + 1
+			_setCurrentMemberRankInfo user, index, fullIndex
+			_updateCurrentMemberRankDom user
+			
+
+		constructor: (options)->
+			@tryLoginAndUpdateInfo options
+
+		isLogin: -> @id isnt 0
+
+		init: ->
+			@setBalance @balance
+			@setCurrentEXP @EXP
+
+		setBalance: (balance)-> @balance = balance; _balanceDom.innerHTML = @balance
+
+		setCurrentEXP: (EXP)->
+			@EXP = EXP
+			_currentEXPValueDom.innerHTML = @EXP
+			_checkEXPByLadder @
+			_currentEXPBarDom.style.width = "#{100 * @EXP / @currentFullEXP}%"
+
+		tryLoginAndUpdateInfo: (options)->
+			deepCopy options, @
+			@init()
+
+
+
+		@initial: ->
+			ComPreJSON = getJSON getComPreJSON()
+			MemberJSON = getJSON getMemberJSON()
+
+			_initIsOverlap ComPreJSON
+			_initLadder MemberJSON.membership.ladder
+
+			user = new User {
+				avatar 			:		MemberJSON.avatar
+				birthday 		:		MemberJSON.birthday
+				city 			:		MemberJSON.city
+				country 		:		MemberJSON.country
+				mobile 			:		MemberJSON.mobile
+				nickName 		:		MemberJSON.nickname
+				province 		:		MemberJSON.province
+				registerTime 	:		MemberJSON.register_time
+				sex 			:		MemberJSON.sex
+				signature 		:		MemberJSON.signature
+				id 				:		MemberJSON.user
+				EXP 			: 		MemberJSON.membership.EXP
+				balance 		:		MemberJSON.membership.balance
+			}
+
 
 
 
@@ -552,7 +671,7 @@ do (window, document)->
 
 		initDisplay: ->
 			@displayContainerDom = @displayUlDom.parentNode
-			@displayContainerDom.style.overflowX = "auto"
+			@displayContainerDom.style.overflowX = "hidden"
 			@allDisplayDom = querys "li", @displayUlDom
 
 			###
@@ -606,12 +725,6 @@ do (window, document)->
 			for key, value of compatibleTranslateCss
 				@displayUlDom.style[key] = value
 			@setCurrentChoose(index)
-
-	Menu = do ->
-
-		_allDishDoms = querys "#book-dish-wrap .food-list-wrap li"
-		for dom in _allDishDoms
-			addListener dom, "click", -> hashRoute.pushHashStr("bookInfo")
 
 	Individual = do ->
 		_rechargeFuncDom = getById "Recharge-func"
@@ -710,7 +823,9 @@ do (window, document)->
 				"pop": -> _hideTarget("book-order-column")
 			}
 			"bookInfo": {
-				"push": -> _dynamicShowTarget("book-info-wrap", "hide-right")
+				"push": ->
+					Food.chooseFoodByCurrentChoose()
+					_dynamicShowTarget("book-info-wrap", "hide-right")
 				"pop": -> _hideTarget("book-info-wrap", "hide-right")
 			}
 			"bookOrder": {
@@ -803,11 +918,15 @@ do (window, document)->
 
 		_staticShowTarget = (id)-> removeClass(getById(id), "hide"); setTimeout("scrollTo(0, 0)", 0)
 
-		_dynamicShowTarget = (id, className)-> removeClass(getById(id), className); setTimeout("scrollTo(0, 0)", 0)
+		_dynamicShowTarget = (id, className)-> removeClass(getById(id), "hide"); setTimeout(->
+			removeClass(getById(id), className); setTimeout("scrollTo(0, 0)", 0)
+		, 0)
 
 		_hideTarget = (id, className)->
 			_target = getById id
-			if className then addClass _target, className
+			if className then addClass _target, className; setTimeout(->
+				addClass _target, "hide"
+			, 400)
 			else addClass _target, "hide"
 			setTimeout("scrollTo(0, 0)", 0)
 
@@ -869,6 +988,7 @@ do (window, document)->
 		HomeBottom: HomeBottom
 		parseAndExecuteHash: -> _parseAndExecuteHash _getHashStr()
 
+	Lock = do ->
 
 	LocStorSingleton = do ->
 		_instance = null
@@ -891,6 +1011,9 @@ do (window, document)->
 		getInstance: ->
 			if _instance is null then _instance = new LocStor()
 			return _instance
+
+		initial: ->
+			locStor = @getInstance()
 
 	callpay = (options)->
 		self = @
@@ -929,6 +1052,8 @@ do (window, document)->
 
 
 	window.onload = ->
+		LocStorSingleton.initial()
+		User.initial()
 		Activity.initial()
 		Category.initial()
 		Food.initial()
@@ -942,23 +1067,6 @@ do (window, document)->
 			, 100)
 		, 100)
 		else hashRoute.parseAndExecuteHash()
-		###
-		hashRoute.hashJump("-Home")
-		setTimeout(->
-			hashRoute.pushHashStr("Menu")
-			setTimeout(->
-				hashRoute.pushHashStr("x")
-				
-				setTimeout(->
-					hashRoute.hashJump("-Detail-Book-bookCol")
-					setTimeout(->
-						hashRoute.pushHashStr("bookInfo")
-					, 100)
-				, 100)
-				
-			, 100)
-		, 100)
-		###
 		new rotateDisplay {
 			displayCSSSelector: "#Activity-page .header-display-list"
 			chooseCSSSelector: "#Activity-page .choose-dot-list"

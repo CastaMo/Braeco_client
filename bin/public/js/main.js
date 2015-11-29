@@ -1,10 +1,12 @@
 var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
 (function(window, document) {
-  var Activity, Category, Food, Individual, LocStorSingleton, Lock, Menu, addClass, addListener, ajax, append, callpay, clientHeight, clientWidth, compatibleCSSConfig, createDom, deepCopy, getById, getElementsByClassName, getJSON, getObjectURL, hasClass, hashRoute, hidePhone, innerCallback, isPhone, numToChinese, prepend, query, querys, ref, remove, removeClass, removeListener, rotateDisplay, toggleClass;
+  var Activity, Category, Food, Individual, LocStorSingleton, Lock, User, addClass, addListener, ajax, append, callpay, clientHeight, clientWidth, compatibleCSSConfig, createDom, deepCopy, getById, getElementsByClassName, getJSON, getObjectURL, hasClass, hashRoute, hidePhone, innerCallback, isPhone, locStor, numToChinese, prepend, query, querys, ref, remove, removeClass, removeListener, rotateDisplay, toggleClass, user;
   ref = [util.addListener, util.removeListener, util.hasClass, util.addClass, util.removeClass, util.ajax, util.getElementsByClassName, util.isPhone, util.hidePhone, util.query, util.querys, util.remove, util.append, util.prepend, util.toggleClass, util.getObjectURL, util.deepCopy, util.getById, util.createDom], addListener = ref[0], removeListener = ref[1], hasClass = ref[2], addClass = ref[3], removeClass = ref[4], ajax = ref[5], getElementsByClassName = ref[6], isPhone = ref[7], hidePhone = ref[8], query = ref[9], querys = ref[10], remove = ref[11], append = ref[12], prepend = ref[13], toggleClass = ref[14], getObjectURL = ref[15], deepCopy = ref[16], getById = ref[17], createDom = ref[18];
   clientWidth = document.body.clientWidth;
   clientHeight = document.documentElement.clientHeight;
+  locStor = null;
+  user = null;
   compatibleCSSConfig = ["", "-webkit-", "-moz-", "-ms-", "-o-"];
   numToChinese = ["零", "一", "二", "三", "四", "五", "六", "七", "八", "九", "十"];
   getJSON = function(json) {
@@ -13,7 +15,6 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
     }
     return json;
   };
-  Lock = (function() {})();
   Category = (function() {
 
     /*
@@ -27,7 +28,7 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
     		* 7. localStorage单例对象, 初始化放在静态公有函数initial中
     		* 8. 调整宽度按照字符来计算, 1个字母为10px, 1个数字为11px, 1个空格为6px, 1个中文为16px
      */
-    var _categoryBookCategoryUlDom, _categoryBookCategoryUlWidth, _categoryCurrentChoose, _cateogries, _catergoryDisplayUlDom, _chooseBookCategoryByCurrentChoose, _foodListAllDom, _getBookCategoryDom, _getCurrentChooseFromLocStor, _getDisplayDom, _getFoodListDom, _getWidthByContent, _hideAllFoodListDom, _locStor, _setCurrentChoose, _unChooseAllBookCategoryDom, _updateBookCategoryDomWidth, _widthByContent;
+    var _categoryBookCategoryUlDom, _categoryBookCategoryUlWidth, _categoryCurrentChoose, _cateogries, _catergoryDisplayUlDom, _chooseBookCategoryByCurrentChoose, _foodListAllDom, _getBookCategoryDom, _getCurrentChooseFromLocStor, _getDisplayDom, _getFoodListDom, _getWidthByContent, _hideAllFoodListDom, _setCurrentChoose, _unChooseAllBookCategoryDom, _updateBookCategoryDomWidth, _widthByContent;
 
     _catergoryDisplayUlDom = query("#Menu-page .category-display-list");
 
@@ -38,8 +39,6 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
     _categoryBookCategoryUlWidth = 0;
 
     _cateogries = [];
-
-    _locStor = null;
 
     _categoryCurrentChoose = 0;
 
@@ -160,13 +159,17 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
 
     _setCurrentChoose = function(seqNum) {
       _categoryCurrentChoose = seqNum;
-      return _locStor.set("categoryCurrentChoose", seqNum);
+      return locStor.set("categoryCurrentChoose", seqNum);
     };
 
     _getCurrentChooseFromLocStor = function() {
       var choose;
-      choose = _locStor.get("categoryCurrentChoose") || 0;
-      return _categoryCurrentChoose = Number(choose);
+      choose = locStor.get("categoryCurrentChoose") || 0;
+      if (_cateogries[choose]) {
+        return _categoryCurrentChoose = Number(choose);
+      } else {
+        return _categoryCurrentChoose = 0;
+      }
     };
 
     function Category(options) {
@@ -210,7 +213,6 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
 
     Category.initial = function() {
       var category, dishJSON, i, k, len, results, tempOuter;
-      _locStor = LocStorSingleton.getInstance();
       dishJSON = getJSON(getDishJSON());
       results = [];
       for (i = k = 0, len = dishJSON.length; k < len; i = ++k) {
@@ -230,13 +232,21 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
 
   })();
   Food = (function() {
-    var _foodInfo, _foods, _getBottomWrapForInfoDom, _getDCLabelForTopWrapDom, _getFoodDom, _getImgDomForFoodDom, _getInfoDomForFoodDom, _getInitPriceForBottomWrapDom, _getMinPriceForBottomWrapDom, _getTagLabelForTopWrapDom, _getTopWrapDomForInfoDom, _locStor;
+    var _foodCurrentChoose, _foodInfo, _foodInfoDom, _foodInfoImgDom, _foodInfoIntroDom, _foods, _getBottomWrapForInfoDom, _getCurrentChooseFromLocStor, _getDCLabelForTopWrapDom, _getFoodDom, _getImgDomForFoodDom, _getInfoDomForFoodDom, _getInitPriceForBottomWrapDom, _getMinPriceForBottomWrapDom, _getTagLabelForTopWrapDom, _getTopWrapDomForInfoDom, _selectFoodDisplayByCurrentChoose, _setCurrentChoose;
 
     _foodInfo = getById("book-info-wrap");
 
+    _foodInfoImgDom = query(".food-img-wrapper img", _foodInfo);
+
+    _foodInfoImgDom.style.height = (clientWidth * 200 / 375) + "px";
+
+    _foodInfoDom = query(".full-part", _foodInfo);
+
+    _foodInfoIntroDom = query(".intro-wrap .intro", _foodInfo);
+
     _foods = [];
 
-    _locStor = null;
+    _foodCurrentChoose = [0, 0];
 
     _getDCLabelForTopWrapDom = function(food) {
       var dcDom, num;
@@ -358,6 +368,32 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
       return dom;
     };
 
+    _setCurrentChoose = function(categorySeqNum, seqNum) {
+      _foodCurrentChoose[0] = categorySeqNum;
+      _foodCurrentChoose[1] = seqNum;
+      return locStor.set("foodCurrentChoose", JSON.stringify(_foodCurrentChoose));
+    };
+
+    _getCurrentChooseFromLocStor = function() {
+      var choose;
+      choose = locStor.get("foodCurrentChoose") || "[0, 0]";
+      choose = JSON.parse(choose);
+      if (_foods[choose[0]][choose[1]]) {
+        return deepCopy(choose, _foodCurrentChoose);
+      } else {
+        return _foodCurrentChoose = [0, 0];
+      }
+    };
+
+    _selectFoodDisplayByCurrentChoose = function() {
+      var currentFooInfoDom, food;
+      food = _foods[_foodCurrentChoose[0]][_foodCurrentChoose[1]];
+      _foodInfoImgDom.src = food.url;
+      currentFooInfoDom = query(".full-part", food.foodDom) || query(".right-part", food.foodDom);
+      _foodInfoDom.innerHTML = currentFooInfoDom.innerHTML;
+      return _foodInfoIntroDom.innerHTML = food.intro;
+    };
+
     function Food(options) {
       deepCopy(options, this);
       this.init();
@@ -373,11 +409,17 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
       return this.foodDom = _getFoodDom(this);
     };
 
-    Food.prototype.initAllEvent = function() {};
+    Food.prototype.initAllEvent = function() {
+      var self;
+      self = this;
+      return addListener(self.foodDom, "click", function() {
+        _setCurrentChoose(self.categorySeqNum, self.seqNum);
+        return hashRoute.pushHashStr("bookInfo");
+      });
+    };
 
     Food.initial = function() {
       var dishJSON, food, i, j, k, l, len, ref1, results, tempOuter;
-      _locStor = LocStorSingleton.getInstance();
       dishJSON = getJSON(getDishJSON());
       for (i = k = 0, ref1 = dishJSON.length - 1; 0 <= ref1 ? k <= ref1 : k >= ref1; i = 0 <= ref1 ? ++k : --k) {
         if (!dishJSON[i]) {
@@ -402,7 +444,9 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
               eName: tempOuter[j].dishname2,
               url: tempOuter[j].dishpic,
               categorySeqNum: i,
-              tag: tempOuter[j].tag
+              seqNum: j,
+              tag: tempOuter[j].tag,
+              intro: tempOuter[j].intro || ""
             });
             results1.push(j++);
           }
@@ -412,11 +456,16 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
       return results;
     };
 
+    Food.chooseFoodByCurrentChoose = function() {
+      _getCurrentChooseFromLocStor();
+      return _selectFoodDisplayByCurrentChoose();
+    };
+
     return Food;
 
   })();
   Activity = (function() {
-    var _activities, _activityContainerDom, _activityCurrentChoose, _activityHomeDisplayChooseUlDom, _activityHomeDisplayUlDom, _activityInfoContentDom, _activityInfoImgDom, _activityInfoImgFieldDom, _activityInfoIntroDom, _activityInfoTimeDom, _activityInfoTitleNameDom, _activityInfoTypeDom, _activityInformationDom, _activityPromotionUlDom, _activityThemeUlDom, _activityTypeNum, _allActivityType, _getActivityDetailInfoDom, _getActivityDisplayChooseDom, _getActivityDisplayDom, _getActivityTypeContainerDom, _getCurrentChooseFromLocStor, _initContainerDomByAllActivity, _initTypeUlDom, _locStor, _selectActivityDisplayByCurrentChoose, _setCurrentChoose;
+    var _activities, _activityContainerDom, _activityCurrentChoose, _activityHomeDisplayChooseUlDom, _activityHomeDisplayUlDom, _activityInfoContentDom, _activityInfoImgDom, _activityInfoImgFieldDom, _activityInfoIntroDom, _activityInfoTimeDom, _activityInfoTitleNameDom, _activityInfoTypeDom, _activityInformationDom, _activityPromotionUlDom, _activityThemeUlDom, _activityTypeNum, _allActivityType, _getActivityDetailInfoDom, _getActivityDisplayChooseDom, _getActivityDisplayDom, _getActivityTypeContainerDom, _getCurrentChooseFromLocStor, _initContainerDomByAllActivity, _initTypeUlDom, _selectActivityDisplayByCurrentChoose, _setCurrentChoose;
 
     _allActivityType = ["promotion", "theme"];
 
@@ -434,8 +483,6 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
       "promotion": 0,
       "theme": 0
     };
-
-    _locStor = null;
 
     _activities = [];
 
@@ -458,12 +505,6 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
     _activityInfoContentDom = query("#activity-info-content-field .content", _activityInformationDom);
 
     _activityInfoImgFieldDom.style.height = (clientWidth * 0.9 * 167 / 343) + "px";
-
-
-    /*
-    		for dom in querys "#Activity-container-column li"
-    			addListener dom, "click", -> hashRoute.pushHashStr("activityInfo")
-     */
 
     _getActivityDisplayDom = function(activity) {
       var dom;
@@ -555,13 +596,17 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
 
     _setCurrentChoose = function(seqNum) {
       _activityCurrentChoose = seqNum;
-      return _locStor.set("activityCurrentChoose", seqNum);
+      return locStor.set("activityCurrentChoose", seqNum);
     };
 
     _getCurrentChooseFromLocStor = function() {
       var choose;
-      choose = _locStor.get("activityCurrentChoose") || 0;
-      return _activityCurrentChoose = Number(choose);
+      choose = locStor.get("activityCurrentChoose") || 0;
+      if (_activities[choose]) {
+        return _activityCurrentChoose = Number(choose);
+      } else {
+        return _activityCurrentChoose = 0;
+      }
     };
 
     _selectActivityDisplayByCurrentChoose = function() {
@@ -616,7 +661,6 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
 
     Activity.initial = function() {
       var activity, activityJSON, i, k, len;
-      _locStor = LocStorSingleton.getInstance();
       activityJSON = getJSON(getActivityJSON());
       _initContainerDomByAllActivity(activityJSON);
       _initTypeUlDom();
@@ -651,6 +695,154 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
     };
 
     return Activity;
+
+  })();
+  User = (function() {
+    var _IndividualDom, _alreadyLoginDom, _balanceDom, _checkEXPByLadder, _currentEXPBarDom, _currentEXPFullValueDom, _currentEXPValueDom, _discountDom, _getCorresIndexFromLadder, _initIsOverlap, _initLadder, _isOverlap, _ladder, _lvDom, _memberImgDom, _memberNameDom, _setCurrentMemberRankInfo, _updateCurrentMemberRankDom;
+
+    _IndividualDom = getById("Individual-page");
+
+    _alreadyLoginDom = query(".Already-login-field", _IndividualDom);
+
+    _lvDom = query(".rank-field p.rank", _alreadyLoginDom);
+
+    _memberNameDom = query(".rank-field p.member-name", _alreadyLoginDom);
+
+    _memberImgDom = query(".member-img-pos #rank-img", _alreadyLoginDom);
+
+    _discountDom = query(".discount-field p.discount", _alreadyLoginDom);
+
+    _balanceDom = query(".remainder-EXP-Blend p.remainder-number", _alreadyLoginDom);
+
+    _currentEXPValueDom = query(".current-value", _alreadyLoginDom);
+
+    _currentEXPFullValueDom = query(".full-value", _alreadyLoginDom);
+
+    _currentEXPBarDom = query(".inner-bar", _alreadyLoginDom);
+
+    _isOverlap = {};
+
+    _ladder = [];
+
+    _initIsOverlap = function(comPre) {
+      _isOverlap["discount"] = Boolean(comPre & 1);
+      _isOverlap["sale"] = Boolean(comPre & 2);
+      _isOverlap["half"] = Boolean(comPre & 4);
+      return _isOverlap["limit"] = Boolean(comPre & 8);
+    };
+
+    _initLadder = function(ladder) {
+      return deepCopy(ladder, _ladder);
+    };
+
+    _getCorresIndexFromLadder = function(user) {
+      var expInfo, fullFlag, i, index, k, len;
+      fullFlag = true;
+      index = 0;
+      for (i = k = 0, len = _ladder.length; k < len; i = ++k) {
+        expInfo = _ladder[i];
+        if (expInfo.EXP > user.EXP) {
+          index = i - 1;
+          fullFlag = false;
+          break;
+        }
+      }
+      return {
+        fullFlag: fullFlag,
+        index: index
+      };
+    };
+
+    _updateCurrentMemberRankDom = function(user) {
+      var discountStr;
+      _lvDom.innerHTML = "Lv." + user.currentRank;
+      _memberImgDom.className = "member-rank-" + user.currentRank;
+      _memberNameDom.innerHTML = user.rankName + "级会员";
+      _currentEXPFullValueDom.innerHTML = user.currentFullEXP;
+      _currentEXPBarDom.style.width = "";
+      if (user.discount >= 100) {
+        discountStr = "升级后尊享更多优惠";
+      } else {
+        discountStr = "VIP尊享" + ((user.discount / 10).toFixed(1)) + "折";
+      }
+      return _discountDom.innerHTML = discountStr;
+    };
+
+    _setCurrentMemberRankInfo = function(user, index, fullIndex) {
+      user.currentRank = index;
+      user.rankName = _ladder[index].name;
+      user.discount = _ladder[index].discount;
+      return user.currentFullEXP = _ladder[fullIndex].EXP;
+    };
+
+    _checkEXPByLadder = function(user) {
+      var fullIndex, index, result;
+      result = _getCorresIndexFromLadder(user);
+      if (result.fullFlag) {
+        index = _ladder.length - 1;
+        fullIndex = index;
+      } else {
+        index = result.index;
+        fullIndex = index + 1;
+      }
+      _setCurrentMemberRankInfo(user, index, fullIndex);
+      return _updateCurrentMemberRankDom(user);
+    };
+
+    function User(options) {
+      this.tryLoginAndUpdateInfo(options);
+    }
+
+    User.prototype.isLogin = function() {
+      return this.id !== 0;
+    };
+
+    User.prototype.init = function() {
+      this.setBalance(this.balance);
+      return this.setCurrentEXP(this.EXP);
+    };
+
+    User.prototype.setBalance = function(balance) {
+      this.balance = balance;
+      return _balanceDom.innerHTML = this.balance;
+    };
+
+    User.prototype.setCurrentEXP = function(EXP) {
+      this.EXP = EXP;
+      _currentEXPValueDom.innerHTML = this.EXP;
+      _checkEXPByLadder(this);
+      return _currentEXPBarDom.style.width = (100 * this.EXP / this.currentFullEXP) + "%";
+    };
+
+    User.prototype.tryLoginAndUpdateInfo = function(options) {
+      deepCopy(options, this);
+      return this.init();
+    };
+
+    User.initial = function() {
+      var ComPreJSON, MemberJSON;
+      ComPreJSON = getJSON(getComPreJSON());
+      MemberJSON = getJSON(getMemberJSON());
+      _initIsOverlap(ComPreJSON);
+      _initLadder(MemberJSON.membership.ladder);
+      return user = new User({
+        avatar: MemberJSON.avatar,
+        birthday: MemberJSON.birthday,
+        city: MemberJSON.city,
+        country: MemberJSON.country,
+        mobile: MemberJSON.mobile,
+        nickName: MemberJSON.nickname,
+        province: MemberJSON.province,
+        registerTime: MemberJSON.register_time,
+        sex: MemberJSON.sex,
+        signature: MemberJSON.signature,
+        id: MemberJSON.user,
+        EXP: MemberJSON.membership.EXP,
+        balance: MemberJSON.membership.balance
+      });
+    };
+
+    return User;
 
   })();
   rotateDisplay = (function() {
@@ -771,7 +963,7 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
     rotateDisplay.prototype.initDisplay = function() {
       var dom, k, len, ref1;
       this.displayContainerDom = this.displayUlDom.parentNode;
-      this.displayContainerDom.style.overflowX = "auto";
+      this.displayContainerDom.style.overflowX = "hidden";
       this.allDisplayDom = querys("li", this.displayUlDom);
 
       /*
@@ -863,18 +1055,6 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
 
     return rotateDisplay;
 
-  })();
-  Menu = (function() {
-    var _allDishDoms, dom, k, len, results;
-    _allDishDoms = querys("#book-dish-wrap .food-list-wrap li");
-    results = [];
-    for (k = 0, len = _allDishDoms.length; k < len; k++) {
-      dom = _allDishDoms[k];
-      results.push(addListener(dom, "click", function() {
-        return hashRoute.pushHashStr("bookInfo");
-      }));
-    }
-    return results;
   })();
   Individual = (function() {
     var _confirmRechargebtn, _rechargeFuncDom;
@@ -1002,6 +1182,7 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
       },
       "bookInfo": {
         "push": function() {
+          Food.chooseFoodByCurrentChoose();
           return _dynamicShowTarget("book-info-wrap", "hide-right");
         },
         "pop": function() {
@@ -1187,14 +1368,20 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
       return setTimeout("scrollTo(0, 0)", 0);
     };
     _dynamicShowTarget = function(id, className) {
-      removeClass(getById(id), className);
-      return setTimeout("scrollTo(0, 0)", 0);
+      removeClass(getById(id), "hide");
+      return setTimeout(function() {
+        removeClass(getById(id), className);
+        return setTimeout("scrollTo(0, 0)", 0);
+      }, 0);
     };
     _hideTarget = function(id, className) {
       var _target;
       _target = getById(id);
       if (className) {
         addClass(_target, className);
+        setTimeout(function() {
+          return addClass(_target, "hide");
+        }, 400);
       } else {
         addClass(_target, "hide");
       }
@@ -1300,6 +1487,7 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
       }
     };
   })();
+  Lock = (function() {})();
   LocStorSingleton = (function() {
     var LocStor, _instance;
     _instance = null;
@@ -1362,6 +1550,9 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
           _instance = new LocStor();
         }
         return _instance;
+      },
+      initial: function() {
+        return locStor = this.getInstance();
       }
     };
   })();
@@ -1431,6 +1622,8 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
     }
   };
   return window.onload = function() {
+    LocStorSingleton.initial();
+    User.initial();
     Activity.initial();
     Category.initial();
     Food.initial();
@@ -1447,24 +1640,6 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
     } else {
       hashRoute.parseAndExecuteHash();
     }
-
-    /*
-    		hashRoute.hashJump("-Home")
-    		setTimeout(->
-    			hashRoute.pushHashStr("Menu")
-    			setTimeout(->
-    				hashRoute.pushHashStr("x")
-    				
-    				setTimeout(->
-    					hashRoute.hashJump("-Detail-Book-bookCol")
-    					setTimeout(->
-    						hashRoute.pushHashStr("bookInfo")
-    					, 100)
-    				, 100)
-    				
-    			, 100)
-    		, 100)
-     */
     return new rotateDisplay({
       displayCSSSelector: "#Activity-page .header-display-list",
       chooseCSSSelector: "#Activity-page .choose-dot-list",
