@@ -1,6 +1,6 @@
 do (window, document)->
 
-	[addListener, removeListener, hasClass, addClass, removeClass, ajax, getElementsByClassName, isPhone, hidePhone, query, querys, remove, append, prepend, toggleClass, getObjectURL, deepCopy, getById, createDom] = [util.addListener, util.removeListener, util.hasClass, util.addClass, util.removeClass, util.ajax, util.getElementsByClassName, util.isPhone, util.hidePhone, util.query, util.querys, util.remove, util.append, util.prepend, util.toggleClass, util.getObjectURL, util.deepCopy, util.getById, util.createDom]
+	[addListener, removeListener, hasClass, addClass, removeClass, ajax, getElementsByClassName, isPhone, hidePhone, query, querys, remove, append, prepend, toggleClass, getObjectURL, deepCopy, getById, createDom, getJSON, getAdaptHeight] = [util.addListener, util.removeListener, util.hasClass, util.addClass, util.removeClass, util.ajax, util.getElementsByClassName, util.isPhone, util.hidePhone, util.query, util.querys, util.remove, util.append, util.prepend, util.toggleClass, util.getObjectURL, util.deepCopy, util.getById, util.createDom, util.getJSON, util.getAdaptHeight]
 
 	clientWidth =  document.body.clientWidth
 	clientHeight = document.documentElement.clientHeight
@@ -16,10 +16,6 @@ do (window, document)->
 	]
 
 	numToChinese = ["零","一","二","三","四","五","六","七","八","九","十"]
-
-	getJSON = (json)->
-		if typeof json is "string" then json = JSON.parse(json)
-		return json
 
 	class Category
 
@@ -163,6 +159,7 @@ do (window, document)->
 		@chooseBookCategoryByCurrentChoose: _chooseBookCategoryByCurrentChoose
 
 	class Food
+		_bookDishDom = getById "book-dish-wrap"
 		_foodInfo = getById "book-info-wrap"
 		_foodInfoImgDom = query ".food-img-wrapper img", _foodInfo
 		_foodInfoImgDom.style.height = "#{clientWidth * 200 / 375}px"
@@ -280,6 +277,7 @@ do (window, document)->
 
 		_selectFoodDisplayByCurrentChoose = ->
 			food = _foods[_foodCurrentChoose[0]][_foodCurrentChoose[1]]
+			_foodInfo.style.height = "#{getAdaptHeight(_bookDishDom, _foodInfo)}px"
 			_foodInfoImgDom.src = food.url
 			currentFooInfoDom = query(".full-part", food.foodDom) || query(".right-part", food.foodDom)
 			_foodInfoDom.innerHTML = currentFooInfoDom.innerHTML
@@ -553,8 +551,6 @@ do (window, document)->
 			deepCopy options, @
 			@init()
 
-
-
 		@initial: ->
 			ComPreJSON = getJSON getComPreJSON()
 			MemberJSON = getJSON getMemberJSON()
@@ -578,7 +574,43 @@ do (window, document)->
 				balance 		:		MemberJSON.membership.balance
 			}
 
+	class Recharge
+		_amountValue = [50, 150, 450, 750, 950]
+		_rechargeUlDom = query "#Recharge-page .amount-list"
+		_rechargeNum = 0
 
+		_getRechargeDom = (recharge)->
+			dom = createDom "li"; dom.id = "amount-#{recharge.seqNum}"
+			dom.innerHTML = "<div class='amount-li-field'>
+								<div class='basic-info-field vertical-center'>
+									<p class='money price'>#{recharge.amountValue}</p>
+									<p class='get-higher-rank'></p>
+								</div>
+								<div class='choose-field'></div>
+							</div>"
+			if _rechargeNum isnt 0
+				line = createDom "div"; line.className = "fivePercentLeftLine"
+				append _rechargeUlDom, line
+			append _rechargeUlDom, dom
+			_rechargeNum++
+			dom
+
+		constructor: (options)->
+			deepCopy options, @
+			@init()
+
+		init: ->
+			@initRechargeDom()
+
+		initRechargeDom: ->
+			@rechargeDom = _getRechargeDom @
+
+		@initial: ->
+			for i in [0..4]
+				recharge = new Recharge {
+					seqNum 			:		i
+					amountValue 	:		_amountValue[i]
+				}
 
 
 
@@ -730,8 +762,11 @@ do (window, document)->
 		_rechargeFuncDom = getById "Recharge-func"
 		addListener _rechargeFuncDom, "click", -> hashRoute.pushHashStr("Extra-extraContent-Recharge")
 
+
+		###
 		_confirmRechargebtn = getById "recharge-confirm-column"
 		addListener _confirmRechargebtn, "click", -> hashRoute.pushHashStr("choosePaymentMethod")
+		###
 
 	hashRoute = do ->
 
@@ -851,7 +886,9 @@ do (window, document)->
 				"pop": -> _hideTarget("brae-payment-page")
 			}
 			"Recharge": {
-				"push": -> _staticShowTarget("Recharge-page")
+				"push": ->
+					_staticShowTarget("Recharge-page")
+					if not user.isLogin() then hashRoute.back()
 				"pop": -> _hideTarget("Recharge-page")
 			}
 			"choosePaymentMethod": {
@@ -985,7 +1022,6 @@ do (window, document)->
 		pushHashStr: pushHashStr
 		popHashStr: popHashStr
 		hashJump: hashJump
-		HomeBottom: HomeBottom
 		parseAndExecuteHash: -> _parseAndExecuteHash _getHashStr()
 
 	Lock = do ->
@@ -1054,6 +1090,7 @@ do (window, document)->
 	window.onload = ->
 		LocStorSingleton.initial()
 		User.initial()
+		Recharge.initial()
 		Activity.initial()
 		Category.initial()
 		Food.initial()

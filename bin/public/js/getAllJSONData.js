@@ -11,6 +11,6 @@ var getMemberJSON = function() {
 	return JSONObj;
 }
 var getComPreJSON = function() {
-	var JSONObj = "15"
+	var JSONObj = '15';
 	return JSONObj;
 }

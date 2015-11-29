@@ -1,20 +1,14 @@
 var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
 (function(window, document) {
-  var Activity, Category, Food, Individual, LocStorSingleton, Lock, User, addClass, addListener, ajax, append, callpay, clientHeight, clientWidth, compatibleCSSConfig, createDom, deepCopy, getById, getElementsByClassName, getJSON, getObjectURL, hasClass, hashRoute, hidePhone, innerCallback, isPhone, locStor, numToChinese, prepend, query, querys, ref, remove, removeClass, removeListener, rotateDisplay, toggleClass, user;
-  ref = [util.addListener, util.removeListener, util.hasClass, util.addClass, util.removeClass, util.ajax, util.getElementsByClassName, util.isPhone, util.hidePhone, util.query, util.querys, util.remove, util.append, util.prepend, util.toggleClass, util.getObjectURL, util.deepCopy, util.getById, util.createDom], addListener = ref[0], removeListener = ref[1], hasClass = ref[2], addClass = ref[3], removeClass = ref[4], ajax = ref[5], getElementsByClassName = ref[6], isPhone = ref[7], hidePhone = ref[8], query = ref[9], querys = ref[10], remove = ref[11], append = ref[12], prepend = ref[13], toggleClass = ref[14], getObjectURL = ref[15], deepCopy = ref[16], getById = ref[17], createDom = ref[18];
+  var Activity, Category, Food, Individual, LocStorSingleton, Lock, Recharge, User, addClass, addListener, ajax, append, callpay, clientHeight, clientWidth, compatibleCSSConfig, createDom, deepCopy, getAdaptHeight, getById, getElementsByClassName, getJSON, getObjectURL, hasClass, hashRoute, hidePhone, innerCallback, isPhone, locStor, numToChinese, prepend, query, querys, ref, remove, removeClass, removeListener, rotateDisplay, toggleClass, user;
+  ref = [util.addListener, util.removeListener, util.hasClass, util.addClass, util.removeClass, util.ajax, util.getElementsByClassName, util.isPhone, util.hidePhone, util.query, util.querys, util.remove, util.append, util.prepend, util.toggleClass, util.getObjectURL, util.deepCopy, util.getById, util.createDom, util.getJSON, util.getAdaptHeight], addListener = ref[0], removeListener = ref[1], hasClass = ref[2], addClass = ref[3], removeClass = ref[4], ajax = ref[5], getElementsByClassName = ref[6], isPhone = ref[7], hidePhone = ref[8], query = ref[9], querys = ref[10], remove = ref[11], append = ref[12], prepend = ref[13], toggleClass = ref[14], getObjectURL = ref[15], deepCopy = ref[16], getById = ref[17], createDom = ref[18], getJSON = ref[19], getAdaptHeight = ref[20];
   clientWidth = document.body.clientWidth;
   clientHeight = document.documentElement.clientHeight;
   locStor = null;
   user = null;
   compatibleCSSConfig = ["", "-webkit-", "-moz-", "-ms-", "-o-"];
   numToChinese = ["零", "一", "二", "三", "四", "五", "六", "七", "八", "九", "十"];
-  getJSON = function(json) {
-    if (typeof json === "string") {
-      json = JSON.parse(json);
-    }
-    return json;
-  };
   Category = (function() {
 
     /*
@@ -232,7 +226,9 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
 
   })();
   Food = (function() {
-    var _foodCurrentChoose, _foodInfo, _foodInfoDom, _foodInfoImgDom, _foodInfoIntroDom, _foods, _getBottomWrapForInfoDom, _getCurrentChooseFromLocStor, _getDCLabelForTopWrapDom, _getFoodDom, _getImgDomForFoodDom, _getInfoDomForFoodDom, _getInitPriceForBottomWrapDom, _getMinPriceForBottomWrapDom, _getTagLabelForTopWrapDom, _getTopWrapDomForInfoDom, _selectFoodDisplayByCurrentChoose, _setCurrentChoose;
+    var _bookDishDom, _foodCurrentChoose, _foodInfo, _foodInfoDom, _foodInfoImgDom, _foodInfoIntroDom, _foods, _getBottomWrapForInfoDom, _getCurrentChooseFromLocStor, _getDCLabelForTopWrapDom, _getFoodDom, _getImgDomForFoodDom, _getInfoDomForFoodDom, _getInitPriceForBottomWrapDom, _getMinPriceForBottomWrapDom, _getTagLabelForTopWrapDom, _getTopWrapDomForInfoDom, _selectFoodDisplayByCurrentChoose, _setCurrentChoose;
+
+    _bookDishDom = getById("book-dish-wrap");
 
     _foodInfo = getById("book-info-wrap");
 
@@ -388,6 +384,7 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
     _selectFoodDisplayByCurrentChoose = function() {
       var currentFooInfoDom, food;
       food = _foods[_foodCurrentChoose[0]][_foodCurrentChoose[1]];
+      _foodInfo.style.height = (getAdaptHeight(_bookDishDom, _foodInfo)) + "px";
       _foodInfoImgDom.src = food.url;
       currentFooInfoDom = query(".full-part", food.foodDom) || query(".right-part", food.foodDom);
       _foodInfoDom.innerHTML = currentFooInfoDom.innerHTML;
@@ -845,6 +842,58 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
     return User;
 
   })();
+  Recharge = (function() {
+    var _amountValue, _getRechargeDom, _rechargeNum, _rechargeUlDom;
+
+    _amountValue = [50, 150, 450, 750, 950];
+
+    _rechargeUlDom = query("#Recharge-page .amount-list");
+
+    _rechargeNum = 0;
+
+    _getRechargeDom = function(recharge) {
+      var dom, line;
+      dom = createDom("li");
+      dom.id = "amount-" + recharge.seqNum;
+      dom.innerHTML = "<div class='amount-li-field'> <div class='basic-info-field vertical-center'> <p class='money price'>" + recharge.amountValue + "</p> <p class='get-higher-rank'></p> </div> <div class='choose-field'></div> </div>";
+      if (_rechargeNum !== 0) {
+        line = createDom("div");
+        line.className = "fivePercentLeftLine";
+        append(_rechargeUlDom, line);
+      }
+      append(_rechargeUlDom, dom);
+      _rechargeNum++;
+      return dom;
+    };
+
+    function Recharge(options) {
+      deepCopy(options, this);
+      this.init();
+    }
+
+    Recharge.prototype.init = function() {
+      return this.initRechargeDom();
+    };
+
+    Recharge.prototype.initRechargeDom = function() {
+      return this.rechargeDom = _getRechargeDom(this);
+    };
+
+    Recharge.initial = function() {
+      var i, k, recharge, results;
+      results = [];
+      for (i = k = 0; k <= 4; i = ++k) {
+        results.push(recharge = new Recharge({
+          seqNum: i,
+          amountValue: _amountValue[i]
+        }));
+      }
+      return results;
+    };
+
+    return Recharge;
+
+  })();
   rotateDisplay = (function() {
     var _autoRotateEvent, _getCompatibleTranslateCss, _touchEnd, _touchMove, _touchStart;
 
@@ -1057,15 +1106,16 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
 
   })();
   Individual = (function() {
-    var _confirmRechargebtn, _rechargeFuncDom;
+    var _rechargeFuncDom;
     _rechargeFuncDom = getById("Recharge-func");
-    addListener(_rechargeFuncDom, "click", function() {
+    return addListener(_rechargeFuncDom, "click", function() {
       return hashRoute.pushHashStr("Extra-extraContent-Recharge");
     });
-    _confirmRechargebtn = getById("recharge-confirm-column");
-    return addListener(_confirmRechargebtn, "click", function() {
-      return hashRoute.pushHashStr("choosePaymentMethod");
-    });
+
+    /*
+    		_confirmRechargebtn = getById "recharge-confirm-column"
+    		addListener _confirmRechargebtn, "click", -> hashRoute.pushHashStr("choosePaymentMethod")
+     */
   })();
   hashRoute = (function() {
     var HomeBottom, HomeMenu, _activityInfoDom, _allExtraContentDoms, _allExtraContentId, _allExtraDoms, _allExtraFormDoms, _allExtraFormId, _allMainDetailDoms, _allMainDetailId, _allMainDoms, _allMainHomeDoms, _allMainHomeId, _allSecondary, _dynamicShowTarget, _extraMainDom, _getHashStr, _hashStateFunc, _hideAllExtra, _hideAllExtraContentPage, _hideAllExtraFormPage, _hideAllExtraPage, _hideAllMain, _hideAllMainDetailPage, _hideAllMainHomePage, _hideAllMainPage, _hideSecondaryPage, _hideTarget, _loc, _modifyTitle, _parseAndExecuteHash, _recentHash, _secondaryInfo, _staticShowTarget, _switchExtraPage, _switchFirstPage, _switchSecondaryPage, _titleDom, hashJump, popHashStr, pushHashStr;
@@ -1232,7 +1282,10 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
       },
       "Recharge": {
         "push": function() {
-          return _staticShowTarget("Recharge-page");
+          _staticShowTarget("Recharge-page");
+          if (!user.isLogin()) {
+            return hashRoute.back();
+          }
         },
         "pop": function() {
           return _hideTarget("Recharge-page");
@@ -1481,7 +1534,6 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
       pushHashStr: pushHashStr,
       popHashStr: popHashStr,
       hashJump: hashJump,
-      HomeBottom: HomeBottom,
       parseAndExecuteHash: function() {
         return _parseAndExecuteHash(_getHashStr());
       }
@@ -1624,6 +1676,7 @@ var indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i 
   return window.onload = function() {
     LocStorSingleton.initial();
     User.initial();
+    Recharge.initial();
     Activity.initial();
     Category.initial();
     Food.initial();
