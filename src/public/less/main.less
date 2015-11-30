@@ -1024,33 +1024,157 @@
     }
 }
 
-#extra {
-    z-index: 2;
-    position: absolute;
+#popup {
+    z-index: 6;
+    position: fixed;
+    left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: auto;
+}
+
+#brae-form-page {
+    width: 100%;
+    height: 100%;
+    #cover-field {
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        .cover {
+            height: 100%;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+    }
+    #all-page-content-field {
+        .page-wrapper {
+            .rounded-corners(5px);
+            background-color: @homePageBackgroundColor;
+            width: 255px;
+            .header-field {
+                position: relative;
+                .rounded-corners(5px 5px 0 0);
+                width: 100%;
+                height: 45px;
+                background-color: @coffeeColor;
+                .btn-field {
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    height: 100%;
+                    width: 40px;
+                    .btn {
+                        width: 100%;
+                        height: 100%;
+                        .background-norm;
+                        background-size: 13px 13px;
+                        background-image: url(@closeUrl);
+                    }
+                }
+                .title-field {
+                    text-align: center;
+                    p.title {
+                        line-height: 45px;
+                        font-size: 18px;
+                        color: #fff;
+                    }
+                }
+            }
+            .container-field {
+                font-size: 14px;
+                .book-choose-wrapper {
+                    .book-choose {
+                        .nintyPercentCenter;
+                        padding: 5px 0 5px 0;
+                        .group-name-field {
+                            width: 100%;
+                        }
+                        ul.book-choose-list {
+                            height: auto;
+                            width: 100%;
+                            margin-bottom: 10px;
+                            li {
+                                height: 16px;
+                                line-height: 16px;
+                                padding: 0 11px 0 11px;
+                                float: left;
+                                margin: 8px 8px 0 0;
+                                .rounded-corners(10px);
+                                border: solid 1px @borderColor;
+                                background-color: #fff;
+                            }
+                            li.choose {
+                                height: 18px;
+                                line-height: 18px;
+                                color: #fff;
+                                background-color: @orangeColor;
+                                border: none;
+                            }
+                        }
+                    }
+                }
+                .choose-info-wrapper {
+                    .choose-info-field {
+                        .nintyPercentCenter;
+                        height: 40px;
+                        p {
+                            line-height: 40px;
+                        }
+                        .choose-name-field {
+                            float: left;
+                            > * {
+                                float: left;
+                            }
+                        }
+                        .price-field {
+                            float: right;
+                            p.price {
+                                color: @deepCoffeeColor;
+                                font-size: 18px;
+                            }
+                        }
+                    }
+                }
+                .btn-wrapper {
+                    margin-top: 0;
+                    margin-bottom: 0;
+                    padding-bottom: 20px;
+                    .confirm-wrapper {
+                        .nintyPercentCenter;
+                        .confirm-field {
+                            width: 100%;
+                            p.confirm {
+                                width: 100%;
+                                font-size: 16px;
+                                float: left;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+#extra {
+    z-index: 2;
     background-color: @homePageBackgroundColor;
-    .overflowScrolling();
 }
 
 
 /*brae-payment-page-*/
 
 #brae-payment-page {
-    position: relative;
     #all-payment-content-field {
         .all-page-field {
             #Recharge-page {
                 width: 100%;
-                height: auto;
-                position: absolute;
-                top: 0;
-                left: 0;
+                padding-top: 15px;
                 background-color: @homePageBackgroundColor;
                 #recharge-amount-column {
-                    margin-top: 15px;
                     background-color: #fff;
                     .borderTopBottom();
                     .title-field {
@@ -1099,7 +1223,7 @@
             }
             #Choose-payment-method-page {
                 width: 100%;
-                height: auto;
+                height: 100%;
                 position: absolute;
                 top: 0;
                 left: 0;
@@ -1465,6 +1589,10 @@ input {
     top: 0;
     background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACcAAABCBAMAAAAmtNLvAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAPUExURQAAAI+Pj21tbY2NjY+Pj333IT4AAAAEdFJOUwC2B4DQufHfAAAASElEQVQ4y2NgwA4MFTDFmF2EMAVNXBwVMBW6YCplBApiKGUSwaZUcVTpqFKilWIVxKZ9VOEIV4i1CMJaWGEt1rAXgFiLSiwAAKtLQ8GDPhjlAAAAAElFTkSuQmCC") no-repeat center;
     background-size: 11.81px 20px;
+}
+
+.clear {
+    clear: both;
 }
 
 .hide-left {
