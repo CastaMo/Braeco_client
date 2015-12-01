@@ -1147,9 +1147,16 @@
 #brae-form-page #all-page-content-field .page-wrapper .container-field .choose-info-wrapper .choose-info-field .price-field {
   float: right;
 }
-#brae-form-page #all-page-content-field .page-wrapper .container-field .choose-info-wrapper .choose-info-field .price-field p.price {
+#brae-form-page #all-page-content-field .page-wrapper .container-field .choose-info-wrapper .choose-info-field .price-field > * {
+  float: left;
+}
+#brae-form-page #all-page-content-field .page-wrapper .container-field .choose-info-wrapper .choose-info-field .price-field p.min-price {
   color: #910012;
   font-size: 18px;
+}
+#brae-form-page #all-page-content-field .page-wrapper .container-field .choose-info-wrapper .choose-info-field .price-field p.init-price {
+  text-decoration: line-through;
+  margin-left: 5px;
 }
 #brae-form-page #all-page-content-field .page-wrapper .container-field .btn-wrapper {
   margin-top: 0;

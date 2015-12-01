@@ -1130,9 +1130,16 @@
                         }
                         .price-field {
                             float: right;
-                            p.price {
+                            > * {
+                                float: left;
+                            }
+                            p.min-price {
                                 color: @deepCoffeeColor;
                                 font-size: 18px;
+                            }
+                            p.init-price {
+                                text-decoration: line-through;
+                                margin-left: 5px;
                             }
                         }
                     }
