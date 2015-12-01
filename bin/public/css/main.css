@@ -648,20 +648,25 @@
 #brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-order-wrap .food-order-wrapper ul li .food-info-field .full-part .top-wrap {
   height: 42px;
 }
-#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-order-wrap .food-order-wrapper ul li .food-info-field .full-part .top-wrap > * {
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-order-wrap .food-order-wrapper ul li .food-info-field .full-part .top-wrap .first-part {
+  width: 100%;
+  height: 20px;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-order-wrap .food-order-wrapper ul li .food-info-field .full-part .top-wrap .name-field {
   float: left;
 }
 #brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-order-wrap .food-order-wrapper ul li .food-info-field .full-part .top-wrap .name-field p.c-name {
-  font-size: 18px;
+  font-size: 16px;
 }
-#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-order-wrap .food-order-wrapper ul li .food-info-field .full-part .top-wrap .name-field p.choose {
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-order-wrap .food-order-wrapper ul li .food-info-field .full-part .top-wrap .label-field {
+  float: left;
+  margin: 1px 0 0 5px;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-order-wrap .food-order-wrapper ul li .food-info-field .full-part .top-wrap .choose-field p.choose {
   font-size: 12px;
   color: #818181;
   margin-top: 5px;
   line-height: 17px;
-}
-#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-order-wrap .food-order-wrapper ul li .food-info-field .full-part .top-wrap .label-field {
-  margin: 1px 0 0 5px;
 }
 #brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-order-wrap .food-order-wrapper ul li .food-info-field .full-part .bottom-wrap {
   height: 30px;
