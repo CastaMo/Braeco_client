@@ -64,7 +64,7 @@
   background-color: #fff;
 }
 .choose-wrapper .choose-dot-list .inactive .dot {
-  background-color: #979797;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 .label-field > * {
   float: left;
@@ -99,10 +99,10 @@
   height: 30px;
 }
 .controll-field .btn .img {
-  margin: 4px;
-  width: 22px;
-  height: 22px;
-  background-size: 22px 22px;
+  margin: 2.5px;
+  width: 25px;
+  height: 25px;
+  background-size: 25px 25px;
 }
 .controll-field .minus-field .img {
   background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwBAMAAAClLOS0AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAbUExURQAAAMjHzMjHzMjFy8bEycjGzMjGzMjHzP///9JMUdAAAAAHdFJOUwDl9lwhu4ZvJwg/AAAA0ElEQVQ4y3WUvQ7CMAyEw++MEKgrDCgrA4K1iBcAlq5IDJ2bqvUr8NjQkqRpcnejP8nnOLaVcjo/1vvtW8W6PaXX4TSOL7VYmVcYn2XiVR2H+LyQQE3uwVVG2vhEegyMS3aRSLV10DEwOXIYXIoUNL21AHX2EwRWP1Ai0KKabF3QojNZYHBXUwx2aT9cV0oMWvTu/9szDCoLPoEs0BgYDmgqak7LpQ+kLaFNpG2nH0W/lg4DHx86cHRE+VDTNaCLw1eNLidfZ3oA+MngRyY9S1+cV58a23KDLgAAAABJRU5ErkJggg==");
@@ -144,10 +144,11 @@
 }
 #brae-home-page .all-page-field #Menu-page #Menu-category-column {
   width: 100%;
-  margin: 10px 0 65px 0;
+  margin: 10px 0 0 0;
 }
 #brae-home-page .all-page-field #Menu-page #Menu-category-column .category-wrapper {
   margin: 0 10px 0 10px;
+  padding-bottom: 65px;
 }
 #brae-home-page .all-page-field #Menu-page #Menu-category-column .category-wrapper .category-display-list li {
   margin-bottom: 10px;
@@ -545,7 +546,7 @@
   -webkit-box-orient: vertical;
   text-align: center;
   padding: 0 7.5px 0 7.5px;
-  margin: 0 7.5px 0 7.5px;
+  margin: 0 5px 0 5px;
   float: left;
   color: #fff;
 }
@@ -1110,9 +1111,9 @@
   margin-bottom: 10px;
 }
 #brae-form-page #all-page-content-field .page-wrapper .container-field .book-choose-wrapper .book-choose ul.book-choose-list li {
-  height: 16px;
-  line-height: 16px;
-  padding: 0 11px 0 11px;
+  height: 18px;
+  line-height: 18px;
+  padding: 0 13px 0 13px;
   float: left;
   margin: 8px 8px 0 0;
   -webkit-border-radius: 10px;
@@ -1124,8 +1125,8 @@
   background-color: #fff;
 }
 #brae-form-page #all-page-content-field .page-wrapper .container-field .book-choose-wrapper .book-choose ul.book-choose-list li.choose {
-  height: 18px;
-  line-height: 18px;
+  height: 20px;
+  line-height: 20px;
   color: #fff;
   background-color: #FFC107;
   border: none;
