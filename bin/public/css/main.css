@@ -1133,28 +1133,30 @@
 #brae-form-page #all-page-content-field .page-wrapper .container-field .choose-info-wrapper .choose-info-field {
   width: 90%;
   margin: 0 auto 0 auto;
-  height: 40px;
+  padding: 10px 0 5px 0;
 }
 #brae-form-page #all-page-content-field .page-wrapper .container-field .choose-info-wrapper .choose-info-field p {
-  line-height: 40px;
+  line-height: 20px;
 }
 #brae-form-page #all-page-content-field .page-wrapper .container-field .choose-info-wrapper .choose-info-field .choose-name-field {
-  float: left;
+  height: auto;
+  width: 100%;
 }
 #brae-form-page #all-page-content-field .page-wrapper .container-field .choose-info-wrapper .choose-info-field .choose-name-field > * {
   float: left;
 }
-#brae-form-page #all-page-content-field .page-wrapper .container-field .choose-info-wrapper .choose-info-field .price-field {
+#brae-form-page #all-page-content-field .page-wrapper .container-field .choose-info-wrapper .choose-info-field .price-field .price-wrapper {
+  margin-top: 10px;
   float: right;
 }
-#brae-form-page #all-page-content-field .page-wrapper .container-field .choose-info-wrapper .choose-info-field .price-field > * {
+#brae-form-page #all-page-content-field .page-wrapper .container-field .choose-info-wrapper .choose-info-field .price-field .price-wrapper > * {
   float: left;
 }
-#brae-form-page #all-page-content-field .page-wrapper .container-field .choose-info-wrapper .choose-info-field .price-field p.min-price {
+#brae-form-page #all-page-content-field .page-wrapper .container-field .choose-info-wrapper .choose-info-field .price-field .price-wrapper p.min-price {
   color: #910012;
   font-size: 18px;
 }
-#brae-form-page #all-page-content-field .page-wrapper .container-field .choose-info-wrapper .choose-info-field .price-field p.init-price {
+#brae-form-page #all-page-content-field .page-wrapper .container-field .choose-info-wrapper .choose-info-field .price-field .price-wrapper p.init-price {
   text-decoration: line-through;
   margin-left: 5px;
 }

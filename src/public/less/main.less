@@ -1118,28 +1118,32 @@
                 .choose-info-wrapper {
                     .choose-info-field {
                         .nintyPercentCenter;
-                        height: 40px;
+                        padding: 10px 0 5px 0;
                         p {
-                            line-height: 40px;
+                            line-height: 20px;
                         }
                         .choose-name-field {
-                            float: left;
+                            height: auto;
+                            width: 100%;
                             > * {
                                 float: left;
                             }
                         }
                         .price-field {
-                            float: right;
-                            > * {
-                                float: left;
-                            }
-                            p.min-price {
-                                color: @deepCoffeeColor;
-                                font-size: 18px;
-                            }
-                            p.init-price {
-                                text-decoration: line-through;
-                                margin-left: 5px;
+                            .price-wrapper {
+                                margin-top: 10px;
+                                float: right;
+                                > * {
+                                    float: left;
+                                }
+                                p.min-price {
+                                    color: @deepCoffeeColor;
+                                    font-size: 18px;
+                                }
+                                p.init-price {
+                                    text-decoration: line-through;
+                                    margin-left: 5px;
+                                }
                             }
                         }
                     }
@@ -1164,7 +1168,6 @@
         }
     }
 }
-
 
 #extra {
     z-index: 2;
