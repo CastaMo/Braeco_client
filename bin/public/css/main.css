@@ -525,6 +525,28 @@
   z-index: 3;
   background-color: #8B572A;
 }
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-top-wrap #book-category-wrap .top-cover {
+  top: 7.5px;
+  z-index: 2;
+  position: absolute;
+  height: 27px;
+  width: 20%;
+  background-color: #fff;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-top-wrap #book-category-wrap .left-cover {
+  background: -webkit-linear-gradient(to left, rgba(139, 87, 42, 0), #8b572a);
+  background: -o-linear-gradient(to left, rgba(139, 87, 42, 0), #8b572a);
+  background: -moz-linear-gradient(to left, rgba(139, 87, 42, 0), #8b572a);
+  background: linear-gradient(to left, rgba(139, 87, 42, 0), #8b572a);
+  left: 0;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-top-wrap #book-category-wrap .right-cover {
+  background: -webkit-linear-gradient(to left, #8b572a, rgba(139, 87, 42, 0));
+  background: -o-linear-gradient(to left, #8b572a, rgba(139, 87, 42, 0));
+  background: -moz-linear-gradient(to left, #8b572a, rgba(139, 87, 42, 0));
+  background: linear-gradient(to left, #8b572a, rgba(139, 87, 42, 0));
+  right: 0;
+}
 #brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-top-wrap #book-category-wrap #book-aside-wrap {
   width: 100%;
   height: 27px;
