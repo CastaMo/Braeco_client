@@ -110,7 +110,7 @@
         margin: 0 auto;
         width: 85%;
         .confirm-field {
-            .rounded-corners(2px);
+            .rounded-corners(5px);
             text-align: center;
             background-color: @orangeColor;
             p.confirm {
@@ -540,6 +540,7 @@
                                         width: 100%;
                                         height: 100%;
                                         width: 1000px;
+                                        padding: 0 10px 0 10px;
                                         li {
                                             .ellipsisWithLineNum();
                                             text-align: center;
@@ -661,7 +662,7 @@
                                                     .choose-field {
                                                         p.choose {
                                                             font-size: 12px;
-                                                            color: @greyColor;
+                                                            color: @deepGreyColor;
                                                             margin-top: 5px;
                                                             line-height: 17px;
                                                         }
@@ -986,7 +987,7 @@
                             }
                             .intro-field {
                                 margin-top: 5px;
-                                color: @greyColor;
+                                color: @deepGreyColor;
                                 font-size: 14px;
                             }
                         }
@@ -1154,18 +1155,58 @@
                         }
                     }
                 }
-                .remark-upper-wrapper {
+                .upper-wrapper {
                     margin-top: 10px;
                     font-size: 16px;
                     > * {
                         .nintyPercentCenter;
                     }
                 }
-                .remark-lower-wrapper {
+                .lower-wrapper {
                     margin: 10px 0 10px 0;
                     font-size: 16px;
                     > * {
                         .nintyPercentCenter;
+                    }
+                    input {
+                        font-size: 16px;
+                        padding-left: 5px;
+                        width: 100%;
+                        height: 40px;
+                        .rounded-corners(5px);
+                    }
+                }
+                .extra-wrapper {
+                    margin: 10px 0;
+                    font-size: 16px;
+                    height: 40px;
+                    > * {
+                        .nintyPercentCenter;
+                    }
+                    .left-part {
+                        width: 50%;
+                        float: left;
+                    }
+                    .right-part {
+                        width: 45%;
+                        float: right;
+                        > * {
+                            float: left;
+                        }
+                        .btn {
+                            width: 100%;
+                            height: 100%;
+                            line-height: 40px;
+                            text-align: center;
+                            .rounded-corners(5px);
+                            color: #fff;
+                        }
+                        #get-id-btn {
+                            background-color: @orangeColor;
+                        }
+                        #wait-btn {
+                            background-color: @greyColor;
+                        }
                     }
                     input {
                         font-size: 16px;
@@ -1188,6 +1229,9 @@
                                 font-size: 16px;
                                 float: left;
                             }
+                        }
+                        .confirm-field.disabled {
+                            background-color: @greyColor;
                         }
                     }
                 }
@@ -1429,8 +1473,15 @@
                             }
                         }
                         li:active,
-                        #choose-payment-via-cash-column:active {
+                        .via-cash-title-field:active {
                             background-color: @touchColor;
+                        }
+                        li.choose,
+                        .via-cash-title-field.choose {
+                            background-color: @touchColor;
+                            .choose-field {
+                                background-image: url(@checkedUrl);
+                            }
                         }
                     }
                 }
@@ -1482,7 +1533,8 @@ input {
 @touchColor: #FFF5D6;
 @homePageBackgroundColor: #FFFCF6;
 @coffeeColor: #8B572A;
-@greyColor: #818181;
+@greyColor: #E3E3E3;
+@deepGreyColor: #818181;
 @EXPFullBarBackgoundColor: #EFEFF4;
 @orangeColor: #FFC107;
 @borderColor: #979797;

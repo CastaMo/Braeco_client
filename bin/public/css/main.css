@@ -124,11 +124,11 @@
   width: 85%;
 }
 .confirm-column .confirm-wrapper .confirm-field {
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  -ms-border-radius: 2px;
-  -o-border-radius: 2px;
-  border-radius: 2px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
   text-align: center;
   background-color: #FFC107;
 }
@@ -537,6 +537,7 @@
   width: 100%;
   height: 100%;
   width: 1000px;
+  padding: 0 10px 0 10px;
 }
 #brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-top-wrap #book-category-wrap #book-aside-wrap ul.tag-list li {
   overflow: hidden;
@@ -1166,23 +1167,72 @@
   text-decoration: line-through;
   margin-left: 5px;
 }
-#brae-form-page #all-page-content-field .page-wrapper .container-field .remark-upper-wrapper {
+#brae-form-page #all-page-content-field .page-wrapper .container-field .upper-wrapper {
   margin-top: 10px;
   font-size: 16px;
 }
-#brae-form-page #all-page-content-field .page-wrapper .container-field .remark-upper-wrapper > * {
+#brae-form-page #all-page-content-field .page-wrapper .container-field .upper-wrapper > * {
   width: 90%;
   margin: 0 auto 0 auto;
 }
-#brae-form-page #all-page-content-field .page-wrapper .container-field .remark-lower-wrapper {
+#brae-form-page #all-page-content-field .page-wrapper .container-field .lower-wrapper {
   margin: 10px 0 10px 0;
   font-size: 16px;
 }
-#brae-form-page #all-page-content-field .page-wrapper .container-field .remark-lower-wrapper > * {
+#brae-form-page #all-page-content-field .page-wrapper .container-field .lower-wrapper > * {
   width: 90%;
   margin: 0 auto 0 auto;
 }
-#brae-form-page #all-page-content-field .page-wrapper .container-field .remark-lower-wrapper input {
+#brae-form-page #all-page-content-field .page-wrapper .container-field .lower-wrapper input {
+  font-size: 16px;
+  padding-left: 5px;
+  width: 100%;
+  height: 40px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+}
+#brae-form-page #all-page-content-field .page-wrapper .container-field .extra-wrapper {
+  margin: 10px 0;
+  font-size: 16px;
+  height: 40px;
+}
+#brae-form-page #all-page-content-field .page-wrapper .container-field .extra-wrapper > * {
+  width: 90%;
+  margin: 0 auto 0 auto;
+}
+#brae-form-page #all-page-content-field .page-wrapper .container-field .extra-wrapper .left-part {
+  width: 50%;
+  float: left;
+}
+#brae-form-page #all-page-content-field .page-wrapper .container-field .extra-wrapper .right-part {
+  width: 45%;
+  float: right;
+}
+#brae-form-page #all-page-content-field .page-wrapper .container-field .extra-wrapper .right-part > * {
+  float: left;
+}
+#brae-form-page #all-page-content-field .page-wrapper .container-field .extra-wrapper .right-part .btn {
+  width: 100%;
+  height: 100%;
+  line-height: 40px;
+  text-align: center;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  color: #fff;
+}
+#brae-form-page #all-page-content-field .page-wrapper .container-field .extra-wrapper .right-part #get-id-btn {
+  background-color: #FFC107;
+}
+#brae-form-page #all-page-content-field .page-wrapper .container-field .extra-wrapper .right-part #wait-btn {
+  background-color: #E3E3E3;
+}
+#brae-form-page #all-page-content-field .page-wrapper .container-field .extra-wrapper input {
   font-size: 16px;
   padding-left: 5px;
   width: 100%;
@@ -1209,6 +1259,9 @@
   width: 100%;
   font-size: 16px;
   float: left;
+}
+#brae-form-page #all-page-content-field .page-wrapper .container-field .btn-wrapper .confirm-wrapper .confirm-field.disabled {
+  background-color: #E3E3E3;
 }
 #extra {
   z-index: 2;
@@ -1413,8 +1466,16 @@
   height: 37px;
 }
 #brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field li:active,
-#brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field #choose-payment-via-cash-column:active {
+#brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field .via-cash-title-field:active {
   background-color: #FFF5D6;
+}
+#brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field li.choose,
+#brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field .via-cash-title-field.choose {
+  background-color: #FFF5D6;
+}
+#brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field li.choose .choose-field,
+#brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field .via-cash-title-field.choose .choose-field {
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwBAMAAAClLOS0AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAwUExURQAAAP/BBv/BBv+6AP/ABf/BBv+/BP/BBv+9BP/BB//////FF//xx//22v/stP/rsZGh//QAAAAJdFJOUwDusw9m10SOJ9+dbWUAAAFnSURBVDjLbZS/SsRAEMZXo6elKMil01OLdFH8g51oIXaiVboTC7ETFOG68xESjTLsGwS1D9y9gL7BCfY+glZOdrObyexOs8l8/HZ2h29WiDqCq40wPbuPBYvtVVCxeNTO74VQR3pL8zM2j8pBk59PgEQ+tMIFtGLZbgQszGYnXHjS+Q440VfCgyt0lZC4Qu4tbcpv+oQlFAY+4QW7GvqENPaXqIpMs4ws1bIi9pkw+lLLI++H/HgrdVfYoUZF8auPFTGgeFVExhqCwGfdlNALQCp0pmQAgCbkNwOQUMK4+GFAqov/Fe9tAItHmqgQAuBx1QXlBBEK4AWvwSAUgGcxBQahACyIOTAIBeDGuAoRCqCzgsQiBMhja1A5oUBl0tn6e0wAOCXWlSU3b+R6JFPe3XGFcz3Iocdu/jnoemeTTudWW1hr5nnAnN4MOjlyNqRPQ8cqWb/9mASHOr/uPD9i97jXu7u0v/+MAh9bcLENugAAAABJRU5ErkJggg==");
 }
 /*common*/
 * {
