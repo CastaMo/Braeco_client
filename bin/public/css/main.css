@@ -136,6 +136,90 @@
   line-height: 40px;
   color: #fff;
 }
+.food-order-wrapper {
+  background-color: #FFFCF6;
+}
+.food-order-wrapper ul {
+  margin-top: 15px;
+  border-top: solid 1px #979797;
+  border-bottom: solid 1px #979797;
+  background-color: #fff;
+}
+.food-order-wrapper ul li .food-info-field {
+  height: 75px;
+  padding: 7px 0 2px 0;
+}
+.food-order-wrapper ul li .food-info-field .full-part .top-wrap {
+  height: 42px;
+}
+.food-order-wrapper ul li .food-info-field .full-part .top-wrap .first-part {
+  width: 100%;
+  height: 20px;
+}
+.food-order-wrapper ul li .food-info-field .full-part .top-wrap .name-field {
+  float: left;
+}
+.food-order-wrapper ul li .food-info-field .full-part .top-wrap .name-field p.c-name {
+  font-size: 16px;
+}
+.food-order-wrapper ul li .food-info-field .full-part .top-wrap .label-field {
+  float: left;
+  margin: 1px 0 0 5px;
+}
+.food-order-wrapper ul li .food-info-field .full-part .top-wrap .choose-field p.choose {
+  font-size: 12px;
+  color: #818181;
+  margin-top: 5px;
+  line-height: 17px;
+}
+.food-order-wrapper ul li .food-info-field .full-part .bottom-wrap {
+  height: 30px;
+}
+.food-order-wrapper ul li .food-info-field .full-part .bottom-wrap .price-field {
+  margin-top: 5px;
+}
+.food-order-wrapper ul li .food-info-field .full-part .bottom-wrap .controll-field > * {
+  margin-top: 0;
+}
+.food-discount-wrapper {
+  margin-top: 15px;
+  background-color: #fff;
+  border-top: solid 1px #979797;
+  border-bottom: solid 1px #979797;
+}
+.food-discount-wrapper .title-field {
+  height: 37px;
+  line-height: 37px;
+  border-bottom: solid 1px #979797;
+}
+.food-discount-wrapper .title-field p.title {
+  width: 90%;
+  margin: 0 auto 0 auto;
+  font-weight: bold;
+}
+.food-discount-wrapper ul.discount-list li {
+  height: 37px;
+}
+.food-discount-wrapper ul.discount-list li .discount-wrapper {
+  width: 90%;
+  margin: 0 auto 0 auto;
+}
+.food-discount-wrapper ul.discount-list li .discount-wrapper .discount-name-field {
+  line-height: 37px;
+  height: 37px;
+  float: left;
+}
+.food-discount-wrapper ul.discount-list li .discount-wrapper .discount-money-field {
+  line-height: 37px;
+  height: 37px;
+  float: right;
+}
+.food-discount-wrapper ul.discount-list li .discount-wrapper .discount-money-field > * {
+  float: left;
+}
+.food-discount-wrapper ul.discount-list li .discount-wrapper .discount-money-field p.minus {
+  margin-right: 3px;
+}
 /*braeco-home-page*/
 #brae-home-page .all-page-field #Menu-page #Menu-activity-column {
   width: 100%;
@@ -655,89 +739,18 @@
   z-index: 3;
   background-color: #FFFCF6;
 }
-#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-order-wrap .food-order-wrapper {
-  background-color: #FFFCF6;
-}
-#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-order-wrap .food-order-wrapper ul {
-  margin-top: 15px;
-  border-top: solid 1px #979797;
-  border-bottom: solid 1px #979797;
-  background-color: #fff;
-}
-#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-order-wrap .food-order-wrapper ul li .food-info-field {
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-order-wrap .food-order-wrapper .food-info-field {
   height: 75px;
   padding: 7px 0 2px 0;
 }
-#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-order-wrap .food-order-wrapper ul li .food-info-field .full-part .top-wrap {
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-order-wrap .food-order-wrapper .food-info-field .top-wrap {
   height: 42px;
 }
-#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-order-wrap .food-order-wrapper ul li .food-info-field .full-part .top-wrap .first-part {
-  width: 100%;
-  height: 20px;
-}
-#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-order-wrap .food-order-wrapper ul li .food-info-field .full-part .top-wrap .name-field {
-  float: left;
-}
-#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-order-wrap .food-order-wrapper ul li .food-info-field .full-part .top-wrap .name-field p.c-name {
-  font-size: 16px;
-}
-#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-order-wrap .food-order-wrapper ul li .food-info-field .full-part .top-wrap .label-field {
-  float: left;
-  margin: 1px 0 0 5px;
-}
-#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-order-wrap .food-order-wrapper ul li .food-info-field .full-part .top-wrap .choose-field p.choose {
-  font-size: 12px;
-  color: #818181;
-  margin-top: 5px;
-  line-height: 17px;
-}
-#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-order-wrap .food-order-wrapper ul li .food-info-field .full-part .bottom-wrap {
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-order-wrap .food-order-wrapper .food-info-field .bottom-wrap {
   height: 30px;
 }
-#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-order-wrap .food-order-wrapper ul li .food-info-field .full-part .bottom-wrap .price-field {
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-order-wrap .food-order-wrapper .food-info-field .bottom-wrap .price-field {
   margin-top: 5px;
-}
-#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-order-wrap .food-order-wrapper ul li .food-info-field .full-part .bottom-wrap .controll-field > * {
-  margin-top: 0;
-}
-#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-order-wrap .food-discount-wrapper {
-  margin-top: 15px;
-  background-color: #fff;
-  border-top: solid 1px #979797;
-  border-bottom: solid 1px #979797;
-}
-#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-order-wrap .food-discount-wrapper .title-field {
-  height: 37px;
-  line-height: 37px;
-  border-bottom: solid 1px #979797;
-}
-#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-order-wrap .food-discount-wrapper .title-field p.title {
-  width: 90%;
-  margin: 0 auto 0 auto;
-  font-weight: bold;
-}
-#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-order-wrap .food-discount-wrapper ul.discount-list li {
-  height: 37px;
-}
-#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-order-wrap .food-discount-wrapper ul.discount-list li .discount-wrapper {
-  width: 90%;
-  margin: 0 auto 0 auto;
-}
-#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-order-wrap .food-discount-wrapper ul.discount-list li .discount-wrapper .discount-name-field {
-  line-height: 37px;
-  height: 37px;
-  float: left;
-}
-#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-order-wrap .food-discount-wrapper ul.discount-list li .discount-wrapper .discount-money-field {
-  line-height: 37px;
-  height: 37px;
-  float: right;
-}
-#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-order-wrap .food-discount-wrapper ul.discount-list li .discount-wrapper .discount-money-field > * {
-  float: left;
-}
-#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-order-wrap .food-discount-wrapper ul.discount-list li .discount-wrapper .discount-money-field p.minus {
-  margin-right: 3px;
 }
 #brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-order-wrap .food-memo-wrapper {
   margin: 15px 0 80px 0;
