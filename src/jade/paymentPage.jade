@@ -16,12 +16,12 @@
 									p.confirm 确认充值
 			#Choose-payment-method-page.hide.extra-content-page
 				#Choose-payment-method-content
+					#payment-total-column
+						.payment-total-wrapper
+							.total-field
+								p.word 订单总价:
+								p.total-price.money.font-number-word 46
 					.Choose-payment-method-content-field
-						#payment-total-column
-							.payment-total-wrapper
-								.total-field
-									p.word 订单总价:
-									p.total-price.money.font-number-word 46
 						#choose-payment-via-member-column
 							.via-member-title-field.via-title-field
 								.title-wrapper
@@ -35,9 +35,8 @@
 										.member-info-field.info-field
 											.remainder-field.up-field
 												p.word 您的会员余额: 
-												p.remainder-number.money.font-number-word 66
 											.discount-field.down-field
-												p.discount 青铜级会员, 尊享9.5折优惠
+												p.remainder-number.money.font-number-word 66
 										.choose-field
 
 								.fivePercentLeftLine.hide
@@ -57,7 +56,6 @@
 								.title-wrapper
 									.title-field
 										p.title 使用在线支付
-										p.total-price.money.font-number-word 46
 							ul.via-online-list
 								li#p2p_wx_pub.via-online
 									.via-online-wrapper.li-wrapper

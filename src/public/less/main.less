@@ -1335,29 +1335,34 @@
                     background-image: url(@uncheckedUrl);
                 }
                 #Choose-payment-method-content {
-                    .Choose-payment-method-content-field {
-                        > * {
-                            background-color: #fff;
-                        }
-                        #payment-total-column {
-                            background-color: @touchColor;
-                            border-bottom: solid 1px @borderColor;
-                            .payment-total-wrapper {
-                                .nintyPercentCenter;
-                                .total-field {
-                                    line-height: 40px;
-                                    height: 40px;
-                                    font-weight: bold;
-                                    p.word {
-                                        float: left;
-                                        color: @deepCoffeeColor;
-                                    }
-                                    p.total-price {
-                                        float: right;
-                                        color: @deepCoffeeColor;
-                                    }
+                    #payment-total-column {
+                        position: fixed;
+                        top: 0;
+                        width: 100%;
+                        height: 40px;
+                        background-color: @touchColor;
+                        border-bottom: solid 1px @borderColor;
+                        .payment-total-wrapper {
+                            .nintyPercentCenter;
+                            .total-field {
+                                line-height: 40px;
+                                height: 40px;
+                                font-weight: bold;
+                                p.word {
+                                    float: left;
+                                    color: @deepCoffeeColor;
+                                }
+                                p.total-price {
+                                    float: right;
+                                    color: @deepCoffeeColor;
                                 }
                             }
+                        }
+                    }
+                    .Choose-payment-method-content-field {
+                        margin-top: 55px;
+                        > * {
+                            background-color: #fff;
                         }
                         .via-title-field {
                             border-bottom: solid 1px @borderColor;
@@ -1416,7 +1421,6 @@
                             }
                         }
                         #choose-payment-via-member-column {
-                            margin-top: 15px;
                             background-color: #fff;
                             .borderTopBottom;
                             ul.via-member-list {
@@ -1432,13 +1436,10 @@
                                                 > * {
                                                     float: left;
                                                 }
-                                                p.remainder-number {
-                                                    margin-left: 5px;
-                                                    color: @deepCoffeeColor;
-                                                }
                                             }
                                             .discount-field {
-                                                p.discount {
+                                                p.remainder-number {
+                                                    margin-left: 5px;
                                                     color: @deepCoffeeColor;
                                                 }
                                             }
@@ -1636,6 +1637,7 @@ input {
 .unionPayLogo {
     background-image: url(@unionUrl);
 }
+
 .baiduLogo {
     background-image: url(@baiduUrl);
 }
