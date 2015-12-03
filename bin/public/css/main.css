@@ -291,6 +291,44 @@
   line-height: 20px;
   color: #9B9B9B;
 }
+#brae-home-page .all-page-field #Already-page #Already-content .Already-content-field .food-order-wrapper .full-part {
+  width: 90%;
+  margin: 0 auto 0 auto;
+}
+#brae-home-page .all-page-field #Already-page #Already-content .Already-content-field .food-order-wrapper .full-part .top-wrap p.c-name {
+  font-weight: bold;
+}
+#brae-home-page .all-page-field #Already-page #Already-content .Already-content-field .food-order-wrapper .full-part .bottom-wrap .price-field {
+  float: left;
+}
+#brae-home-page .all-page-field #Already-page #Already-content .Already-content-field .food-order-wrapper .full-part .bottom-wrap .price-field p.min-price {
+  font-size: 18px;
+  color: #910012;
+}
+#brae-home-page .all-page-field #Already-page #Already-content .Already-content-field .food-order-wrapper .full-part .bottom-wrap .controll-field .number-field {
+  margin: 0;
+}
+#brae-home-page .all-page-field #Already-page #Already-content .Already-content-field .food-order-wrapper .full-part .bottom-wrap .controll-field .number-field p.num:before {
+  content: "×";
+}
+#brae-home-page .all-page-field #Already-page #Already-content .Already-content-field .food-total-price-wrapper {
+  width: 90%;
+  margin: 0 auto 0 auto;
+  margin-top: 30px;
+  margin-bottom: 90px;
+}
+#brae-home-page .all-page-field #Already-page #Already-content .Already-content-field .food-total-price-wrapper .price-field {
+  float: right;
+}
+#brae-home-page .all-page-field #Already-page #Already-content .Already-content-field .food-total-price-wrapper .price-field > * {
+  line-height: 25px;
+  font-size: 18px;
+  float: left;
+  color: #910012;
+}
+#brae-home-page .all-page-field #Already-page #Already-content .Already-content-field .food-total-price-wrapper .price-field p.word {
+  margin-right: 10px;
+}
 #brae-home-page .all-page-field #Already-page #Already-service {
   position: fixed;
   bottom: 50px;

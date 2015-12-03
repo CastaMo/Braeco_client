@@ -294,6 +294,52 @@
                         }
                     }
                 }
+                .Already-content-field {
+                    .food-order-wrapper {
+                        .full-part {
+                            .nintyPercentCenter;
+                            .top-wrap {
+                                p.c-name {
+                                    font-weight: bold;
+                                }
+                            }
+                            .bottom-wrap {
+                                .price-field {
+                                    float: left;
+                                    p.min-price {
+                                        font-size: 18px;
+                                        color: @deepCoffeeColor;
+                                    }
+                                }
+                                .controll-field {
+                                    .number-field {
+                                        margin: 0;
+                                        p.num:before {
+                                            content: "×";
+                                        } 
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    .food-total-price-wrapper {
+                        .nintyPercentCenter;
+                        margin-top: 30px;
+                        margin-bottom: 90px;
+                        .price-field {
+                            float: right;
+                            > * {
+                                line-height: 25px;
+                                font-size: 18px;
+                                float: left;
+                                color: @deepCoffeeColor;
+                            }
+                            p.word {
+                                margin-right: 10px;
+                            }
+                        }
+                    }
+                }
             }
             #Already-service {
                 position: fixed;
