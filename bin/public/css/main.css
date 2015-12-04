@@ -1425,10 +1425,11 @@
 }
 #brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page .choose-field {
   float: right;
-  width: 20px;
+  width: 40px;
   height: 100%;
   background-repeat: no-repeat;
   background-position: center;
+  background-position: right;
   background-size: 20px 20px;
   background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwBAMAAAClLOS0AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAhUExURQAAAO/v9Ovr8O/v9O7u8+/v9O3t8u7u9O/v9P////v7/TSnhl0AAAAIdFJOUwDvGLNm10KOpCl+pwAAAUNJREFUOMttVLFOwzAQNSltVwQS8pgKVDEWClJGBAMdK7FkLF1g7FBVWU0onPoH4QtSvhLHduzz+d4S5Z7f3dl+ZyF6vD9I9boTFNe3YHDxFMfHEhzUBsdPfVwzjyGelYCwzz3xBhEufSIg6JMtKPFl4yNIsDLEJCXODVGmxJ4t3ZefcESXq+KIH71ryREq50t0RQY8MRM3JHJozeczOY/jrzsV0tShaVrbVkEEjVXU5EB6gT4UyQpACV4A4BR/RKAV0q5siUDZ4m5lEOjiRViKBLrdKiRHAr3BD98OFsC3OPH9YAGcibHfARbAxrvq2GBB56wy2bTzzyK+iGDSYXx1Fkveus68RRqvjXeHKbG0gyYZu3GTFmYtI4MQpvMqJu7CPFfE6WHQUct1jp+GkWfqVfyYZM82fp8n78/0ZT7frv3vP2tb3h/vk8iqAAAAAElFTkSuQmCC");
 }
@@ -1439,6 +1440,7 @@
   height: 40px;
   background-color: #FFF5D6;
   border-bottom: solid 1px #979797;
+  z-index: 4;
 }
 #brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content #payment-total-column .payment-total-wrapper {
   width: 90%;
@@ -1552,6 +1554,16 @@
 }
 #brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field #choose-payment-via-online-column ul.via-online-list li.via-online .li-wrapper .info-field .down-field p.special {
   color: #910012;
+}
+#brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field #choose-payment-via-online-column .via-online-none-warn {
+  width: 90%;
+  margin: 0 auto 0 auto;
+}
+#brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field #choose-payment-via-online-column .via-online-none-warn p.warn {
+  text-align: center;
+  height: 55px;
+  line-height: 55px;
+  color: #9B9B9B;
 }
 #brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field #choose-payment-via-cash-column {
   margin-top: 15px;

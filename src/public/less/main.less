@@ -1412,9 +1412,10 @@
                 background-color: @homePageBackgroundColor;
                 .choose-field {
                     float: right;
-                    width: 20px;
+                    width: 40px;
                     height: 100%;
                     .background-norm;
+                    background-position: right;
                     background-size: 20px 20px;
                     background-image: url(@uncheckedUrl);
                 }
@@ -1426,6 +1427,7 @@
                         height: 40px;
                         background-color: @touchColor;
                         border-bottom: solid 1px @borderColor;
+                        z-index: 4;
                         .payment-total-wrapper {
                             .nintyPercentCenter;
                             .total-field {
@@ -1560,6 +1562,15 @@
                                             }
                                         }
                                     }
+                                }
+                            }
+                            .via-online-none-warn {
+                                .nintyPercentCenter;
+                                p.warn {
+                                    text-align: center;
+                                    height: 55px;
+                                    line-height: 55px;
+                                    color: @lightGreyColor;
                                 }
                             }
                         }
