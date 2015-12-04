@@ -941,15 +941,18 @@
   float: left;
 }
 #brae-detail-page .all-page-field #Activity-page .Activity-content-field #Activity-header-column .like-wrapper .like-field .like-icon {
-  margin: 6px 6px 6px 10px;
-  width: 16px;
-  height: 16px;
-  background-color: #fff;
-  -webkit-border-radius: 100%;
-  -moz-border-radius: 100%;
-  -ms-border-radius: 100%;
-  -o-border-radius: 100%;
-  border-radius: 100%;
+  margin: 5px 8px 5px 8px;
+  width: 20px;
+  height: 17.5px;
+  background-size: 20px 17.5px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+#brae-detail-page .all-page-field #Activity-page .Activity-content-field #Activity-header-column .like-wrapper .like-field .like-icon.like {
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAcBAMAAADy7KARAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAnUExURQAAAP///////////////////////////////////////////////649SjkAAAAMdFJOUwDD+eXU8XubGwtaOtFawLsAAAEASURBVBjTXZCxSwMxGMWfCrW1iyBuGeyeoVAX8aaDDkKWgpPc0D/gBpeCgsNN4ugguB6Cm4PgX5BctCDvjzLJJW3qG+7L+93Ll3wBnJ6ekRWMV+zugEdF3QbwwFn13Y4LM5O6cf6QJ7Ti980qLqorB+oFSW2kcOV8DYwqv6LQ/mvZYGAZlmUoYom98Itd0YNjHHTMpKbYNzmozv4limnqEeV6xFMSWLp7qK23xs1XlxlwN8VL1kRc+OnDFEGan378j0kC5U94j4GJEVvd9k9Wx8h83fsU0TIGXERLf0QKAEdyTl6bdgPw1SlbXG49hmJyapsM4JW8x47eb3Y9hmnDH/vuxF5nszFtAAAAAElFTkSuQmCC");
+}
+#brae-detail-page .all-page-field #Activity-page .Activity-content-field #Activity-header-column .like-wrapper .like-field .like-icon.unlike {
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAcBAMAAADy7KARAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAqUExURQAAAP///////////////////////////////////////////////////4a7yi8AAAANdFJOUwD14FXAHjhsBZAQpILceV3nAAABAklEQVQY02NgAILQBhDJAaEYGNg23r00lYFhje7dKwZggbl3lWQvGrDp3lW6e2UBkM99dyoD297LtlcSGJbLagEFaoWBBPtF2QlAKug2AwOXbAFY302wcXcDGNivgA1q8QBTew8wsFwGs1gXgClbBwamqwxIIFeBgfEGssBaATQVsQowM6AAaAbUFijwLQC6IwHBZ7sItOysBkKABeS8ppsIgbMgv7DJGsD4zHfB2mvh9iReB1M8d6FK2MA+BumEKkm8DVXJcxccAsyyO+CG3wQGL8dchHXMsl4MDEsuFiDsT7qUwKqrhuQFVl/xwisByJ7qvnt3BwMKMBRG5TOwwjQAAEakRHnbmRppAAAAAElFTkSuQmCC");
 }
 #brae-detail-page .all-page-field #Activity-page .Activity-content-field #Activity-header-column .like-wrapper .like-field .like-num {
   font-size: 16px;
