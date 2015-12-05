@@ -136,6 +136,9 @@
   line-height: 40px;
   color: #fff;
 }
+.confirm-column .confirm-wrapper .confirm-field.disabled {
+  background-color: #C8C7CC;
+}
 .food-order-wrapper {
   background-color: #FFFCF6;
 }
@@ -225,6 +228,27 @@
   width: 100%;
   height: auto;
   position: relative;
+}
+#brae-home-page .all-page-field #Menu-page #Menu-activity-column .activity-wrapper ul li {
+  position: relative;
+}
+#brae-home-page .all-page-field #Menu-page #Menu-activity-column .activity-wrapper ul li .activity-name-wrapper {
+  position: absolute;
+  height: 40px;
+  width: 100%;
+  bottom: 2px;
+  left: 0;
+  background: -webkit-linear-gradient(rgba(0, 0, 0, 0), #000000);
+  background: -o-linear-gradient(rgba(0, 0, 0, 0), #000000);
+  background: -moz-linear-gradient(rgba(0, 0, 0, 0), #000000);
+  background: linear-gradient(rgba(0, 0, 0, 0), #000000);
+}
+#brae-home-page .all-page-field #Menu-page #Menu-activity-column .activity-wrapper ul li .activity-name-wrapper .activity-name-field p.activity-name {
+  margin-right: 5px;
+  font-size: 18px;
+  text-align: right;
+  line-height: 40px;
+  color: #fff;
 }
 #brae-home-page .all-page-field #Menu-page #Menu-category-column {
   width: 100%;
@@ -652,7 +676,6 @@
   position: absolute;
   height: 27px;
   width: 20%;
-  background-color: #fff;
 }
 #brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-top-wrap #book-category-wrap .left-cover {
   background: -webkit-linear-gradient(to left, rgba(139, 87, 42, 0), #8b572a);
@@ -1474,7 +1497,6 @@
 }
 #brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field .via-title-field .title-wrapper .title-field {
   line-height: 37px;
-  height: 37px;
   font-weight: bold;
 }
 #brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field ul {
@@ -1485,7 +1507,7 @@
   position: relative;
 }
 #brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field ul li .li-wrapper {
-  height: 55px;
+  height: 57px;
   width: 90%;
   margin: 0 auto 0 auto;
 }
@@ -1496,7 +1518,7 @@
   float: right;
 }
 #brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field ul li .li-wrapper .img-field {
-  margin: 9px 9px 9px 0;
+  margin: 10px 9px 10px 0;
 }
 #brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field ul li .li-wrapper .img-field .img {
   width: 37px;
@@ -1509,15 +1531,14 @@
   background-size: 32px 37px;
 }
 #brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field ul li .li-wrapper .info-field {
-  margin: 6.5px 0 6.5px 0;
+  margin: 8px 0 7px 0;
 }
 #brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field ul li .li-wrapper .info-field .up-field {
   line-height: 20px;
-  height: 22px;
 }
 #brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field ul li .li-wrapper .info-field .down-field {
   line-height: 20px;
-  height: 20px;
+  margin-top: 2px;
 }
 #brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field ul li .li-wrapper .info-field .down-field p {
   font-size: 14px;
@@ -1552,6 +1573,16 @@
   float: right;
   color: #910012;
 }
+#brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field #choose-payment-via-online-column ul.via-online-list li.via-online {
+  position: relative;
+  height: 57px;
+}
+#brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field #choose-payment-via-online-column ul.via-online-list li.via-online .li-wrapper {
+  position: absolute;
+  height: 100%;
+  width: 90%;
+  left: 5%;
+}
 #brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field #choose-payment-via-online-column ul.via-online-list li.via-online .li-wrapper .info-field .down-field p.special {
   color: #910012;
 }
@@ -1569,8 +1600,14 @@
   margin-top: 15px;
   border-top: solid 1px #979797;
 }
+#brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field #choose-payment-via-cash-column .title-wrapper {
+  height: 38px;
+}
 #brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field #choose-payment-via-cash-column .title-field {
   float: left;
+}
+#brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field #choose-payment-via-cash-column .title-field p.title {
+  line-height: 37px;
 }
 #brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field #choose-payment-via-cash-column .choose-field {
   height: 37px;
