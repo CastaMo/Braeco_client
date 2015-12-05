@@ -1612,6 +1612,22 @@
 #brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field #choose-payment-via-cash-column .choose-field {
   height: 37px;
 }
+#brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field #remind-via-cash-column {
+  margin-top: 15px;
+  border-top: solid 1px #979797;
+  border-bottom: solid 1px #979797;
+}
+#brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field #remind-via-cash-column .via-remind-body {
+  width: 90%;
+  margin: 0 auto 0 auto;
+}
+#brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field #remind-via-cash-column .via-remind-body .remind-field {
+  margin: 15px 0 15px 0;
+}
+#brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field #remind-via-cash-column .via-remind-body .remind-field p.remind {
+  text-align: left;
+  color: #9B9B9B;
+}
 #brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field li:active,
 #brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field .via-cash-title-field:active {
   background-color: #FFF5D6;
