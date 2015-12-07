@@ -3,3 +3,4 @@ script(type="text/javascript") document.addEventListener("touchstart", function(
 - var scriptFiles = ['common/extra.min.js', 'main.js', 'getAllJSONData.js']
 each elem in scriptFiles
 	script(src="./public/js/#{elem}" type="text/javascript")
+script document.write('<script src="//' + (location.hostname || 'localhost') + ':35729/livereload.js?snipver=1"><\/script>')
