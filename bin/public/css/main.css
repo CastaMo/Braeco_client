@@ -800,6 +800,7 @@
   height: auto;
   z-index: 3;
   background-color: #FFFCF6;
+  padding-bottom: 80px;
 }
 #brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-order-wrap .food-order-wrapper .food-info-field {
   height: 75px;
@@ -815,7 +816,7 @@
   margin-top: 5px;
 }
 #brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-order-wrap .food-memo-wrapper {
-  margin: 15px 0 80px 0;
+  margin: 15px 0 0 0;
   border-top: solid 1px #979797;
   background-color: #fff;
 }
