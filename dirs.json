@@ -3,6 +3,7 @@
 	"js": "public/js/",
 	"coffee": "public/coffee/",
 	"less": "public/less/",
+	"version": "version/",
 	"source_path": "src/",
 	"dest_path": "bin/"
 }
