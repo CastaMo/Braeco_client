@@ -576,8 +576,7 @@
       </div>
     </div>
     <script type="text/javascript">document.addEventListener("touchstart", function(){}, true)</script>
-    <script src="/public/version/public/js/common/util_d2118ffa57.js" type="text/javascript"></script>
-    <script src="/public/version/public/js/main_3c1ab178fe.js" type="text/javascript"></script>
-    <script>document.write('<script src="//' + (location.hostname || 'localhost') + ':35729/livereload.js?snipver=1"><\/script>')</script>
+    <script src="/public/version/public/js/common/extra.min_9b1e689708.js" type="text/javascript"></script>
+    <script src="/public/version/public/js/main.min_71ce22cd33.js" type="text/javascript"></script>
   </body>
 </html>
