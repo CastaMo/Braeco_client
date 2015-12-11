@@ -1,20 +1,5 @@
-doctype html
-html
-	head
-		include jade/head
+extends layout
 
-	body
-		#braeco
-			#main
-				include jade/homePage
-
-				include jade/detailPage
-
-			#popup.hide
-				include jade/formPage
-
-			#extra.hide
-				include jade/paymentPage
-
-
-		include jade/script
+block script
+	include jade/commonScript
+	include jade/testJS
