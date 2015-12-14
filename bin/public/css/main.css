@@ -290,7 +290,7 @@
   padding-bottom: 90px;
 }
 #brae-home-page .all-page-field #Already-page #Already-content .Already-not-order-field #Already-not-order-column {
-  margin-top: 55px;
+  padding-top: 55px;
 }
 #brae-home-page .all-page-field #Already-page #Already-content .Already-not-order-field #Already-not-order-column .not-order-img-wrapper {
   width: 150px;
@@ -341,6 +341,9 @@
 }
 #brae-home-page .all-page-field #Already-page #Already-content .Already-content-field .food-order-wrapper .full-part .bottom-wrap .controll-field .number-field p.num:before {
   content: "×";
+}
+#brae-home-page .all-page-field #Already-page #Already-content .Already-content-field .food-order-wrapper {
+  padding-top: 1px;
 }
 #brae-home-page .all-page-field #Already-page #Already-content .Already-content-field .food-total-price-wrapper {
   width: 90%;
