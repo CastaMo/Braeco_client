@@ -130,7 +130,7 @@
   color: #fff;
 }
 .confirm-column .confirm-wrapper .cancel-field {
-  background-color: #979797;
+  background-color: #C8C7CC;
 }
 .confirm-column .confirm-wrapper .confirm-field.disabled {
   background-color: #DED5CF;
@@ -143,8 +143,8 @@
 }
 .food-order-wrapper ul {
   margin-top: 15px;
-  border-top: solid 1px #979797;
-  border-bottom: solid 1px #979797;
+  border-top: solid 1px #C8C7CC;
+  border-bottom: solid 1px #C8C7CC;
   background-color: #fff;
 }
 .food-order-wrapper ul li .food-info-field {
@@ -186,13 +186,13 @@
 .food-discount-wrapper {
   margin-top: 15px;
   background-color: #fff;
-  border-top: solid 1px #979797;
-  border-bottom: solid 1px #979797;
+  border-top: solid 1px #C8C7CC;
+  border-bottom: solid 1px #C8C7CC;
 }
 .food-discount-wrapper .title-field {
   height: 37px;
   line-height: 37px;
-  border-bottom: solid 1px #979797;
+  border-bottom: solid 1px #C8C7CC;
 }
 .food-discount-wrapper .title-field p.title {
   width: 90%;
@@ -453,8 +453,8 @@
   margin-top: 10px;
 }
 #brae-home-page .all-page-field #Individual-page #Individual-content .Already-login-field #Individual-info-column .Individual-EXP-bar-wrapper .EXP-bar-field {
-  border-top: solid 1px #979797;
-  border-bottom: solid 1px #979797;
+  border-top: solid 1px #C8C7CC;
+  border-bottom: solid 1px #C8C7CC;
 }
 #brae-home-page .all-page-field #Individual-page #Individual-content .Already-login-field #Individual-info-column .Individual-EXP-bar-wrapper .EXP-bar-field .full-bar {
   width: 100%;
@@ -471,8 +471,8 @@
   margin-top: 20px;
 }
 #brae-home-page .all-page-field #Individual-page #Individual-content .Already-login-field #Individual-operation-column .Individual-func-wrapper {
-  border-top: solid 1px #979797;
-  border-bottom: solid 1px #979797;
+  border-top: solid 1px #C8C7CC;
+  border-bottom: solid 1px #C8C7CC;
   height: auto;
   width: 100%;
 }
@@ -507,8 +507,8 @@
 #brae-home-page .all-page-field #Individual-page #Individual-content .not-yet-login-field #not-yet-login-column .not-yet-login-wrapper {
   width: 100%;
   height: 90px;
-  border-top: solid 1px #979797;
-  border-bottom: solid 1px #979797;
+  border-top: solid 1px #C8C7CC;
+  border-bottom: solid 1px #C8C7CC;
   position: relative;
 }
 #brae-home-page .all-page-field #Individual-page #Individual-content .not-yet-login-field #not-yet-login-column .not-yet-login-wrapper * {
@@ -798,14 +798,14 @@
   width: 100%;
 }
 #brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-info-wrap .food-info-wrapper {
-  border-top: solid 1px #979797;
-  border-bottom: solid 1px #979797;
+  border-top: solid 1px #C8C7CC;
+  border-bottom: solid 1px #C8C7CC;
   background-color: #fff;
   margin-top: 15px;
 }
 #brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-info-wrap .food-intro-wrapper {
-  border-top: solid 1px #979797;
-  border-bottom: solid 1px #979797;
+  border-top: solid 1px #C8C7CC;
+  border-bottom: solid 1px #C8C7CC;
   margin-top: 15px;
   background-color: #fff;
 }
@@ -852,11 +852,11 @@
 }
 #brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-order-wrap .food-memo-wrapper {
   margin: 15px 0 0 0;
-  border-top: solid 1px #979797;
+  border-top: solid 1px #C8C7CC;
   background-color: #fff;
 }
 #brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-order-wrap .food-memo-wrapper .title-field {
-  border-bottom: solid 1px #979797;
+  border-bottom: solid 1px #C8C7CC;
   height: 37px;
   line-height: 37px;
   position: relative;
@@ -866,7 +866,7 @@
   margin: 0 auto 0 auto;
 }
 #brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-order-wrap .food-memo-wrapper .memo-field {
-  border-bottom: solid 1px #979797;
+  border-bottom: solid 1px #C8C7CC;
   padding: 10px 0;
 }
 #brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-order-wrap .food-memo-wrapper .memo-field p.memo {
@@ -1039,8 +1039,8 @@
 }
 #brae-detail-page .all-page-field #Activity-page .Activity-content-field #Activity-container-column .activity-container-wrapper .title-field {
   height: 40px;
-  border-top: solid 1px #979797;
-  border-bottom: solid 1px #979797;
+  border-top: solid 1px #C8C7CC;
+  border-bottom: solid 1px #C8C7CC;
   background-color: #fff;
 }
 #brae-detail-page .all-page-field #Activity-page .Activity-content-field #Activity-container-column .activity-container-wrapper .title-field p.title {
@@ -1184,7 +1184,7 @@
   font-size: 14px;
 }
 #popup {
-  z-index: 6;
+  z-index: 10;
   position: absolute;
   left: 0;
   top: 0;
@@ -1234,7 +1234,7 @@
   -o-border-radius: 5px 5px 0 0;
   border-radius: 5px 5px 0 0;
   width: 100%;
-  height: 45px;
+  height: 38px;
   background-color: #8B572A;
 }
 #brae-form-page #all-page-content-field .page-wrapper .header-field .btn-field {
@@ -1256,8 +1256,7 @@
   text-align: center;
 }
 #brae-form-page #all-page-content-field .page-wrapper .header-field .title-field p.title {
-  line-height: 45px;
-  font-size: 18px;
+  line-height: 38px;
   color: #fff;
 }
 #brae-form-page #all-page-content-field .page-wrapper .container-field {
@@ -1267,7 +1266,7 @@
   height: 230px;
   overflow: auto;
   background-color: #fff;
-  border-bottom: solid 1px #979797;
+  border-bottom: solid 1px #C8C7CC;
   -webkit-overflow-scrolling: touch;
 }
 #brae-form-page #all-page-content-field .page-wrapper .container-field .book-choose-wrapper .book-choose {
@@ -1294,7 +1293,7 @@
   -ms-border-radius: 10px;
   -o-border-radius: 10px;
   border-radius: 10px;
-  border: solid 1px #979797;
+  border: solid 1px #C8C7CC;
   background-color: #fff;
 }
 #brae-form-page #all-page-content-field .page-wrapper .container-field .book-choose-wrapper .book-choose ul.book-choose-list li.choose {
@@ -1361,6 +1360,7 @@
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
   border-radius: 5px;
+  border: solid 1px #C8C7CC;
 }
 #brae-form-page #all-page-content-field .page-wrapper .container-field .extra-wrapper {
   margin: 10px 0;
@@ -1410,6 +1410,7 @@
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
   border-radius: 5px;
+  border: solid 1px #C8C7CC;
 }
 #brae-form-page #all-page-content-field .page-wrapper .container-field .btn-wrapper {
   margin-bottom: 0;
@@ -1457,12 +1458,12 @@
 }
 #brae-payment-page #all-payment-content-field .all-page-field #Recharge-page #recharge-amount-column {
   background-color: #fff;
-  border-top: solid 1px #979797;
-  border-bottom: solid 1px #979797;
+  border-top: solid 1px #C8C7CC;
+  border-bottom: solid 1px #C8C7CC;
 }
 #brae-payment-page #all-payment-content-field .all-page-field #Recharge-page #recharge-amount-column .title-field {
   height: 37px;
-  border-bottom: solid 1px #979797;
+  border-bottom: solid 1px #C8C7CC;
 }
 #brae-payment-page #all-payment-content-field .all-page-field #Recharge-page #recharge-amount-column .title-field p.title {
   width: 90%;
@@ -1526,7 +1527,7 @@
   width: 100%;
   height: 40px;
   background-color: #FFF5D6;
-  border-bottom: solid 1px #979797;
+  border-bottom: solid 1px #C8C7CC;
   z-index: 4;
 }
 #brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content #payment-total-column .payment-total-wrapper {
@@ -1553,7 +1554,7 @@
   background-color: #fff;
 }
 #brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field .via-title-field {
-  border-bottom: solid 1px #979797;
+  border-bottom: solid 1px #C8C7CC;
 }
 #brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field .via-title-field .title-wrapper {
   width: 90%;
@@ -1611,8 +1612,8 @@
 }
 #brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field #choose-payment-via-member-column {
   background-color: #fff;
-  border-top: solid 1px #979797;
-  border-bottom: solid 1px #979797;
+  border-top: solid 1px #C8C7CC;
+  border-bottom: solid 1px #C8C7CC;
 }
 #brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field #choose-payment-via-member-column ul.via-member-list li .via-member-wrapper .VIP-img-field .img {
   background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABQCAMAAAC5zwKfAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAzUExURQAAAP++Av/11v/BB//ABf/BBv/ABf/BBv+1AP/BBv/JJf/ttv/eef/xx//mmP/WW//QQzJ0zRQAAAAKdFJOUwAf//9Jmm3mC8uMJPw0AAACxklEQVRYw7VZ2baDIAysCCJLgP//2tsqV2VJQA/msbbTJJPdz4eWlS9CKSnnWUqlxMLXz3NZuVBzIUo8BOVCzohIwW8rt6BoEXNZR8LdhOQdcBtkn+GTSH6lvXXGAGNgjLNeJw/FdFO9YA3LxNhwR8n1op62wKoC9qKnID25nnEXHCPEnWoqAnE68DQJt0EeWirUkdPhPss6xB6OnBp42rAuMZpEPPwXgHUKBMKPB55nN8TjiIJ2n3O0I0URzw06QmhQw+uEYPaaeTa01Rkx0eBA+Ar1bagYHQ3WgCuIqwi6MHqNBhuSTFRFE40+mV4a+QH7c2jkzJIpqFvRhkeoTlWMCrqGgoSKLlVR0gyfVQCvGTvTMqHYNQwineKuRIvGl+1Znm3jT8WFEttWsP2vGy28z+F9xPHD4tCjIKViOGxWpMXg0ubugLRZfV2IZd2vrQddzgs6/Fo/ln9rdOHVFPhC1ZBy3C8sFK7hMU3OrPJ6viHaZ/m5RE5sUYw6ASFzooicOPYI8VpAXWRFFZz0IyYF2URAWZLci5gWeBPrg6zkSR9i1jAgAu4PsSGDwstjcf+4DtiBWA5AEVDWS0MLscSDxIeG3UPUWO7JSth0INYGPpPEocPbbU0MWjdVkXo9iAavX6IoDo8B/4sDxyuxwwAdXtk5XmCTdpeKxc1ZqRbgMUBPtQCiSaFxo8kmhbdRPGzINoo2+ltxeGn06CjicEBHjSLosGRxQEsOS9g4dyXZA3iK5mScwwbOc4MNm8/M5QN64ERG4nLVPVdaeiSuD+3wv9cnftW1IMuH9vpasZuRnwnAlu4p14rq4mM3Lioh7DNjKotPdTXzkYtKHQgJzbXVrLY8euLs4HxreWyut82Rnt9cwFt44v0TwfAjxvgzy/hD0PhT1fhj2vhz3/iD5Asn0/FH3RfOzuMP4y+c7t94ufDw9ccfMMZDsfHcn6wAAAAASUVORK5CYII=");
@@ -1627,8 +1628,8 @@
 #brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field #choose-payment-via-online-column {
   margin-top: 15px;
   background-color: #fff;
-  border-top: solid 1px #979797;
-  border-bottom: solid 1px #979797;
+  border-top: solid 1px #C8C7CC;
+  border-bottom: solid 1px #C8C7CC;
 }
 #brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field #choose-payment-via-online-column .via-online-title-field .title-wrapper .title-field p.title {
   float: left;
@@ -1662,7 +1663,7 @@
 }
 #brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field #choose-payment-via-cash-column {
   margin-top: 15px;
-  border-top: solid 1px #979797;
+  border-top: solid 1px #C8C7CC;
 }
 #brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field #choose-payment-via-cash-column .title-wrapper {
   height: 38px;
@@ -1678,8 +1679,8 @@
 }
 #brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field #remind-via-cash-column {
   margin-top: 15px;
-  border-top: solid 1px #979797;
-  border-bottom: solid 1px #979797;
+  border-top: solid 1px #C8C7CC;
+  border-bottom: solid 1px #C8C7CC;
 }
 #brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field #remind-via-cash-column .via-remind-body {
   width: 90%;
@@ -1987,7 +1988,7 @@ input {
   margin-left: 5%;
   width: 95%;
   height: 1px;
-  background-color: #b3b3b3;
+  background-color: #C8C7CC;
 }
 .money:before {
   content: "¥";

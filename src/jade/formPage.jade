@@ -69,7 +69,7 @@
 								p.warm 请输入您的备注信息, 如: 牛奶过敏, 去冰等。
 						.lower-wrapper
 							.input-filed
-								input(name="remark" id="remark" placeholder="请输入您的备注信息")
+								input(name="remark" id="remark" placeholder="请输入您的备注信息" maxlength="150")
 						.confirm-column.btn-wrapper
 							.confirm-wrapper
 								.confirm-field
@@ -87,6 +87,9 @@
 						.upper-wrapper
 							.content-field
 								p.content 这里应该空白~
+						.lower-wrapper.hide
+							.input-filed
+								input(name="server" id="server" placeholder="请输入您需要的服务" maxlength="30")
 						.confirm-column.btn-wrapper
 							.confirm-wrapper
 								.cancel-field.left-btn

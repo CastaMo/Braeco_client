@@ -1192,7 +1192,7 @@
 }
 
 #popup {
-    z-index: 6;
+    z-index: 10;
     position: absolute;
     left: 0;
     top: 0;
@@ -1232,7 +1232,7 @@
                 position: relative;
                 .rounded-corners(5px 5px 0 0);
                 width: 100%;
-                height: 45px;
+                height: 38px;
                 background-color: @coffeeColor;
                 .btn-field {
                     position: absolute;
@@ -1251,8 +1251,7 @@
                 .title-field {
                     text-align: center;
                     p.title {
-                        line-height: 45px;
-                        font-size: 18px;
+                        line-height: 38px;
                         color: #fff;
                     }
                 }
@@ -1348,6 +1347,7 @@
                         width: 100%;
                         height: 40px;
                         .rounded-corners(5px);
+                        border: solid 1px @borderColor;
                     }
                 }
                 .extra-wrapper {
@@ -1388,6 +1388,7 @@
                         width: 100%;
                         height: 40px;
                         .rounded-corners(5px);
+                        border: solid 1px @borderColor;
                     }
                 }
                 .btn-wrapper {
@@ -1764,7 +1765,6 @@ input {
 @centreGreyColor: #DED5CF;
 @deepGreyColor: #818181;
 @orangeColor: #FFC107;
-@borderColor: #979797;
 @lightGreyColor: #9B9B9B;
 @deepRedColor: #D0021B;
 @redOrangeColor: #F58623;
@@ -2035,7 +2035,7 @@ input {
     transition: all @time ease-in-out;
 }
 
-.borderTopBottom (@size: 1px, @color: #979797) {
+.borderTopBottom (@size: 1px, @color: @borderColor) {
     border-top: solid @size @color;
     border-bottom: solid @size @color;
 }
@@ -2050,7 +2050,7 @@ input {
     margin-left: 5%;
     width: 95%;
     height: 1px;
-    background-color: rgb(179, 179, 179);
+    background-color: @borderColor;
 }
 
 .money:before {
