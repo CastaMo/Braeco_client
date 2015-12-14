@@ -108,14 +108,17 @@
     .confirm-wrapper {
         margin: 0 auto;
         width: 85%;
-        .confirm-field {
+        > * {
             .rounded-corners(5px);
             text-align: center;
             background-color: @orangeColor;
-            p.confirm {
+            p {
                 line-height: 40px;
                 color: #fff;
             }
+        }
+        .cancel-field {
+            background-color: @borderColor;
         }
         .confirm-field.disabled {
             background-color: @centreGreyColor;
@@ -123,6 +126,7 @@
         .confirm-field:active > * {
             background-color: @confirmClickColor;
         }
+
     }
 }
 
@@ -1330,7 +1334,7 @@
                     }
                 }
                 .lower-wrapper {
-                    margin: 10px 0 10px 0;
+                    margin: 10px 0 0 0;
                     font-size: 16px;
                     > * {
                         .nintyPercentCenter;
@@ -1384,18 +1388,26 @@
                     }
                 }
                 .btn-wrapper {
-                    margin-top: 0;
                     margin-bottom: 0;
                     padding-bottom: 20px;
+                    margin-top: 10px;
                     .confirm-wrapper {
                         .nintyPercentCenter;
-                        .confirm-field {
+                        > * {
                             width: 100%;
-                            p.confirm {
+                            p {
                                 width: 100%;
                                 font-size: 16px;
                                 float: left;
                             }
+                        }
+                        .confirm-field.right-btn {
+                            float: right;
+                            width: 46%;
+                        }
+                        .cancel-field.left-btn {
+                            float: left;
+                            width: 46%;
                         }
                         .confirm-field.disabled {
                             background-color: @centreGreyColor;
@@ -1406,6 +1418,9 @@
                     }
                 }
             }
+        }
+        #confirm-page {
+            text-align: center;
         }
     }
 }

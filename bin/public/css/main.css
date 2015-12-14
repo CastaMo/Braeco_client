@@ -116,7 +116,7 @@
   margin: 0 auto;
   width: 85%;
 }
-.confirm-column .confirm-wrapper .confirm-field {
+.confirm-column .confirm-wrapper > * {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
@@ -125,9 +125,12 @@
   text-align: center;
   background-color: #FFC107;
 }
-.confirm-column .confirm-wrapper .confirm-field p.confirm {
+.confirm-column .confirm-wrapper > * p {
   line-height: 40px;
   color: #fff;
+}
+.confirm-column .confirm-wrapper .cancel-field {
+  background-color: #979797;
 }
 .confirm-column .confirm-wrapper .confirm-field.disabled {
   background-color: #DED5CF;
@@ -1338,7 +1341,7 @@
   margin: 0 auto 0 auto;
 }
 #brae-form-page #all-page-content-field .page-wrapper .container-field .lower-wrapper {
-  margin: 10px 0 10px 0;
+  margin: 10px 0 0 0;
   font-size: 16px;
 }
 #brae-form-page #all-page-content-field .page-wrapper .container-field .lower-wrapper > * {
@@ -1406,27 +1409,38 @@
   border-radius: 5px;
 }
 #brae-form-page #all-page-content-field .page-wrapper .container-field .btn-wrapper {
-  margin-top: 0;
   margin-bottom: 0;
   padding-bottom: 20px;
+  margin-top: 10px;
 }
 #brae-form-page #all-page-content-field .page-wrapper .container-field .btn-wrapper .confirm-wrapper {
   width: 90%;
   margin: 0 auto 0 auto;
 }
-#brae-form-page #all-page-content-field .page-wrapper .container-field .btn-wrapper .confirm-wrapper .confirm-field {
+#brae-form-page #all-page-content-field .page-wrapper .container-field .btn-wrapper .confirm-wrapper > * {
   width: 100%;
 }
-#brae-form-page #all-page-content-field .page-wrapper .container-field .btn-wrapper .confirm-wrapper .confirm-field p.confirm {
+#brae-form-page #all-page-content-field .page-wrapper .container-field .btn-wrapper .confirm-wrapper > * p {
   width: 100%;
   font-size: 16px;
   float: left;
+}
+#brae-form-page #all-page-content-field .page-wrapper .container-field .btn-wrapper .confirm-wrapper .confirm-field.right-btn {
+  float: right;
+  width: 46%;
+}
+#brae-form-page #all-page-content-field .page-wrapper .container-field .btn-wrapper .confirm-wrapper .cancel-field.left-btn {
+  float: left;
+  width: 46%;
 }
 #brae-form-page #all-page-content-field .page-wrapper .container-field .btn-wrapper .confirm-wrapper .confirm-field.disabled {
   background-color: #DED5CF;
 }
 #brae-form-page #all-page-content-field .page-wrapper .container-field .btn-wrapper .confirm-wrapper .confirm-field:active > * {
   background-color: #FFB300;
+}
+#brae-form-page #all-page-content-field #confirm-page {
+  text-align: center;
 }
 #extra {
   z-index: 2;
