@@ -130,7 +130,10 @@
   color: #fff;
 }
 .confirm-column .confirm-wrapper .confirm-field.disabled {
-  background-color: #C8C7CC;
+  background-color: #DED5CF;
+}
+.confirm-column .confirm-wrapper .confirm-field:active > * {
+  background-color: #FFB300;
 }
 .food-order-wrapper {
   background-color: #FFFCF6;
@@ -628,7 +631,7 @@
   background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHAAAAAoCAMAAAAR447jAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAA8UExURQAAAP/////BB//////////////////+/P/////////yyf/kkv/88v/QRf/XXv/ssf/IJf/eef/nn//44jieOgcAAAAKdFJOUwBZ///YvnObNxakqcaiAAACO0lEQVRYw92Y4XaDIAyFmW7rCgQIvP+7jhsUZaOtv7JzlnPWOgU/uUmuWmNW1bgZXWC5KwO/jC6wCmrMohLJV9670QPGXVAlIIP3adSAIuiH0QPayvN3PaCDoG9GDUi9I5SABR1x/wUM3ntakgTXbbdVs6+XuEeShHhfMDgswTmXjhPXyigTXj46YgTW3YRJW9ABtPu+jIrDNwaHpX3WUUVCzFIin3hhFLQDCa3CqF9vJbCPKspTwme0GxDjQkOBDSFcm7H2uTy1mBG4LaEetqM9rCtYpa2slbhnnNxmiFVwcicBoGzw3GJGoKzA8gDkCJkin4H4ivFkyLZf7XETmlvMoxza8fpaDjtQFCWsLQPLITRgJELRSBbK3GIeAX2UcHMghEitXJxsLs9WOFjMBGizH6QSYDhLmiAyT4DTFY4WMwG2ohHBmHrKh6IJD4DTFT4FIjkxSQ55b0ORpNBL4KlK9+55KWlcj6LZgQz9fuRwBiSu0YBSSflK0fgJUPZdAMYfkvp0oS04/AZmipeACT5bFwlvpZRzpguNv0yAs7aYAquVYw4SGKuvl+WCtTWg+MgFIIqBjhziPwAd5OyTX5i3288ROpCC7cDAJyDJdWGwY5bqL3I90Bad6i7cnqRlQhHADnRH0fTbkwBlge0wDAJKpm4YeXTHRzfghE5C1gNW226sCRZXIS5ugWO1Jhh/lZ1zKxBGrfQxmP23jxjqD1H6j4n6D8Lqj/r6LzNnw1F/If3Xr9z6Pyqst2+y8kRREG22EwAAAABJRU5ErkJggg==");
 }
 #brae-detail-page .all-page-field #Book-page #Book-content .book-content-field .food-info-field .left-part .img-field .limit-img {
-  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHAAAAAoCAMAAAAR447jAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAABOUExURQAAAP/////BB//////////////////79////////f/9/P//7v/t7//Tef/Zzf/6z//w4P/tqv/syf/nj//Hlf/ZXf/HLf/XrP/QS//ICbtLvD0AAAAKdFJOUwBZ//83Ftj+gLRExtbWAAACPUlEQVRYw92YgXKkIAyGrXRLGwSDrLr7/i96JICiore9mTJ3lxkZxxU+SP4E3KYRVe2rqQvEW2Xge1MX+Ol5TVvFJuV5H0094OB58F4PqBeH1gFOMmRENWDvefJWD+jIoW/NHwIfOlo7+eax++FR6gGZQxPQCPAmBoRownftdmnU05vobxT94u5091zGNfSKPfKe1OPjdgCyqZUxloETTddiDtQDG7+t+FbnQJtKzAEIEWhnOAcSRTimziQF/QyPNpavc8wyYgsEDECl9QXQ7AcfA1BGA7pcscScAS9dyhklj0CY59n5S7d3aool5vdAlBsDGz2qdbe41E2LS5V3TE8xhmexxByAMgBh4qWNUbmZ+diYMJeNShNQkggoB/pyiSmpdCQgoojAvekWgiYOQA4+XXeRAzclpgTsV5dyHu4X2LIzXQGIMbZDLtJtibmIIXlXl1XK0WMZW8NpEUSj4gDAGfptoAiBOAPuHjKQFKRWvb3i0giE2Mt9D0gNrtF4RTRphQBrDM9canxIlfQNOh2AOubFtr5epkWqpcrEBZ4Cg2hYJyKJhtIhAdvXEn8BtjLGoUvx3AN53lbHssnA1iBag7DJiuvSJhCRSj5YGaY5dVwYRSqVsABN8HkX/Ed6gbBjDLx5Da8Vb441L6qXnOTHxI9CsnEds1j8i3DYOK+3pzn34mS401wCmjT6GDXYcwSsPNueTjbgn7TiEeMvPkT9C8fE+gfh6kf9+h8zecGp/kH6X39y1/9TQXz9AsX4QvluKIgpAAAAAElFTkSuQmCC");
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKgAAAA8CAMAAADFYgHTAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAA8UExURQAAAP/////12f/BB//////////++v/99//DCP/////////ppv/fff/jj//SS//LMP/GGv/YZP/33//wwyxU1ZwAAAAKdFJOUwDZw/8esk//f3/rMqhjAAADTUlEQVRo3u2a7ZKkIAxF3bJnmZGPEHj/d12bAAZFRWe3Smo2P7Tt1vZAkhtAh+Fr6sE+hj5A3asT0N9DH6BfQx+gv4ZOQF8B9HN8rDnm+CeD6qxMzwY1xCleDwe1blGmR4PK0vGPBcWoTK+Hg4JYOf6poL5QpueCKl6SHgyaHP/6t6D2bWz/3ZK0BUWdDEEXRv6QdTNcUISlgpLyFtatIAZ1oSRtQWUeBkhTjAoED/CNYbw8+MuPx6Cxt+SFknQPVPC+9BwUY1fVQO3iHAIV6dCcl6QdUOMyqDOzrUAdjwjJQenAVkFhdwinzktSHVSMDDTFVJPryfNK02k67qWGa6DbktQAOmctrHsUmCEDpWBR29aYDCpxa3Beks5BLyUTeQyOQPFeSfrLoIKCBWOfKkXkWi2uRz+bHGk7QtyflqRzUJESm0DB1M0yz2cVrCUTivBftKXfZUNJuppMe3ovJSyePwYNwmM9qUPoPN1QknbkSc6N8lAB9buZi8nzs9wfgoa/AFJBuhs2lKR9wXfRk6Xrld6zGQacSCcegGq2pYabhpJ0UJm8rSWTUXWDJQ1OQMM5CimaBUXAeUk6r0wrULnjedMMapbyLFkluQVaJFNWdjY6yiXepw/toGHnaZuz4KbrCx0Vs2mISRJB9VIcY63noJVa6ZngE1zY1tTpSjIVOkpkSUVaXH8C6vIdJl1RpyvyVLjeFywyhQM13ACJ2BVQvwiprxXVu4KfU8o2J5PdGgOldJWrS79dQl0cMEl9JevtO7KFsy7sLU8mCkJU+VK4PyiZvGCgFKqWTdreRjcyrMc4KP2qY2aoAhQXId2o08VhHp+KuNhANR72KJagLjYOpkWAEii8hwYISeJc01pOEyjv0jZQzJM3prJmE5GY8uz2VITcSaDzANwtXZpdr49c7zKTyUkfw4DPwdMEDO9O7kRRJCaabYQu1S4ZhVE+dMhAGV1khvTJ1WZO/u50uQT18R7qwPPR9xFUrqPhLepEqBtBzxcgwvAoJl8eGIUv8WDwFIdPdMVI30Qnqngt/Qa2ci3eWdL5aYtkP2jZsZ+F3H6Wxrt52NDP45t+Hoh184ixn4e26wLVzYsF/1/V+IEvv/TzOlE/L2hNH38AYkQE0O7cZ+gAAAAASUVORK5CYII=");
 }
 #brae-detail-page .all-page-field #Book-page #Book-content .book-content-field .food-info-field .right-part,
 #brae-detail-page .all-page-field #Book-page #Book-content .book-content-field .food-info-field .full-part {
@@ -937,7 +940,10 @@
   color: #fff;
 }
 #brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-bottom-column .bottom-wrapper .confirm-field .disabled {
-  background-color: #C8C7CC;
+  background-color: #DED5CF;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-bottom-column .bottom-wrapper .confirm-field:active > *:not(.disabled) {
+  background-color: #FFB300;
 }
 #brae-detail-page .all-page-field #Activity-page {
   width: 100%;
@@ -1417,7 +1423,10 @@
   float: left;
 }
 #brae-form-page #all-page-content-field .page-wrapper .container-field .btn-wrapper .confirm-wrapper .confirm-field.disabled {
-  background-color: #E3E3E3;
+  background-color: #DED5CF;
+}
+#brae-form-page #all-page-content-field .page-wrapper .container-field .btn-wrapper .confirm-wrapper .confirm-field:active > * {
+  background-color: #FFB300;
 }
 #extra {
   z-index: 2;
