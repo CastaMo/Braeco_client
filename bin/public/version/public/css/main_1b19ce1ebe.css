@@ -12,11 +12,22 @@
   -ms-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
+  -webkit-backface-visibility: hidden;
+  -webkit-perspective: 1000;
+  -moz-backface-visibility: hidden;
+  -moz-perspective: 1000;
+  backface-visibility: hidden;
+  perspective: 1000;
 }
 .activity-wrapper .activity-display-list li,
 .header-wrapper .activity-display-list li,
 .activity-wrapper .header-display-list li,
 .header-wrapper .header-display-list li {
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  -o-transform: translate3d(0, 0, 0);
   float: left;
   width: 100%;
   height: 100%;
@@ -789,6 +800,12 @@
   -ms-transition: all 0.4s ease-in-out;
   -o-transition: all 0.4s ease-in-out;
   transition: all 0.4s ease-in-out;
+  -webkit-backface-visibility: hidden;
+  -webkit-perspective: 1000;
+  -moz-backface-visibility: hidden;
+  -moz-perspective: 1000;
+  backface-visibility: hidden;
+  perspective: 1000;
   width: 100%;
   height: 100%;
   z-index: 3;
@@ -831,6 +848,12 @@
   -ms-transition: all 0.4s ease-in-out;
   -o-transition: all 0.4s ease-in-out;
   transition: all 0.4s ease-in-out;
+  -webkit-backface-visibility: hidden;
+  -webkit-perspective: 1000;
+  -moz-backface-visibility: hidden;
+  -moz-perspective: 1000;
+  backface-visibility: hidden;
+  perspective: 1000;
   width: 100%;
   height: auto;
   z-index: 3;
@@ -1102,6 +1125,12 @@
   -ms-transition: all 0.4s ease-in-out;
   -o-transition: all 0.4s ease-in-out;
   transition: all 0.4s ease-in-out;
+  -webkit-backface-visibility: hidden;
+  -webkit-perspective: 1000;
+  -moz-backface-visibility: hidden;
+  -moz-perspective: 1000;
+  backface-visibility: hidden;
+  perspective: 1000;
   position: absolute;
   top: 0;
   background-color: #FFFCF6;
