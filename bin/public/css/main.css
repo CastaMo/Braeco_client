@@ -243,7 +243,7 @@
   background: linear-gradient(rgba(0, 0, 0, 0), #000000);
 }
 #brae-home-page .all-page-field #Menu-page #Menu-activity-column .activity-wrapper ul li .activity-name-wrapper .activity-name-field {
-  background-color: #faa129;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 #brae-home-page .all-page-field #Menu-page #Menu-activity-column .activity-wrapper ul li .activity-name-wrapper .activity-name-field p.activity-name {
   margin-left: 10px;
