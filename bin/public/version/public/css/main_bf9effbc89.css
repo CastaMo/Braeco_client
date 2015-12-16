@@ -23,6 +23,17 @@
 .header-wrapper .activity-display-list li,
 .activity-wrapper .header-display-list li,
 .header-wrapper .header-display-list li {
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  -webkit-backface-visibility: hidden;
+  -webkit-perspective: 1000;
+  -moz-backface-visibility: hidden;
+  -moz-perspective: 1000;
+  backface-visibility: hidden;
+  perspective: 1000;
   transform: translate3d(0, 0, 0);
   -webkit-transform: translate3d(0, 0, 0);
   -moz-transform: translate3d(0, 0, 0);
