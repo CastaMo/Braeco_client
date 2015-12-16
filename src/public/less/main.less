@@ -410,7 +410,7 @@
                     #Individual-info-column {
                         width: 100%;
                         height: auto;
-                        border-top: solid 1px #979797;
+                        border-top: solid 1px @borderColor;
                         background-color: #fff;
                         .Individual-basic-info-wrapper {
                             margin-top: 15px;
@@ -485,7 +485,7 @@
                                     .inner-bar {
                                         height: 100%;
                                         background-color: @orangeColor;
-                                        border-right: solid 1px #979797;
+                                        border-right: solid 1px @borderColor;
                                     }
                                 }
                             }
@@ -854,12 +854,15 @@
                             background-color: @homePageBackgroundColor;
                             padding-bottom: 80px;
                             .food-order-wrapper {
-                                .food-info-field {
-                                    height: 75px;
-                                    padding: 7px 0 2px 0;
-                                    .top-wrap {
-                                        height: 42px;
+                                .top-wrap {
+                                    height: auto;
+                                    .label-field {
+                                        margin-top: 0;
                                     }
+                                }
+                                .food-info-field {
+                                    height: auto;
+                                    padding: 7px 0 2px 0;
                                     .bottom-wrap {
                                         height: 30px;
                                         .price-field {
@@ -2078,11 +2081,11 @@ input {
 }
 
 .hide-left {
-    .translate(-100%)
+    .translate(-120%, 0)
 }
 
 .hide-right {
-    .translate(100%, 0);
+    .translate(120%, 0);
 }
 
 .horizontal-center {
@@ -2117,11 +2120,11 @@ input {
 }
 
 .translate (@ver: 0, @hor: 0) {
-    transform: translate(@ver, @hor);
-    -webkit-transform: translate(@ver, @hor);
-    -moz-transform: translate(@ver, @hor);
-    -ms-transform: translate(@ver, @hor);
-    -o-transform: translate(@ver, @hor);
+    transform: translate3d(@ver, @hor, 0);
+    -webkit-transform: translate3d(@ver, @hor, 0);
+    -moz-transform: translate3d(@ver, @hor, 0);
+    -ms-transform: translate3d(@ver, @hor, 0);
+    -o-transform: translate3d(@ver, @hor, 0);
 }
 
 .scale (@x: 0, @y: 0) {
