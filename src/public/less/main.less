@@ -411,10 +411,10 @@
                     #Individual-info-column {
                         width: 100%;
                         height: auto;
-                        border-top: solid 1px @borderColor;
+                        padding: 15px 0;
+                        .borderTopBottom;
                         background-color: #fff;
                         .Individual-basic-info-wrapper {
-                            margin-top: 15px;
                             height: 125px;
                             > * {
                                 float: left;
@@ -432,15 +432,18 @@
                                 width: -moz-calc(~"100% - 175px");
                                 width: -webkit-calc(~"100% - 175px");
                                 .rank-field {
-                                    p.rank {
-                                        line-height: 24px;
+                                    height: auto;
+                                    > *:not(.clear) {
+                                        float: left;
+                                        height: 28px;
+                                        line-height: 28px;
                                         font-size: 20px;
+                                    }
+                                    p.rank {
                                         font-weight: lighter;
                                     }
                                     p.member-name {
-                                        line-height: 28px;
-                                        font-size: 20px;
-                                        margin-top: 1px;
+                                        margin-left: 2px;
                                         font-weight: bold;
                                     }
                                 }
@@ -448,18 +451,27 @@
                                     margin-top: 1px;
                                     p.discount {
                                         line-height: 20px;
-                                        font-size: 14px;
                                         color: @deepCoffeeColor;
                                         font-weight: bold;
                                     }
                                 }
                                 .remainder-EXP-Blend {
-                                    margin-top: 10px;
+                                    margin-top: 28px;
                                     font-size: 14px;
                                     line-height: 20px;
                                     .remainder-field {
+                                        line-height: 28px;
+                                        font-size: 18px;
                                         float: left;
+                                        margin-top: 12px;
+                                        > * {
+                                            float: left;
+                                        }
+                                        p.name {
+                                            font-weight: bold;
+                                        }
                                         p.remainder-number {
+                                            margin-left: 10px;
                                             color: @deepCoffeeColor;
                                         }
                                         p.remainder-number:before {
@@ -475,15 +487,19 @@
                             }
                         }
                         .Individual-EXP-bar-wrapper {
-                            margin-top: 10px;
                             .EXP-bar-field {
-                                .borderTopBottom(1px);
+                                width: 90%;
+                                margin: 0 auto;
+                                border: solid 1px @borderColor;
+                                .rounded-corners(10px);
                                 .full-bar {
+                                    .rounded-corners(10px);
                                     width: 100%;
-                                    height: 8px;
-                                    background-color: @EXPFullBarBackgoundColor;
+                                    height: 6px;
+                                    background-color: #fff;
                                     overflow-x: hidden;
                                     .inner-bar {
+                                        .rounded-corners(10px);
                                         height: 100%;
                                         background-color: @orangeColor;
                                         border-right: solid 1px @borderColor;
@@ -493,7 +509,7 @@
                         }
                     }
                     #Individual-operation-column {
-                        margin-top: 20px;
+                        margin-top: 30px;
                         .Individual-func-wrapper {
                             .borderTopBottom();
                             height: auto;
