@@ -164,10 +164,10 @@
   margin-top: 15px;
   background-color: #FFFCF6;
   border-top: solid 1px #C8C7CC;
-  border-bottom: solid 1px #C8C7CC;
 }
 .food-order-wrapper ul {
   background-color: #fff;
+  border-bottom: solid 1px #C8C7CC;
 }
 .food-order-wrapper ul li .food-info-field {
   height: 75px;
