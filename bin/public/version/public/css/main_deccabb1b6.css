@@ -309,6 +309,7 @@
   line-height: 16px;
 }
 #brae-home-page .all-page-field #Already-page #Already-content {
+  padding-top: 1px;
   padding-bottom: 90px;
 }
 #brae-home-page .all-page-field #Already-page #Already-content .Already-not-order-field #Already-not-order-column {
