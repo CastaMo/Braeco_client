@@ -161,12 +161,12 @@
   background-color: #FFB300;
 }
 .food-order-wrapper {
-  background-color: #FFFCF6;
-}
-.food-order-wrapper ul {
   margin-top: 15px;
+  background-color: #FFFCF6;
   border-top: solid 1px #C8C7CC;
   border-bottom: solid 1px #C8C7CC;
+}
+.food-order-wrapper ul {
   background-color: #fff;
 }
 .food-order-wrapper ul li .food-info-field {
