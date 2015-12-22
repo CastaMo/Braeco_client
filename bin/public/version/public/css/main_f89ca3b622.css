@@ -170,11 +170,11 @@
   border-bottom: solid 1px #C8C7CC;
 }
 .food-order-wrapper ul li .food-info-field {
-  height: 75px;
+  height: auto;
   padding: 7px 0 2px 0;
 }
 .food-order-wrapper ul li .food-info-field .full-part .top-wrap {
-  height: 42px;
+  height: auto;
 }
 .food-order-wrapper ul li .food-info-field .full-part .top-wrap .first-part {
   width: 100%;
@@ -309,7 +309,6 @@
   line-height: 16px;
 }
 #brae-home-page .all-page-field #Already-page #Already-content {
-  padding-top: 1px;
   padding-bottom: 90px;
 }
 #brae-home-page .all-page-field #Already-page #Already-content .Already-not-order-field #Already-not-order-column {
@@ -345,6 +344,30 @@
   line-height: 20px;
   color: #9B9B9B;
 }
+#brae-home-page .all-page-field #Already-page #Already-content .Already-content-field {
+  padding-top: 15px;
+}
+#brae-home-page .all-page-field #Already-page #Already-content .Already-content-field > div {
+  border-top: solid 1px #C8C7CC;
+}
+#brae-home-page .all-page-field #Already-page #Already-content .Already-content-field .already-header {
+  background-color: #fff;
+}
+#brae-home-page .all-page-field #Already-page #Already-content .Already-content-field .already-header .already-id-field {
+  float: left;
+  margin-left: 5%;
+}
+#brae-home-page .all-page-field #Already-page #Already-content .Already-content-field .already-header .already-id-field p {
+  line-height: 40px;
+  font-size: 18px;
+}
+#brae-home-page .all-page-field #Already-page #Already-content .Already-content-field .food-order-wrapper {
+  margin-top: 0;
+  border-top: none;
+}
+#brae-home-page .all-page-field #Already-page #Already-content .Already-content-field .food-order-wrapper ul {
+  border-bottom: none;
+}
 #brae-home-page .all-page-field #Already-page #Already-content .Already-content-field .food-order-wrapper .full-part {
   width: 90%;
   margin: 0 auto 0 auto;
@@ -364,9 +387,6 @@
 }
 #brae-home-page .all-page-field #Already-page #Already-content .Already-content-field .food-order-wrapper .full-part .bottom-wrap .controll-field .number-field p.num:before {
   content: "×";
-}
-#brae-home-page .all-page-field #Already-page #Already-content .Already-content-field .food-order-wrapper {
-  padding-top: 1px;
 }
 #brae-home-page .all-page-field #Already-page #Already-content .Already-content-field .food-total-price-wrapper {
   width: 90%;
