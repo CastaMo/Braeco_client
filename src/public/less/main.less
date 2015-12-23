@@ -336,8 +336,19 @@
                     }
                 }
                 .Already-content-field {
-                    > div {
+                    border-bottom: solid 1px @borderColor;
+                    .already-content {
                         border-top: solid 1px @borderColor;
+                    }
+                    .already-content.choose {
+                        .already-header {
+                            .img {
+                                background-image: url(@alreadyChooseUrl);
+                            }
+                        }
+                        .already-container {
+                            height: auto;
+                        }
                     }
                     padding-top: 15px;
                     .already-header {
@@ -350,6 +361,24 @@
                                 font-size: 18px;
                             }
                         }
+                        .img-field {
+                            float: right;
+                            width: 40px;
+                            height: 40px;
+                            margin-right: 5%;
+                            .img {
+                                width: 40px;
+                                height: 40px;
+                                .background-norm();
+                                background-image: url(@alreadyUnchooseUrl);
+                                background-size: 30px 30px;
+                            }
+                        }
+                    }
+                    .already-container {
+                        .transition(0.3s);
+                        height: 0;
+                        overflow: hidden;
                     }
                     .food-order-wrapper {
                         margin-top: 0;
