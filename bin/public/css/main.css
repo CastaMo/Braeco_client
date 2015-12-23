@@ -354,9 +354,6 @@
 #brae-home-page .all-page-field #Already-page #Already-content .Already-content-field .already-content.choose .already-header .img {
   background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAE4AAABOBAMAAAB8hD0uAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAYUExURQAAAJRTAKNlAKJlAKJmAJ9jAKJkAKNmAAhPZb0AAAAHdFJOUwAItXvXJVDWcGpqAAACEElEQVRIx41XO1PDMAxO6rZzG6CsfcBlDS1c1lAOspbHwQp3cJ1pSv33ieU8JDnOyVMTffkkfZZsNQjomm2ucn3cbr6CvjW+1fV6+PTDXnPdruOdD/at6XqSwTzAF+2uaxd2VkW1+nmeXryvq0hvOGxkDatd/by2n+0Ybu+kaJM/UZgCGBV3BsCEvEu7goGQC/xm0J0cSDBndEWHVuy96sqsUSEhyT527tEbTnlk6CaduNAQ1p7Oy9/3ntrAttQTXR1h0br989bkR+N44KjOd2peZ3vo6YW4zjjvcwuOj9A7vW6tY9NTQ694rYSZ5T31NuvexpX6RW6kLmwaSS9OQSJjtIGeLYFElKve1FUwMemyCg2XE6das+DSUTnSC0fpX5N1RulifaCEQ6NcSjvF0GlGODChpUyWkk4zQmVwsd09QscIx0aSnMoHdIxwZIRmuKg60RYcV76bMLolIwzLZ4YzdIdpTAldXGgRESUEXI5xFSCkhCHPo7FTQiffxkwJAYd0RlZCCDqjfUNGQqiq/Z0Hrg0TQh20dUV84Y+grto6pWLAV6hO27pPqbgxNmSojxTd/ahJEPoI9WVKqimMC9yXqM8VLfcowX0uPjek55D0XJOek9JzV3yOS+8F6T0jvbfE96D0XpXe0+J7XzpHiOcS6Zwjnpukc5h4rpPOieK5UzzHiudi8Zwtntt7/gf8A2oZgFvMxJkTAAAAAElFTkSuQmCC");
 }
-#brae-home-page .all-page-field #Already-page #Already-content .Already-content-field .already-content.choose .already-container {
-  height: auto;
-}
 #brae-home-page .all-page-field #Already-page #Already-content .Already-content-field .already-header {
   background-color: #fff;
 }
