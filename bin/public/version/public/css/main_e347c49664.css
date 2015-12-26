@@ -397,6 +397,7 @@
 #brae-home-page .all-page-field #Already-page #Already-content .Already-content-field .food-order-wrapper {
   margin-top: 0;
   border-top: none;
+  border-bottom: solid 1px #C8C7CC;
 }
 #brae-home-page .all-page-field #Already-page #Already-content .Already-content-field .food-order-wrapper ul {
   border-bottom: none;
@@ -1563,7 +1564,7 @@
   width: 46%;
 }
 #brae-form-page #all-page-content-field .page-wrapper .container-field .btn-wrapper .confirm-wrapper .confirm-field.disabled {
-  background-color: #DED5CF;
+  background-color: #E3E3E3;
 }
 #brae-form-page #all-page-content-field .page-wrapper .container-field .btn-wrapper .confirm-wrapper .confirm-field:active > * {
   background-color: #FFB300;
