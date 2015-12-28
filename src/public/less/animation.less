@@ -1,0 +1,235 @@
+
+/*-----------Book Animation Start--------------*/
+.animation-for-book-frame(@stage: 1) when (@stage =1) {
+    .translate(0, 0);
+}
+
+.animation-for-book-frame(@stage: 1) when(@stage =2) {
+    .translate(0, -30px);
+}
+
+.animation-for-book-frame(@stage: 1) when (@stage =3) {
+    .translate(0, -22px);
+}
+
+.animation-for-book-frame(@stage: 1) when (@stage =4) {
+    .translate(0, -10px);
+}
+
+@keyframes animation-for-book {
+    0% {
+        .animation-for-book-frame(1);
+    }
+    20% {
+        .animation-for-book-frame(2);
+    }
+    30% {
+        .animation-for-book-frame(1);
+    }
+    50% {
+        .animation-for-book-frame(3);
+    }
+    60% {
+        .animation-for-book-frame(1);
+    }
+    80% {
+        .animation-for-book-frame(4);
+    }
+    100% {
+        .animation-for-book-frame(1);
+    }
+}
+
+@-moz-keyframes animation-for-book
+/* Firefox */
+
+{
+    0% {
+        .animation-for-book-frame(1);
+    }
+    20% {
+        .animation-for-book-frame(2);
+    }
+    30% {
+        .animation-for-book-frame(1);
+    }
+    50% {
+        .animation-for-book-frame(3);
+    }
+    60% {
+        .animation-for-book-frame(1);
+    }
+    80% {
+        .animation-for-book-frame(4);
+    }
+    100% {
+        .animation-for-book-frame(1);
+    }
+}
+
+@-webkit-keyframes animation-for-book
+/* Safari 和 Chrome */
+
+{
+    0% {
+        .animation-for-book-frame(1);
+    }
+    20% {
+        .animation-for-book-frame(2);
+    }
+    30% {
+        .animation-for-book-frame(1);
+    }
+    50% {
+        .animation-for-book-frame(3);
+    }
+    60% {
+        .animation-for-book-frame(1);
+    }
+    80% {
+        .animation-for-book-frame(4);
+    }
+    100% {
+        .animation-for-book-frame(1);
+    }
+}
+
+@-o-keyframes animation-for-book
+/* Opera */
+
+{
+    0% {
+        .animation-for-book-frame(1);
+    }
+    20% {
+        .animation-for-book-frame(2);
+    }
+    30% {
+        .animation-for-book-frame(1);
+    }
+    50% {
+        .animation-for-book-frame(3);
+    }
+    60% {
+        .animation-for-book-frame(1);
+    }
+    80% {
+        .animation-for-book-frame(4);
+    }
+    100% {
+        .animation-for-book-frame(1);
+    }
+}
+
+/*-----------Book Animation End--------------*/
+
+
+/*-----------Popup Form Adapt Start--------------*/
+@keyframes animation-for-popup-form-adapt {
+    from {
+        .transform(translate3d(-50%, -70%, 0) scale(1.4, 1.4));
+        opacity: 0;
+    }
+    to {
+        .transform(translate3d(-50%, -70%, 0) scale(1, 1));
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes animation-for-popup-form-adapt
+/* Firefox */
+{
+    from {
+        .transform(translate3d(-50%, -70%, 0) scale(1.4, 1.4));
+        opacity: 0;
+    }
+    to {
+        .transform(translate3d(-50%, -70%, 0) scale(1, 1));
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes animation-for-popup-form-adapt
+/* Safari 和 Chrome */
+
+{
+    from {
+        .transform(translate3d(-50%, -70%, 0) scale(1.4, 1.4));
+        opacity: 0;
+    }
+    to {
+        .transform(translate3d(-50%, -70%, 0) scale(1, 1));
+        opacity: 1;
+    }
+}
+
+@-o-keyframes animation-for-popup-form-adapt
+/* Opera */
+
+{
+    from {
+        .transform(translate3d(-50%, -70%, 0) scale(1.4, 1.4));
+        opacity: 0;
+    }
+    to {
+        .transform(translate3d(-50%, -70%, 0) scale(1, 1));
+        opacity: 1;
+    }
+}
+/*-----------Popup Form Adapt End--------------*/
+
+
+/*-----------Popup Form Total Start--------------*/
+@keyframes animation-for-popup-form-total {
+    from {
+        .transform(translate3d(-50%, -50%, 0) scale(1.4, 1.4));
+        opacity: 0;
+    }
+    to {
+        .transform(translate3d(-50%, -50%, 0) scale(1, 1));
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes animation-for-popup-form-total
+/* Firefox */
+{
+    from {
+        .transform(translate3d(-50%, -50%, 0) scale(1.4, 1.4));
+        opacity: 0;
+    }
+    to {
+        .transform(translate3d(-50%, -50%, 0) scale(1, 1));
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes animation-for-popup-form-total
+/* Safari 和 Chrome */
+
+{
+    from {
+        .transform(translate3d(-50%, -50%, 0) scale(1.4, 1.4));
+        opacity: 0;
+    }
+    to {
+        .transform(translate3d(-50%, -50%, 0) scale(1, 1));
+        opacity: 1;
+    }
+}
+
+@-o-keyframes animation-for-popup-form-total
+/* Opera */
+
+{
+    from {
+        .transform(translate3d(-50%, -50%, 0) scale(1.4, 1.4));
+        opacity: 0;
+    }
+    to {
+        .transform(translate3d(-50%, -50%, 0) scale(1, 1));
+        opacity: 1;
+    }
+}
+/*-----------Popup Form Total End--------------*/
+

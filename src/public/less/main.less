@@ -1,3 +1,5 @@
+@import "animation";
+
 .activity-wrapper,
 .header-wrapper {
     width: 100%;
@@ -1287,8 +1289,13 @@
             width: 100%;
             height: 100%;
             > * {
-                .animation(animation-for-popup-form 0.4s);
                 width: 80%;
+            }
+            > .total-center {
+                .animation(animation-for-popup-form-total 0.4s);
+            }
+            > .adapt-center {
+                .animation(animation-for-popup-form-adapt 0.4s);
             }
         }
         .page-wrapper {
@@ -1875,179 +1882,6 @@ input {
     .animation(animation-for-book 0.4s);
 }
 
-.animation-for-book-frame(@stage: 1) when (@stage =1) {
-    .translate(0, 0);
-}
-
-.animation-for-book-frame(@stage: 1) when(@stage =2) {
-    .translate(0, -30px);
-}
-
-.animation-for-book-frame(@stage: 1) when (@stage =3) {
-    .translate(0, -22px);
-}
-
-.animation-for-book-frame(@stage: 1) when (@stage =4) {
-    .translate(0, -10px);
-}
-
-@keyframes animation-for-book {
-    0% {
-        .animation-for-book-frame(1);
-    }
-    20% {
-        .animation-for-book-frame(2);
-    }
-    30% {
-        .animation-for-book-frame(1);
-    }
-    50% {
-        .animation-for-book-frame(3);
-    }
-    60% {
-        .animation-for-book-frame(1);
-    }
-    80% {
-        .animation-for-book-frame(4);
-    }
-    100% {
-        .animation-for-book-frame(1);
-    }
-}
-
-@-moz-keyframes animation-for-book
-/* Firefox */
-
-{
-    0% {
-        .animation-for-book-frame(1);
-    }
-    20% {
-        .animation-for-book-frame(2);
-    }
-    30% {
-        .animation-for-book-frame(1);
-    }
-    50% {
-        .animation-for-book-frame(3);
-    }
-    60% {
-        .animation-for-book-frame(1);
-    }
-    80% {
-        .animation-for-book-frame(4);
-    }
-    100% {
-        .animation-for-book-frame(1);
-    }
-}
-
-@-webkit-keyframes animation-for-book
-/* Safari 和 Chrome */
-
-{
-    0% {
-        .animation-for-book-frame(1);
-    }
-    20% {
-        .animation-for-book-frame(2);
-    }
-    30% {
-        .animation-for-book-frame(1);
-    }
-    50% {
-        .animation-for-book-frame(3);
-    }
-    60% {
-        .animation-for-book-frame(1);
-    }
-    80% {
-        .animation-for-book-frame(4);
-    }
-    100% {
-        .animation-for-book-frame(1);
-    }
-}
-
-@-o-keyframes animation-for-book
-/* Opera */
-
-{
-    0% {
-        .animation-for-book-frame(1);
-    }
-    20% {
-        .animation-for-book-frame(2);
-    }
-    30% {
-        .animation-for-book-frame(1);
-    }
-    50% {
-        .animation-for-book-frame(3);
-    }
-    60% {
-        .animation-for-book-frame(1);
-    }
-    80% {
-        .animation-for-book-frame(4);
-    }
-    100% {
-        .animation-for-book-frame(1);
-    }
-}
-
-@keyframes animation-for-popup-form {
-    from {
-        .transform(translate3d(-50%, -70%, 0) scale(1.4, 1.4));
-        opacity: 0;
-    }
-    to {
-        .transform(translate3d(-50%, -70%, 0) scale(1, 1));
-        opacity: 1;
-    }
-}
-
-@-moz-keyframes animation-for-popup-form
-/* Firefox */
-{
-    from {
-        .transform(translate3d(-50%, -70%, 0) scale(1.4, 1.4));
-        opacity: 0;
-    }
-    to {
-        .transform(translate3d(-50%, -70%, 0) scale(1, 1));
-        opacity: 1;
-    }
-}
-
-@-webkit-keyframes animation-for-popup-form
-/* Safari 和 Chrome */
-
-{
-    from {
-        .transform(translate3d(-50%, -70%, 0) scale(1.4, 1.4));
-        opacity: 0;
-    }
-    to {
-        .transform(translate3d(-50%, -70%, 0) scale(1, 1));
-        opacity: 1;
-    }
-}
-
-@-o-keyframes animation-for-popup-form
-/* Opera */
-
-{
-    from {
-        .transform(translate3d(-50%, -70%, 0) scale(1.4, 1.4));
-        opacity: 0;
-    }
-    to {
-        .transform(translate3d(-50%, -70%, 0) scale(1, 1));
-        opacity: 1;
-    }
-}
-
 .background-norm(@elem: "none") {
     background-repeat: no-repeat;
     background-position: center;
@@ -2218,6 +2052,13 @@ input {
 }
 
 .total-center {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    .translate(-50%, -50%);
+}
+
+.adapt-center {
     position: absolute;
     left: 50%;
     top: 50%;

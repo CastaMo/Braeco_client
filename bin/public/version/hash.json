@@ -1,8 +1,9 @@
 {
+  "public/css/animation.css": "d41d8cd98f",
   "public/css/common/extra.min.css": "456f16be7e",
   "public/css/common/fontSize.css": "b01af4cdaf",
-  "public/css/main.css": "2d13404489",
-  "public/css/main.min.css": "7e148217fc",
+  "public/css/main.css": "64aa7ec89a",
+  "public/css/main.min.css": "8775722e2c",
   "public/js/common/extra.min.js": "8de9f354b9",
   "public/js/common/pay.js": "8267d2b448",
   "public/js/common/preventoverscroll.js": "e588b3394c",
