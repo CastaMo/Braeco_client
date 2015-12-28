@@ -2086,76 +2086,76 @@ input {
 }
 @keyframes animation-for-popup-form {
   from {
-    transform: translate3d(-50%, -50%, 0) scale(1.4, 1.4);
-    -webkit-transform: translate3d(-50%, -50%, 0) scale(1.4, 1.4);
-    -moz-transform: translate3d(-50%, -50%, 0) scale(1.4, 1.4);
-    -ms-transform: translate3d(-50%, -50%, 0) scale(1.4, 1.4);
-    -o-transform: translate3d(-50%, -50%, 0) scale(1.4, 1.4);
+    transform: translate3d(-50%, -70%, 0) scale(1.4, 1.4);
+    -webkit-transform: translate3d(-50%, -70%, 0) scale(1.4, 1.4);
+    -moz-transform: translate3d(-50%, -70%, 0) scale(1.4, 1.4);
+    -ms-transform: translate3d(-50%, -70%, 0) scale(1.4, 1.4);
+    -o-transform: translate3d(-50%, -70%, 0) scale(1.4, 1.4);
     opacity: 0;
   }
   to {
-    transform: translate3d(-50%, -50%, 0) scale(1, 1);
-    -webkit-transform: translate3d(-50%, -50%, 0) scale(1, 1);
-    -moz-transform: translate3d(-50%, -50%, 0) scale(1, 1);
-    -ms-transform: translate3d(-50%, -50%, 0) scale(1, 1);
-    -o-transform: translate3d(-50%, -50%, 0) scale(1, 1);
+    transform: translate3d(-50%, -70%, 0) scale(1, 1);
+    -webkit-transform: translate3d(-50%, -70%, 0) scale(1, 1);
+    -moz-transform: translate3d(-50%, -70%, 0) scale(1, 1);
+    -ms-transform: translate3d(-50%, -70%, 0) scale(1, 1);
+    -o-transform: translate3d(-50%, -70%, 0) scale(1, 1);
     opacity: 1;
   }
 }
 @-moz-keyframes animation-for-popup-form {
   /* Firefox */
   from {
-    transform: translate3d(-50%, -50%, 0) scale(1.4, 1.4);
-    -webkit-transform: translate3d(-50%, -50%, 0) scale(1.4, 1.4);
-    -moz-transform: translate3d(-50%, -50%, 0) scale(1.4, 1.4);
-    -ms-transform: translate3d(-50%, -50%, 0) scale(1.4, 1.4);
-    -o-transform: translate3d(-50%, -50%, 0) scale(1.4, 1.4);
+    transform: translate3d(-50%, -70%, 0) scale(1.4, 1.4);
+    -webkit-transform: translate3d(-50%, -70%, 0) scale(1.4, 1.4);
+    -moz-transform: translate3d(-50%, -70%, 0) scale(1.4, 1.4);
+    -ms-transform: translate3d(-50%, -70%, 0) scale(1.4, 1.4);
+    -o-transform: translate3d(-50%, -70%, 0) scale(1.4, 1.4);
     opacity: 0;
   }
   to {
-    transform: translate3d(-50%, -50%, 0) scale(1, 1);
-    -webkit-transform: translate3d(-50%, -50%, 0) scale(1, 1);
-    -moz-transform: translate3d(-50%, -50%, 0) scale(1, 1);
-    -ms-transform: translate3d(-50%, -50%, 0) scale(1, 1);
-    -o-transform: translate3d(-50%, -50%, 0) scale(1, 1);
+    transform: translate3d(-50%, -70%, 0) scale(1, 1);
+    -webkit-transform: translate3d(-50%, -70%, 0) scale(1, 1);
+    -moz-transform: translate3d(-50%, -70%, 0) scale(1, 1);
+    -ms-transform: translate3d(-50%, -70%, 0) scale(1, 1);
+    -o-transform: translate3d(-50%, -70%, 0) scale(1, 1);
     opacity: 1;
   }
 }
 @-webkit-keyframes animation-for-popup-form {
   /* Safari 和 Chrome */
   from {
-    transform: translate3d(-50%, -50%, 0) scale(1.4, 1.4);
-    -webkit-transform: translate3d(-50%, -50%, 0) scale(1.4, 1.4);
-    -moz-transform: translate3d(-50%, -50%, 0) scale(1.4, 1.4);
-    -ms-transform: translate3d(-50%, -50%, 0) scale(1.4, 1.4);
-    -o-transform: translate3d(-50%, -50%, 0) scale(1.4, 1.4);
+    transform: translate3d(-50%, -70%, 0) scale(1.4, 1.4);
+    -webkit-transform: translate3d(-50%, -70%, 0) scale(1.4, 1.4);
+    -moz-transform: translate3d(-50%, -70%, 0) scale(1.4, 1.4);
+    -ms-transform: translate3d(-50%, -70%, 0) scale(1.4, 1.4);
+    -o-transform: translate3d(-50%, -70%, 0) scale(1.4, 1.4);
     opacity: 0;
   }
   to {
-    transform: translate3d(-50%, -50%, 0) scale(1, 1);
-    -webkit-transform: translate3d(-50%, -50%, 0) scale(1, 1);
-    -moz-transform: translate3d(-50%, -50%, 0) scale(1, 1);
-    -ms-transform: translate3d(-50%, -50%, 0) scale(1, 1);
-    -o-transform: translate3d(-50%, -50%, 0) scale(1, 1);
+    transform: translate3d(-50%, -70%, 0) scale(1, 1);
+    -webkit-transform: translate3d(-50%, -70%, 0) scale(1, 1);
+    -moz-transform: translate3d(-50%, -70%, 0) scale(1, 1);
+    -ms-transform: translate3d(-50%, -70%, 0) scale(1, 1);
+    -o-transform: translate3d(-50%, -70%, 0) scale(1, 1);
     opacity: 1;
   }
 }
 @-o-keyframes animation-for-popup-form {
   /* Opera */
   from {
-    transform: translate3d(-50%, -50%, 0) scale(1.4, 1.4);
-    -webkit-transform: translate3d(-50%, -50%, 0) scale(1.4, 1.4);
-    -moz-transform: translate3d(-50%, -50%, 0) scale(1.4, 1.4);
-    -ms-transform: translate3d(-50%, -50%, 0) scale(1.4, 1.4);
-    -o-transform: translate3d(-50%, -50%, 0) scale(1.4, 1.4);
+    transform: translate3d(-50%, -70%, 0) scale(1.4, 1.4);
+    -webkit-transform: translate3d(-50%, -70%, 0) scale(1.4, 1.4);
+    -moz-transform: translate3d(-50%, -70%, 0) scale(1.4, 1.4);
+    -ms-transform: translate3d(-50%, -70%, 0) scale(1.4, 1.4);
+    -o-transform: translate3d(-50%, -70%, 0) scale(1.4, 1.4);
     opacity: 0;
   }
   to {
-    transform: translate3d(-50%, -50%, 0) scale(1, 1);
-    -webkit-transform: translate3d(-50%, -50%, 0) scale(1, 1);
-    -moz-transform: translate3d(-50%, -50%, 0) scale(1, 1);
-    -ms-transform: translate3d(-50%, -50%, 0) scale(1, 1);
-    -o-transform: translate3d(-50%, -50%, 0) scale(1, 1);
+    transform: translate3d(-50%, -70%, 0) scale(1, 1);
+    -webkit-transform: translate3d(-50%, -70%, 0) scale(1, 1);
+    -moz-transform: translate3d(-50%, -70%, 0) scale(1, 1);
+    -ms-transform: translate3d(-50%, -70%, 0) scale(1, 1);
+    -o-transform: translate3d(-50%, -70%, 0) scale(1, 1);
     opacity: 1;
   }
 }
@@ -2254,11 +2254,11 @@ input {
   position: absolute;
   left: 50%;
   top: 50%;
-  transform: translate3d(-50%, -50%, 0);
-  -webkit-transform: translate3d(-50%, -50%, 0);
-  -moz-transform: translate3d(-50%, -50%, 0);
-  -ms-transform: translate3d(-50%, -50%, 0);
-  -o-transform: translate3d(-50%, -50%, 0);
+  transform: translate3d(-50%, -70%, 0);
+  -webkit-transform: translate3d(-50%, -70%, 0);
+  -moz-transform: translate3d(-50%, -70%, 0);
+  -ms-transform: translate3d(-50%, -70%, 0);
+  -o-transform: translate3d(-50%, -70%, 0);
 }
 .hide {
   display: none;
