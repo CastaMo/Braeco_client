@@ -160,6 +160,14 @@ input {
     perspective: 1000;
 }
 
+.transition2 (@time) {
+    -webkit-transition: all @time ease-in-out;
+    -moz-transition: all @time ease-in-out;
+    -ms-transition: all @time ease-in-out;
+    -o-transition: all @time ease-in-out;
+    transition: all @time ease-in-out;
+}
+
 .borderTopBottom (@size: 1px, @color: @borderColor) {
     border-top: solid @size @color;
     border-bottom: solid @size @color;

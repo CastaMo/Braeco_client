@@ -1292,6 +1292,9 @@
   width: 100%;
   height: 100%;
 }
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column {
+  overflow-x: hidden;
+}
 #brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-top-wrap #book-category-wrap {
   position: fixed;
   width: 100%;
@@ -1356,12 +1359,12 @@
   border-radius: 2px;
 }
 #brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-menu-wrap {
-  width: 100%;
-  -webkit-transition: all 0.3s ease-in-out;
-  -moz-transition: all 0.3s ease-in-out;
-  -ms-transition: all 0.3s ease-in-out;
-  -o-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
+  padding-top: 1px;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -ms-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
   -webkit-backface-visibility: hidden;
   -webkit-perspective: 1000;
   -moz-backface-visibility: hidden;
@@ -1369,7 +1372,7 @@
   backface-visibility: hidden;
   perspective: 1000;
 }
-#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-menu-wrap > * {
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-menu-wrap > *:not(.clear) {
   float: left;
 }
 #brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-menu-wrap #book-dish-wrap {
@@ -1388,7 +1391,7 @@
 #brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-info-wrap {
   width: 100%;
   height: 100%;
-  z-index: 4;
+  z-index: 3;
   background-color: #FFFCF6;
 }
 #brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-info-wrap .food-img-wrapper .img-field img {
@@ -1420,19 +1423,7 @@
   font-size: 14px;
 }
 #brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-order-wrap {
-  -webkit-transition: all 0.4s ease-in-out;
-  -moz-transition: all 0.4s ease-in-out;
-  -ms-transition: all 0.4s ease-in-out;
-  -o-transition: all 0.4s ease-in-out;
-  transition: all 0.4s ease-in-out;
-  -webkit-backface-visibility: hidden;
-  -webkit-perspective: 1000;
-  -moz-backface-visibility: hidden;
-  -moz-perspective: 1000;
-  backface-visibility: hidden;
-  perspective: 1000;
   width: 100%;
-  height: auto;
   z-index: 3;
   background-color: #FFFCF6;
   padding-bottom: 80px;

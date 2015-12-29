@@ -103,6 +103,7 @@
                         }
                     }
                     #book-order-column {
+                        overflow-x: hidden;
                         #book-top-wrap {
                             #book-category-wrap {
                                 position: fixed;
@@ -155,11 +156,11 @@
                             }
                         }
                         #book-menu-wrap {
-                            width: 100%;
-                            .transition(0.3s);
-                            > * {
+                            > *:not(.clear) {
                                 float: left;
                             }
+                            padding-top: 1px;
+                            .transition(0.5s);
                             #book-dish-wrap {
                                 width: 100%;
                                 #book-main-wrap {
@@ -168,7 +169,6 @@
                                     .food-list-wrap {
                                         ul {
                                             margin-bottom: 77px;
-                                            li {}
                                             li:active {
                                                 background-color: @touchColor;
                                             }
@@ -180,7 +180,7 @@
                         #book-info-wrap {
                             width: 100%;
                             height: 100%;
-                            z-index: 4;
+                            z-index: 3;
                             background-color: @homePageBackgroundColor;
                             .food-img-wrapper {
                                 .img-field {
@@ -217,9 +217,7 @@
                             }
                         }
                         #book-order-wrap {
-                            .transition(0.4s);
                             width: 100%;
-                            height: auto;
                             z-index: 3;
                             background-color: @homePageBackgroundColor;
                             padding-bottom: 80px;
