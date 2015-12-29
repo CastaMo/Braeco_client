@@ -1,0 +1,459 @@
+
+/*braeco-home-page*/
+
+#brae-home-page {
+    .all-page-field {
+        #Menu-page {
+            #Menu-activity-column {
+                width: 100%;
+                height: auto;
+                position: relative;
+                .activity-wrapper {
+                    ul {
+                        li {
+                            position: relative;
+                            .activity-name-wrapper {
+                                position: absolute;
+                                height: 30px;
+                                width: 100%;
+                                bottom: 0;
+                                left: 0;
+                                .background-linear-gradient();
+                                .activity-name-field {
+                                    background-color: rgba(0, 0, 0, 0.5);
+                                    p.activity-name {
+                                        margin-left: 10px;
+                                        font-size: 18px;
+                                        text-align: left;
+                                        line-height: 30px;
+                                        color: #fff;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                .choose-wrapper {
+                    bottom: 5px;
+                    position: absolute;
+                    right: 5%;
+                }
+            }
+            #Menu-category-column {
+                width: 100%;
+                margin: 10px 0 0 0;
+                .category-wrapper {
+                    margin: 0 10px 0 10px;
+                    padding-bottom: 65px;
+                    .category-display-list {
+                        li {
+                            margin-bottom: 10px;
+                            height: 87px;
+                            position: relative;
+                            .category-img {
+                                width: 100%;
+                                height: 100%;
+                            }
+                            .category-name-field {
+                                position: absolute;
+                                bottom: 0;
+                                left: 0;
+                                width: 100%;
+                                background-color: rgba(0, 0, 0, 0.5);
+                                .category-name {
+                                    margin: 5px 0 5px 8px;
+                                    color: #fff;
+                                    line-height: 16px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        #Already-page {
+            #Already-content {
+                padding-bottom: 150px;
+                .Already-not-order-field {
+                    #Already-not-order-column {
+                        padding-top: 55px;
+                        .not-order-img-wrapper {
+                            width: 150px;
+                            margin: 0 auto 0 auto;
+                            #not-order-img {
+                                width: 150px;
+                                height: 150px;
+                                background-image: url(@notOrderImgUrl);
+                                background-size: 150px 150px;
+                            }
+                        }
+                        .not-order-reminder-wrapper {
+                            margin-top: 55px;
+                            text-align: center;
+                        }
+                        .not-order-tip-wrapper {
+                            position: fixed;
+                            bottom: 50px;
+                            left: 80px;
+                            #not-order-tip {
+                                margin-left: 20px;
+                                margin-bottom: 30px;
+                                height: 40px;
+                                width: 200px;
+                                p.tip {
+                                    font-size: 12px;
+                                    line-height: 20px;
+                                    color: @lightGreyColor;
+                                }
+                            }
+                        }
+                    }
+                }
+                .Already-content-field {
+                    border-bottom: solid 1px @borderColor;
+                    .already-content {
+                        border-top: solid 1px @borderColor;
+                    }
+                    .already-content.choose {
+                        .already-header {
+                            .img {
+                                background-image: url(@alreadyChooseUrl);
+                            }
+                        }
+                    }
+                    padding-top: 15px;
+                    .already-header {
+                        background-color: #fff;
+                        .already-id-field {
+                            float: left;
+                            margin-left: 5%;
+                            p {
+                                line-height: 40px;
+                                font-size: 18px;
+                            }
+                        }
+                        .img-field {
+                            float: right;
+                            width: 40px;
+                            height: 40px;
+                            margin-right: 5%;
+                            .img {
+                                width: 40px;
+                                height: 40px;
+                                .background-norm();
+                                background-image: url(@alreadyUnchooseUrl);
+                                background-size: 30px 30px;
+                            }
+                        }
+                    }
+                    .already-container {
+                        .transition(0.3s);
+                        height: 0;
+                        overflow: hidden;
+                    }
+                    .food-order-wrapper {
+                        margin-top: 0;
+                        border-top: none;
+                        border-bottom: solid 1px @borderColor;
+                        ul {
+                            border-bottom: none;
+                        }
+                        .full-part {
+                            .nintyPercentCenter;
+                            .top-wrap {
+                                p.c-name {
+                                    font-weight: bold;
+                                }
+                            }
+                            .bottom-wrap {
+                                .price-field {
+                                    float: left;
+                                    p.min-price {
+                                        font-size: 18px;
+                                        color: @deepCoffeeColor;
+                                    }
+                                }
+                                .controll-field {
+                                    .number-field {
+                                        margin: 0;
+                                        p.num:before {
+                                            content: "×";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    .food-total-price-wrapper {
+                        .nintyPercentCenter;
+                        margin-top: 30px;
+                        .price-field {
+                            float: right;
+                            > * {
+                                line-height: 25px;
+                                font-size: 18px;
+                                float: left;
+                                color: @deepCoffeeColor;
+                            }
+                            p.word {
+                                margin-right: 10px;
+                            }
+                        }
+                    }
+                }
+            }
+            #Already-service {
+                position: fixed;
+                bottom: 50px;
+                left: 0;
+                .Already-service-field {
+                    #Already-service-column {
+                        margin-bottom: 16px;
+                        .service-wrapper {
+                            margin-left: 16px;
+                            #service-button {
+                                width: 64px;
+                                height: 64px;
+                                .background-norm;
+                                background-image: url(@serviceButtonUrl);
+                                background-size: 64px 64px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        #Individual-page {
+            #Individual-content {
+                padding-top: 15px;
+                .Already-login-field {
+                    #Individual-info-column {
+                        width: 100%;
+                        height: auto;
+                        padding: 15px 0;
+                        .borderTopBottom;
+                        background-color: #fff;
+                        .Individual-basic-info-wrapper {
+                            height: 125px;
+                            > * {
+                                float: left;
+                            }
+                            .member-img-pos {
+                                margin: 0 15px 0 15px;
+                                #rank-img {
+                                    width: 130px;
+                                    height: 115px;
+                                    background-size: 130px 115px;
+                                }
+                            }
+                            .member-info-pos {
+                                width: calc(~"100% - 175px");
+                                width: -moz-calc(~"100% - 175px");
+                                width: -webkit-calc(~"100% - 175px");
+                                .rank-field {
+                                    height: auto;
+                                    > *:not(.clear) {
+                                        float: left;
+                                        height: 28px;
+                                        line-height: 28px;
+                                        font-size: 20px;
+                                    }
+                                    p.rank {
+                                        font-weight: lighter;
+                                    }
+                                    p.member-name {
+                                        margin-left: 2px;
+                                        font-weight: bold;
+                                    }
+                                }
+                                .discount-field {
+                                    margin-top: 1px;
+                                    p.discount {
+                                        line-height: 20px;
+                                        color: @deepCoffeeColor;
+                                        font-weight: bold;
+                                    }
+                                }
+                                .remainder-EXP-Blend {
+                                    margin-top: 28px;
+                                    font-size: 14px;
+                                    line-height: 20px;
+                                    .remainder-field {
+                                        line-height: 28px;
+                                        font-size: 18px;
+                                        float: left;
+                                        margin-top: 12px;
+                                        > * {
+                                            float: left;
+                                        }
+                                        p.name {
+                                            font-weight: bold;
+                                        }
+                                        p.remainder-number {
+                                            margin-left: 10px;
+                                            color: @deepCoffeeColor;
+                                        }
+                                        p.remainder-number:before {
+                                            content: "￥";
+                                            font-size: 12px;
+                                        }
+                                    }
+                                    .EXP-field {
+                                        float: right;
+                                        text-align: right;
+                                    }
+                                }
+                            }
+                        }
+                        .Individual-EXP-bar-wrapper {
+                            .EXP-bar-field {
+                                width: 90%;
+                                margin: 0 auto;
+                                border: solid 1px @borderColor;
+                                .rounded-corners(10px);
+                                .full-bar {
+                                    .rounded-corners(10px);
+                                    width: 100%;
+                                    height: 6px;
+                                    background-color: #fff;
+                                    overflow-x: hidden;
+                                    .inner-bar {
+                                        .rounded-corners(10px);
+                                        height: 100%;
+                                        background-color: @orangeColor;
+                                        border-right: solid 1px @borderColor;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    #Individual-operation-column {
+                        margin-top: 30px;
+                        .Individual-func-wrapper {
+                            .borderTopBottom();
+                            height: auto;
+                            width: 100%;
+                            ul.Individual-func-list {
+                                li.Individual-func {
+                                    height: 38px;
+                                    position: relative;
+                                    background-color: #fff;
+                                    .func-img-field {
+                                        float: left;
+                                        margin: 7.5px 20px;
+                                        .func-img {
+                                            width: 23px;
+                                            height: 23px;
+                                            background-size: 23px 23px;
+                                            background-image: url(@VIPMemberUrl);
+                                        }
+                                    }
+                                    .name-field {
+                                        margin-left: 5px;
+                                        p.name {
+                                            font-size: 14px;
+                                            line-height: 38px;
+                                        }
+                                    }
+                                }
+                                li:active {
+                                    background-color: @touchColor;
+                                }
+                            }
+                        }
+                    }
+                }
+                .not-yet-login-field {
+                    #not-yet-login-column {
+                        background-color: #fff;
+                        .not-yet-login-wrapper {
+                            width: 100%;
+                            height: 90px;
+                            .borderTopBottom();
+                            position: relative;
+                            * {
+                                float: left;
+                            }
+                            .avater-field {
+                                margin: 15px;
+                                width: 60px;
+                                #not-yet-login-avater {
+                                    width: 60px;
+                                    height: 60px;
+                                    background-image: url(@defaultAvaterUrl);
+                                    background-size: 60px 60px;
+                                }
+                            }
+                            .word-field {
+                                width: calc(~"100% - 120px");
+                                width: -moz-calc(~"100% - 120px");
+                                width: -webkit-calc(~"100% - 120px");
+                                height: 60px;
+                                margin: 15px;
+                                p.word {
+                                    width: 100%;
+                                    text-align: center;
+                                    line-height: 60px;
+                                    font-size: 1.2em;
+                                    color: #969696;
+                                }
+                            }
+                        }
+                    }
+                    #not-yet-login-column:active {
+                        background-color: @touchColor;
+                    }
+                }
+            }
+        }
+    }
+    #nav-field {
+        z-index: 1;
+        .bottom-field {
+            width: 100%;
+            height: 50px;
+            .background-linear-gradient(rgba(38, 38, 38, 0.9), rgba(0, 0, 0, 0.9));
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            div {
+                float: left;
+                height: 100%;
+                .background-norm();
+            }
+            #Menu {
+                .bottom-touch-background-size("Menu");
+            }
+            #Already {
+                .bottom-touch-background-size("Already");
+            }
+            #Individual {
+                .bottom-touch-background-size("Individual");
+            }
+            .Menu-checked {
+                .bottom-touch-background-image("Menu", "checked");
+            }
+            .Already-checked {
+                .bottom-touch-background-image("Already", "checked");
+            }
+            .Individual-checked {
+                .bottom-touch-background-image("Individual", "checked");
+            }
+            .Menu-unchecked {
+                .bottom-touch-background-image("Menu", "unchecked");
+            }
+            .Already-unchecked {
+                .bottom-touch-background-image("Already", "unchecked");
+            }
+            .Individual-unchecked {
+                .bottom-touch-background-image("Individual", "unchecked");
+            }
+        }
+        .bottom-touch-num-4 div {
+            width: 25%;
+        }
+        .bottom-touch-num-3 div {
+            width: 33%;
+        }
+    }
+}

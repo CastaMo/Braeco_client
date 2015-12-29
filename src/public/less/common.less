@@ -1,0 +1,293 @@
+/*common*/
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    font-size: 16px;
+    font-family: Verdana, Arial, Helvetica;
+    background-color: @homePageBackgroundColor;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+li {
+    list-style-type: none;
+}
+
+img {
+    border: 0;
+}
+
+input {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+@borderColor: #C8C7CC;
+@touchColor: #FFF5D6;
+@homePageBackgroundColor: #FFFCF6;
+@EXPFullBarBackgoundColor: #EFEFF4;
+@chooseElemColor: #CEBCB0;
+@confirmClickColor: #FFB300;
+@deepCoffeeColor: #910012;
+@coffeeColor: #8B572A;
+@greyColor: #E3E3E3;
+@centreGreyColor: #DED5CF;
+@deepGreyColor: #818181;
+@orangeColor: #FFC107;
+@lightGreyColor: #9B9B9B;
+@deepRedColor: #D0021B;
+@redOrangeColor: #F58623;
+.playAnimationForBook {
+    .animation(animation-for-add-book 0.6s ease-in-out);
+}
+
+.background-norm(@elem: "none") {
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.bottom-touch-background-image(@elem: "Menu", @state: "unchecked") when (@elem ="Menu") and (@state ="checked") {
+    background-image: url(@MenuCheckedUrl);
+}
+
+.bottom-touch-background-image(@elem: "Menu", @state: "unchecked") when (@elem ="Menu") and (@state ="unchecked") {
+    background-image: url(@MenuUncheckedUrl);
+}
+
+.bottom-touch-background-image(@elem: "Menu", @state: "unchecked") when (@elem ="Already") and (@state ="checked") {
+    background-image: url(@AlreadyCheckedUrl);
+}
+
+.bottom-touch-background-image(@elem: "Menu", @state: "unchecked") when (@elem ="Already") and (@state ="unchecked") {
+    background-image: url(@AlreadyUncheckedUrl);
+}
+
+.bottom-touch-background-image(@elem: "Menu", @state: "unchecked") when (@elem ="Individual") and (@state ="checked") {
+    background-image: url(@IndividualCheckedUrl);
+}
+
+.bottom-touch-background-image(@elem: "Menu", @state: "unchecked") when (@elem ="Individual") and (@state ="unchecked") {
+    background-image: url(@IndividualUncheckedUrl);
+}
+
+.bottom-touch-background-size(@elem: "Menu") when (@elem ="Menu") {
+    background-size: 24px 40px;
+}
+
+.bottom-touch-background-size(@elem: "Menu") when (@elem ="Already") {
+    background-size: 25.778px 40px;
+}
+
+.bottom-touch-background-size(@elem: "Menu") when (@elem ="Individual") {
+    background-size: 19.556px 40px;
+}
+
+.weixinLogo {
+    background-image: url(@weixinUrl);
+}
+
+.aliPayLogo {
+    background-image: url(@alipayUrl);
+}
+
+.unionPayLogo {
+    background-image: url(@unionUrl);
+}
+
+.baiduLogo {
+    background-image: url(@baiduUrl);
+}
+
+.member-rank-0 {
+    background-image: url(@MemberRank0Url);
+}
+
+.member-rank-1 {
+    background-image: url(@MemberRank1Url);
+}
+
+.member-rank-2 {
+    background-image: url(@MemberRank2Url);
+}
+
+.member-rank-3 {
+    background-image: url(@MemberRank3Url);
+}
+
+.member-rank-4 {
+    background-image: url(@MemberRank4Url);
+}
+
+.member-rank-5 {
+    background-image: url(@MemberRank5Url);
+}
+
+.font-number-word {
+    font-family: Helvetica, Arial, Verdana;
+}
+
+.rounded-corners (@radius: 5px) {
+    -webkit-border-radius: @radius;
+    -moz-border-radius: @radius;
+    -ms-border-radius: @radius;
+    -o-border-radius: @radius;
+    border-radius: @radius;
+}
+
+.transition (@time: .3s) {
+    -webkit-transition: all @time ease-in-out;
+    -moz-transition: all @time ease-in-out;
+    -ms-transition: all @time ease-in-out;
+    -o-transition: all @time ease-in-out;
+    transition: all @time ease-in-out;
+    -webkit-backface-visibility: hidden;
+    -webkit-perspective: 1000;
+    -moz-backface-visibility: hidden;
+    -moz-perspective: 1000;
+    backface-visibility: hidden;
+    perspective: 1000;
+}
+
+.borderTopBottom (@size: 1px, @color: @borderColor) {
+    border-top: solid @size @color;
+    border-bottom: solid @size @color;
+}
+
+.calcWidth (@width: 0) {
+    width: -moz-calc(@width);
+    width: -webkit-calc(@width);
+    width: calc(@width);
+}
+
+.fivePercentLeftLine {
+    margin-left: 5%;
+    width: 95%;
+    height: 1px;
+    background-color: @borderColor;
+}
+
+.money:before {
+    content: "¥";
+    font-size: 12px;
+}
+
+.nintyPercentCenter {
+    width: 90%;
+    margin: 0 auto 0 auto;
+}
+
+.arrow {
+    width: 15%;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    background: url(@arrowUrl) no-repeat center;
+    background-size: 11.81px 20px;
+}
+
+.clear {
+    clear: both;
+}
+
+.hide-left {
+    .translate(-120%, 0)
+}
+
+.hide-right {
+    .translate(120%, 0);
+}
+
+.horizontal-center {
+    position: absolute;
+    left: 50%;
+    .translate(-50%, 0);
+}
+
+.vertical-center {
+    position: absolute;
+    top: 50%;
+    .translate(0, -50%);
+}
+
+.total-center {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    .translate(-50%, -50%);
+}
+
+.adapt-center {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    .translate(-50%, -70%);
+}
+
+.overflowScrolling (@num: 0) {
+    -webkit-overflow-scrolling: touch;
+}
+
+.ellipsisWithLineNum (@num: 1) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: @num;
+    -webkit-box-orient: vertical;
+}
+
+.translate (@ver: 0, @hor: 0) {
+    .transform(translate3d(@ver, @hor, 0));
+}
+
+.transform (@str: scale(0, 0)) {
+    transform: @str;
+    -webkit-transform: @str;
+    -moz-transform: @str;
+    -ms-transform: @str;
+    -o-transform: @str;
+}
+
+.animation (@str) {
+    animation: @str;
+    -moz-animation: @str;
+    /* Firefox */
+    -webkit-animation: @str;
+    /* Safari and Chrome */
+    -o-animation: @str;
+    /* Opera */
+}
+
+.scale3d (@x: 0, @y: 0, @z: 0) {
+    .transform(scale(@x, @y, @z));
+}
+
+.background-linear-gradient(@from: rgba(0, 0, 0, 0), @to: rgba(0, 0, 0, 1)) {
+    background: -webkit-linear-gradient(@from, @to);
+    background: -o-linear-gradient(@from, @to);
+    background: -moz-linear-gradient(@from, @to);
+    background: linear-gradient(@from, @to);
+}
+
+.background-linear-gradient-to-left(@from: rgba(0, 0, 0, 0), @to: rgba(0, 0, 0, 1)) {
+    background: -webkit-linear-gradient(to left, @from, @to);
+    background: -o-linear-gradient(to left, @from, @to);
+    background: -moz-linear-gradient(to left, @from, @to);
+    background: linear-gradient(to left, @from, @to);
+}
+
+.hide {
+    display: none;
+}

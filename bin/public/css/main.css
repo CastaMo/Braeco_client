@@ -1355,12 +1355,25 @@
   -o-border-radius: 2px;
   border-radius: 2px;
 }
-#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-menu-wrap #book-dish-wrap {
-  position: absolute;
-  top: 0;
-  left: 0;
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-menu-wrap {
   width: 100%;
-  height: auto;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  -webkit-backface-visibility: hidden;
+  -webkit-perspective: 1000;
+  -moz-backface-visibility: hidden;
+  -moz-perspective: 1000;
+  backface-visibility: hidden;
+  perspective: 1000;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-menu-wrap > * {
+  float: left;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-menu-wrap #book-dish-wrap {
+  width: 100%;
 }
 #brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-menu-wrap #book-dish-wrap #book-main-wrap {
   height: auto;
@@ -1373,23 +1386,9 @@
   background-color: #FFF5D6;
 }
 #brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-info-wrap {
-  position: absolute;
-  top: 0;
-  left: 0;
-  -webkit-transition: all 0.4s ease-in-out;
-  -moz-transition: all 0.4s ease-in-out;
-  -ms-transition: all 0.4s ease-in-out;
-  -o-transition: all 0.4s ease-in-out;
-  transition: all 0.4s ease-in-out;
-  -webkit-backface-visibility: hidden;
-  -webkit-perspective: 1000;
-  -moz-backface-visibility: hidden;
-  -moz-perspective: 1000;
-  backface-visibility: hidden;
-  perspective: 1000;
   width: 100%;
   height: 100%;
-  z-index: 3;
+  z-index: 4;
   background-color: #FFFCF6;
 }
 #brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-info-wrap .food-img-wrapper .img-field img {
@@ -1421,9 +1420,6 @@
   font-size: 14px;
 }
 #brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-order-wrap {
-  position: absolute;
-  top: 0;
-  left: 0;
   -webkit-transition: all 0.4s ease-in-out;
   -moz-transition: all 0.4s ease-in-out;
   -ms-transition: all 0.4s ease-in-out;
@@ -2077,11 +2073,11 @@
 #brae-form-page #all-page-content-field #confirm-page {
   text-align: center;
 }
+/*brae-payment-page-*/
 #extra {
   z-index: 2;
   background-color: #FFFCF6;
 }
-/*brae-payment-page-*/
 #brae-payment-page #all-payment-content-field .all-page-field #Recharge-page {
   width: 100%;
   padding-top: 15px;
@@ -2352,7 +2348,6 @@ body {
   background-color: #FFFCF6;
   width: 100%;
   height: 100%;
-  overflow-x: hidden;
   position: relative;
 }
 li {

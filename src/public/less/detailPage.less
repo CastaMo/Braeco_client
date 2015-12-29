@@ -1,0 +1,565 @@
+
+/*brae-detail-page*/
+
+#brae-detail-page {
+    .all-page-field {
+        #Book-page {
+            #Book-content {
+                .book-content-field {
+                    .food-info-field {
+                        width: 100%;
+                        height: 95px;
+                        padding: 12.5px 0 12.5px 0;
+                        .nintyPercentCenter;
+                        .left-part {
+                            float: left;
+                            .img-field {
+                                margin-right: 10px;
+                                position: relative;
+                                .img {
+                                    width: 95px;
+                                    height: 95px;
+                                    background-size: 95px 95px;
+                                    background-image: url(@defaultPictureUrl);
+                                }
+                                .label-img {
+                                    position: absolute;
+                                    left: -1px;
+                                    top: 4px;
+                                    height: 20px;
+                                    width: 56px;
+                                    .background-norm;
+                                    background-size: 56px 20px;
+                                }
+                                .half-img {
+                                    width: 66px;
+                                    background-image: url(@halfImgUrl);
+                                    background-size: 66px 20px;
+                                }
+                                .sale-img {
+                                    background-image: url(@saleImgUrl);
+                                }
+                                .discount-img {
+                                    background-image: url(@discountImgUrl);
+                                }
+                                .limit-img {
+                                    background-image: url(@limitUrl);
+                                }
+                            }
+                        }
+                        .right-part,
+                        .full-part {
+                            float: right;
+                            width: calc(~"100% - 110px");
+                            width: -moz-calc(~"100% - 110px");
+                            width: -webkit-calc(~"100% - 110px");
+                            min-width: 160px;
+                            height: 100%;
+                            .top-wrap {
+                                height: 62.5px;
+                                width: 100%;
+                                .name-field {
+                                    p.c-name {
+                                        font-size: 16px;
+                                        font-weight: bold;
+                                        line-height: 20px;
+                                    }
+                                    p.e-name {
+                                        line-height: 20px;
+                                        font-size: 12px;
+                                    }
+                                }
+                                .label-field {
+                                    margin-top: 3px;
+                                }
+                            }
+                            .bottom-wrap {
+                                height: 36px;
+                                .price-field {
+                                    float: left;
+                                    height: 23.5px;
+                                    line-height: 23.5px;
+                                    margin-top: 12px;
+                                    > * {
+                                        float: left;
+                                    }
+                                    p.min-price {
+                                        line-height: 23.5px;
+                                        font-size: 20px;
+                                        color: @deepCoffeeColor;
+                                    }
+                                    p.init-price {
+                                        font-size: 14px;
+                                        line-height: 15px;
+                                        margin: 5px 0 0 5px;
+                                        text-decoration: line-through;
+                                    }
+                                }
+                            }
+                        }
+                        .full-part {
+                            width: 100%;
+                            height: 100%;
+                        }
+                    }
+                    #book-order-column {
+                        #book-top-wrap {
+                            #book-category-wrap {
+                                position: fixed;
+                                width: 100%;
+                                height: 41px;
+                                z-index: 3;
+                                background-color: @coffeeColor;
+                                .top-cover {
+                                    top: 7.5px;
+                                    z-index: 2;
+                                    position: absolute;
+                                    height: 27px;
+                                    width: 20%;
+                                }
+                                .left-cover {
+                                    .background-linear-gradient-to-left(rgba(139, 87, 42, 0), rgba(139, 87, 42, 1));
+                                    left: 0;
+                                }
+                                .right-cover {
+                                    .background-linear-gradient-to-left(rgba(139, 87, 42, 1), rgba(139, 87, 42, 0));
+                                    right: 0;
+                                }
+                                #book-aside-wrap {
+                                    width: 100%;
+                                    height: 27px;
+                                    padding: 7.5px 0 7.5px 0;
+                                    overflow: auto;
+                                    line-height: 27px;
+                                    .overflowScrolling();
+                                    ul.tag-list {
+                                        width: 100%;
+                                        height: 100%;
+                                        width: 1000px;
+                                        padding: 0 10px 0 10px;
+                                        li {
+                                            .ellipsisWithLineNum();
+                                            text-align: center;
+                                            padding: 0 7.5px 0 7.5px;
+                                            margin: 0 5px 0 5px;
+                                            float: left;
+                                            color: #fff;
+                                        }
+                                        li.choose {
+                                            background-color: #fff;
+                                            color: @coffeeColor;
+                                            .rounded-corners(2px);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        #book-menu-wrap {
+                            width: 100%;
+                            .transition(0.3s);
+                            > * {
+                                float: left;
+                            }
+                            #book-dish-wrap {
+                                width: 100%;
+                                #book-main-wrap {
+                                    height: auto;
+                                    margin-top: 41px;
+                                    .food-list-wrap {
+                                        ul {
+                                            margin-bottom: 77px;
+                                            li {}
+                                            li:active {
+                                                background-color: @touchColor;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        #book-info-wrap {
+                            width: 100%;
+                            height: 100%;
+                            z-index: 4;
+                            background-color: @homePageBackgroundColor;
+                            .food-img-wrapper {
+                                .img-field {
+                                    img {
+                                        width: 100%;
+                                    }
+                                }
+                            }
+                            .food-info-wrapper {
+                                .borderTopBottom();
+                                background-color: #fff;
+                                margin-top: 15px;
+                            }
+                            .food-intro-wrapper {
+                                .borderTopBottom();
+                                margin-top: 15px;
+                                background-color: #fff;
+                                .food-intro-field {
+                                    > *:not(.fivePercentLeftLine) {
+                                        .nintyPercentCenter;
+                                    }
+                                    .title-wrap {
+                                        p.title {
+                                            line-height: 37px;
+                                            font-weight: bold;
+                                        }
+                                    }
+                                    .intro-wrap {
+                                        margin-top: 10px;
+                                        margin-bottom: 10px;
+                                        font-size: 14px;
+                                    }
+                                }
+                            }
+                        }
+                        #book-order-wrap {
+                            .transition(0.4s);
+                            width: 100%;
+                            height: auto;
+                            z-index: 3;
+                            background-color: @homePageBackgroundColor;
+                            padding-bottom: 80px;
+                            .food-order-wrapper {
+                                .top-wrap {
+                                    height: auto;
+                                    .label-field {
+                                        margin-top: 0;
+                                    }
+                                }
+                                .food-info-field {
+                                    height: auto;
+                                    padding: 7px 0 2px 0;
+                                    .bottom-wrap {
+                                        height: 30px;
+                                        .price-field {
+                                            margin-top: 5px;
+                                        }
+                                    }
+                                }
+                            }
+                            .food-memo-wrapper {
+                                margin: 15px 0 0 0;
+                                border-top: solid 1px @borderColor;
+                                background-color: #fff;
+                                .title-field {
+                                    border-bottom: solid 1px @borderColor;
+                                    height: 37px;
+                                    line-height: 37px;
+                                    position: relative;
+                                    p.title {
+                                        .nintyPercentCenter;
+                                    }
+                                }
+                                .memo-field {
+                                    border-bottom: solid 1px @borderColor;
+                                    padding: 10px 0;
+                                    p.memo {
+                                        .nintyPercentCenter;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    #book-bottom-column {
+                        position: fixed;
+                        bottom: 0;
+                        height: 41px;
+                        width: 100%;
+                        background-color: rgba(126, 63, 0, 0.9);
+                        z-index: 4;
+                        .bottom-wrapper {
+                            .total-order-field {
+                                float: left;
+                                position: relative;
+                                .trolley-field {
+                                    position: absolute;
+                                    height: 45px;
+                                    width: 45px;
+                                    bottom: 4px;
+                                    left: 13px;
+                                    .num {
+                                        text-align: center;
+                                        position: absolute;
+                                        right: 5px;
+                                        top: 5px;
+                                        width: 15px;
+                                        height: 15px;
+                                        font-size: 0.7em;
+                                        .rounded-corners(50%);
+                                        background-color: @deepRedColor;
+                                        color: #fff;
+                                        line-height: 15px;
+                                    }
+                                    .img {
+                                        height: 45px;
+                                        width: 45px;
+                                        background-size: 45px 45px;
+                                        background-image: url(@trolleyUrl);
+                                    }
+                                }
+                                .total-price-field {
+                                    float: right;
+                                    height: 23px;
+                                    margin: 9px 0 9px 68px;
+                                    > * {
+                                        float: left;
+                                        line-height: 23px;
+                                        color: #fff;
+                                    }
+                                    p.total-price {
+                                        margin-left: 6px;
+                                        font-size: 18px;
+                                    }
+                                }
+                            }
+                            .confirm-field {
+                                float: right;
+                                > * {
+                                    float: right;
+                                }
+                                div {
+                                    height: 41px;
+                                    width: 83px;
+                                    background-color: @orangeColor;
+                                    p {
+                                        line-height: 41px;
+                                        text-align: center;
+                                        color: #fff;
+                                    }
+                                }
+                                .disabled {
+                                    background-color: @centreGreyColor;
+                                }
+                            }
+                            .confirm-field:active > *:not(.disabled) {
+                                background-color: @confirmClickColor;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        #Activity-page {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            .Activity-content-field {
+                #Activity-header-column {
+                    width: 100%;
+                    position: relative;
+                    overflow: hidden;
+                    .choose-wrapper {
+                        .horizontal-center;
+                    }
+                    .business-name-wrapper {
+                        width: 100%;
+                        position: absolute;
+                        bottom: 0;
+                        height: 40px;
+                        .background-linear-gradient();
+                        .business-name-field {
+                            float: right;
+                            margin-right: 15px;
+                            p.business-name {
+                                color: #fff;
+                                line-height: 40px;
+                                font-size: 18px;
+                            }
+                        }
+                    }
+                    .like-wrapper {
+                        width: 120px;
+                        height: 28px;
+                        position: absolute;
+                        right: 0;
+                        top: 20px;
+                        .translate(50%, 0);
+                        background-color: #FFC107;
+                        .rounded-corners(100px);
+                        .like-field {
+                            float: left;
+                            * {
+                                float: left;
+                            }
+                            .like-icon {
+                                margin: 5px 8px 5px 8px;
+                                width: 20px;
+                                height: 17.5px;
+                                background-size: 20px 17.5px;
+                                .background-norm;
+                            }
+                            .like-icon.like {
+                                background-image: url(@likeUrl);
+                            }
+                            .like-icon.unlike {
+                                background-image: url(@unlikeUrl);
+                            }
+                            .like-num {
+                                font-size: 16px;
+                                line-height: 28px;
+                                color: #fff;
+                            }
+                        }
+                    }
+                }
+                #Activity-container-column {
+                    width: 100%;
+                    position: relative;
+                    margin-top: 15px;
+                    .activity-container-wrapper {
+                        .title-field {
+                            height: 40px;
+                            .borderTopBottom();
+                            background-color: #fff;
+                            p.title {
+                                line-height: 40px;
+                                margin-left: 5%;
+                                font-size: 16px;
+                                font-weight: bold;
+                            }
+                        }
+                        #activity-promotion-field {
+                            p.title {
+                                color: @deepCoffeeColor;
+                            }
+                        }
+                        #activity-theme-field {
+                            p.title {
+                                color: @coffeeColor;
+                            }
+                        }
+                        ul {
+                            li.activity-basic-info {
+                                position: relative;
+                                height: 100px;
+                                width: 100%;
+                                > * {
+                                    float: left;
+                                }
+                                img {
+                                    width: 80px;
+                                    height: 80px;
+                                    margin: 10px 5px 10px 5%;
+                                }
+                                .info {
+                                    height: 80px;
+                                    width: calc(~"80% - 80px");
+                                    width: -moz-calc(~"80% - 80px");
+                                    width: -webkit-calc(~"80% - 80px");
+                                    margin: 10px 0 10px 5px;
+                                    p.activity-name {
+                                        line-height: 20px;
+                                        font-size: 14px;
+                                        font-weight: bold;
+                                    }
+                                    p.activity-intro {
+                                        font-size: 12px;
+                                        margin-top: 5px;
+                                        line-height: 18px;
+                                        .ellipsisWithLineNum(3);
+                                    }
+                                }
+                            }
+                            li:active {
+                                background-color: @touchColor;
+                            }
+                        }
+                    }
+                }
+            }
+            .Activity-information-field {
+                .transition(0.4s);
+                position: absolute;
+                top: 0;
+                background-color: @homePageBackgroundColor;
+                z-index: 1;
+                width: 100%;
+                height: 100%;
+                #Activity-information-column {
+                    .activity-information-wrapper {
+                        > *:not(.fivePercentLeftLine) {
+                            .nintyPercentCenter;
+                        }
+                        #activity-info-img-field {
+                            margin-top: 15px;
+                            .img-field {
+                                width: 100%;
+                                height: 100%;
+                                img {
+                                    width: 100%;
+                                    height: 100%;
+                                    background-color: rgb(228, 187, 63);
+                                }
+                            }
+                        }
+                        #activity-info-title-field {
+                            margin-top: 12px;
+                            margin-bottom: 8px;
+                            .name-field {
+                                width: 100%;
+                                height: 25px;
+                                * {
+                                    float: left;
+                                    line-height: 22px;
+                                }
+                                .title-type {
+                                    background-color: @coffeeColor;
+                                    color: #fff;
+                                    .rounded-corners(2px);
+                                    font-size: 12px;
+                                    padding: 0 5px 0 5px;
+                                }
+                                p.name {
+                                    margin-left: 5px;
+                                    font-size: 18px;
+                                    font-weight: bold;
+                                }
+                            }
+                            .intro-field {
+                                margin-top: 5px;
+                                color: @deepGreyColor;
+                                font-size: 14px;
+                            }
+                        }
+                        #activity-info-time-field {
+                            margin-top: 10px;
+                            margin-bottom: 10px;
+                            .name-field {
+                                p.name {
+                                    color: @coffeeColor;
+                                    font-size: 16px;
+                                    font-weight: bold;
+                                }
+                            }
+                            .time-field {
+                                margin-top: 3px;
+                                p.time {
+                                    font-size: 14px;
+                                }
+                            }
+                        }
+                        #activity-info-content-field {
+                            margin-top: 10px;
+                            .name-field {
+                                p.name {
+                                    color: @coffeeColor;
+                                    font-weight: bold;
+                                }
+                            }
+                            .content-field {
+                                margin-top: 5px;
+                                p.content {
+                                    font-size: 14px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
