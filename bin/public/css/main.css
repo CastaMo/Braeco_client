@@ -1,212 +1,336 @@
-/*-----------Book Animation Start--------------*/
-@keyframes animation-for-book {
+/*-----------Add Book Animation Start----------*/
+@keyframes animation-for-add-book {
   0% {
-    transform: translate3d(0, 0, 0);
-    -webkit-transform: translate3d(0, 0, 0);
-    -moz-transform: translate3d(0, 0, 0);
-    -ms-transform: translate3d(0, 0, 0);
-    -o-transform: translate3d(0, 0, 0);
+    transform: scale3d(1, 1, 1) rotate(0);
+    -webkit-transform: scale3d(1, 1, 1) rotate(0);
+    -moz-transform: scale3d(1, 1, 1) rotate(0);
+    -ms-transform: scale3d(1, 1, 1) rotate(0);
+    -o-transform: scale3d(1, 1, 1) rotate(0);
+    opacity: 1;
   }
-  20% {
-    transform: translate3d(0, -30px, 0);
-    -webkit-transform: translate3d(0, -30px, 0);
-    -moz-transform: translate3d(0, -30px, 0);
-    -ms-transform: translate3d(0, -30px, 0);
-    -o-transform: translate3d(0, -30px, 0);
+  11% {
+    transform: scale3d(0.85, 0.85, 1) rotate(-6deg);
+    -webkit-transform: scale3d(0.85, 0.85, 1) rotate(-6deg);
+    -moz-transform: scale3d(0.85, 0.85, 1) rotate(-6deg);
+    -ms-transform: scale3d(0.85, 0.85, 1) rotate(-6deg);
+    -o-transform: scale3d(0.85, 0.85, 1) rotate(-6deg);
+    opacity: 1;
   }
-  30% {
-    transform: translate3d(0, 0, 0);
-    -webkit-transform: translate3d(0, 0, 0);
-    -moz-transform: translate3d(0, 0, 0);
-    -ms-transform: translate3d(0, 0, 0);
-    -o-transform: translate3d(0, 0, 0);
+  33% {
+    transform: scale3d(1.15, 1.15, 1) rotate(6deg);
+    -webkit-transform: scale3d(1.15, 1.15, 1) rotate(6deg);
+    -moz-transform: scale3d(1.15, 1.15, 1) rotate(6deg);
+    -ms-transform: scale3d(1.15, 1.15, 1) rotate(6deg);
+    -o-transform: scale3d(1.15, 1.15, 1) rotate(6deg);
+    opacity: 0.9;
   }
-  50% {
-    transform: translate3d(0, -22px, 0);
-    -webkit-transform: translate3d(0, -22px, 0);
-    -moz-transform: translate3d(0, -22px, 0);
-    -ms-transform: translate3d(0, -22px, 0);
-    -o-transform: translate3d(0, -22px, 0);
+  44% {
+    transform: scale3d(1.15, 1.15, 1) rotate(-6deg);
+    -webkit-transform: scale3d(1.15, 1.15, 1) rotate(-6deg);
+    -moz-transform: scale3d(1.15, 1.15, 1) rotate(-6deg);
+    -ms-transform: scale3d(1.15, 1.15, 1) rotate(-6deg);
+    -o-transform: scale3d(1.15, 1.15, 1) rotate(-6deg);
+    opacity: 0.9;
   }
-  60% {
-    transform: translate3d(0, 0, 0);
-    -webkit-transform: translate3d(0, 0, 0);
-    -moz-transform: translate3d(0, 0, 0);
-    -ms-transform: translate3d(0, 0, 0);
-    -o-transform: translate3d(0, 0, 0);
+  55% {
+    transform: scale3d(1.15, 1.15, 1) rotate(6deg);
+    -webkit-transform: scale3d(1.15, 1.15, 1) rotate(6deg);
+    -moz-transform: scale3d(1.15, 1.15, 1) rotate(6deg);
+    -ms-transform: scale3d(1.15, 1.15, 1) rotate(6deg);
+    -o-transform: scale3d(1.15, 1.15, 1) rotate(6deg);
+    opacity: 0.9;
   }
-  80% {
-    transform: translate3d(0, -10px, 0);
-    -webkit-transform: translate3d(0, -10px, 0);
-    -moz-transform: translate3d(0, -10px, 0);
-    -ms-transform: translate3d(0, -10px, 0);
-    -o-transform: translate3d(0, -10px, 0);
+  66% {
+    transform: scale3d(1.15, 1.15, 1) rotate(-6deg);
+    -webkit-transform: scale3d(1.15, 1.15, 1) rotate(-6deg);
+    -moz-transform: scale3d(1.15, 1.15, 1) rotate(-6deg);
+    -ms-transform: scale3d(1.15, 1.15, 1) rotate(-6deg);
+    -o-transform: scale3d(1.15, 1.15, 1) rotate(-6deg);
+    opacity: 0.9;
+  }
+  77% {
+    transform: scale3d(1.15, 1.15, 1) rotate(6deg);
+    -webkit-transform: scale3d(1.15, 1.15, 1) rotate(6deg);
+    -moz-transform: scale3d(1.15, 1.15, 1) rotate(6deg);
+    -ms-transform: scale3d(1.15, 1.15, 1) rotate(6deg);
+    -o-transform: scale3d(1.15, 1.15, 1) rotate(6deg);
+    opacity: 0.9;
+  }
+  88% {
+    transform: scale3d(1.15, 1.15, 1) rotate(-6deg);
+    -webkit-transform: scale3d(1.15, 1.15, 1) rotate(-6deg);
+    -moz-transform: scale3d(1.15, 1.15, 1) rotate(-6deg);
+    -ms-transform: scale3d(1.15, 1.15, 1) rotate(-6deg);
+    -o-transform: scale3d(1.15, 1.15, 1) rotate(-6deg);
+    opacity: 0.9;
+  }
+  99% {
+    transform: scale3d(1, 1, 1) rotate(0);
+    -webkit-transform: scale3d(1, 1, 1) rotate(0);
+    -moz-transform: scale3d(1, 1, 1) rotate(0);
+    -ms-transform: scale3d(1, 1, 1) rotate(0);
+    -o-transform: scale3d(1, 1, 1) rotate(0);
+    opacity: 1;
   }
   100% {
-    transform: translate3d(0, 0, 0);
-    -webkit-transform: translate3d(0, 0, 0);
-    -moz-transform: translate3d(0, 0, 0);
-    -ms-transform: translate3d(0, 0, 0);
-    -o-transform: translate3d(0, 0, 0);
+    transform: scale3d(1, 1, 1) rotate(0);
+    -webkit-transform: scale3d(1, 1, 1) rotate(0);
+    -moz-transform: scale3d(1, 1, 1) rotate(0);
+    -ms-transform: scale3d(1, 1, 1) rotate(0);
+    -o-transform: scale3d(1, 1, 1) rotate(0);
+    opacity: 1;
   }
 }
-@-moz-keyframes animation-for-book {
+@-moz-keyframes animation-for-add-book {
   /* Firefox */
   0% {
-    transform: translate3d(0, 0, 0);
-    -webkit-transform: translate3d(0, 0, 0);
-    -moz-transform: translate3d(0, 0, 0);
-    -ms-transform: translate3d(0, 0, 0);
-    -o-transform: translate3d(0, 0, 0);
+    transform: scale3d(1, 1, 1) rotate(0);
+    -webkit-transform: scale3d(1, 1, 1) rotate(0);
+    -moz-transform: scale3d(1, 1, 1) rotate(0);
+    -ms-transform: scale3d(1, 1, 1) rotate(0);
+    -o-transform: scale3d(1, 1, 1) rotate(0);
+    opacity: 1;
   }
-  20% {
-    transform: translate3d(0, -30px, 0);
-    -webkit-transform: translate3d(0, -30px, 0);
-    -moz-transform: translate3d(0, -30px, 0);
-    -ms-transform: translate3d(0, -30px, 0);
-    -o-transform: translate3d(0, -30px, 0);
+  11% {
+    transform: scale3d(0.85, 0.85, 1) rotate(-6deg);
+    -webkit-transform: scale3d(0.85, 0.85, 1) rotate(-6deg);
+    -moz-transform: scale3d(0.85, 0.85, 1) rotate(-6deg);
+    -ms-transform: scale3d(0.85, 0.85, 1) rotate(-6deg);
+    -o-transform: scale3d(0.85, 0.85, 1) rotate(-6deg);
+    opacity: 1;
   }
-  30% {
-    transform: translate3d(0, 0, 0);
-    -webkit-transform: translate3d(0, 0, 0);
-    -moz-transform: translate3d(0, 0, 0);
-    -ms-transform: translate3d(0, 0, 0);
-    -o-transform: translate3d(0, 0, 0);
+  33% {
+    transform: scale3d(1.15, 1.15, 1) rotate(6deg);
+    -webkit-transform: scale3d(1.15, 1.15, 1) rotate(6deg);
+    -moz-transform: scale3d(1.15, 1.15, 1) rotate(6deg);
+    -ms-transform: scale3d(1.15, 1.15, 1) rotate(6deg);
+    -o-transform: scale3d(1.15, 1.15, 1) rotate(6deg);
+    opacity: 0.9;
   }
-  50% {
-    transform: translate3d(0, -22px, 0);
-    -webkit-transform: translate3d(0, -22px, 0);
-    -moz-transform: translate3d(0, -22px, 0);
-    -ms-transform: translate3d(0, -22px, 0);
-    -o-transform: translate3d(0, -22px, 0);
+  44% {
+    transform: scale3d(1.15, 1.15, 1) rotate(-6deg);
+    -webkit-transform: scale3d(1.15, 1.15, 1) rotate(-6deg);
+    -moz-transform: scale3d(1.15, 1.15, 1) rotate(-6deg);
+    -ms-transform: scale3d(1.15, 1.15, 1) rotate(-6deg);
+    -o-transform: scale3d(1.15, 1.15, 1) rotate(-6deg);
+    opacity: 0.9;
   }
-  60% {
-    transform: translate3d(0, 0, 0);
-    -webkit-transform: translate3d(0, 0, 0);
-    -moz-transform: translate3d(0, 0, 0);
-    -ms-transform: translate3d(0, 0, 0);
-    -o-transform: translate3d(0, 0, 0);
+  55% {
+    transform: scale3d(1.15, 1.15, 1) rotate(6deg);
+    -webkit-transform: scale3d(1.15, 1.15, 1) rotate(6deg);
+    -moz-transform: scale3d(1.15, 1.15, 1) rotate(6deg);
+    -ms-transform: scale3d(1.15, 1.15, 1) rotate(6deg);
+    -o-transform: scale3d(1.15, 1.15, 1) rotate(6deg);
+    opacity: 0.9;
   }
-  80% {
-    transform: translate3d(0, -10px, 0);
-    -webkit-transform: translate3d(0, -10px, 0);
-    -moz-transform: translate3d(0, -10px, 0);
-    -ms-transform: translate3d(0, -10px, 0);
-    -o-transform: translate3d(0, -10px, 0);
+  66% {
+    transform: scale3d(1.15, 1.15, 1) rotate(-6deg);
+    -webkit-transform: scale3d(1.15, 1.15, 1) rotate(-6deg);
+    -moz-transform: scale3d(1.15, 1.15, 1) rotate(-6deg);
+    -ms-transform: scale3d(1.15, 1.15, 1) rotate(-6deg);
+    -o-transform: scale3d(1.15, 1.15, 1) rotate(-6deg);
+    opacity: 0.9;
+  }
+  77% {
+    transform: scale3d(1.15, 1.15, 1) rotate(6deg);
+    -webkit-transform: scale3d(1.15, 1.15, 1) rotate(6deg);
+    -moz-transform: scale3d(1.15, 1.15, 1) rotate(6deg);
+    -ms-transform: scale3d(1.15, 1.15, 1) rotate(6deg);
+    -o-transform: scale3d(1.15, 1.15, 1) rotate(6deg);
+    opacity: 0.9;
+  }
+  88% {
+    transform: scale3d(1.15, 1.15, 1) rotate(-6deg);
+    -webkit-transform: scale3d(1.15, 1.15, 1) rotate(-6deg);
+    -moz-transform: scale3d(1.15, 1.15, 1) rotate(-6deg);
+    -ms-transform: scale3d(1.15, 1.15, 1) rotate(-6deg);
+    -o-transform: scale3d(1.15, 1.15, 1) rotate(-6deg);
+    opacity: 0.9;
+  }
+  99% {
+    transform: scale3d(1, 1, 1) rotate(0);
+    -webkit-transform: scale3d(1, 1, 1) rotate(0);
+    -moz-transform: scale3d(1, 1, 1) rotate(0);
+    -ms-transform: scale3d(1, 1, 1) rotate(0);
+    -o-transform: scale3d(1, 1, 1) rotate(0);
+    opacity: 1;
   }
   100% {
-    transform: translate3d(0, 0, 0);
-    -webkit-transform: translate3d(0, 0, 0);
-    -moz-transform: translate3d(0, 0, 0);
-    -ms-transform: translate3d(0, 0, 0);
-    -o-transform: translate3d(0, 0, 0);
+    transform: scale3d(1, 1, 1) rotate(0);
+    -webkit-transform: scale3d(1, 1, 1) rotate(0);
+    -moz-transform: scale3d(1, 1, 1) rotate(0);
+    -ms-transform: scale3d(1, 1, 1) rotate(0);
+    -o-transform: scale3d(1, 1, 1) rotate(0);
+    opacity: 1;
   }
 }
-@-webkit-keyframes animation-for-book {
+@-webkit-keyframes animation-for-add-book {
   /* Safari 和 Chrome */
   0% {
-    transform: translate3d(0, 0, 0);
-    -webkit-transform: translate3d(0, 0, 0);
-    -moz-transform: translate3d(0, 0, 0);
-    -ms-transform: translate3d(0, 0, 0);
-    -o-transform: translate3d(0, 0, 0);
+    transform: scale3d(1, 1, 1) rotate(0);
+    -webkit-transform: scale3d(1, 1, 1) rotate(0);
+    -moz-transform: scale3d(1, 1, 1) rotate(0);
+    -ms-transform: scale3d(1, 1, 1) rotate(0);
+    -o-transform: scale3d(1, 1, 1) rotate(0);
+    opacity: 1;
   }
-  20% {
-    transform: translate3d(0, -30px, 0);
-    -webkit-transform: translate3d(0, -30px, 0);
-    -moz-transform: translate3d(0, -30px, 0);
-    -ms-transform: translate3d(0, -30px, 0);
-    -o-transform: translate3d(0, -30px, 0);
+  11% {
+    transform: scale3d(0.85, 0.85, 1) rotate(-6deg);
+    -webkit-transform: scale3d(0.85, 0.85, 1) rotate(-6deg);
+    -moz-transform: scale3d(0.85, 0.85, 1) rotate(-6deg);
+    -ms-transform: scale3d(0.85, 0.85, 1) rotate(-6deg);
+    -o-transform: scale3d(0.85, 0.85, 1) rotate(-6deg);
+    opacity: 1;
   }
-  30% {
-    transform: translate3d(0, 0, 0);
-    -webkit-transform: translate3d(0, 0, 0);
-    -moz-transform: translate3d(0, 0, 0);
-    -ms-transform: translate3d(0, 0, 0);
-    -o-transform: translate3d(0, 0, 0);
+  33% {
+    transform: scale3d(1.15, 1.15, 1) rotate(6deg);
+    -webkit-transform: scale3d(1.15, 1.15, 1) rotate(6deg);
+    -moz-transform: scale3d(1.15, 1.15, 1) rotate(6deg);
+    -ms-transform: scale3d(1.15, 1.15, 1) rotate(6deg);
+    -o-transform: scale3d(1.15, 1.15, 1) rotate(6deg);
+    opacity: 0.9;
   }
-  50% {
-    transform: translate3d(0, -22px, 0);
-    -webkit-transform: translate3d(0, -22px, 0);
-    -moz-transform: translate3d(0, -22px, 0);
-    -ms-transform: translate3d(0, -22px, 0);
-    -o-transform: translate3d(0, -22px, 0);
+  44% {
+    transform: scale3d(1.15, 1.15, 1) rotate(-6deg);
+    -webkit-transform: scale3d(1.15, 1.15, 1) rotate(-6deg);
+    -moz-transform: scale3d(1.15, 1.15, 1) rotate(-6deg);
+    -ms-transform: scale3d(1.15, 1.15, 1) rotate(-6deg);
+    -o-transform: scale3d(1.15, 1.15, 1) rotate(-6deg);
+    opacity: 0.9;
   }
-  60% {
-    transform: translate3d(0, 0, 0);
-    -webkit-transform: translate3d(0, 0, 0);
-    -moz-transform: translate3d(0, 0, 0);
-    -ms-transform: translate3d(0, 0, 0);
-    -o-transform: translate3d(0, 0, 0);
+  55% {
+    transform: scale3d(1.15, 1.15, 1) rotate(6deg);
+    -webkit-transform: scale3d(1.15, 1.15, 1) rotate(6deg);
+    -moz-transform: scale3d(1.15, 1.15, 1) rotate(6deg);
+    -ms-transform: scale3d(1.15, 1.15, 1) rotate(6deg);
+    -o-transform: scale3d(1.15, 1.15, 1) rotate(6deg);
+    opacity: 0.9;
   }
-  80% {
-    transform: translate3d(0, -10px, 0);
-    -webkit-transform: translate3d(0, -10px, 0);
-    -moz-transform: translate3d(0, -10px, 0);
-    -ms-transform: translate3d(0, -10px, 0);
-    -o-transform: translate3d(0, -10px, 0);
+  66% {
+    transform: scale3d(1.15, 1.15, 1) rotate(-6deg);
+    -webkit-transform: scale3d(1.15, 1.15, 1) rotate(-6deg);
+    -moz-transform: scale3d(1.15, 1.15, 1) rotate(-6deg);
+    -ms-transform: scale3d(1.15, 1.15, 1) rotate(-6deg);
+    -o-transform: scale3d(1.15, 1.15, 1) rotate(-6deg);
+    opacity: 0.9;
+  }
+  77% {
+    transform: scale3d(1.15, 1.15, 1) rotate(6deg);
+    -webkit-transform: scale3d(1.15, 1.15, 1) rotate(6deg);
+    -moz-transform: scale3d(1.15, 1.15, 1) rotate(6deg);
+    -ms-transform: scale3d(1.15, 1.15, 1) rotate(6deg);
+    -o-transform: scale3d(1.15, 1.15, 1) rotate(6deg);
+    opacity: 0.9;
+  }
+  88% {
+    transform: scale3d(1.15, 1.15, 1) rotate(-6deg);
+    -webkit-transform: scale3d(1.15, 1.15, 1) rotate(-6deg);
+    -moz-transform: scale3d(1.15, 1.15, 1) rotate(-6deg);
+    -ms-transform: scale3d(1.15, 1.15, 1) rotate(-6deg);
+    -o-transform: scale3d(1.15, 1.15, 1) rotate(-6deg);
+    opacity: 0.9;
+  }
+  99% {
+    transform: scale3d(1, 1, 1) rotate(0);
+    -webkit-transform: scale3d(1, 1, 1) rotate(0);
+    -moz-transform: scale3d(1, 1, 1) rotate(0);
+    -ms-transform: scale3d(1, 1, 1) rotate(0);
+    -o-transform: scale3d(1, 1, 1) rotate(0);
+    opacity: 1;
   }
   100% {
-    transform: translate3d(0, 0, 0);
-    -webkit-transform: translate3d(0, 0, 0);
-    -moz-transform: translate3d(0, 0, 0);
-    -ms-transform: translate3d(0, 0, 0);
-    -o-transform: translate3d(0, 0, 0);
+    transform: scale3d(1, 1, 1) rotate(0);
+    -webkit-transform: scale3d(1, 1, 1) rotate(0);
+    -moz-transform: scale3d(1, 1, 1) rotate(0);
+    -ms-transform: scale3d(1, 1, 1) rotate(0);
+    -o-transform: scale3d(1, 1, 1) rotate(0);
+    opacity: 1;
   }
 }
-@-o-keyframes animation-for-book {
+@-o-keyframes animation-for-add-book {
   /* Opera */
   0% {
-    transform: translate3d(0, 0, 0);
-    -webkit-transform: translate3d(0, 0, 0);
-    -moz-transform: translate3d(0, 0, 0);
-    -ms-transform: translate3d(0, 0, 0);
-    -o-transform: translate3d(0, 0, 0);
+    transform: scale3d(1, 1, 1) rotate(0);
+    -webkit-transform: scale3d(1, 1, 1) rotate(0);
+    -moz-transform: scale3d(1, 1, 1) rotate(0);
+    -ms-transform: scale3d(1, 1, 1) rotate(0);
+    -o-transform: scale3d(1, 1, 1) rotate(0);
+    opacity: 1;
   }
-  20% {
-    transform: translate3d(0, -30px, 0);
-    -webkit-transform: translate3d(0, -30px, 0);
-    -moz-transform: translate3d(0, -30px, 0);
-    -ms-transform: translate3d(0, -30px, 0);
-    -o-transform: translate3d(0, -30px, 0);
+  11% {
+    transform: scale3d(0.85, 0.85, 1) rotate(-6deg);
+    -webkit-transform: scale3d(0.85, 0.85, 1) rotate(-6deg);
+    -moz-transform: scale3d(0.85, 0.85, 1) rotate(-6deg);
+    -ms-transform: scale3d(0.85, 0.85, 1) rotate(-6deg);
+    -o-transform: scale3d(0.85, 0.85, 1) rotate(-6deg);
+    opacity: 1;
   }
-  30% {
-    transform: translate3d(0, 0, 0);
-    -webkit-transform: translate3d(0, 0, 0);
-    -moz-transform: translate3d(0, 0, 0);
-    -ms-transform: translate3d(0, 0, 0);
-    -o-transform: translate3d(0, 0, 0);
+  33% {
+    transform: scale3d(1.15, 1.15, 1) rotate(6deg);
+    -webkit-transform: scale3d(1.15, 1.15, 1) rotate(6deg);
+    -moz-transform: scale3d(1.15, 1.15, 1) rotate(6deg);
+    -ms-transform: scale3d(1.15, 1.15, 1) rotate(6deg);
+    -o-transform: scale3d(1.15, 1.15, 1) rotate(6deg);
+    opacity: 0.9;
   }
-  50% {
-    transform: translate3d(0, -22px, 0);
-    -webkit-transform: translate3d(0, -22px, 0);
-    -moz-transform: translate3d(0, -22px, 0);
-    -ms-transform: translate3d(0, -22px, 0);
-    -o-transform: translate3d(0, -22px, 0);
+  44% {
+    transform: scale3d(1.15, 1.15, 1) rotate(-6deg);
+    -webkit-transform: scale3d(1.15, 1.15, 1) rotate(-6deg);
+    -moz-transform: scale3d(1.15, 1.15, 1) rotate(-6deg);
+    -ms-transform: scale3d(1.15, 1.15, 1) rotate(-6deg);
+    -o-transform: scale3d(1.15, 1.15, 1) rotate(-6deg);
+    opacity: 0.9;
   }
-  60% {
-    transform: translate3d(0, 0, 0);
-    -webkit-transform: translate3d(0, 0, 0);
-    -moz-transform: translate3d(0, 0, 0);
-    -ms-transform: translate3d(0, 0, 0);
-    -o-transform: translate3d(0, 0, 0);
+  55% {
+    transform: scale3d(1.15, 1.15, 1) rotate(6deg);
+    -webkit-transform: scale3d(1.15, 1.15, 1) rotate(6deg);
+    -moz-transform: scale3d(1.15, 1.15, 1) rotate(6deg);
+    -ms-transform: scale3d(1.15, 1.15, 1) rotate(6deg);
+    -o-transform: scale3d(1.15, 1.15, 1) rotate(6deg);
+    opacity: 0.9;
   }
-  80% {
-    transform: translate3d(0, -10px, 0);
-    -webkit-transform: translate3d(0, -10px, 0);
-    -moz-transform: translate3d(0, -10px, 0);
-    -ms-transform: translate3d(0, -10px, 0);
-    -o-transform: translate3d(0, -10px, 0);
+  66% {
+    transform: scale3d(1.15, 1.15, 1) rotate(-6deg);
+    -webkit-transform: scale3d(1.15, 1.15, 1) rotate(-6deg);
+    -moz-transform: scale3d(1.15, 1.15, 1) rotate(-6deg);
+    -ms-transform: scale3d(1.15, 1.15, 1) rotate(-6deg);
+    -o-transform: scale3d(1.15, 1.15, 1) rotate(-6deg);
+    opacity: 0.9;
+  }
+  77% {
+    transform: scale3d(1.15, 1.15, 1) rotate(6deg);
+    -webkit-transform: scale3d(1.15, 1.15, 1) rotate(6deg);
+    -moz-transform: scale3d(1.15, 1.15, 1) rotate(6deg);
+    -ms-transform: scale3d(1.15, 1.15, 1) rotate(6deg);
+    -o-transform: scale3d(1.15, 1.15, 1) rotate(6deg);
+    opacity: 0.9;
+  }
+  88% {
+    transform: scale3d(1.15, 1.15, 1) rotate(-6deg);
+    -webkit-transform: scale3d(1.15, 1.15, 1) rotate(-6deg);
+    -moz-transform: scale3d(1.15, 1.15, 1) rotate(-6deg);
+    -ms-transform: scale3d(1.15, 1.15, 1) rotate(-6deg);
+    -o-transform: scale3d(1.15, 1.15, 1) rotate(-6deg);
+    opacity: 0.9;
+  }
+  99% {
+    transform: scale3d(1, 1, 1) rotate(0);
+    -webkit-transform: scale3d(1, 1, 1) rotate(0);
+    -moz-transform: scale3d(1, 1, 1) rotate(0);
+    -ms-transform: scale3d(1, 1, 1) rotate(0);
+    -o-transform: scale3d(1, 1, 1) rotate(0);
+    opacity: 1;
   }
   100% {
-    transform: translate3d(0, 0, 0);
-    -webkit-transform: translate3d(0, 0, 0);
-    -moz-transform: translate3d(0, 0, 0);
-    -ms-transform: translate3d(0, 0, 0);
-    -o-transform: translate3d(0, 0, 0);
+    transform: scale3d(1, 1, 1) rotate(0);
+    -webkit-transform: scale3d(1, 1, 1) rotate(0);
+    -moz-transform: scale3d(1, 1, 1) rotate(0);
+    -ms-transform: scale3d(1, 1, 1) rotate(0);
+    -o-transform: scale3d(1, 1, 1) rotate(0);
+    opacity: 1;
   }
 }
-/*-----------Book Animation End--------------*/
+/*-----------Add Book Animation End----------*/
 /*-----------Popup Form Adapt Start--------------*/
 @keyframes animation-for-popup-form-adapt {
   from {
@@ -1372,7 +1496,7 @@
   position: absolute;
   height: 45px;
   width: 45px;
-  bottom: 3px;
+  bottom: 4px;
   left: 13px;
 }
 #brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-bottom-column .bottom-wrapper .total-order-field .trolley-field .num {
@@ -1708,21 +1832,21 @@
   width: 80%;
 }
 #brae-form-page #all-page-content-field .all-page-field > .total-center {
-  animation: animation-for-popup-form-total 0.4s;
-  -moz-animation: animation-for-popup-form-total 0.4s;
+  animation: animation-for-popup-form-total 0.4s ease-in-out;
+  -moz-animation: animation-for-popup-form-total 0.4s ease-in-out;
   /* Firefox */
-  -webkit-animation: animation-for-popup-form-total 0.4s;
+  -webkit-animation: animation-for-popup-form-total 0.4s ease-in-out;
   /* Safari and Chrome */
-  -o-animation: animation-for-popup-form-total 0.4s;
+  -o-animation: animation-for-popup-form-total 0.4s ease-in-out;
   /* Opera */
 }
 #brae-form-page #all-page-content-field .all-page-field > .adapt-center {
-  animation: animation-for-popup-form-adapt 0.4s;
-  -moz-animation: animation-for-popup-form-adapt 0.4s;
+  animation: animation-for-popup-form-adapt 0.4s ease-in-out;
+  -moz-animation: animation-for-popup-form-adapt 0.4s ease-in-out;
   /* Firefox */
-  -webkit-animation: animation-for-popup-form-adapt 0.4s;
+  -webkit-animation: animation-for-popup-form-adapt 0.4s ease-in-out;
   /* Safari and Chrome */
-  -o-animation: animation-for-popup-form-adapt 0.4s;
+  -o-animation: animation-for-popup-form-adapt 0.4s ease-in-out;
   /* Opera */
 }
 #brae-form-page #all-page-content-field .page-wrapper {
@@ -2243,12 +2367,12 @@ input {
   box-sizing: border-box;
 }
 .playAnimationForBook {
-  animation: animation-for-book 0.4s;
-  -moz-animation: animation-for-book 0.4s;
+  animation: animation-for-add-book 0.6s ease-in-out;
+  -moz-animation: animation-for-add-book 0.6s ease-in-out;
   /* Firefox */
-  -webkit-animation: animation-for-book 0.4s;
+  -webkit-animation: animation-for-add-book 0.6s ease-in-out;
   /* Safari and Chrome */
-  -o-animation: animation-for-book 0.4s;
+  -o-animation: animation-for-add-book 0.6s ease-in-out;
   /* Opera */
 }
 .weixinLogo {

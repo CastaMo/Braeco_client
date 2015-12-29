@@ -1,130 +1,172 @@
+/*-----------Add Book Animation Start----------*/
 
-/*-----------Book Animation Start--------------*/
-.animation-for-book-frame(@stage: 1) when (@stage =1) {
-    .translate(0, 0);
+.animation-for-add-book-frame(@stage: 1) when (@stage =1) {
+    .transform(scale3d(1, 1, 1) rotate(0));
+    opacity: 1;
 }
 
-.animation-for-book-frame(@stage: 1) when(@stage =2) {
-    .translate(0, -30px);
+.animation-for-add-book-frame(@stage: 1) when(@stage =2) {
+    .transform(scale3d(0.85, 0.85, 1) rotate(-6deg));
+    opacity: 1;
 }
 
-.animation-for-book-frame(@stage: 1) when (@stage =3) {
-    .translate(0, -22px);
+.animation-for-add-book-frame(@stage: 1) when (@stage =3) {
+    .transform(scale3d(1.15, 1.15, 1) rotate(6deg));
+    opacity: 0.9;
 }
 
-.animation-for-book-frame(@stage: 1) when (@stage =4) {
-    .translate(0, -10px);
+.animation-for-add-book-frame(@stage: 1) when (@stage =4) {
+    .transform(scale3d(1.15, 1.15, 1) rotate(-6deg));
+    opacity: 0.9;
 }
 
-@keyframes animation-for-book {
+@keyframes animation-for-add-book {
     0% {
-        .animation-for-book-frame(1);
+        .animation-for-add-book-frame(1);
     }
-    20% {
-        .animation-for-book-frame(2);
+    11% {
+        .animation-for-add-book-frame(2);
     }
-    30% {
-        .animation-for-book-frame(1);
+    33% {
+        .animation-for-add-book-frame(3);
     }
-    50% {
-        .animation-for-book-frame(3);
+    44% {
+        .animation-for-add-book-frame(4);
     }
-    60% {
-        .animation-for-book-frame(1);
+    55% {
+        .animation-for-add-book-frame(3);
     }
-    80% {
-        .animation-for-book-frame(4);
+    66% {
+        .animation-for-add-book-frame(4);
+    }
+    77% {
+        .animation-for-add-book-frame(3);
+    }
+    88% {
+        .animation-for-add-book-frame(4);
+    }
+    99% {
+        .animation-for-add-book-frame(1);
     }
     100% {
-        .animation-for-book-frame(1);
+        .animation-for-add-book-frame(1);
     }
 }
 
-@-moz-keyframes animation-for-book
+@-moz-keyframes animation-for-add-book
 /* Firefox */
 
 {
     0% {
-        .animation-for-book-frame(1);
+        .animation-for-add-book-frame(1);
     }
-    20% {
-        .animation-for-book-frame(2);
+    11% {
+        .animation-for-add-book-frame(2);
     }
-    30% {
-        .animation-for-book-frame(1);
+    33% {
+        .animation-for-add-book-frame(3);
     }
-    50% {
-        .animation-for-book-frame(3);
+    44% {
+        .animation-for-add-book-frame(4);
     }
-    60% {
-        .animation-for-book-frame(1);
+    55% {
+        .animation-for-add-book-frame(3);
     }
-    80% {
-        .animation-for-book-frame(4);
+    66% {
+        .animation-for-add-book-frame(4);
+    }
+    77% {
+        .animation-for-add-book-frame(3);
+    }
+    88% {
+        .animation-for-add-book-frame(4);
+    }
+    99% {
+        .animation-for-add-book-frame(1);
     }
     100% {
-        .animation-for-book-frame(1);
+        .animation-for-add-book-frame(1);
     }
 }
 
-@-webkit-keyframes animation-for-book
+@-webkit-keyframes animation-for-add-book
 /* Safari 和 Chrome */
 
 {
     0% {
-        .animation-for-book-frame(1);
+        .animation-for-add-book-frame(1);
     }
-    20% {
-        .animation-for-book-frame(2);
+    11% {
+        .animation-for-add-book-frame(2);
     }
-    30% {
-        .animation-for-book-frame(1);
+    33% {
+        .animation-for-add-book-frame(3);
     }
-    50% {
-        .animation-for-book-frame(3);
+    44% {
+        .animation-for-add-book-frame(4);
     }
-    60% {
-        .animation-for-book-frame(1);
+    55% {
+        .animation-for-add-book-frame(3);
     }
-    80% {
-        .animation-for-book-frame(4);
+    66% {
+        .animation-for-add-book-frame(4);
+    }
+    77% {
+        .animation-for-add-book-frame(3);
+    }
+    88% {
+        .animation-for-add-book-frame(4);
+    }
+    99% {
+        .animation-for-add-book-frame(1);
     }
     100% {
-        .animation-for-book-frame(1);
+        .animation-for-add-book-frame(1);
     }
 }
 
-@-o-keyframes animation-for-book
+@-o-keyframes animation-for-add-book
 /* Opera */
 
 {
     0% {
-        .animation-for-book-frame(1);
+        .animation-for-add-book-frame(1);
     }
-    20% {
-        .animation-for-book-frame(2);
+    11% {
+        .animation-for-add-book-frame(2);
     }
-    30% {
-        .animation-for-book-frame(1);
+    33% {
+        .animation-for-add-book-frame(3);
     }
-    50% {
-        .animation-for-book-frame(3);
+    44% {
+        .animation-for-add-book-frame(4);
     }
-    60% {
-        .animation-for-book-frame(1);
+    55% {
+        .animation-for-add-book-frame(3);
     }
-    80% {
-        .animation-for-book-frame(4);
+    66% {
+        .animation-for-add-book-frame(4);
+    }
+    77% {
+        .animation-for-add-book-frame(3);
+    }
+    88% {
+        .animation-for-add-book-frame(4);
+    }
+    99% {
+        .animation-for-add-book-frame(1);
     }
     100% {
-        .animation-for-book-frame(1);
+        .animation-for-add-book-frame(1);
     }
 }
 
-/*-----------Book Animation End--------------*/
+/*-----------Add Book Animation End----------*/
+
 
 
 /*-----------Popup Form Adapt Start--------------*/
+
 @keyframes animation-for-popup-form-adapt {
     from {
         .transform(translate3d(-50%, -70%, 0) scale(1.4, 1.4));
@@ -138,6 +180,7 @@
 
 @-moz-keyframes animation-for-popup-form-adapt
 /* Firefox */
+
 {
     from {
         .transform(translate3d(-50%, -70%, 0) scale(1.4, 1.4));
@@ -176,10 +219,13 @@
         opacity: 1;
     }
 }
+
+
 /*-----------Popup Form Adapt End--------------*/
 
 
 /*-----------Popup Form Total Start--------------*/
+
 @keyframes animation-for-popup-form-total {
     from {
         .transform(translate3d(-50%, -50%, 0) scale(1.4, 1.4));
@@ -193,6 +239,7 @@
 
 @-moz-keyframes animation-for-popup-form-total
 /* Firefox */
+
 {
     from {
         .transform(translate3d(-50%, -50%, 0) scale(1.4, 1.4));
@@ -231,5 +278,6 @@
         opacity: 1;
     }
 }
-/*-----------Popup Form Total End--------------*/
 
+
+/*-----------Popup Form Total End--------------*/
