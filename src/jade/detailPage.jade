@@ -56,6 +56,59 @@
 												.arrow
 											.memo-field
 												p.memo
+								#Choose-payment-method-page
+									#Choose-payment-method-content
+										#payment-total-column
+											.payment-total-wrapper
+												.total-field
+													p.word 订单总价:
+													p.total-price.money.font-number-word 46
+										.Choose-payment-method-content-field
+											#choose-payment-via-member-column
+												.via-member-title-field.via-title-field
+													.title-wrapper
+														.title-field
+															p.title 使用会员余额支付
+												ul.via-member-list
+													li#choose-member.via-member
+														.via-member-wrapper.li-wrapper
+															.VIP-img-field.img-field
+																.img
+															.member-info-field.info-field
+																.remainder-field.up-field
+																	p.word 您的会员余额: 
+																.discount-field.down-field
+																	p.remainder-number.money.font-number-word 66
+															.choose-field
+
+													.fivePercentLeftLine.hide
+													li#recharge-btn.via-member.hide
+														.via-member-wrapper.li-wrapper
+															.VIP-img-field.img-field
+																.img
+															.member-info-field.info-field
+																.remainder-field.up-field
+																	p.word 您的会员余额: 
+																	p.remainder-number.money.font-number-word 0
+																.discount-field.down-field
+																	p.remind 余额不足以支付，马上充值
+															.arrow
+											#choose-payment-via-online-column
+												.via-online-title-field.via-title-field
+													.title-wrapper
+														.title-field
+															p.title 使用在线支付
+													.clear
+												ul.via-online-list
+											#choose-payment-via-cash-column
+											#remind-via-cash-column
+												.via-remind-body
+													.remind-field
+														p.remind 使用现金充值请到前台
+											#confirm-pay-column.confirm-column
+												.confirm-wrapper
+													.confirm-field
+														p.confirm 确认支付
 								.clear
 
 
@@ -74,8 +127,6 @@
 										p.order 查看订单
 									div.pay-btn.hide
 										p.pay 结账
-									div.col-btn.hide
-										p.col 返回菜单
 			#Activity-page.hide.main-detail-page
 				#Activity-content
 					.Activity-content-field

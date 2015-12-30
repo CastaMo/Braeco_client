@@ -1,4 +1,3 @@
-
 /*brae-detail-page*/
 
 #brae-detail-page {
@@ -161,17 +160,17 @@
                             }
                             padding-top: 1px;
                             .transition(0.5s);
-                            #book-dish-wrap {
-                                width: 100%;
-                                #book-main-wrap {
-                                    height: auto;
-                                    margin-top: 41px;
-                                    .food-list-wrap {
-                                        ul {
-                                            margin-bottom: 77px;
-                                            li:active {
-                                                background-color: @touchColor;
-                                            }
+                        }
+                        #book-dish-wrap {
+                            width: 100%;
+                            #book-main-wrap {
+                                height: auto;
+                                margin-top: 41px;
+                                .food-list-wrap {
+                                    ul {
+                                        margin-bottom: 77px;
+                                        li:active {
+                                            background-color: @touchColor;
                                         }
                                     }
                                 }
@@ -257,6 +256,222 @@
                                     padding: 10px 0;
                                     p.memo {
                                         .nintyPercentCenter;
+                                    }
+                                }
+                            }
+                        }
+                        #Choose-payment-method-page {
+                            width: 100%;
+                            z-index: 6;
+                            background-color: @homePageBackgroundColor;
+                            .choose-field {
+                                float: right;
+                                width: 40px;
+                                height: 100%;
+                                .background-norm;
+                                background-position: right;
+                                background-size: 20px 20px;
+                                background-image: url(@uncheckedUrl);
+                            }
+                            #Choose-payment-method-content {
+                                #payment-total-column {
+                                    position: fixed;
+                                    top: 0;
+                                    width: 100%;
+                                    height: 40px;
+                                    background-color: @touchColor;
+                                    border-bottom: solid 1px @borderColor;
+                                    z-index: 4;
+                                    .payment-total-wrapper {
+                                        .nintyPercentCenter;
+                                        .total-field {
+                                            line-height: 40px;
+                                            height: 40px;
+                                            font-weight: bold;
+                                            p.word {
+                                                float: left;
+                                                color: @deepCoffeeColor;
+                                            }
+                                            p.total-price {
+                                                float: right;
+                                                color: @deepCoffeeColor;
+                                            }
+                                        }
+                                    }
+                                }
+                                .Choose-payment-method-content-field {
+                                    margin-top: 55px;
+                                    > * {
+                                        background-color: #fff;
+                                    }
+                                    .via-title-field {
+                                        border-bottom: solid 1px @borderColor;
+                                        .title-wrapper {
+                                            .nintyPercentCenter;
+                                            .title-field {
+                                                line-height: 37px;
+                                                font-weight: bold;
+                                            }
+                                        }
+                                    }
+                                    ul {
+                                        height: auto;
+                                        li {
+                                            width: 100%;
+                                            position: relative;
+                                            .li-wrapper {
+                                                height: 57px;
+                                                .nintyPercentCenter;
+                                                > * {
+                                                    float: left;
+                                                }
+                                                .choose-field {
+                                                    float: right;
+                                                }
+                                                .img-field {
+                                                    margin: 10px 9px 10px 0;
+                                                    .img {
+                                                        width: 37px;
+                                                        height: 37px;
+                                                        background-size: 37px 37px;
+                                                    }
+                                                    .img.baiduLogo {
+                                                        .background-norm;
+                                                        background-size: 32px 37px;
+                                                    }
+                                                }
+                                                .info-field {
+                                                    margin: 8px 0 7px 0;
+                                                    .up-field {
+                                                        line-height: 20px;
+                                                    }
+                                                    .down-field {
+                                                        line-height: 20px;
+                                                        margin-top: 2px;
+                                                        p {
+                                                            font-size: 14px;
+                                                            float: left;
+                                                            color: @lightGreyColor;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    #choose-payment-via-member-column {
+                                        background-color: #fff;
+                                        .borderTopBottom;
+                                        ul.via-member-list {
+                                            li {
+                                                .via-member-wrapper {
+                                                    .VIP-img-field {
+                                                        .img {
+                                                            background-image: url(@VIPMemberUrl);
+                                                        }
+                                                    }
+                                                    .member-info-field {
+                                                        .remainder-field {
+                                                            > * {
+                                                                float: left;
+                                                            }
+                                                        }
+                                                        .discount-field {
+                                                            p.remainder-number {
+                                                                margin-left: 5px;
+                                                                color: @deepCoffeeColor;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    #choose-payment-via-online-column {
+                                        margin-top: 15px;
+                                        background-color: #fff;
+                                        .borderTopBottom;
+                                        .via-online-title-field {
+                                            .title-wrapper {
+                                                .title-field {
+                                                    p.title {
+                                                        float: left;
+                                                    }
+                                                    p.total-price {
+                                                        float: right;
+                                                        color: @deepCoffeeColor;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        ul.via-online-list {
+                                            li.via-online {
+                                                position: relative;
+                                                height: 57px;
+                                                .li-wrapper {
+                                                    position: absolute;
+                                                    height: 100%;
+                                                    width: 90%;
+                                                    left: 5%;
+                                                    .info-field {
+                                                        .down-field {
+                                                            p.special {
+                                                                color: @deepCoffeeColor;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        .via-online-none-warn {
+                                            .nintyPercentCenter;
+                                            p.warn {
+                                                text-align: center;
+                                                height: 55px;
+                                                line-height: 55px;
+                                                color: @lightGreyColor;
+                                            }
+                                        }
+                                    }
+                                    #choose-payment-via-cash-column {
+                                        margin-top: 15px;
+                                        border-top: solid 1px @borderColor;
+                                        .title-wrapper {
+                                            height: 38px;
+                                        }
+                                        .title-field {
+                                            float: left;
+                                            p.title {
+                                                line-height: 37px;
+                                            }
+                                        }
+                                        .choose-field {
+                                            height: 37px;
+                                        }
+                                    }
+                                    #remind-via-cash-column {
+                                        margin-top: 15px;
+                                        .borderTopBottom();
+                                        .via-remind-body {
+                                            .nintyPercentCenter;
+                                            .remind-field {
+                                                margin: 15px 0 15px 0;
+                                                p.remind {
+                                                    text-align: left;
+                                                    color: @lightGreyColor;
+                                                }
+                                            }
+                                        }
+                                    }
+                                    li:active,
+                                    .via-cash-title-field:active {
+                                        background-color: @touchColor;
+                                    }
+                                    li.choose,
+                                    .via-cash-title-field.choose {
+                                        background-color: @touchColor;
+                                        .choose-field {
+                                            background-image: url(@checkedUrl);
+                                        }
                                     }
                                 }
                             }

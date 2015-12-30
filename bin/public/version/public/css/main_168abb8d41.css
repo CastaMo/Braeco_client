@@ -1375,17 +1375,17 @@
 #brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-menu-wrap > *:not(.clear) {
   float: left;
 }
-#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-menu-wrap #book-dish-wrap {
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-dish-wrap {
   width: 100%;
 }
-#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-menu-wrap #book-dish-wrap #book-main-wrap {
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-dish-wrap #book-main-wrap {
   height: auto;
   margin-top: 41px;
 }
-#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-menu-wrap #book-dish-wrap #book-main-wrap .food-list-wrap ul {
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-dish-wrap #book-main-wrap .food-list-wrap ul {
   margin-bottom: 77px;
 }
-#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-menu-wrap #book-dish-wrap #book-main-wrap .food-list-wrap ul li:active {
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-dish-wrap #book-main-wrap .food-list-wrap ul li:active {
   background-color: #FFF5D6;
 }
 #brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-info-wrap {
@@ -1466,6 +1466,205 @@
 #brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-order-wrap .food-memo-wrapper .memo-field p.memo {
   width: 90%;
   margin: 0 auto 0 auto;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #Choose-payment-method-page {
+  width: 100%;
+  z-index: 6;
+  background-color: #FFFCF6;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #Choose-payment-method-page .choose-field {
+  float: right;
+  width: 40px;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-position: right;
+  background-size: 20px 20px;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwBAMAAAClLOS0AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAeUExURQAAAPDp5Ovj3u/p4/Dp5PDp5O7n4/Dp5P////z6+f+99CgAAAAHdFJOUwDiFmK4kjtJVqNvAAABN0lEQVQ4y21UuW7DMAxV0tRzEBTV6qBH1qBokLUHiqxFU8Cr0yWzGjdE/sD9Aqd/W9mSKIriWwzz6fESKaUCVs/aXG0Vx80GBjQPqf0OEB/UfqEjYZbRPiZ2y5RI7CDBNToChuBszYmDsxeQoR6IeU7MBkLnhBFDh/Bzieh9VRLxY6sGEaUcog8ykYkntWCWUzd8vrN+nH99V1hSp7btXFobJmidomENCQLbFC0KLCELADzxxwSW0O5kxwQ+hj9JBMal644SgU23is6JwBa4x3SoAI5qhPlQAUzVJVZABfCOF3VuqaCfBp0V7ednnV5EHNJRenUhtji6fngrcawsJtKM5ItGl23PiaPfqIJJTB2W8DYlXuI+V3lKftHJdDUlfRoKZJo6fUzGj87+Wmbvz/3q8237hb//DAykahwb8yMAAAAASUVORK5CYII=");
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #Choose-payment-method-page #Choose-payment-method-content #payment-total-column {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 40px;
+  background-color: #FFF5D6;
+  border-bottom: solid 1px #C8C7CC;
+  z-index: 4;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #Choose-payment-method-page #Choose-payment-method-content #payment-total-column .payment-total-wrapper {
+  width: 90%;
+  margin: 0 auto 0 auto;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #Choose-payment-method-page #Choose-payment-method-content #payment-total-column .payment-total-wrapper .total-field {
+  line-height: 40px;
+  height: 40px;
+  font-weight: bold;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #Choose-payment-method-page #Choose-payment-method-content #payment-total-column .payment-total-wrapper .total-field p.word {
+  float: left;
+  color: #910012;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #Choose-payment-method-page #Choose-payment-method-content #payment-total-column .payment-total-wrapper .total-field p.total-price {
+  float: right;
+  color: #910012;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field {
+  margin-top: 55px;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field > * {
+  background-color: #fff;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field .via-title-field {
+  border-bottom: solid 1px #C8C7CC;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field .via-title-field .title-wrapper {
+  width: 90%;
+  margin: 0 auto 0 auto;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field .via-title-field .title-wrapper .title-field {
+  line-height: 37px;
+  font-weight: bold;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field ul {
+  height: auto;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field ul li {
+  width: 100%;
+  position: relative;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field ul li .li-wrapper {
+  height: 57px;
+  width: 90%;
+  margin: 0 auto 0 auto;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field ul li .li-wrapper > * {
+  float: left;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field ul li .li-wrapper .choose-field {
+  float: right;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field ul li .li-wrapper .img-field {
+  margin: 10px 9px 10px 0;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field ul li .li-wrapper .img-field .img {
+  width: 37px;
+  height: 37px;
+  background-size: 37px 37px;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field ul li .li-wrapper .img-field .img.baiduLogo {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 32px 37px;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field ul li .li-wrapper .info-field {
+  margin: 8px 0 7px 0;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field ul li .li-wrapper .info-field .up-field {
+  line-height: 20px;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field ul li .li-wrapper .info-field .down-field {
+  line-height: 20px;
+  margin-top: 2px;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field ul li .li-wrapper .info-field .down-field p {
+  font-size: 14px;
+  float: left;
+  color: #9B9B9B;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field #choose-payment-via-member-column {
+  background-color: #fff;
+  border-top: solid 1px #C8C7CC;
+  border-bottom: solid 1px #C8C7CC;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field #choose-payment-via-member-column ul.via-member-list li .via-member-wrapper .VIP-img-field .img {
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABQCAMAAAC5zwKfAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAzUExURQAAAP++Av/11v/BB//ABf/BBv/ABf/BBv+1AP/BBv/JJf/ttv/eef/xx//mmP/WW//QQzJ0zRQAAAAKdFJOUwAf//9Jmm3mC8uMJPw0AAACxklEQVRYw7VZ2baDIAysCCJLgP//2tsqV2VJQA/msbbTJJPdz4eWlS9CKSnnWUqlxMLXz3NZuVBzIUo8BOVCzohIwW8rt6BoEXNZR8LdhOQdcBtkn+GTSH6lvXXGAGNgjLNeJw/FdFO9YA3LxNhwR8n1op62wKoC9qKnID25nnEXHCPEnWoqAnE68DQJt0EeWirUkdPhPss6xB6OnBp42rAuMZpEPPwXgHUKBMKPB55nN8TjiIJ2n3O0I0URzw06QmhQw+uEYPaaeTa01Rkx0eBA+Ar1bagYHQ3WgCuIqwi6MHqNBhuSTFRFE40+mV4a+QH7c2jkzJIpqFvRhkeoTlWMCrqGgoSKLlVR0gyfVQCvGTvTMqHYNQwineKuRIvGl+1Znm3jT8WFEttWsP2vGy28z+F9xPHD4tCjIKViOGxWpMXg0ubugLRZfV2IZd2vrQddzgs6/Fo/ln9rdOHVFPhC1ZBy3C8sFK7hMU3OrPJ6viHaZ/m5RE5sUYw6ASFzooicOPYI8VpAXWRFFZz0IyYF2URAWZLci5gWeBPrg6zkSR9i1jAgAu4PsSGDwstjcf+4DtiBWA5AEVDWS0MLscSDxIeG3UPUWO7JSth0INYGPpPEocPbbU0MWjdVkXo9iAavX6IoDo8B/4sDxyuxwwAdXtk5XmCTdpeKxc1ZqRbgMUBPtQCiSaFxo8kmhbdRPGzINoo2+ltxeGn06CjicEBHjSLosGRxQEsOS9g4dyXZA3iK5mScwwbOc4MNm8/M5QN64ERG4nLVPVdaeiSuD+3wv9cnftW1IMuH9vpasZuRnwnAlu4p14rq4mM3Lioh7DNjKotPdTXzkYtKHQgJzbXVrLY8euLs4HxreWyut82Rnt9cwFt44v0TwfAjxvgzy/hD0PhT1fhj2vhz3/iD5Asn0/FH3RfOzuMP4y+c7t94ufDw9ccfMMZDsfHcn6wAAAAASUVORK5CYII=");
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field #choose-payment-via-member-column ul.via-member-list li .via-member-wrapper .member-info-field .remainder-field > * {
+  float: left;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field #choose-payment-via-member-column ul.via-member-list li .via-member-wrapper .member-info-field .discount-field p.remainder-number {
+  margin-left: 5px;
+  color: #910012;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field #choose-payment-via-online-column {
+  margin-top: 15px;
+  background-color: #fff;
+  border-top: solid 1px #C8C7CC;
+  border-bottom: solid 1px #C8C7CC;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field #choose-payment-via-online-column .via-online-title-field .title-wrapper .title-field p.title {
+  float: left;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field #choose-payment-via-online-column .via-online-title-field .title-wrapper .title-field p.total-price {
+  float: right;
+  color: #910012;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field #choose-payment-via-online-column ul.via-online-list li.via-online {
+  position: relative;
+  height: 57px;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field #choose-payment-via-online-column ul.via-online-list li.via-online .li-wrapper {
+  position: absolute;
+  height: 100%;
+  width: 90%;
+  left: 5%;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field #choose-payment-via-online-column ul.via-online-list li.via-online .li-wrapper .info-field .down-field p.special {
+  color: #910012;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field #choose-payment-via-online-column .via-online-none-warn {
+  width: 90%;
+  margin: 0 auto 0 auto;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field #choose-payment-via-online-column .via-online-none-warn p.warn {
+  text-align: center;
+  height: 55px;
+  line-height: 55px;
+  color: #9B9B9B;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field #choose-payment-via-cash-column {
+  margin-top: 15px;
+  border-top: solid 1px #C8C7CC;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field #choose-payment-via-cash-column .title-wrapper {
+  height: 38px;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field #choose-payment-via-cash-column .title-field {
+  float: left;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field #choose-payment-via-cash-column .title-field p.title {
+  line-height: 37px;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field #choose-payment-via-cash-column .choose-field {
+  height: 37px;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field #remind-via-cash-column {
+  margin-top: 15px;
+  border-top: solid 1px #C8C7CC;
+  border-bottom: solid 1px #C8C7CC;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field #remind-via-cash-column .via-remind-body {
+  width: 90%;
+  margin: 0 auto 0 auto;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field #remind-via-cash-column .via-remind-body .remind-field {
+  margin: 15px 0 15px 0;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field #remind-via-cash-column .via-remind-body .remind-field p.remind {
+  text-align: left;
+  color: #9B9B9B;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field li:active,
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field .via-cash-title-field:active {
+  background-color: #FFF5D6;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field li.choose,
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field .via-cash-title-field.choose {
+  background-color: #FFF5D6;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field li.choose .choose-field,
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field .via-cash-title-field.choose .choose-field {
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwBAMAAAClLOS0AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAwUExURQAAAP/BBv/BBv+6AP/ABf/BBv+/BP/BBv+9BP/BB//////FF//xx//22v/stP/rsZGh//QAAAAJdFJOUwDusw9m10SOJ9+dbWUAAAFnSURBVDjLbZS/SsRAEMZXo6elKMil01OLdFH8g51oIXaiVboTC7ETFOG68xESjTLsGwS1D9y9gL7BCfY+glZOdrObyexOs8l8/HZ2h29WiDqCq40wPbuPBYvtVVCxeNTO74VQR3pL8zM2j8pBk59PgEQ+tMIFtGLZbgQszGYnXHjS+Q440VfCgyt0lZC4Qu4tbcpv+oQlFAY+4QW7GvqENPaXqIpMs4ws1bIi9pkw+lLLI++H/HgrdVfYoUZF8auPFTGgeFVExhqCwGfdlNALQCp0pmQAgCbkNwOQUMK4+GFAqov/Fe9tAItHmqgQAuBx1QXlBBEK4AWvwSAUgGcxBQahACyIOTAIBeDGuAoRCqCzgsQiBMhja1A5oUBl0tn6e0wAOCXWlSU3b+R6JFPe3XGFcz3Iocdu/jnoemeTTudWW1hr5nnAnN4MOjlyNqRPQ8cqWb/9mASHOr/uPD9i97jXu7u0v/+MAh9bcLENugAAAABJRU5ErkJggg==");
 }
 #brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-bottom-column {
   position: fixed;
@@ -2118,209 +2317,6 @@
   background-color: #FFF5D6;
 }
 #brae-payment-page #all-payment-content-field .all-page-field #Recharge-page #recharge-amount-column .amount-wrapper ul.amount-list li:active .choose-field {
-  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwBAMAAAClLOS0AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAwUExURQAAAP/BBv/BBv+6AP/ABf/BBv+/BP/BBv+9BP/BB//////FF//xx//22v/stP/rsZGh//QAAAAJdFJOUwDusw9m10SOJ9+dbWUAAAFnSURBVDjLbZS/SsRAEMZXo6elKMil01OLdFH8g51oIXaiVboTC7ETFOG68xESjTLsGwS1D9y9gL7BCfY+glZOdrObyexOs8l8/HZ2h29WiDqCq40wPbuPBYvtVVCxeNTO74VQR3pL8zM2j8pBk59PgEQ+tMIFtGLZbgQszGYnXHjS+Q440VfCgyt0lZC4Qu4tbcpv+oQlFAY+4QW7GvqENPaXqIpMs4ws1bIi9pkw+lLLI++H/HgrdVfYoUZF8auPFTGgeFVExhqCwGfdlNALQCp0pmQAgCbkNwOQUMK4+GFAqov/Fe9tAItHmqgQAuBx1QXlBBEK4AWvwSAUgGcxBQahACyIOTAIBeDGuAoRCqCzgsQiBMhja1A5oUBl0tn6e0wAOCXWlSU3b+R6JFPe3XGFcz3Iocdu/jnoemeTTudWW1hr5nnAnN4MOjlyNqRPQ8cqWb/9mASHOr/uPD9i97jXu7u0v/+MAh9bcLENugAAAABJRU5ErkJggg==");
-}
-#brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 6;
-  background-color: #FFFCF6;
-}
-#brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page .choose-field {
-  float: right;
-  width: 40px;
-  height: 100%;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-position: right;
-  background-size: 20px 20px;
-  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwBAMAAAClLOS0AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAeUExURQAAAPDp5Ovj3u/p4/Dp5PDp5O7n4/Dp5P////z6+f+99CgAAAAHdFJOUwDiFmK4kjtJVqNvAAABN0lEQVQ4y21UuW7DMAxV0tRzEBTV6qBH1qBokLUHiqxFU8Cr0yWzGjdE/sD9Aqd/W9mSKIriWwzz6fESKaUCVs/aXG0Vx80GBjQPqf0OEB/UfqEjYZbRPiZ2y5RI7CDBNToChuBszYmDsxeQoR6IeU7MBkLnhBFDh/Bzieh9VRLxY6sGEaUcog8ykYkntWCWUzd8vrN+nH99V1hSp7btXFobJmidomENCQLbFC0KLCELADzxxwSW0O5kxwQ+hj9JBMal644SgU23is6JwBa4x3SoAI5qhPlQAUzVJVZABfCOF3VuqaCfBp0V7ednnV5EHNJRenUhtji6fngrcawsJtKM5ItGl23PiaPfqIJJTB2W8DYlXuI+V3lKftHJdDUlfRoKZJo6fUzGj87+Wmbvz/3q8237hb//DAykahwb8yMAAAAASUVORK5CYII=");
-}
-#brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content #payment-total-column {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  height: 40px;
-  background-color: #FFF5D6;
-  border-bottom: solid 1px #C8C7CC;
-  z-index: 4;
-}
-#brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content #payment-total-column .payment-total-wrapper {
-  width: 90%;
-  margin: 0 auto 0 auto;
-}
-#brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content #payment-total-column .payment-total-wrapper .total-field {
-  line-height: 40px;
-  height: 40px;
-  font-weight: bold;
-}
-#brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content #payment-total-column .payment-total-wrapper .total-field p.word {
-  float: left;
-  color: #910012;
-}
-#brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content #payment-total-column .payment-total-wrapper .total-field p.total-price {
-  float: right;
-  color: #910012;
-}
-#brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field {
-  margin-top: 55px;
-}
-#brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field > * {
-  background-color: #fff;
-}
-#brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field .via-title-field {
-  border-bottom: solid 1px #C8C7CC;
-}
-#brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field .via-title-field .title-wrapper {
-  width: 90%;
-  margin: 0 auto 0 auto;
-}
-#brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field .via-title-field .title-wrapper .title-field {
-  line-height: 37px;
-  font-weight: bold;
-}
-#brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field ul {
-  height: auto;
-}
-#brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field ul li {
-  width: 100%;
-  position: relative;
-}
-#brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field ul li .li-wrapper {
-  height: 57px;
-  width: 90%;
-  margin: 0 auto 0 auto;
-}
-#brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field ul li .li-wrapper > * {
-  float: left;
-}
-#brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field ul li .li-wrapper .choose-field {
-  float: right;
-}
-#brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field ul li .li-wrapper .img-field {
-  margin: 10px 9px 10px 0;
-}
-#brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field ul li .li-wrapper .img-field .img {
-  width: 37px;
-  height: 37px;
-  background-size: 37px 37px;
-}
-#brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field ul li .li-wrapper .img-field .img.baiduLogo {
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 32px 37px;
-}
-#brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field ul li .li-wrapper .info-field {
-  margin: 8px 0 7px 0;
-}
-#brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field ul li .li-wrapper .info-field .up-field {
-  line-height: 20px;
-}
-#brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field ul li .li-wrapper .info-field .down-field {
-  line-height: 20px;
-  margin-top: 2px;
-}
-#brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field ul li .li-wrapper .info-field .down-field p {
-  font-size: 14px;
-  float: left;
-  color: #9B9B9B;
-}
-#brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field #choose-payment-via-member-column {
-  background-color: #fff;
-  border-top: solid 1px #C8C7CC;
-  border-bottom: solid 1px #C8C7CC;
-}
-#brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field #choose-payment-via-member-column ul.via-member-list li .via-member-wrapper .VIP-img-field .img {
-  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABQCAMAAAC5zwKfAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAzUExURQAAAP++Av/11v/BB//ABf/BBv/ABf/BBv+1AP/BBv/JJf/ttv/eef/xx//mmP/WW//QQzJ0zRQAAAAKdFJOUwAf//9Jmm3mC8uMJPw0AAACxklEQVRYw7VZ2baDIAysCCJLgP//2tsqV2VJQA/msbbTJJPdz4eWlS9CKSnnWUqlxMLXz3NZuVBzIUo8BOVCzohIwW8rt6BoEXNZR8LdhOQdcBtkn+GTSH6lvXXGAGNgjLNeJw/FdFO9YA3LxNhwR8n1op62wKoC9qKnID25nnEXHCPEnWoqAnE68DQJt0EeWirUkdPhPss6xB6OnBp42rAuMZpEPPwXgHUKBMKPB55nN8TjiIJ2n3O0I0URzw06QmhQw+uEYPaaeTa01Rkx0eBA+Ar1bagYHQ3WgCuIqwi6MHqNBhuSTFRFE40+mV4a+QH7c2jkzJIpqFvRhkeoTlWMCrqGgoSKLlVR0gyfVQCvGTvTMqHYNQwineKuRIvGl+1Znm3jT8WFEttWsP2vGy28z+F9xPHD4tCjIKViOGxWpMXg0ubugLRZfV2IZd2vrQddzgs6/Fo/ln9rdOHVFPhC1ZBy3C8sFK7hMU3OrPJ6viHaZ/m5RE5sUYw6ASFzooicOPYI8VpAXWRFFZz0IyYF2URAWZLci5gWeBPrg6zkSR9i1jAgAu4PsSGDwstjcf+4DtiBWA5AEVDWS0MLscSDxIeG3UPUWO7JSth0INYGPpPEocPbbU0MWjdVkXo9iAavX6IoDo8B/4sDxyuxwwAdXtk5XmCTdpeKxc1ZqRbgMUBPtQCiSaFxo8kmhbdRPGzINoo2+ltxeGn06CjicEBHjSLosGRxQEsOS9g4dyXZA3iK5mScwwbOc4MNm8/M5QN64ERG4nLVPVdaeiSuD+3wv9cnftW1IMuH9vpasZuRnwnAlu4p14rq4mM3Lioh7DNjKotPdTXzkYtKHQgJzbXVrLY8euLs4HxreWyut82Rnt9cwFt44v0TwfAjxvgzy/hD0PhT1fhj2vhz3/iD5Asn0/FH3RfOzuMP4y+c7t94ufDw9ccfMMZDsfHcn6wAAAAASUVORK5CYII=");
-}
-#brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field #choose-payment-via-member-column ul.via-member-list li .via-member-wrapper .member-info-field .remainder-field > * {
-  float: left;
-}
-#brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field #choose-payment-via-member-column ul.via-member-list li .via-member-wrapper .member-info-field .discount-field p.remainder-number {
-  margin-left: 5px;
-  color: #910012;
-}
-#brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field #choose-payment-via-online-column {
-  margin-top: 15px;
-  background-color: #fff;
-  border-top: solid 1px #C8C7CC;
-  border-bottom: solid 1px #C8C7CC;
-}
-#brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field #choose-payment-via-online-column .via-online-title-field .title-wrapper .title-field p.title {
-  float: left;
-}
-#brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field #choose-payment-via-online-column .via-online-title-field .title-wrapper .title-field p.total-price {
-  float: right;
-  color: #910012;
-}
-#brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field #choose-payment-via-online-column ul.via-online-list li.via-online {
-  position: relative;
-  height: 57px;
-}
-#brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field #choose-payment-via-online-column ul.via-online-list li.via-online .li-wrapper {
-  position: absolute;
-  height: 100%;
-  width: 90%;
-  left: 5%;
-}
-#brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field #choose-payment-via-online-column ul.via-online-list li.via-online .li-wrapper .info-field .down-field p.special {
-  color: #910012;
-}
-#brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field #choose-payment-via-online-column .via-online-none-warn {
-  width: 90%;
-  margin: 0 auto 0 auto;
-}
-#brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field #choose-payment-via-online-column .via-online-none-warn p.warn {
-  text-align: center;
-  height: 55px;
-  line-height: 55px;
-  color: #9B9B9B;
-}
-#brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field #choose-payment-via-cash-column {
-  margin-top: 15px;
-  border-top: solid 1px #C8C7CC;
-}
-#brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field #choose-payment-via-cash-column .title-wrapper {
-  height: 38px;
-}
-#brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field #choose-payment-via-cash-column .title-field {
-  float: left;
-}
-#brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field #choose-payment-via-cash-column .title-field p.title {
-  line-height: 37px;
-}
-#brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field #choose-payment-via-cash-column .choose-field {
-  height: 37px;
-}
-#brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field #remind-via-cash-column {
-  margin-top: 15px;
-  border-top: solid 1px #C8C7CC;
-  border-bottom: solid 1px #C8C7CC;
-}
-#brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field #remind-via-cash-column .via-remind-body {
-  width: 90%;
-  margin: 0 auto 0 auto;
-}
-#brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field #remind-via-cash-column .via-remind-body .remind-field {
-  margin: 15px 0 15px 0;
-}
-#brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field #remind-via-cash-column .via-remind-body .remind-field p.remind {
-  text-align: left;
-  color: #9B9B9B;
-}
-#brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field li:active,
-#brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field .via-cash-title-field:active {
-  background-color: #FFF5D6;
-}
-#brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field li.choose,
-#brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field .via-cash-title-field.choose {
-  background-color: #FFF5D6;
-}
-#brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field li.choose .choose-field,
-#brae-payment-page #all-payment-content-field .all-page-field #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field .via-cash-title-field.choose .choose-field {
   background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwBAMAAAClLOS0AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAwUExURQAAAP/BBv/BBv+6AP/ABf/BBv+/BP/BBv+9BP/BB//////FF//xx//22v/stP/rsZGh//QAAAAJdFJOUwDusw9m10SOJ9+dbWUAAAFnSURBVDjLbZS/SsRAEMZXo6elKMil01OLdFH8g51oIXaiVboTC7ETFOG68xESjTLsGwS1D9y9gL7BCfY+glZOdrObyexOs8l8/HZ2h29WiDqCq40wPbuPBYvtVVCxeNTO74VQR3pL8zM2j8pBk59PgEQ+tMIFtGLZbgQszGYnXHjS+Q440VfCgyt0lZC4Qu4tbcpv+oQlFAY+4QW7GvqENPaXqIpMs4ws1bIi9pkw+lLLI++H/HgrdVfYoUZF8auPFTGgeFVExhqCwGfdlNALQCp0pmQAgCbkNwOQUMK4+GFAqov/Fe9tAItHmqgQAuBx1QXlBBEK4AWvwSAUgGcxBQahACyIOTAIBeDGuAoRCqCzgsQiBMhja1A5oUBl0tn6e0wAOCXWlSU3b+R6JFPe3XGFcz3Iocdu/jnoemeTTudWW1hr5nnAnN4MOjlyNqRPQ8cqWb/9mASHOr/uPD9i97jXu7u0v/+MAh9bcLENugAAAABJRU5ErkJggg==");
 }
 /*common*/

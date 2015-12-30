@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <script src="/Table/Data" type="text/javascript"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Braeco</title>
     <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
@@ -223,6 +224,91 @@
                             </div>
                           </div>
                         </div>
+                        <div id="Choose-payment-method-page">
+                          <div id="Choose-payment-method-content">
+                            <div id="payment-total-column">
+                              <div class="payment-total-wrapper">
+                                <div class="total-field">
+                                  <p class="word">订单总价:</p>
+                                  <p class="total-price money font-number-word">46</p>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="Choose-payment-method-content-field">
+                              <div id="choose-payment-via-member-column">
+                                <div class="via-member-title-field via-title-field">
+                                  <div class="title-wrapper">
+                                    <div class="title-field">
+                                      <p class="title">使用会员余额支付</p>
+                                    </div>
+                                  </div>
+                                </div>
+                                <ul class="via-member-list">
+                                  <li id="choose-member" class="via-member">
+                                    <div class="via-member-wrapper li-wrapper">
+                                      <div class="VIP-img-field img-field">
+                                        <div class="img"></div>
+                                      </div>
+                                      <div class="member-info-field info-field">
+                                        <div class="remainder-field up-field">
+                                          <p class="word">您的会员余额: </p>
+                                        </div>
+                                        <div class="discount-field down-field">
+                                          <p class="remainder-number money font-number-word">66</p>
+                                        </div>
+                                      </div>
+                                      <div class="choose-field"></div>
+                                    </div>
+                                  </li>
+                                  <div class="fivePercentLeftLine hide"></div>
+                                  <li id="recharge-btn" class="via-member hide">
+                                    <div class="via-member-wrapper li-wrapper">
+                                      <div class="VIP-img-field img-field">
+                                        <div class="img"></div>
+                                      </div>
+                                      <div class="member-info-field info-field">
+                                        <div class="remainder-field up-field">
+                                          <p class="word">您的会员余额: </p>
+                                          <p class="remainder-number money font-number-word">0</p>
+                                        </div>
+                                        <div class="discount-field down-field">
+                                          <p class="remind">余额不足以支付，马上充值</p>
+                                        </div>
+                                      </div>
+                                      <div class="arrow"></div>
+                                    </div>
+                                  </li>
+                                </ul>
+                              </div>
+                              <div id="choose-payment-via-online-column">
+                                <div class="via-online-title-field via-title-field">
+                                  <div class="title-wrapper">
+                                    <div class="title-field">
+                                      <p class="title">使用在线支付</p>
+                                    </div>
+                                  </div>
+                                  <div class="clear"></div>
+                                </div>
+                                <ul class="via-online-list"></ul>
+                              </div>
+                              <div id="choose-payment-via-cash-column"></div>
+                              <div id="remind-via-cash-column">
+                                <div class="via-remind-body">
+                                  <div class="remind-field">
+                                    <p class="remind">使用现金充值请到前台</p>
+                                  </div>
+                                </div>
+                              </div>
+                              <div id="confirm-pay-column" class="confirm-column">
+                                <div class="confirm-wrapper">
+                                  <div class="confirm-field">
+                                    <p class="confirm">确认支付</p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                         <div class="clear"></div>
                       </div>
                     </div>
@@ -245,9 +331,6 @@
                           </div>
                           <div class="pay-btn hide">
                             <p class="pay">结账</p>
-                          </div>
-                          <div class="col-btn hide">
-                            <p class="col">返回菜单</p>
                           </div>
                         </div>
                       </div>
@@ -465,7 +548,7 @@
                     </div>
                     <div class="lower-wrapper hide">
                       <div class="input-filed">
-                        <input name="server" id="server" placeholder="请输入您需要的服务" maxlength="30">
+                        <input name="server" id="server" placeholder="请输入您需要的服务" maxlength="64">
                       </div>
                     </div>
                     <div class="confirm-column btn-wrapper">
@@ -506,91 +589,6 @@
                     	.confirm-field
                     		p.confirm 确认充值
                     -->
-                  </div>
-                </div>
-              </div>
-              <div id="Choose-payment-method-page" class="hide extra-content-page">
-                <div id="Choose-payment-method-content">
-                  <div id="payment-total-column">
-                    <div class="payment-total-wrapper">
-                      <div class="total-field">
-                        <p class="word">订单总价:</p>
-                        <p class="total-price money font-number-word">46</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="Choose-payment-method-content-field">
-                    <div id="choose-payment-via-member-column">
-                      <div class="via-member-title-field via-title-field">
-                        <div class="title-wrapper">
-                          <div class="title-field">
-                            <p class="title">使用会员余额支付</p>
-                          </div>
-                        </div>
-                      </div>
-                      <ul class="via-member-list">
-                        <li id="choose-member" class="via-member">
-                          <div class="via-member-wrapper li-wrapper">
-                            <div class="VIP-img-field img-field">
-                              <div class="img"></div>
-                            </div>
-                            <div class="member-info-field info-field">
-                              <div class="remainder-field up-field">
-                                <p class="word">您的会员余额: </p>
-                              </div>
-                              <div class="discount-field down-field">
-                                <p class="remainder-number money font-number-word">66</p>
-                              </div>
-                            </div>
-                            <div class="choose-field"></div>
-                          </div>
-                        </li>
-                        <div class="fivePercentLeftLine hide"></div>
-                        <li id="recharge-btn" class="via-member hide">
-                          <div class="via-member-wrapper li-wrapper">
-                            <div class="VIP-img-field img-field">
-                              <div class="img"></div>
-                            </div>
-                            <div class="member-info-field info-field">
-                              <div class="remainder-field up-field">
-                                <p class="word">您的会员余额: </p>
-                                <p class="remainder-number money font-number-word">0</p>
-                              </div>
-                              <div class="discount-field down-field">
-                                <p class="remind">余额不足以支付，马上充值</p>
-                              </div>
-                            </div>
-                            <div class="arrow"></div>
-                          </div>
-                        </li>
-                      </ul>
-                    </div>
-                    <div id="choose-payment-via-online-column">
-                      <div class="via-online-title-field via-title-field">
-                        <div class="title-wrapper">
-                          <div class="title-field">
-                            <p class="title">使用在线支付</p>
-                          </div>
-                        </div>
-                        <div class="clear"></div>
-                      </div>
-                      <ul class="via-online-list"></ul>
-                    </div>
-                    <div id="choose-payment-via-cash-column"></div>
-                    <div id="remind-via-cash-column">
-                      <div class="via-remind-body">
-                        <div class="remind-field">
-                          <p class="remind">使用现金充值请到前台</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div id="confirm-pay-column" class="confirm-column">
-                      <div class="confirm-wrapper">
-                        <div class="confirm-field">
-                          <p class="confirm">确认支付</p>
-                        </div>
-                      </div>
-                    </div>
                   </div>
                 </div>
               </div>
