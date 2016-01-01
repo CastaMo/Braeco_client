@@ -565,6 +565,14 @@
                     width: 100%;
                     position: relative;
                     overflow: hidden;
+                    ul {
+                        li {
+                            .img {
+                                .background-norm();
+                                background-image: url(@defaultDisplayUrl);
+                            }
+                        }
+                    }
                     .choose-wrapper {
                         .horizontal-center;
                     }
@@ -653,10 +661,13 @@
                                 > * {
                                     float: left;
                                 }
-                                img {
+                                .img {
                                     width: 80px;
                                     height: 80px;
                                     margin: 10px 5px 10px 5%;
+                                    .background-norm();
+                                    background-image: url(@defaultDishUrl);
+                                    background-size: 80px 80px;
                                 }
                                 .info {
                                     height: 80px;
@@ -702,10 +713,11 @@
                             .img-field {
                                 width: 100%;
                                 height: 100%;
-                                img {
+                                .img {
                                     width: 100%;
                                     height: 100%;
-                                    background-color: rgb(228, 187, 63);
+                                    .background-norm();
+                                    background-image: url(@defaultDisplayUrl);
                                 }
                             }
                         }
