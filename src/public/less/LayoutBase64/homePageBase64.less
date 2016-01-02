@@ -1,0 +1,87 @@
+.bottom-touch-background-image(@elem: "Menu", @state: "unchecked") when (@elem ="Menu") and (@state ="checked") {
+    background-image: url(@MenuCheckedUrl);
+}
+
+.bottom-touch-background-image(@elem: "Menu", @state: "unchecked") when (@elem ="Menu") and (@state ="unchecked") {
+    background-image: url(@MenuUncheckedUrl);
+}
+
+.bottom-touch-background-image(@elem: "Menu", @state: "unchecked") when (@elem ="Already") and (@state ="checked") {
+    background-image: url(@AlreadyCheckedUrl);
+}
+
+.bottom-touch-background-image(@elem: "Menu", @state: "unchecked") when (@elem ="Already") and (@state ="unchecked") {
+    background-image: url(@AlreadyUncheckedUrl);
+}
+
+.bottom-touch-background-image(@elem: "Menu", @state: "unchecked") when (@elem ="Individual") and (@state ="checked") {
+    background-image: url(@IndividualCheckedUrl);
+}
+
+.bottom-touch-background-image(@elem: "Menu", @state: "unchecked") when (@elem ="Individual") and (@state ="unchecked") {
+    background-image: url(@IndividualUncheckedUrl);
+}
+
+#brae-home-page {
+    #Menu {
+        .bottom-touch-background-size("Menu");
+    }
+    #Already {
+        .bottom-touch-background-size("Already");
+    }
+    #Individual {
+        .bottom-touch-background-size("Individual");
+    }
+    .Menu-checked {
+        .bottom-touch-background-image("Menu", "checked");
+    }
+    .Already-checked {
+        .bottom-touch-background-image("Already", "checked");
+    }
+    .Individual-checked {
+        .bottom-touch-background-image("Individual", "checked");
+    }
+    .Menu-unchecked {
+        .bottom-touch-background-image("Menu", "unchecked");
+    }
+    .Already-unchecked {
+        .bottom-touch-background-image("Already", "unchecked");
+    }
+    .Individual-unchecked {
+        .bottom-touch-background-image("Individual", "unchecked");
+    }
+    .already-content {
+        &.choose {
+            .already-header {
+                .img {
+                    background-image: url(@alreadyChooseUrl);
+                }
+            }
+        }
+        .already-header {
+            .img {
+                background-image: url(@alreadyUnchooseUrl);
+            }
+        }
+    }
+}
+
+.default-category-image {
+    background-image: url(@defaultCategoryUrl);
+}
+
+.not-order-already-image {
+    background-image: url(@notOrderImgUrl);
+}
+
+.service-button-image {
+    background-image: url(@serviceButtonUrl);
+}
+
+.default-avater-image {
+    background-image: url(@defaultAvaterUrl);
+}
+
+.VIP-member-image {
+    background-image: url(@VIPMemberUrl);
+}

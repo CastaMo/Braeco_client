@@ -58,30 +58,6 @@ input {
     background-position: center;
 }
 
-.bottom-touch-background-image(@elem: "Menu", @state: "unchecked") when (@elem ="Menu") and (@state ="checked") {
-    background-image: url(@MenuCheckedUrl);
-}
-
-.bottom-touch-background-image(@elem: "Menu", @state: "unchecked") when (@elem ="Menu") and (@state ="unchecked") {
-    background-image: url(@MenuUncheckedUrl);
-}
-
-.bottom-touch-background-image(@elem: "Menu", @state: "unchecked") when (@elem ="Already") and (@state ="checked") {
-    background-image: url(@AlreadyCheckedUrl);
-}
-
-.bottom-touch-background-image(@elem: "Menu", @state: "unchecked") when (@elem ="Already") and (@state ="unchecked") {
-    background-image: url(@AlreadyUncheckedUrl);
-}
-
-.bottom-touch-background-image(@elem: "Menu", @state: "unchecked") when (@elem ="Individual") and (@state ="checked") {
-    background-image: url(@IndividualCheckedUrl);
-}
-
-.bottom-touch-background-image(@elem: "Menu", @state: "unchecked") when (@elem ="Individual") and (@state ="unchecked") {
-    background-image: url(@IndividualUncheckedUrl);
-}
-
 .bottom-touch-background-size(@elem: "Menu") when (@elem ="Menu") {
     background-size: 24px 40px;
 }
@@ -92,46 +68,6 @@ input {
 
 .bottom-touch-background-size(@elem: "Menu") when (@elem ="Individual") {
     background-size: 19.556px 40px;
-}
-
-.weixinLogo {
-    background-image: url(@weixinUrl);
-}
-
-.aliPayLogo {
-    background-image: url(@alipayUrl);
-}
-
-.unionPayLogo {
-    background-image: url(@unionUrl);
-}
-
-.baiduLogo {
-    background-image: url(@baiduUrl);
-}
-
-.member-rank-0 {
-    background-image: url(@MemberRank0Url);
-}
-
-.member-rank-1 {
-    background-image: url(@MemberRank1Url);
-}
-
-.member-rank-2 {
-    background-image: url(@MemberRank2Url);
-}
-
-.member-rank-3 {
-    background-image: url(@MemberRank3Url);
-}
-
-.member-rank-4 {
-    background-image: url(@MemberRank4Url);
-}
-
-.member-rank-5 {
-    background-image: url(@MemberRank5Url);
 }
 
 .font-number-word {
@@ -202,7 +138,7 @@ input {
     position: absolute;
     right: 0;
     top: 0;
-    background: url(@arrowUrl) no-repeat center;
+    .background-norm();
     background-size: 11.81px 20px;
 }
 

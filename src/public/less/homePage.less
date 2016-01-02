@@ -14,7 +14,6 @@
                             position: relative;
                             .activity-img {
                                 .background-norm();
-                                background-image: url(@defaultDisplayUrl);
                             }
                             .activity-name-wrapper {
                                 position: absolute;
@@ -58,7 +57,6 @@
                                 width: 100%;
                                 height: 100%;
                                 .background-norm();
-                                background-image: url(@defaultCategoryUrl);
                             }
                             .category-name-field {
                                 position: absolute;
@@ -89,7 +87,6 @@
                             #not-order-img {
                                 width: 150px;
                                 height: 150px;
-                                background-image: url(@notOrderImgUrl);
                                 background-size: 150px 150px;
                             }
                         }
@@ -120,13 +117,6 @@
                     .already-content {
                         border-top: solid 1px @borderColor;
                     }
-                    .already-content.choose {
-                        .already-header {
-                            .img {
-                                background-image: url(@alreadyChooseUrl);
-                            }
-                        }
-                    }
                     padding-top: 15px;
                     .already-header {
                         background-color: #fff;
@@ -147,7 +137,6 @@
                                 width: 40px;
                                 height: 40px;
                                 .background-norm();
-                                background-image: url(@alreadyUnchooseUrl);
                                 background-size: 30px 30px;
                             }
                         }
@@ -221,7 +210,6 @@
                                 width: 64px;
                                 height: 64px;
                                 .background-norm;
-                                background-image: url(@serviceButtonUrl);
                                 background-size: 64px 64px;
                             }
                         }
@@ -351,7 +339,6 @@
                                             width: 23px;
                                             height: 23px;
                                             background-size: 23px 23px;
-                                            background-image: url(@VIPMemberUrl);
                                         }
                                     }
                                     .name-field {
@@ -386,7 +373,6 @@
                                 #not-yet-login-avater {
                                     width: 60px;
                                     height: 60px;
-                                    background-image: url(@defaultAvaterUrl);
                                     background-size: 60px 60px;
                                 }
                             }
@@ -426,33 +412,6 @@
                 float: left;
                 height: 100%;
                 .background-norm();
-            }
-            #Menu {
-                .bottom-touch-background-size("Menu");
-            }
-            #Already {
-                .bottom-touch-background-size("Already");
-            }
-            #Individual {
-                .bottom-touch-background-size("Individual");
-            }
-            .Menu-checked {
-                .bottom-touch-background-image("Menu", "checked");
-            }
-            .Already-checked {
-                .bottom-touch-background-image("Already", "checked");
-            }
-            .Individual-checked {
-                .bottom-touch-background-image("Individual", "checked");
-            }
-            .Menu-unchecked {
-                .bottom-touch-background-image("Menu", "unchecked");
-            }
-            .Already-unchecked {
-                .bottom-touch-background-image("Already", "unchecked");
-            }
-            .Individual-unchecked {
-                .bottom-touch-background-image("Individual", "unchecked");
             }
         }
         .bottom-touch-num-4 div {
