@@ -1,3 +1,15 @@
+.bottom-touch-background-size(@elem: "Menu") when (@elem ="Menu") {
+    background-size: 24px 40px;
+}
+
+.bottom-touch-background-size(@elem: "Menu") when (@elem ="Already") {
+    background-size: 25.778px 40px;
+}
+
+.bottom-touch-background-size(@elem: "Menu") when (@elem ="Individual") {
+    background-size: 19.556px 40px;
+}
+
 .bottom-touch-background-image(@elem: "Menu", @state: "unchecked") when (@elem ="Menu") and (@state ="checked") {
     background-image: url(@MenuCheckedUrl);
 }
@@ -80,8 +92,4 @@
 
 .default-avater-image {
     background-image: url(@defaultAvaterUrl);
-}
-
-.VIP-member-image {
-    background-image: url(@VIPMemberUrl);
 }

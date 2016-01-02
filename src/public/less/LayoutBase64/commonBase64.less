@@ -1,9 +1,9 @@
 .default-display-image {
-	background-image: url(@defaultDisplayUrl);
+    background-image: url(@defaultDisplayUrl);
 }
 
 .arrow {
-	background-image: url(@arrowUrl);
+    background-image: url(@arrowUrl);
 }
 
 .weixinLogo {
@@ -44,4 +44,40 @@
 
 .member-rank-5 {
     background-image: url(@MemberRank5Url);
+}
+
+.minus-field {
+    .img {
+        background-image: url(@minusUrl);
+    }
+}
+
+.plus-field {
+    .img {
+        background-image: url(@plusUrl);
+    }
+}
+
+.choose-field:not(.choose-for-order) {
+    background-image: url(@uncheckedUrl);
+}
+
+
+li.choose,
+.via-cash-title-field.choose, li:active {
+    .choose-field:not(.choose-for-order) {
+        background-image: url(@checkedUrl);
+    }
+}
+
+.VIP-member-image {
+    background-image: url(@VIPMemberUrl);
+}
+
+.default-square-image {
+    background-image: url(@defaultDishUrl);
+}
+
+.close-btn-image {
+    background-image: url(@closeUrl);
 }
