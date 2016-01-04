@@ -115,6 +115,18 @@
                     border-bottom: solid 1px @borderColor;
                     .already-content {
                         border-top: solid 1px @borderColor;
+                        &.choose {
+                            .already-header {
+                                .img {
+                                    .transform(rotate(0deg));
+                                }
+                            }
+                        }
+                        .already-header {
+                            .img {
+                                .transform(rotate(-180deg));
+                            }
+                        }
                     }
                     padding-top: 15px;
                     .already-header {
@@ -136,7 +148,8 @@
                                 width: 40px;
                                 height: 40px;
                                 .background-norm();
-                                background-size: 30px 30px;
+                                .transition(0.3s);
+                                background-size: 20px 20px;
                             }
                         }
                     }

@@ -837,6 +837,20 @@
 #brae-home-page .all-page-field #Already-page #Already-content .Already-content-field .already-content {
   border-top: solid 1px #C8C7CC;
 }
+#brae-home-page .all-page-field #Already-page #Already-content .Already-content-field .already-content.choose .already-header .img {
+  transform: rotate(0deg);
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+}
+#brae-home-page .all-page-field #Already-page #Already-content .Already-content-field .already-content .already-header .img {
+  transform: rotate(-180deg);
+  -webkit-transform: rotate(-180deg);
+  -moz-transform: rotate(-180deg);
+  -ms-transform: rotate(-180deg);
+  -o-transform: rotate(-180deg);
+}
 #brae-home-page .all-page-field #Already-page #Already-content .Already-content-field .already-header {
   background-color: #fff;
 }
@@ -859,7 +873,18 @@
   height: 40px;
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 30px 30px;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  -webkit-backface-visibility: hidden;
+  -webkit-perspective: 1000;
+  -moz-backface-visibility: hidden;
+  -moz-perspective: 1000;
+  backface-visibility: hidden;
+  perspective: 1000;
+  background-size: 20px 20px;
 }
 #brae-home-page .all-page-field #Already-page #Already-content .Already-content-field .already-container {
   -webkit-transition: all 0.3s ease-in-out;
