@@ -1647,6 +1647,22 @@
   background-color: rgba(126, 63, 0, 0.9);
   z-index: 4;
 }
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-bottom-column .active-ball {
+  position: fixed;
+  width: 2px;
+  height: 2px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  border-radius: 50%;
+  background-color: #FFC107;
+  transform: scale3d(8, 8, 1);
+  -webkit-transform: scale3d(8, 8, 1);
+  -moz-transform: scale3d(8, 8, 1);
+  -ms-transform: scale3d(8, 8, 1);
+  -o-transform: scale3d(8, 8, 1);
+}
 #brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-bottom-column .bottom-wrapper .total-order-field {
   float: left;
   position: relative;

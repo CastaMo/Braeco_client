@@ -465,6 +465,14 @@
                         width: 100%;
                         background-color: rgba(126, 63, 0, 0.9);
                         z-index: 4;
+                        .active-ball {
+                            position: fixed;
+                            width: 2px;
+                            height: 2px;
+                            .rounded-corners(50%);
+                            background-color: @orangeColor;
+                            .scale3d(8, 8, 1);
+                        }
                         .bottom-wrapper {
                             .total-order-field {
                                 float: left;
