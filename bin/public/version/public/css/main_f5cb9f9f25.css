@@ -1273,12 +1273,12 @@
 }
 #brae-home-page .all-page-field #Already-page #Already-content .Already-content-field .already-header .img-field {
   float: right;
-  width: 40px;
+  width: 18px;
   height: 40px;
   margin-right: 5%;
 }
 #brae-home-page .all-page-field #Already-page #Already-content .Already-content-field .already-header .img-field .img {
-  width: 40px;
+  width: 18px;
   height: 40px;
   background-repeat: no-repeat;
   background-position: center;
@@ -1293,7 +1293,7 @@
   -moz-perspective: 1000;
   backface-visibility: hidden;
   perspective: 1000;
-  background-size: 20px 20px;
+  background-size: 12px 12px;
 }
 #brae-home-page .all-page-field #Already-page #Already-content .Already-content-field .already-container {
   -webkit-transition: all 0.3s ease-in-out;
@@ -1345,6 +1345,7 @@
 }
 #brae-home-page .all-page-field #Already-page #Already-content .Already-content-field .food-total-price-wrapper .price-field {
   float: right;
+  margin-right: 1px;
 }
 #brae-home-page .all-page-field #Already-page #Already-content .Already-content-field .food-total-price-wrapper .price-field > * {
   line-height: 25px;
