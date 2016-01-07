@@ -50,7 +50,11 @@ input {
 @deepRedColor: #D0021B;
 @redOrangeColor: #F58623;
 .playAnimationForBook {
-    .animation(animation-for-add-book 0.6s ease-in-out);
+    .animation(animation-bounce-down 0.4s);
+}
+
+.playAnimationForAdd {
+    .animation(animation-bounce-up 0.4s);
 }
 
 .background-norm(@elem: "none") {

@@ -1,167 +1,403 @@
-/*-----------Add Book Animation Start----------*/
+/*-----------Bounce Up Animation Start----------*/
 
-.animation-for-add-book-frame(@stage: 1) when (@stage =1) {
+.animation-bounce-up-frame(@stage: 1) when (@stage =1) {
+    .transform(translate3d(0, 0, 0));
+}
+
+.animation-bounce-up-frame(@stage: 1) when (@stage =2) {
+    .transform(translate3d(0, -15px, 0));
+}
+
+.animation-bounce-up-frame(@stage: 1) when (@stage =3) {
+    .transform(translate3d(0, -8px, 0));
+}
+
+.animation-bounce-up-frame(@stage: 1) when (@stage =4) {
+    .transform(translate3d(0, -3px, 0));
+}
+
+@keyframes animation-bounce-up {
+    0% {
+        .animation-bounce-up-frame(1);
+    }
+    16.7% {
+        .animation-bounce-up-frame(2);
+    }
+    33.3% {
+        .animation-bounce-up-frame(1);
+    }
+    50% {
+        .animation-bounce-up-frame(3);
+    }
+    66.7% {
+        .animation-bounce-up-frame(1);
+    }
+    83.3% {
+        .animation-bounce-up-frame(4);
+    }
+    100% {
+        .animation-bounce-up-frame(1);
+    }
+}
+
+@-moz-keyframes animation-bounce-up {
+    0% {
+        .animation-bounce-up-frame(1);
+    }
+    16.7% {
+        .animation-bounce-up-frame(2);
+    }
+    33.3% {
+        .animation-bounce-up-frame(1);
+    }
+    50% {
+        .animation-bounce-up-frame(3);
+    }
+    66.7% {
+        .animation-bounce-up-frame(1);
+    }
+    83.3% {
+        .animation-bounce-up-frame(4);
+    }
+    100% {
+        .animation-bounce-up-frame(1);
+    }
+}
+
+@-webkit-keyframes animation-bounce-up {
+    0% {
+        .animation-bounce-up-frame(1);
+    }
+    16.7% {
+        .animation-bounce-up-frame(2);
+    }
+    33.3% {
+        .animation-bounce-up-frame(1);
+    }
+    50% {
+        .animation-bounce-up-frame(3);
+    }
+    66.7% {
+        .animation-bounce-up-frame(1);
+    }
+    83.3% {
+        .animation-bounce-up-frame(4);
+    }
+    100% {
+        .animation-bounce-up-frame(1);
+    }
+}
+
+@-o-keyframes animation-bounce-up {
+    0% {
+        .animation-bounce-up-frame(1);
+    }
+    16.7% {
+        .animation-bounce-up-frame(2);
+    }
+    33.3% {
+        .animation-bounce-up-frame(1);
+    }
+    50% {
+        .animation-bounce-up-frame(3);
+    }
+    66.7% {
+        .animation-bounce-up-frame(1);
+    }
+    83.3% {
+        .animation-bounce-up-frame(4);
+    }
+    100% {
+        .animation-bounce-up-frame(1);
+    }
+}
+
+/*-----------Bounce Up Animation End----------*/
+
+
+/*-----------Bounce Down Animation Start----------*/
+
+.animation-bounce-down-frame(@stage: 1) when (@stage =1) {
+    .transform(translate3d(0, 0, 0));
+}
+
+.animation-bounce-down-frame(@stage: 1) when (@stage =2) {
+    .transform(translate3d(0, 15px, 0));
+}
+
+.animation-bounce-down-frame(@stage: 1) when (@stage =3) {
+    .transform(translate3d(0, 8px, 0));
+}
+
+.animation-bounce-down-frame(@stage: 1) when (@stage =4) {
+    .transform(translate3d(0, 3px, 0));
+}
+
+@keyframes animation-bounce-down {
+    0% {
+        .animation-bounce-down-frame(1);
+    }
+    16.7% {
+        .animation-bounce-down-frame(2);
+    }
+    33.3% {
+        .animation-bounce-down-frame(1);
+    }
+    50% {
+        .animation-bounce-down-frame(3);
+    }
+    66.7% {
+        .animation-bounce-down-frame(1);
+    }
+    83.3% {
+        .animation-bounce-down-frame(4);
+    }
+    100% {
+        .animation-bounce-down-frame(1);
+    }
+}
+
+@-moz-keyframes animation-bounce-down
+
+{
+    0% {
+        .animation-bounce-down-frame(1);
+    }
+    16.7% {
+        .animation-bounce-down-frame(2);
+    }
+    33.3% {
+        .animation-bounce-down-frame(1);
+    }
+    50% {
+        .animation-bounce-down-frame(3);
+    }
+    66.7% {
+        .animation-bounce-down-frame(1);
+    }
+    83.3% {
+        .animation-bounce-down-frame(4);
+    }
+    100% {
+        .animation-bounce-down-frame(1);
+    }
+}
+
+@-webkit-keyframes animation-bounce-down
+
+{
+    0% {
+        .animation-bounce-down-frame(1);
+    }
+    16.7% {
+        .animation-bounce-down-frame(2);
+    }
+    33.3% {
+        .animation-bounce-down-frame(1);
+    }
+    50% {
+        .animation-bounce-down-frame(3);
+    }
+    66.7% {
+        .animation-bounce-down-frame(1);
+    }
+    83.3% {
+        .animation-bounce-down-frame(4);
+    }
+    100% {
+        .animation-bounce-down-frame(1);
+    }
+}
+
+@-o-keyframes animation-bounce-down
+
+{
+    0% {
+        .animation-bounce-down-frame(1);
+    }
+    16.7% {
+        .animation-bounce-down-frame(2);
+    }
+    33.3% {
+        .animation-bounce-down-frame(1);
+    }
+    50% {
+        .animation-bounce-down-frame(3);
+    }
+    66.7% {
+        .animation-bounce-down-frame(1);
+    }
+    83.3% {
+        .animation-bounce-down-frame(4);
+    }
+    100% {
+        .animation-bounce-down-frame(1);
+    }
+}
+
+/*-----------Bounce Down Animation End----------*/
+
+/*-----------Add Book Swing Animation Start----------*/
+
+.animation-swing-for-add-book-frame(@stage: 1) when (@stage =1) {
     .transform(scale3d(1, 1, 1) rotate(0));
     opacity: 1;
 }
 
-.animation-for-add-book-frame(@stage: 1) when(@stage =2) {
+.animation-swing-for-add-book-frame(@stage: 1) when(@stage =2) {
     .transform(scale3d(0.85, 0.85, 1) rotate(-6deg));
     opacity: 1;
 }
 
-.animation-for-add-book-frame(@stage: 1) when (@stage =3) {
+.animation-swing-for-add-book-frame(@stage: 1) when (@stage =3) {
     .transform(scale3d(1.15, 1.15, 1) rotate(6deg));
     opacity: 0.9;
 }
 
-.animation-for-add-book-frame(@stage: 1) when (@stage =4) {
+.animation-swing-for-add-book-frame(@stage: 1) when (@stage =4) {
     .transform(scale3d(1.15, 1.15, 1) rotate(-6deg));
     opacity: 0.9;
 }
 
-@keyframes animation-for-add-book {
+@keyframes animation-swing-for-add-book {
     0% {
-        .animation-for-add-book-frame(1);
+        .animation-swing-for-add-book-frame(1);
     }
     11% {
-        .animation-for-add-book-frame(2);
+        .animation-swing-for-add-book-frame(2);
     }
     33% {
-        .animation-for-add-book-frame(3);
+        .animation-swing-for-add-book-frame(3);
     }
     44% {
-        .animation-for-add-book-frame(4);
+        .animation-swing-for-add-book-frame(4);
     }
     55% {
-        .animation-for-add-book-frame(3);
+        .animation-swing-for-add-book-frame(3);
     }
     66% {
-        .animation-for-add-book-frame(4);
+        .animation-swing-for-add-book-frame(4);
     }
     77% {
-        .animation-for-add-book-frame(3);
+        .animation-swing-for-add-book-frame(3);
     }
     88% {
-        .animation-for-add-book-frame(4);
+        .animation-swing-for-add-book-frame(4);
     }
     99% {
-        .animation-for-add-book-frame(1);
+        .animation-swing-for-add-book-frame(1);
     }
     100% {
-        .animation-for-add-book-frame(1);
+        .animation-swing-for-add-book-frame(1);
     }
 }
 
-@-moz-keyframes animation-for-add-book
-/* Firefox */
+@-moz-keyframes animation-swing-for-add-book
 
 {
     0% {
-        .animation-for-add-book-frame(1);
+        .animation-swing-for-add-book-frame(1);
     }
     11% {
-        .animation-for-add-book-frame(2);
+        .animation-swing-for-add-book-frame(2);
     }
     33% {
-        .animation-for-add-book-frame(3);
+        .animation-swing-for-add-book-frame(3);
     }
     44% {
-        .animation-for-add-book-frame(4);
+        .animation-swing-for-add-book-frame(4);
     }
     55% {
-        .animation-for-add-book-frame(3);
+        .animation-swing-for-add-book-frame(3);
     }
     66% {
-        .animation-for-add-book-frame(4);
+        .animation-swing-for-add-book-frame(4);
     }
     77% {
-        .animation-for-add-book-frame(3);
+        .animation-swing-for-add-book-frame(3);
     }
     88% {
-        .animation-for-add-book-frame(4);
+        .animation-swing-for-add-book-frame(4);
     }
     99% {
-        .animation-for-add-book-frame(1);
+        .animation-swing-for-add-book-frame(1);
     }
     100% {
-        .animation-for-add-book-frame(1);
+        .animation-swing-for-add-book-frame(1);
     }
 }
 
-@-webkit-keyframes animation-for-add-book
-/* Safari 和 Chrome */
+@-webkit-keyframes animation-swing-for-add-book
 
 {
     0% {
-        .animation-for-add-book-frame(1);
+        .animation-swing-for-add-book-frame(1);
     }
     11% {
-        .animation-for-add-book-frame(2);
+        .animation-swing-for-add-book-frame(2);
     }
     33% {
-        .animation-for-add-book-frame(3);
+        .animation-swing-for-add-book-frame(3);
     }
     44% {
-        .animation-for-add-book-frame(4);
+        .animation-swing-for-add-book-frame(4);
     }
     55% {
-        .animation-for-add-book-frame(3);
+        .animation-swing-for-add-book-frame(3);
     }
     66% {
-        .animation-for-add-book-frame(4);
+        .animation-swing-for-add-book-frame(4);
     }
     77% {
-        .animation-for-add-book-frame(3);
+        .animation-swing-for-add-book-frame(3);
     }
     88% {
-        .animation-for-add-book-frame(4);
+        .animation-swing-for-add-book-frame(4);
     }
     99% {
-        .animation-for-add-book-frame(1);
+        .animation-swing-for-add-book-frame(1);
     }
     100% {
-        .animation-for-add-book-frame(1);
+        .animation-swing-for-add-book-frame(1);
     }
 }
 
-@-o-keyframes animation-for-add-book
-/* Opera */
+@-o-keyframes animation-swing-for-add-book
 
 {
     0% {
-        .animation-for-add-book-frame(1);
+        .animation-swing-for-add-book-frame(1);
     }
     11% {
-        .animation-for-add-book-frame(2);
+        .animation-swing-for-add-book-frame(2);
     }
     33% {
-        .animation-for-add-book-frame(3);
+        .animation-swing-for-add-book-frame(3);
     }
     44% {
-        .animation-for-add-book-frame(4);
+        .animation-swing-for-add-book-frame(4);
     }
     55% {
-        .animation-for-add-book-frame(3);
+        .animation-swing-for-add-book-frame(3);
     }
     66% {
-        .animation-for-add-book-frame(4);
+        .animation-swing-for-add-book-frame(4);
     }
     77% {
-        .animation-for-add-book-frame(3);
+        .animation-swing-for-add-book-frame(3);
     }
     88% {
-        .animation-for-add-book-frame(4);
+        .animation-swing-for-add-book-frame(4);
     }
     99% {
-        .animation-for-add-book-frame(1);
+        .animation-swing-for-add-book-frame(1);
     }
     100% {
-        .animation-for-add-book-frame(1);
+        .animation-swing-for-add-book-frame(1);
     }
 }
 
-/*-----------Add Book Animation End----------*/
+/*-----------Add Book Swing Animation End----------*/
 
 
 
