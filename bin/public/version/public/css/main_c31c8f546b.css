@@ -1006,14 +1006,30 @@
 }
 .controll-field .btn {
   margin-top: 6px;
-  width: 30px;
-  height: 30px;
 }
 .controll-field .btn .img {
   margin: 2.5px;
   width: 25px;
   height: 25px;
   background-size: 25px 25px;
+}
+.controll-field .choose-to-add {
+  float: right;
+  margin-top: 6px;
+  line-height: 25px;
+}
+.controll-field .choose-to-add .word {
+  margin: 2.5px;
+  height: 25px;
+  background-color: #FFC107;
+  color: #fff;
+  font-size: 15px;
+  padding: 0 8px;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  -ms-border-radius: 25px;
+  -o-border-radius: 25px;
+  border-radius: 25px;
 }
 .controll-field .number-field {
   margin: 6px 8px 0 8px;

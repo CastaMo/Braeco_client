@@ -458,6 +458,75 @@
                             }
                         }
                     }
+                    #choose-combo-column {
+                        padding: 1px 0 90px 0px;
+                        #choose-combo-sub-item-container {
+                            margin-top: 15px;
+                            border-bottom: solid 1px @borderColor;
+                            .choose-combo-sub-item {
+                                border-top: solid 1px @borderColor;
+                                .sub-item-drop-down-field {
+                                    height: 40px;
+                                    width: 100%;
+                                    background-color: #fff;
+                                    .sub-item-drop-down-container {
+                                        width: 90%;
+                                        margin: 0 auto;
+                                        > *:not(.clear) {
+                                            float: left;
+                                        }
+                                        .sub-item-name {
+                                            height: 100%;
+                                            line-height: 40px;
+                                        }
+                                        .sub-item-choose {
+                                            font-size: 12px;
+                                            color: #fff;
+                                            height: 18px;
+                                            line-height: 18px;
+                                            padding: 0 3px;
+                                            .rounded-corners(2px);
+                                            margin: 11px 10px;
+                                            &.n-ready {
+                                                background-color: @orangeColor;
+                                            }
+                                        }
+                                        .sub-item-img-field {
+                                            float: right;
+                                            height: 40px;
+                                            width: 18px;
+                                            .img {
+                                                width: 18px;
+                                                height: 40px;
+                                                .background-norm();
+                                                .transition(0.3s);
+                                                background-size: 12px 12px;
+                                            }
+                                        }
+                                    }
+                                }
+                                &.choose {
+                                    .sub-item-img-field {
+                                        .img {
+                                            .transform(rotate(0deg));
+                                        }
+                                    }
+                                }
+                                .sub-item-img-field {
+                                    .img {
+                                        .transform(rotate(-180deg));
+                                    }
+                                }
+                                .sub-item-food-field {
+                                    .transition(0.3s);
+                                    overflow: hidden;
+                                    ul {
+                                        border-top: solid 1px @borderColor;
+                                    }
+                                }
+                            }
+                        }
+                    }
                     #book-bottom-column {
                         position: fixed;
                         bottom: 0;

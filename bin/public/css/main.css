@@ -1006,14 +1006,30 @@
 }
 .controll-field .btn {
   margin-top: 6px;
-  width: 30px;
-  height: 30px;
 }
 .controll-field .btn .img {
   margin: 2.5px;
   width: 25px;
   height: 25px;
   background-size: 25px 25px;
+}
+.controll-field .choose-to-add {
+  float: right;
+  margin-top: 6px;
+  line-height: 25px;
+}
+.controll-field .choose-to-add .word {
+  margin: 2.5px;
+  height: 25px;
+  background-color: #FFC107;
+  color: #fff;
+  font-size: 15px;
+  padding: 0 8px;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  -ms-border-radius: 25px;
+  -o-border-radius: 25px;
+  border-radius: 25px;
 }
 .controll-field .number-field {
   margin: 6px 8px 0 8px;
@@ -2048,6 +2064,102 @@
 #brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field li.choose,
 #brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field .via-cash-title-field.choose {
   background-color: #FFF5D6;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #choose-combo-column {
+  padding: 1px 0 90px 0px;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #choose-combo-column #choose-combo-sub-item-container {
+  margin-top: 15px;
+  border-bottom: solid 1px #C8C7CC;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #choose-combo-column #choose-combo-sub-item-container .choose-combo-sub-item {
+  border-top: solid 1px #C8C7CC;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #choose-combo-column #choose-combo-sub-item-container .choose-combo-sub-item .sub-item-drop-down-field {
+  height: 40px;
+  width: 100%;
+  background-color: #fff;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #choose-combo-column #choose-combo-sub-item-container .choose-combo-sub-item .sub-item-drop-down-field .sub-item-drop-down-container {
+  width: 90%;
+  margin: 0 auto;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #choose-combo-column #choose-combo-sub-item-container .choose-combo-sub-item .sub-item-drop-down-field .sub-item-drop-down-container > *:not(.clear) {
+  float: left;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #choose-combo-column #choose-combo-sub-item-container .choose-combo-sub-item .sub-item-drop-down-field .sub-item-drop-down-container .sub-item-name {
+  height: 100%;
+  line-height: 40px;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #choose-combo-column #choose-combo-sub-item-container .choose-combo-sub-item .sub-item-drop-down-field .sub-item-drop-down-container .sub-item-choose {
+  font-size: 12px;
+  color: #fff;
+  height: 18px;
+  line-height: 18px;
+  padding: 0 3px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+  margin: 11px 10px;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #choose-combo-column #choose-combo-sub-item-container .choose-combo-sub-item .sub-item-drop-down-field .sub-item-drop-down-container .sub-item-choose.n-ready {
+  background-color: #FFC107;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #choose-combo-column #choose-combo-sub-item-container .choose-combo-sub-item .sub-item-drop-down-field .sub-item-drop-down-container .sub-item-img-field {
+  float: right;
+  height: 40px;
+  width: 18px;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #choose-combo-column #choose-combo-sub-item-container .choose-combo-sub-item .sub-item-drop-down-field .sub-item-drop-down-container .sub-item-img-field .img {
+  width: 18px;
+  height: 40px;
+  background-repeat: no-repeat;
+  background-position: center;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  -webkit-backface-visibility: hidden;
+  -webkit-perspective: 1000;
+  -moz-backface-visibility: hidden;
+  -moz-perspective: 1000;
+  backface-visibility: hidden;
+  perspective: 1000;
+  background-size: 12px 12px;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #choose-combo-column #choose-combo-sub-item-container .choose-combo-sub-item.choose .sub-item-img-field .img {
+  transform: rotate(0deg);
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #choose-combo-column #choose-combo-sub-item-container .choose-combo-sub-item .sub-item-img-field .img {
+  transform: rotate(-180deg);
+  -webkit-transform: rotate(-180deg);
+  -moz-transform: rotate(-180deg);
+  -ms-transform: rotate(-180deg);
+  -o-transform: rotate(-180deg);
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #choose-combo-column #choose-combo-sub-item-container .choose-combo-sub-item .sub-item-food-field {
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  -webkit-backface-visibility: hidden;
+  -webkit-perspective: 1000;
+  -moz-backface-visibility: hidden;
+  -moz-perspective: 1000;
+  backface-visibility: hidden;
+  perspective: 1000;
+  overflow: hidden;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #choose-combo-column #choose-combo-sub-item-container .choose-combo-sub-item .sub-item-food-field ul {
+  border-top: solid 1px #C8C7CC;
 }
 #brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-bottom-column {
   position: fixed;
