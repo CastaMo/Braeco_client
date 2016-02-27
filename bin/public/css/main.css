@@ -2103,9 +2103,10 @@
   -o-border-radius: 2px;
   border-radius: 2px;
   margin: 11px 10px;
-}
-#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #choose-combo-column #choose-combo-sub-item-container .choose-combo-sub-item .sub-item-drop-down-field .sub-item-drop-down-container .sub-item-choose.n-ready {
   background-color: #FFC107;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #choose-combo-column #choose-combo-sub-item-container .choose-combo-sub-item .sub-item-drop-down-field .sub-item-drop-down-container .sub-item-choose.y-ready {
+  background-color: #7ED321;
 }
 #brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #choose-combo-column #choose-combo-sub-item-container .choose-combo-sub-item .sub-item-drop-down-field .sub-item-drop-down-container .sub-item-img-field {
   float: right;
@@ -2180,18 +2181,21 @@
   border-radius: 50%;
   background-color: #FFC107;
 }
-#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-bottom-column .bottom-wrapper .total-order-field {
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-bottom-column .bottom-wrapper .total-order-field,
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-bottom-column .bottom-wrapper .total-choose-combo-field {
   float: left;
   position: relative;
 }
-#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-bottom-column .bottom-wrapper .total-order-field .trolley-field {
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-bottom-column .bottom-wrapper .total-order-field .trolley-field,
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-bottom-column .bottom-wrapper .total-choose-combo-field .trolley-field {
   position: absolute;
   height: 45px;
   width: 45px;
   bottom: 4px;
   left: 13px;
 }
-#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-bottom-column .bottom-wrapper .total-order-field .trolley-field .num {
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-bottom-column .bottom-wrapper .total-order-field .trolley-field .num,
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-bottom-column .bottom-wrapper .total-choose-combo-field .trolley-field .num {
   text-align: center;
   position: absolute;
   right: 5px;
@@ -2208,24 +2212,34 @@
   color: #fff;
   line-height: 15px;
 }
-#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-bottom-column .bottom-wrapper .total-order-field .trolley-field .img {
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-bottom-column .bottom-wrapper .total-order-field .trolley-field .img,
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-bottom-column .bottom-wrapper .total-choose-combo-field .trolley-field .img {
   height: 45px;
   width: 45px;
   background-size: 45px 45px;
 }
-#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-bottom-column .bottom-wrapper .total-order-field .total-price-field {
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-bottom-column .bottom-wrapper .total-order-field .total-price-field,
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-bottom-column .bottom-wrapper .total-choose-combo-field .total-price-field {
   float: right;
   height: 23px;
   margin: 9px 0 9px 68px;
 }
-#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-bottom-column .bottom-wrapper .total-order-field .total-price-field > * {
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-bottom-column .bottom-wrapper .total-order-field .total-price-field > *,
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-bottom-column .bottom-wrapper .total-choose-combo-field .total-price-field > * {
   float: left;
   line-height: 23px;
   color: #fff;
 }
-#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-bottom-column .bottom-wrapper .total-order-field .total-price-field p.total-price {
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-bottom-column .bottom-wrapper .total-order-field .total-price-field p.total-price,
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-bottom-column .bottom-wrapper .total-choose-combo-field .total-price-field p.total-price {
   margin-left: 6px;
   font-size: 18px;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-bottom-column .bottom-wrapper .total-choose-combo-field {
+  margin-left: 5%;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-bottom-column .bottom-wrapper .total-choose-combo-field .total-price-field {
+  margin-left: 0;
 }
 #brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-bottom-column .bottom-wrapper .confirm-field {
   float: right;

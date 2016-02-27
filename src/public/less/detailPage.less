@@ -487,8 +487,9 @@
                                             padding: 0 3px;
                                             .rounded-corners(2px);
                                             margin: 11px 10px;
-                                            &.n-ready {
-                                                background-color: @orangeColor;
+                                            background-color: @orangeColor;
+                                            &.y-ready {
+                                                background-color: @greenColor;
                                             }
                                         }
                                         .sub-item-img-field {
@@ -542,7 +543,7 @@
                             background-color: @orangeColor;
                         }
                         .bottom-wrapper {
-                            .total-order-field {
+                            .total-order-field, .total-choose-combo-field {
                                 float: left;
                                 position: relative;
                                 .trolley-field {
@@ -583,6 +584,12 @@
                                         margin-left: 6px;
                                         font-size: 18px;
                                     }
+                                }
+                            }
+                            .total-choose-combo-field {
+                                margin-left: 5%;
+                                .total-price-field {
+                                    margin-left: 0;
                                 }
                             }
                             .confirm-field {
