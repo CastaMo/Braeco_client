@@ -2133,6 +2133,9 @@
 #brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #choose-combo-column #choose-combo-sub-item-container .choose-combo-sub-item .sub-item-drop-down-field .sub-item-drop-down-container .sub-item-choose.y-ready {
   background-color: #7ED321;
 }
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #choose-combo-column #choose-combo-sub-item-container .choose-combo-sub-item .sub-item-drop-down-field .sub-item-drop-down-container .sub-item-choose.r-ready {
+  background-color: #F58623;
+}
 #brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #choose-combo-column #choose-combo-sub-item-container .choose-combo-sub-item .sub-item-drop-down-field .sub-item-drop-down-container ul.food-choose-list {
   padding-bottom: 5px;
 }
@@ -2161,7 +2164,7 @@
   float: left;
 }
 #brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #choose-combo-column #choose-combo-sub-item-container .choose-combo-sub-item .sub-item-drop-down-field .sub-item-drop-down-container ul.food-choose-list li .num {
-  margin-right: 20px;
+  margin-right: 40px;
   float: right;
 }
 #brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #choose-combo-column #choose-combo-sub-item-container .choose-combo-sub-item .sub-item-drop-down-field .sub-item-drop-down-container .sub-item-img-field {
