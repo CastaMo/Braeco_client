@@ -999,7 +999,9 @@
   background-color: #F58623;
 }
 .controll-field {
-  float: right;
+  position: absolute;
+  right: 0;
+  bottom: 0;
 }
 .controll-field > * {
   float: left;
@@ -1104,12 +1106,34 @@
 }
 .food-order-wrapper ul li .food-info-field .full-part .bottom-wrap {
   height: 30px;
+  position: relative;
+  margin: 5px 0;
 }
 .food-order-wrapper ul li .food-info-field .full-part .bottom-wrap .price-field {
   margin-top: 5px;
 }
 .food-order-wrapper ul li .food-info-field .full-part .bottom-wrap .controll-field > * {
   margin-top: 0;
+}
+.food-order-wrapper .combo-list {
+  border-bottom: none;
+  margin-left: 3px;
+  border-left: solid 2px #FFC107;
+}
+.food-order-wrapper .combo-list > * {
+  font-size: 12px;
+  color: #818181;
+  margin-top: 5px;
+  line-height: 17px;
+}
+.food-order-wrapper .combo-list li .choose-name {
+  width: 70%;
+  margin-left: 10px;
+  float: left;
+}
+.food-order-wrapper .combo-list li .choose-num {
+  margin-right: 5px;
+  float: right;
 }
 .food-discount-wrapper {
   margin-top: 15px;
@@ -1667,7 +1691,9 @@
 }
 #brae-detail-page .all-page-field #Book-page #Book-content .book-content-field .food-info-field .right-part .bottom-wrap,
 #brae-detail-page .all-page-field #Book-page #Book-content .book-content-field .food-info-field .full-part .bottom-wrap {
+  width: 100%;
   height: 36px;
+  position: relative;
 }
 #brae-detail-page .all-page-field #Book-page #Book-content .book-content-field .food-info-field .right-part .bottom-wrap .price-field,
 #brae-detail-page .all-page-field #Book-page #Book-content .book-content-field .food-info-field .full-part .bottom-wrap .price-field {
@@ -2076,22 +2102,21 @@
   border-top: solid 1px #C8C7CC;
 }
 #brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #choose-combo-column #choose-combo-sub-item-container .choose-combo-sub-item .sub-item-drop-down-field {
-  height: 40px;
   width: 100%;
   background-color: #fff;
 }
 #brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #choose-combo-column #choose-combo-sub-item-container .choose-combo-sub-item .sub-item-drop-down-field .sub-item-drop-down-container {
+  position: relative;
   width: 90%;
   margin: 0 auto;
 }
-#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #choose-combo-column #choose-combo-sub-item-container .choose-combo-sub-item .sub-item-drop-down-field .sub-item-drop-down-container > *:not(.clear) {
-  float: left;
-}
 #brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #choose-combo-column #choose-combo-sub-item-container .choose-combo-sub-item .sub-item-drop-down-field .sub-item-drop-down-container .sub-item-name {
+  float: left;
   height: 100%;
   line-height: 40px;
 }
 #brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #choose-combo-column #choose-combo-sub-item-container .choose-combo-sub-item .sub-item-drop-down-field .sub-item-drop-down-container .sub-item-choose {
+  float: left;
   font-size: 12px;
   color: #fff;
   height: 18px;
@@ -2108,9 +2133,39 @@
 #brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #choose-combo-column #choose-combo-sub-item-container .choose-combo-sub-item .sub-item-drop-down-field .sub-item-drop-down-container .sub-item-choose.y-ready {
   background-color: #7ED321;
 }
-#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #choose-combo-column #choose-combo-sub-item-container .choose-combo-sub-item .sub-item-drop-down-field .sub-item-drop-down-container .sub-item-img-field {
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #choose-combo-column #choose-combo-sub-item-container .choose-combo-sub-item .sub-item-drop-down-field .sub-item-drop-down-container ul.food-choose-list {
+  padding-bottom: 5px;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #choose-combo-column #choose-combo-sub-item-container .choose-combo-sub-item .sub-item-drop-down-field .sub-item-drop-down-container ul.food-choose-list li {
+  margin-left: 3px;
+  line-height: 17px;
+  font-size: 12px;
+  color: #818181;
+  position: relative;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #choose-combo-column #choose-combo-sub-item-container .choose-combo-sub-item .sub-item-drop-down-field .sub-item-drop-down-container ul.food-choose-list li .dot {
+  margin-top: 6.5px;
+  width: 4px;
+  height: 4px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  border-radius: 50%;
+  background-color: #FFC107;
+  float: left;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #choose-combo-column #choose-combo-sub-item-container .choose-combo-sub-item .sub-item-drop-down-field .sub-item-drop-down-container ul.food-choose-list li .name {
+  width: 60%;
+  margin-left: 8px;
+  float: left;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #choose-combo-column #choose-combo-sub-item-container .choose-combo-sub-item .sub-item-drop-down-field .sub-item-drop-down-container ul.food-choose-list li .num {
+  margin-right: 20px;
   float: right;
-  height: 40px;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #choose-combo-column #choose-combo-sub-item-container .choose-combo-sub-item .sub-item-drop-down-field .sub-item-drop-down-container .sub-item-img-field {
+  right: 0;
   width: 18px;
 }
 #brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #choose-combo-column #choose-combo-sub-item-container .choose-combo-sub-item .sub-item-drop-down-field .sub-item-drop-down-container .sub-item-img-field .img {
@@ -2599,6 +2654,39 @@
 }
 #brae-form-page #all-page-content-field .page-wrapper .container-field {
   font-size: 14px;
+}
+#brae-form-page #all-page-content-field .page-wrapper .container-field .combo-choose-delete-wrapper {
+  background-color: #fff;
+  border-bottom: solid 1px #C8C7CC;
+  overflow: auto;
+  height: 160px;
+}
+#brae-form-page #all-page-content-field .page-wrapper .container-field .combo-choose-delete-wrapper .combo-choose-delete {
+  height: 50px;
+}
+#brae-form-page #all-page-content-field .page-wrapper .container-field .combo-choose-delete-wrapper .combo-choose-delete .combo-choose-delete-info-wrapper {
+  height: 100%;
+  width: 90%;
+  margin: 0 auto;
+  position: relative;
+}
+#brae-form-page #all-page-content-field .page-wrapper .container-field .combo-choose-delete-wrapper .combo-choose-delete .combo-choose-delete-info-wrapper .choose-info {
+  font-size: 12px;
+  width: 70%;
+  line-height: 15px;
+}
+#brae-form-page #all-page-content-field .page-wrapper .container-field .combo-choose-delete-wrapper .combo-choose-delete .combo-choose-delete-info-wrapper .choose-price {
+  color: #910012;
+  right: 38px;
+  font-size: 16px;
+}
+#brae-form-page #all-page-content-field .page-wrapper .container-field .combo-choose-delete-wrapper .combo-choose-delete .combo-choose-delete-info-wrapper .choose-field {
+  right: 0;
+  width: 22px;
+  height: 22px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 22px 22px;
 }
 #brae-form-page #all-page-content-field .page-wrapper .container-field .book-choose-wrapper {
   height: 230px;

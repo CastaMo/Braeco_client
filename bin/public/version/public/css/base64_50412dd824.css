@@ -111,7 +111,8 @@
 }
 li.choose .choose-field:not(.choose-for-order),
 .via-cash-title-field.choose .choose-field:not(.choose-for-order),
-li:active .choose-field:not(.choose-for-order) {
+li:active .choose-field:not(.choose-for-order),
+.combo-choose-delete.choose .choose-field:not(.choose-for-order) {
   background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwBAMAAAClLOS0AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAwUExURQAAAP/BBv/BBv+6AP/ABf/BBv+/BP/BBv+9BP/BB//////FF//xx//22v/stP/rsZGh//QAAAAJdFJOUwDusw9m10SOJ9+dbWUAAAFnSURBVDjLbZS/SsRAEMZXo6elKMil01OLdFH8g51oIXaiVboTC7ETFOG68xESjTLsGwS1D9y9gL7BCfY+glZOdrObyexOs8l8/HZ2h29WiDqCq40wPbuPBYvtVVCxeNTO74VQR3pL8zM2j8pBk59PgEQ+tMIFtGLZbgQszGYnXHjS+Q440VfCgyt0lZC4Qu4tbcpv+oQlFAY+4QW7GvqENPaXqIpMs4ws1bIi9pkw+lLLI++H/HgrdVfYoUZF8auPFTGgeFVExhqCwGfdlNALQCp0pmQAgCbkNwOQUMK4+GFAqov/Fe9tAItHmqgQAuBx1QXlBBEK4AWvwSAUgGcxBQahACyIOTAIBeDGuAoRCqCzgsQiBMhja1A5oUBl0tn6e0wAOCXWlSU3b+R6JFPe3XGFcz3Iocdu/jnoemeTTudWW1hr5nnAnN4MOjlyNqRPQ8cqWb/9mASHOr/uPD9i97jXu7u0v/+MAh9bcLENugAAAABJRU5ErkJggg==");
 }
 .VIP-member-image {

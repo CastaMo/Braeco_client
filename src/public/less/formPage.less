@@ -71,6 +71,38 @@
             }
             .container-field {
                 font-size: 14px;
+                .combo-choose-delete-wrapper {
+                    background-color: #fff;
+                    border-bottom: solid 1px @borderColor;
+                    overflow: auto;
+                    height: 160px;
+                    .combo-choose-delete {
+                        height: 50px;
+                        .combo-choose-delete-info-wrapper {
+                            height: 100%;
+                            width: 90%;
+                            margin: 0 auto;
+                            position: relative;
+                            .choose-info {
+                                font-size: 12px;
+                                width: 70%;
+                                line-height: 15px;
+                            }
+                            .choose-price {
+                                color: @deepCoffeeColor;
+                                right: 38px;
+                                font-size: 16px;
+                            }
+                            .choose-field {
+                                right: 0;
+                                width: 22px;
+                                height: 22px;
+                                .background-norm();
+                                background-size: 22px 22px;
+                            }
+                        }
+                    }
+                }
                 .book-choose-wrapper {
                     height: 230px;
                     overflow: auto;

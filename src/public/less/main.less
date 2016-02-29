@@ -1,5 +1,4 @@
 @import "animation";
-
 .activity-wrapper,
 .header-wrapper {
     width: 100%;
@@ -74,7 +73,9 @@
 }
 
 .controll-field {
-    float: right;
+    position: absolute;
+    right: 0;
+    bottom: 0;
     > * {
         float: left;
     }
@@ -174,6 +175,8 @@
                     }
                     .bottom-wrap {
                         height: 30px;
+                        position: relative;
+                        margin: 5px 0;
                         .price-field {
                             margin-top: 5px;
                         }
@@ -184,6 +187,28 @@
                         }
                     }
                 }
+            }
+        }
+    }
+    .combo-list {
+        border-bottom: none;
+        margin-left: 3px;
+        border-left: solid 2px @orangeColor;
+        > * {
+            font-size: 12px;
+            color: @deepGreyColor;
+            margin-top: 5px;
+            line-height: 17px;
+        }
+        li {
+            .choose-name {
+                width: 70%;
+                margin-left: 10px;
+                float: left;
+            }
+            .choose-num {
+                margin-right: 5px;
+                float: right;
             }
         }
     }
@@ -227,6 +252,7 @@
         }
     }
 }
+
 @import "homePage";
 @import "detailPage";
 @import "formPage";
