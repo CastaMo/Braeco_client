@@ -209,7 +209,7 @@
                     .right-part {
                         width: 45%;
                         float: right;
-                        > * {
+                        > *:not(.clear) {
                             float: left;
                         }
                         .btn {
@@ -226,6 +226,11 @@
                         #wait-btn {
                             background-color: @greyColor;
                         }
+                        #get-pic-id-btn {
+                            height: 40px;
+                            .background-norm();
+                            background-size: 100% 100%;
+                        }
                     }
                     input {
                         font-size: 16px;
@@ -234,6 +239,21 @@
                         height: 40px;
                         .rounded-corners(5px);
                         border: solid 1px @borderColor;
+                    }
+                    .warn-field {
+                        float: left;
+                        height: 25px;
+                        line-height: 25px;
+                        font-size: 14px;
+                        text-align: center;
+                        color: red;
+                        text-decoration: underline;
+                    }
+                    &.pic-id-wrapper {
+                        height: 65px;
+                        .left-part input {
+                            font-size: 14px;
+                        }
                     }
                 }
                 .btn-wrapper {

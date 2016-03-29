@@ -2598,21 +2598,21 @@
   width: 80%;
 }
 #brae-form-page #all-page-content-field .all-page-field > .total-center {
-  animation: animation-for-popup-form-total 0.3s ease-in-out;
-  -moz-animation: animation-for-popup-form-total 0.3s ease-in-out;
+  animation: animation-for-popup-form-total 0.35s ease-in-out;
+  -moz-animation: animation-for-popup-form-total 0.35s ease-in-out;
   /* Firefox */
-  -webkit-animation: animation-for-popup-form-total 0.3s ease-in-out;
+  -webkit-animation: animation-for-popup-form-total 0.35s ease-in-out;
   /* Safari and Chrome */
-  -o-animation: animation-for-popup-form-total 0.3s ease-in-out;
+  -o-animation: animation-for-popup-form-total 0.35s ease-in-out;
   /* Opera */
 }
 #brae-form-page #all-page-content-field .all-page-field > .adapt-center {
-  animation: animation-for-popup-form-adapt 0.3s ease-in-out;
-  -moz-animation: animation-for-popup-form-adapt 0.3s ease-in-out;
+  animation: animation-for-popup-form-adapt 0.35s ease-in-out;
+  -moz-animation: animation-for-popup-form-adapt 0.35s ease-in-out;
   /* Firefox */
-  -webkit-animation: animation-for-popup-form-adapt 0.3s ease-in-out;
+  -webkit-animation: animation-for-popup-form-adapt 0.35s ease-in-out;
   /* Safari and Chrome */
-  -o-animation: animation-for-popup-form-adapt 0.3s ease-in-out;
+  -o-animation: animation-for-popup-form-adapt 0.35s ease-in-out;
   /* Opera */
 }
 #brae-form-page #all-page-content-field .page-wrapper {
@@ -2808,7 +2808,7 @@
   width: 45%;
   float: right;
 }
-#brae-form-page #all-page-content-field .page-wrapper .container-field .extra-wrapper .right-part > * {
+#brae-form-page #all-page-content-field .page-wrapper .container-field .extra-wrapper .right-part > *:not(.clear) {
   float: left;
 }
 #brae-form-page #all-page-content-field .page-wrapper .container-field .extra-wrapper .right-part .btn {
@@ -2829,6 +2829,12 @@
 #brae-form-page #all-page-content-field .page-wrapper .container-field .extra-wrapper .right-part #wait-btn {
   background-color: #E3E3E3;
 }
+#brae-form-page #all-page-content-field .page-wrapper .container-field .extra-wrapper .right-part #get-pic-id-btn {
+  height: 40px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+}
 #brae-form-page #all-page-content-field .page-wrapper .container-field .extra-wrapper input {
   font-size: 16px;
   padding-left: 5px;
@@ -2840,6 +2846,21 @@
   -o-border-radius: 5px;
   border-radius: 5px;
   border: solid 1px #C8C7CC;
+}
+#brae-form-page #all-page-content-field .page-wrapper .container-field .extra-wrapper .warn-field {
+  float: left;
+  height: 25px;
+  line-height: 25px;
+  font-size: 14px;
+  text-align: center;
+  color: red;
+  text-decoration: underline;
+}
+#brae-form-page #all-page-content-field .page-wrapper .container-field .extra-wrapper.pic-id-wrapper {
+  height: 65px;
+}
+#brae-form-page #all-page-content-field .page-wrapper .container-field .extra-wrapper.pic-id-wrapper .left-part input {
+  font-size: 14px;
 }
 #brae-form-page #all-page-content-field .page-wrapper .container-field .btn-wrapper {
   margin-bottom: 0;
