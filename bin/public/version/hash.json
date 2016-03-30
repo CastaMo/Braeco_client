@@ -5,10 +5,10 @@
   "public/css/common/fontSize.css": "b01af4cdaf",
   "public/css/main.css": "f941d76051",
   "public/css/main.min.css": "ecb52af863",
-  "public/js/common/extra.min.js": "c419042e6e",
+  "public/js/common/extra.min.js": "c45a6e5e14",
   "public/js/common/pay.js": "8267d2b448",
   "public/js/common/preventoverscroll.js": "e588b3394c",
   "public/js/common/util.js": "0c8db56a07",
-  "public/js/main.js": "9b6c96d11c",
-  "public/js/main.min.js": "53f2b9e581"
+  "public/js/main.js": "68d0f6e1c8",
+  "public/js/main.min.js": "fbcc8e9722"
 }
