@@ -23,6 +23,7 @@
     "grunt-express-server": "^0.5.1",
     "grunt-hashmap": "^0.1.5",
     "grunt-ssh": "^0.12.8",
+    "md5-file": "^2.0.4",
     "passport": "^0.3.2",
     "serve-index": "^1.7.2",
     "serve-static": "^1.10.0"

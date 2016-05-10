@@ -2323,7 +2323,6 @@
 }
 #brae-detail-page .all-page-field #Activity-page {
   width: 100%;
-  overflow: hidden;
   position: relative;
 }
 #brae-detail-page .all-page-field #Activity-page .Activity-content-field #Activity-header-column {
