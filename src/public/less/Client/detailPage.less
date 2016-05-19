@@ -98,7 +98,7 @@
                             #book-category-wrap {
                                 position: fixed;
                                 width: 100%;
-                                height: 41px;
+                                height: 44px;
                                 z-index: 3;
                                 background-color: @coffeeColor;
                                 .top-cover {
@@ -116,10 +116,61 @@
                                     .background-linear-gradient-to-left(rgba(139, 87, 42, 1), rgba(139, 87, 42, 0));
                                     right: 0;
                                 }
+                                #book-aside-wrapper {
+                                    margin: 0 16px;
+                                    color: #fff;
+                                    #category-name-container {
+                                        float: left;
+                                        font-size: 18px;
+                                        line-height: 20px;
+                                        margin-top: 12px;
+                                        .left-bar {
+                                            width: 6px;
+                                            height: 20px;
+                                            background-color: @orangeColor;
+                                            float: left;
+                                        }
+                                        p {
+                                            .ellipsisWithLineNum(1);
+                                            width: 145px;
+                                            float: left;
+                                            margin-left: 10px;
+                                        }
+                                    }
+                                    #category-switch-btn-container {
+                                        float: right;
+                                        .switch-btn {
+                                            margin-top: 8px;
+                                            width: 108px;
+                                            height: 28px;
+                                            .rounded-corners(2px);
+                                            background-color: @orangeColor;
+                                            font-size: 14px;
+                                            padding-top: 1px;
+                                            .switch-btn-wrapper {
+                                                height: 19px;
+                                                width: 75px;
+                                                margin: 3.5px auto;
+                                                position: relative;
+                                                .logo {
+                                                    position: absolute;
+                                                    left: 0;
+                                                    top: 0;
+                                                    .background-norm();
+                                                    .background-size(19px, 19px);
+                                                }
+                                                p {
+                                                    float: right;
+                                                    line-height: 19px;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
                                 #book-aside-wrap {
                                     width: 100%;
-                                    height: 27px;
-                                    padding: 7.5px 0 7.5px 0;
+                                    height: 28px;
+                                    padding: 8px 0;
                                     overflow: auto;
                                     line-height: 27px;
                                     .overflowScrolling();
@@ -652,6 +703,8 @@
         #Activity-page {
             width: 100%;
             position: relative;
+            overflow-x: hidden;
+            min-height: 500px;
             .Activity-content-field {
                 #Activity-header-column {
                     width: 100%;

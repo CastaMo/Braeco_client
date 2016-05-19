@@ -894,6 +894,83 @@
   }
 }
 /*-----------Popup Form Total End--------------*/
+/*-----------Category Choose Start--------------*/
+@keyframes animation-for-category-choose {
+  from {
+    transform: translate3d(50%, 0, 0);
+    -webkit-transform: translate3d(50%, 0, 0);
+    -moz-transform: translate3d(50%, 0, 0);
+    -ms-transform: translate3d(50%, 0, 0);
+    -o-transform: translate3d(50%, 0, 0);
+    opacity: 0;
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+@-moz-keyframes animation-for-category-choose {
+  /* Firefox */
+  from {
+    transform: translate3d(50%, 0, 0);
+    -webkit-transform: translate3d(50%, 0, 0);
+    -moz-transform: translate3d(50%, 0, 0);
+    -ms-transform: translate3d(50%, 0, 0);
+    -o-transform: translate3d(50%, 0, 0);
+    opacity: 0;
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+@-webkit-keyframes animation-for-category-choose {
+  /* Safari 和 Chrome */
+  from {
+    transform: translate3d(50%, 0, 0);
+    -webkit-transform: translate3d(50%, 0, 0);
+    -moz-transform: translate3d(50%, 0, 0);
+    -ms-transform: translate3d(50%, 0, 0);
+    -o-transform: translate3d(50%, 0, 0);
+    opacity: 0;
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+@-o-keyframes animation-for-category-choose {
+  /* Opera */
+  from {
+    transform: translate3d(50%, 0, 0);
+    -webkit-transform: translate3d(50%, 0, 0);
+    -moz-transform: translate3d(50%, 0, 0);
+    -ms-transform: translate3d(50%, 0, 0);
+    -o-transform: translate3d(50%, 0, 0);
+    opacity: 0;
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+/*-----------Popup Form Total End--------------*/
 .activity-wrapper,
 .header-wrapper {
   width: 100%;
@@ -1214,35 +1291,55 @@
   right: 5%;
 }
 #brae-home-page .all-page-field #Menu-page #Menu-category-column {
+  margin-top: 16px;
+  background-color: #fff;
+  border-top: solid 1px #C8C7CC;
   width: 100%;
-  margin: 10px 0 0 0;
+}
+#brae-home-page .all-page-field #Menu-page #Menu-category-column .category-head-wrapper {
+  margin-left: 20px;
+  border-bottom: solid 1px #C8C7CC;
+}
+#brae-home-page .all-page-field #Menu-page #Menu-category-column .category-head-wrapper .category-head-container {
+  padding: 10px 0;
+  line-height: 22px;
+}
+#brae-home-page .all-page-field #Menu-page #Menu-category-column .category-head-wrapper .category-head-container p {
+  border-left: solid 6px #FFC107;
+  padding-left: 5px;
+  font-weight: bold;
 }
 #brae-home-page .all-page-field #Menu-page #Menu-category-column .category-wrapper {
-  margin: 0 10px 0 10px;
-  padding-bottom: 65px;
+  margin: 0 20px;
 }
-#brae-home-page .all-page-field #Menu-page #Menu-category-column .category-wrapper .category-display-list li {
-  margin-bottom: 10px;
-  height: 87px;
+#brae-home-page .all-page-field #Menu-page #Menu-category-column .category-wrapper .category-container {
+  padding: 17px 0 65px 0;
+}
+#brae-home-page .all-page-field #Menu-page #Menu-category-column .category-wrapper .category-container .category-display-list li {
+  width: auto;
+  margin-bottom: 20px;
   position: relative;
 }
-#brae-home-page .all-page-field #Menu-page #Menu-category-column .category-wrapper .category-display-list li .category-img {
+#brae-home-page .all-page-field #Menu-page #Menu-category-column .category-wrapper .category-container .category-display-list li .category-img {
   width: 100%;
   height: 100%;
   background-repeat: no-repeat;
   background-position: center;
 }
-#brae-home-page .all-page-field #Menu-page #Menu-category-column .category-wrapper .category-display-list li .category-name-field {
+#brae-home-page .all-page-field #Menu-page #Menu-category-column .category-wrapper .category-container .category-display-list li .category-name-field {
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
 }
-#brae-home-page .all-page-field #Menu-page #Menu-category-column .category-wrapper .category-display-list li .category-name-field .category-name {
-  margin: 5px 0 5px 8px;
+#brae-home-page .all-page-field #Menu-page #Menu-category-column .category-wrapper .category-container .category-display-list li .category-name-field .category-name {
   color: #fff;
-  line-height: 16px;
+  line-height: 28px;
+  font-size: 20px;
+  width: 80%;
+  text-align: center;
 }
 #brae-home-page .all-page-field #Already-page #Already-content {
   padding-bottom: 150px;
@@ -1426,32 +1523,37 @@
   background-color: #fff;
 }
 #brae-home-page .all-page-field #Individual-page #Individual-content .Already-login-field #Individual-info-column .Individual-basic-info-wrapper {
-  height: 125px;
+  padding-bottom: 15px;
 }
-#brae-home-page .all-page-field #Individual-page #Individual-content .Already-login-field #Individual-info-column .Individual-basic-info-wrapper > * {
+#brae-home-page .all-page-field #Individual-page #Individual-content .Already-login-field #Individual-info-column .Individual-basic-info-wrapper > *:not(.clear) {
   float: left;
 }
 #brae-home-page .all-page-field #Individual-page #Individual-content .Already-login-field #Individual-info-column .Individual-basic-info-wrapper .member-img-pos {
-  margin: 0 15px 0 15px;
+  margin: 0 11px;
 }
 #brae-home-page .all-page-field #Individual-page #Individual-content .Already-login-field #Individual-info-column .Individual-basic-info-wrapper .member-img-pos #rank-img {
-  width: 130px;
-  height: 115px;
-  background-size: 130px 115px;
+  height: 120px;
+  width: 138px;
+  background-size: 138px 120px;
 }
 #brae-home-page .all-page-field #Individual-page #Individual-content .Already-login-field #Individual-info-column .Individual-basic-info-wrapper .member-info-pos {
   width: calc(100% - 175px);
   width: -moz-calc(100% - 175px);
   width: -webkit-calc(100% - 175px);
 }
+#brae-home-page .all-page-field #Individual-page #Individual-content .Already-login-field #Individual-info-column .Individual-basic-info-wrapper .member-info-pos .id-field p.id {
+  line-height: 19px;
+  height: 19px;
+  font-size: 14px;
+}
 #brae-home-page .all-page-field #Individual-page #Individual-content .Already-login-field #Individual-info-column .Individual-basic-info-wrapper .member-info-pos .rank-field {
   height: auto;
 }
 #brae-home-page .all-page-field #Individual-page #Individual-content .Already-login-field #Individual-info-column .Individual-basic-info-wrapper .member-info-pos .rank-field > *:not(.clear) {
   float: left;
-  height: 28px;
-  line-height: 28px;
-  font-size: 20px;
+  height: 25px;
+  line-height: 25px;
+  font-size: 18px;
 }
 #brae-home-page .all-page-field #Individual-page #Individual-content .Already-login-field #Individual-info-column .Individual-basic-info-wrapper .member-info-pos .rank-field p.rank {
   font-weight: lighter;
@@ -1462,24 +1564,23 @@
 }
 #brae-home-page .all-page-field #Individual-page #Individual-content .Already-login-field #Individual-info-column .Individual-basic-info-wrapper .member-info-pos .discount-field {
   margin-top: 1px;
+  font-size: 14px;
 }
 #brae-home-page .all-page-field #Individual-page #Individual-content .Already-login-field #Individual-info-column .Individual-basic-info-wrapper .member-info-pos .discount-field p.discount {
-  line-height: 20px;
+  line-height: 19px;
   color: #910012;
   font-weight: bold;
 }
 #brae-home-page .all-page-field #Individual-page #Individual-content .Already-login-field #Individual-info-column .Individual-basic-info-wrapper .member-info-pos .remainder-EXP-Blend {
-  margin-top: 28px;
   font-size: 14px;
-  line-height: 20px;
+  margin-top: 3px;
 }
 #brae-home-page .all-page-field #Individual-page #Individual-content .Already-login-field #Individual-info-column .Individual-basic-info-wrapper .member-info-pos .remainder-EXP-Blend .remainder-field {
-  line-height: 28px;
-  font-size: 18px;
+  line-height: 18px;
+  font-size: 12px;
   float: left;
-  margin-top: 12px;
 }
-#brae-home-page .all-page-field #Individual-page #Individual-content .Already-login-field #Individual-info-column .Individual-basic-info-wrapper .member-info-pos .remainder-EXP-Blend .remainder-field > * {
+#brae-home-page .all-page-field #Individual-page #Individual-content .Already-login-field #Individual-info-column .Individual-basic-info-wrapper .member-info-pos .remainder-EXP-Blend .remainder-field > *:not(.clear) {
   float: left;
 }
 #brae-home-page .all-page-field #Individual-page #Individual-content .Already-login-field #Individual-info-column .Individual-basic-info-wrapper .member-info-pos .remainder-EXP-Blend .remainder-field p.name {
@@ -1493,9 +1594,16 @@
   content: "￥";
   font-size: 12px;
 }
-#brae-home-page .all-page-field #Individual-page #Individual-content .Already-login-field #Individual-info-column .Individual-basic-info-wrapper .member-info-pos .remainder-EXP-Blend .EXP-field {
-  float: right;
-  text-align: right;
+#brae-home-page .all-page-field #Individual-page #Individual-content .Already-login-field #Individual-info-column .Individual-basic-info-wrapper .member-info-pos .EXP-field {
+  margin-top: 2px;
+  line-height: 18px;
+  font-size: 12px;
+}
+#brae-home-page .all-page-field #Individual-page #Individual-content .Already-login-field #Individual-info-column .Individual-basic-info-wrapper .member-info-pos .EXP-field p.current-value:before {
+  content: "当前积分：";
+}
+#brae-home-page .all-page-field #Individual-page #Individual-content .Already-login-field #Individual-info-column .Individual-basic-info-wrapper .member-info-pos .EXP-field p.full-value:before {
+  content: "升级积分：";
 }
 #brae-home-page .all-page-field #Individual-page #Individual-content .Already-login-field #Individual-info-column .Individual-EXP-bar-wrapper .EXP-bar-field {
   width: 90%;
@@ -1729,7 +1837,7 @@
 #brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-top-wrap #book-category-wrap {
   position: fixed;
   width: 100%;
-  height: 41px;
+  height: 44px;
   z-index: 3;
   background-color: #8B572A;
 }
@@ -1754,10 +1862,72 @@
   background: linear-gradient(to left, #8b572a, rgba(139, 87, 42, 0));
   right: 0;
 }
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-top-wrap #book-category-wrap #book-aside-wrapper {
+  margin: 0 16px;
+  color: #fff;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-top-wrap #book-category-wrap #book-aside-wrapper #category-name-container {
+  float: left;
+  font-size: 18px;
+  line-height: 20px;
+  margin-top: 12px;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-top-wrap #book-category-wrap #book-aside-wrapper #category-name-container .left-bar {
+  width: 6px;
+  height: 20px;
+  background-color: #FFC107;
+  float: left;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-top-wrap #book-category-wrap #book-aside-wrapper #category-name-container p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  width: 145px;
+  float: left;
+  margin-left: 10px;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-top-wrap #book-category-wrap #book-aside-wrapper #category-switch-btn-container {
+  float: right;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-top-wrap #book-category-wrap #book-aside-wrapper #category-switch-btn-container .switch-btn {
+  margin-top: 8px;
+  width: 108px;
+  height: 28px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+  background-color: #FFC107;
+  font-size: 14px;
+  padding-top: 1px;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-top-wrap #book-category-wrap #book-aside-wrapper #category-switch-btn-container .switch-btn .switch-btn-wrapper {
+  height: 19px;
+  width: 75px;
+  margin: 3.5px auto;
+  position: relative;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-top-wrap #book-category-wrap #book-aside-wrapper #category-switch-btn-container .switch-btn .switch-btn-wrapper .logo {
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 19px;
+  width: 19px;
+  background-size: 19px 19px;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-top-wrap #book-category-wrap #book-aside-wrapper #category-switch-btn-container .switch-btn .switch-btn-wrapper p {
+  float: right;
+  line-height: 19px;
+}
 #brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #book-top-wrap #book-category-wrap #book-aside-wrap {
   width: 100%;
-  height: 27px;
-  padding: 7.5px 0 7.5px 0;
+  height: 28px;
+  padding: 8px 0;
   overflow: auto;
   line-height: 27px;
   -webkit-overflow-scrolling: touch;
@@ -2324,6 +2494,8 @@
 #brae-detail-page .all-page-field #Activity-page {
   width: 100%;
   position: relative;
+  overflow-x: hidden;
+  min-height: 500px;
 }
 #brae-detail-page .all-page-field #Activity-page .Activity-content-field #Activity-header-column {
   width: 100%;
@@ -2895,6 +3067,93 @@
 #brae-form-page #all-page-content-field #confirm-page {
   text-align: center;
 }
+#brae-form-page #all-page-content-field #category-choose-page {
+  animation: animation-for-category-choose 0.35s ease-in-out;
+  -moz-animation: animation-for-category-choose 0.35s ease-in-out;
+  /* Firefox */
+  -webkit-animation: animation-for-category-choose 0.35s ease-in-out;
+  /* Safari and Chrome */
+  -o-animation: animation-for-category-choose 0.35s ease-in-out;
+  /* Opera */
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 140px;
+  height: 100%;
+  background-color: #FFFCF6;
+}
+#brae-form-page #all-page-content-field #category-choose-page .header-field {
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -ms-border-radius: 0;
+  -o-border-radius: 0;
+  border-radius: 0;
+  padding-top: 1px;
+  height: 43px;
+}
+#brae-form-page #all-page-content-field #category-choose-page .header-field .header-wrapper {
+  margin: 7px 16px;
+}
+#brae-form-page #all-page-content-field #category-choose-page .header-field .header-wrapper .close-btn-field .close-btn {
+  padding-top: 1px;
+  height: 28px;
+  width: 108px;
+  font-size: 14px;
+  color: #fff;
+  background-color: #FFC107;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+}
+#brae-form-page #all-page-content-field #category-choose-page .header-field .header-wrapper .close-btn-field .close-btn .close-btn-wrapper {
+  width: 75px;
+  height: 19px;
+  line-height: 19px;
+  margin: 3.5px auto;
+  position: relative;
+}
+#brae-form-page #all-page-content-field #category-choose-page .header-field .header-wrapper .close-btn-field .close-btn .close-btn-wrapper .logo {
+  position: absolute;
+  left: 0;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 19px;
+  width: 19px;
+  background-size: 19px 19px;
+}
+#brae-form-page #all-page-content-field #category-choose-page .header-field .header-wrapper .close-btn-field .close-btn .close-btn-wrapper p {
+  float: right;
+}
+#brae-form-page #all-page-content-field #category-choose-page .container-field {
+  font-size: 18px;
+}
+#brae-form-page #all-page-content-field #category-choose-page .container-field .container-field-wrapper {
+  height: 415px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+#brae-form-page #all-page-content-field #category-choose-page .container-field ul {
+  padding: 1px;
+}
+#brae-form-page #all-page-content-field #category-choose-page .container-field ul li {
+  width: 100%;
+}
+#brae-form-page #all-page-content-field #category-choose-page .container-field ul li .category-wrapper {
+  line-height: 25px;
+  width: 108px;
+  margin: 0 auto;
+  padding: 10px 0;
+}
+#brae-form-page #all-page-content-field #category-choose-page .container-field ul li.choose {
+  background-color: #F0E9E4;
+}
+#brae-form-page #all-page-content-field #category-choose-page .container-field ul .category-line {
+  margin-left: 16px;
+  background-color: #C8C7CC;
+  height: 1px;
+}
 /*brae-payment-page-*/
 #extra {
   z-index: 2;
@@ -3010,6 +3269,9 @@ input {
 .nintyPercentCenter {
   width: 90%;
   margin: 0 auto 0 auto;
+}
+.parallel-container > *:not(.clear) {
+  float: left;
 }
 .arrow {
   width: 15%;

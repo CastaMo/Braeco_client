@@ -291,5 +291,77 @@
         #confirm-page {
             text-align: center;
         }
+        #category-choose-page {
+            .animation(animation-for-category-choose 0.35s ease-in-out);
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 140px;
+            height: 100%;
+            background-color: @homePageBackgroundColor;
+            .header-field {
+                .rounded-corners(0);
+                padding-top: 1px;
+                height: 43px;
+                .header-wrapper {
+                    margin: 7px 16px;
+                    .close-btn-field {
+                        .close-btn {
+                            padding-top: 1px;
+                            height: 28px;
+                            width: 108px;
+                            font-size: 14px;
+                            color: #fff;
+                            background-color: @orangeColor;
+                            .rounded-corners(2px);
+                            .close-btn-wrapper {
+                                width: 75px;
+                                height: 19px;
+                                line-height: 19px;
+                                margin: 3.5px auto;
+                                position: relative;
+                                .logo {
+                                    position: absolute;
+                                    left: 0;
+                                    .background-norm();
+                                    .background-size(19px, 19px);
+                                }
+                                p {
+                                    float: right;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .container-field {
+                font-size: 18px;
+                .container-field-wrapper {
+                    height: 415px;
+                    overflow-y: auto;
+                    .overflowScrolling;
+                }
+                ul {
+                    padding: 1px;
+                    li {
+                        width: 100%;
+                        .category-wrapper {
+                            line-height: 25px;
+                            width: 108px;
+                            margin: 0 auto;
+                            padding: 10px 0;
+                        }
+                        &.choose {
+                            background-color: #F0E9E4;
+                        }
+                    }
+                    .category-line {
+                        margin-left: 16px;
+                        background-color: @borderColor;
+                        height: 1px;
+                    }
+                }
+            }
+        }
     }
 }

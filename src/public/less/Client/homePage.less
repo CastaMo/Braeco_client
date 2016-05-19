@@ -42,31 +42,51 @@
                 }
             }
             #Menu-category-column {
+                margin-top: 16px;
+                background-color: #fff;
+                border-top: solid 1px @borderColor;
                 width: 100%;
-                margin: 10px 0 0 0;
+                .category-head-wrapper {
+                    margin-left: 20px;
+                    border-bottom: solid 1px @borderColor;
+                    .category-head-container {
+                        padding: 10px 0;
+                        line-height: 22px;
+                        p {
+                            border-left: solid 6px @orangeColor;
+                            padding-left: 5px;
+                            font-weight: bold;
+                        }
+                    }
+                }
                 .category-wrapper {
-                    margin: 0 10px 0 10px;
-                    padding-bottom: 65px;
-                    .category-display-list {
-                        li {
-                            margin-bottom: 10px;
-                            height: 87px;
-                            position: relative;
-                            .category-img {
-                                width: 100%;
-                                height: 100%;
-                                .background-norm();
-                            }
-                            .category-name-field {
-                                position: absolute;
-                                bottom: 0;
-                                left: 0;
-                                width: 100%;
-                                background-color: rgba(0, 0, 0, 0.5);
-                                .category-name {
-                                    margin: 5px 0 5px 8px;
-                                    color: #fff;
-                                    line-height: 16px;
+                    margin: 0 20px;
+                    .category-container {
+                        padding: 17px 0 65px 0;
+                        .category-display-list {
+                            li {
+                                width: auto;
+                                margin-bottom: 20px;
+                                position: relative;
+                                .category-img {
+                                    width: 100%;
+                                    height: 100%;
+                                    .background-norm();
+                                }
+                                .category-name-field {
+                                    position: absolute;
+                                    bottom: 0;
+                                    left: 0;
+                                    width: 100%;
+                                    height: 100%;
+                                    background-color: rgba(0, 0, 0, 0.5);
+                                    .category-name {
+                                        color: #fff;
+                                        line-height: 28px;
+                                        font-size: 20px;
+                                        width: 80%;
+                                        text-align: center;
+                                    }
                                 }
                             }
                         }
@@ -241,29 +261,34 @@
                         .borderTopBottom;
                         background-color: #fff;
                         .Individual-basic-info-wrapper {
-                            height: 125px;
-                            > * {
+                            padding-bottom: 15px;
+                            > *:not(.clear) {
                                 float: left;
                             }
                             .member-img-pos {
-                                margin: 0 15px 0 15px;
+                                margin: 0 11px;
                                 #rank-img {
-                                    width: 130px;
-                                    height: 115px;
-                                    background-size: 130px 115px;
+                                    .background-size(138px, 120px);
                                 }
                             }
                             .member-info-pos {
                                 width: calc(~"100% - 175px");
                                 width: -moz-calc(~"100% - 175px");
                                 width: -webkit-calc(~"100% - 175px");
+                                .id-field {
+                                    p.id {
+                                        line-height: 19px;
+                                        height: 19px;
+                                        font-size: 14px;
+                                    }
+                                }
                                 .rank-field {
                                     height: auto;
                                     > *:not(.clear) {
                                         float: left;
-                                        height: 28px;
-                                        line-height: 28px;
-                                        font-size: 20px;
+                                        height: 25px;
+                                        line-height: 25px;
+                                        font-size: 18px;
                                     }
                                     p.rank {
                                         font-weight: lighter;
@@ -275,22 +300,21 @@
                                 }
                                 .discount-field {
                                     margin-top: 1px;
+                                    font-size: 14px;
                                     p.discount {
-                                        line-height: 20px;
+                                        line-height: 19px;
                                         color: @deepCoffeeColor;
                                         font-weight: bold;
                                     }
                                 }
                                 .remainder-EXP-Blend {
-                                    margin-top: 28px;
                                     font-size: 14px;
-                                    line-height: 20px;
+                                    margin-top: 3px;
                                     .remainder-field {
-                                        line-height: 28px;
-                                        font-size: 18px;
+                                        line-height: 18px;
+                                        font-size: 12px;
                                         float: left;
-                                        margin-top: 12px;
-                                        > * {
+                                        > *:not(.clear) {
                                             float: left;
                                         }
                                         p.name {
@@ -305,9 +329,16 @@
                                             font-size: 12px;
                                         }
                                     }
-                                    .EXP-field {
-                                        float: right;
-                                        text-align: right;
+                                }
+                                .EXP-field {
+                                    margin-top: 2px;
+                                    line-height: 18px;
+                                    font-size: 12px;
+                                    p.current-value:before {
+                                        content: "当前积分：";
+                                    }
+                                    p.full-value:before {
+                                        content: "升级积分：";
                                     }
                                 }
                             }
