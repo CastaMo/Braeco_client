@@ -82,9 +82,9 @@
                         </div>
                         <div class="member-info-pos">
                           <div class="id-field">
-                            <p class="id">No.100000</p>
+                            <p class="id">No.100000号会员</p>
                           </div>
-                          <div class="rank-field">
+                          <div class="rank-field hide">
                             <p class="rank">Lv.0</p>
                             <p class="member-name">普通会员</p>
                             <div class="clear"></div>
@@ -100,10 +100,7 @@
                             <div class="clear"></div>
                           </div>
                           <div class="EXP-field">
-                            <p class="EXP font-number-word">
-                              <p class="current-value">0</p>
-                              <p class="full-value">0</p>
-                            </p>
+                            <p class="EXP font-number-word">积分：<span class="current-value">0</span><span> / </span><span class="full-value">0</span></p>
                           </div>
                         </div>
                         <div class="clear"></div>
@@ -111,6 +108,19 @@
                       <div class="Individual-EXP-bar-wrapper">
                         <div class="EXP-bar-field">
                           <div class="full-bar">
+                            <div class="separators">
+                              <div class="separator-item"></div>
+                              <div class="separator-item"></div>
+                              <div class="separator-item"></div>
+                              <div class="separator-item"></div>
+                              <div class="separator-item"></div>
+                              <div class="separator-item"></div>
+                              <div class="separator-item"></div>
+                              <div class="separator-item"></div>
+                              <div class="separator-item"></div>
+                              <div class="separator-item"></div>
+                              <div class="clear"></div>
+                            </div>
                             <div style="width:69%" class="inner-bar"></div>
                           </div>
                         </div>
@@ -175,7 +185,7 @@
                               <div class="switch-btn">
                                 <div class="switch-btn-wrapper">
                                   <div class="logo"></div>
-                                  <p>切换品类</p>
+                                  <p>更多餐品</p>
                                   <div class="clear"></div>
                                 </div>
                               </div>
@@ -406,7 +416,7 @@
                           <p class="business-name">杯口咖啡</p>
                         </div>
                       </div>
-                      <div class="like-wrapper">
+                      <div class="like-wrapper hide">
                         <div class="like-field">
                           <icon class="like-icon unlike"></icon>
                           <p class="like-num font-number-word">0</p>
@@ -656,7 +666,7 @@
                   </div>
                 </div>
               </div>
-              <div id="category-choose-page" class="popup-form-page">
+              <div id="category-choose-page" class="popup-form-page hide">
                 <div class="page-wrapper">
                   <div class="header-field">
                     <div class="header-wrapper">
@@ -683,7 +693,7 @@
         </div>
       </div>
       <div id="extra" class="hide">
-        <div id="brae-payment-page" class="extra-page hide">
+        <div id="brae-extra-content-page" class="extra-page hide">
           <div id="all-payment-content-field">
             <div class="all-page-field">
               <div id="Recharge-page" class="hide extra-content-page">
@@ -697,11 +707,64 @@
                         <ul class="amount-list font-number-word"></ul>
                       </div>
                     </div>
-                    <!--#recharge-confirm-column.confirm-column
-                    .recharge-confirm-wrapper.confirm-wrapper
-                    	.confirm-field
-                    		p.confirm 确认充值
-                    -->
+                  </div>
+                </div>
+              </div>
+              <div id="Coupon-page" class="hide extra-content-page">
+                <div id="Coupon-lack" class="hide">
+                  <div class="Coupon-lack-wrapper">
+                    <div class="Coupon-lack-container">
+                      <div class="icon-field">
+                        <div class="coupon-icon"></div>
+                      </div>
+                      <div class="word-field">
+                        <p>您现在还没有卡券，请先点餐 ~</p>
+                      </div>
+                      <div class="btn-field"><a href="#-Detail-Book-bookCol">
+                          <div class="confirm-btn">
+                            <p>去点餐</p>
+                          </div></a></div>
+                    </div>
+                  </div>
+                </div>
+                <div id="Coupon-regular">
+                  <div class="Coupon-regular-wrapper">
+                    <div class="Coupon-regular-container">
+                      <div id="Coupon">
+                        <div class="Coupon-wrapper">
+                          <div class="Coupon-container">
+                            <ul class="Coupon-list">
+                              <li class="Coupon display">
+                                <div class="left-part">
+                                  <div class="reduce-cost-field">
+                                    <p class="reduct-cost font-number-word">10.0</p>
+                                  </div>
+                                  <div class="cost-field">
+                                    <p class="cost"><span>满 </span><span class="price font-number-word">25 </span><span>可用</span></p>
+                                  </div>
+                                </div>
+                                <div class="center-line"></div>
+                                <div class="right-part">
+                                  <div class="name-field">
+                                    <p class="name">通用代金券</p>
+                                  </div>
+                                  <div class="apply-field">
+                                    <p class="apply">仅限在餐厅：杯口咖啡杯口咖啡杯口咖啡 使用</p>
+                                  </div>
+                                  <div class="composition-field">
+                                    <p class="composition"><span>最多可叠加使用 </span><span class="font-number-word">2 </span><span>张</span></p>
+                                  </div>
+                                  <div class="date-field">
+                                    <p class="date"><span>有效期至 </span><span class="font-number-word">2016.08.31</span></p>
+                                  </div>
+                                </div>
+                                <div class="clear"></div>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>

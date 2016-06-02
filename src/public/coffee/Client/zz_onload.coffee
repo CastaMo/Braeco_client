@@ -1,0 +1,1 @@
+	startAPP.initial()

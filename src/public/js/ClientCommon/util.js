@@ -110,7 +110,7 @@
 		}
 		xhr.open(options.type, options.url, options.async);
 		if (options.type.toUpperCase() === "POST") {
-			xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+			xhr.setRequestHeader("Content-type","application/json");
 		}
 		if (typeof options.data !== "undefined") {
 			xhr.send(options.data);

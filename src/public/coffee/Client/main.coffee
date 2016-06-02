@@ -1,0 +1,1 @@
+do (window, document)->

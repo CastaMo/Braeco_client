@@ -75,6 +75,15 @@ input {
     border-radius: @radius;
 }
 
+.box-shadow (@str) {
+    //Firefox4.0-  
+    -moz-box-shadow: @str;
+    //Safariand Google chrome10.0-  
+    -webkit-box-shadow: @str;
+    //Firefox4.0+、 Google chrome 10.0+ 、 Oprea10.5+ and IE9  
+    box-shadow: @str;
+}
+
 .transition (@time: .3s) {
     -webkit-transition: all @time ease-in-out;
     -moz-transition: all @time ease-in-out;

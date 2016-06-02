@@ -1,0 +1,172 @@
+/*brae-payment-page-*/
+
+#extra {
+    z-index: 2;
+    background-color: @homePageBackgroundColor;
+}
+
+#brae-extra-content-page {
+    #all-payment-content-field {
+        .all-page-field {
+            #Recharge-page {
+                width: 100%;
+                padding-top: 15px;
+                background-color: @homePageBackgroundColor;
+                #recharge-amount-column {
+                    background-color: #fff;
+                    .borderTopBottom();
+                    .title-field {
+                        height: 37px;
+                        border-bottom: solid 1px @borderColor;
+                        p.title {
+                            .nintyPercentCenter;
+                            line-height: 37px;
+                            font-weight: bold;
+                        }
+                    }
+                    .amount-wrapper {
+                        ul.amount-list {
+                            li {
+                                height: 60px;
+                                .amount-li-field {
+                                    height: 100%;
+                                    position: relative;
+                                    .nintyPercentCenter;
+                                    .basic-info-field {
+                                        float: left;
+                                        p.get-higher-rank {
+                                            color: @deepCoffeeColor;
+                                            font-size: 14px;
+                                        }
+                                    }
+                                    .choose-field {
+                                        float: right;
+                                        height: 100%;
+                                        width: 20px;
+                                        background-size: 20px 20px;
+                                        .background-norm;
+                                    }
+                                }
+                            }
+                            li:active {
+                                background-color: @touchColor;
+                            }
+                        }
+                    }
+                }
+            }
+            #Coupon-page {
+                #Coupon-lack {
+                    text-align: center;
+                    .Coupon-lack-wrapper {
+                        .Coupon-lack-container {
+                            padding: 88px 0;
+                            .icon-field {
+                                width: 180px;
+                                margin: 0 auto;
+                                .coupon-icon {
+                                    .background-norm();
+                                    .background-size(180px, 180px);
+                                }
+                            }
+                            .word-field {
+                                margin-top: 27px;
+                                font-size: 16px;
+                                line-height: 22px;
+                            }
+                            .btn-field {
+                                width: 200px;
+                                margin: 26px auto 0 auto;
+                                a {
+                                    text-decoration: none;
+                                    .confirm-btn {
+                                        .rounded-corners(5px);
+                                        line-height: 48px;
+                                        width: 200px;
+                                        background-color: @orangeColor;
+                                        color: #fff;
+                                        font-size: 20px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                #Coupon-regular {
+                    .Coupon-regular-wrapper {
+                        .Coupon-regular-container {
+                            #Coupon {
+                                .Coupon-wrapper {
+                                    width: 91.47%;
+                                    margin: 0 auto;
+                                    .Coupon-container {
+                                        padding: 16px 0;
+                                        ul {
+                                            li {
+                                                .background-norm();
+                                                .background-size(100%, 120px);
+                                                .box-shadow(0 5px 10px rgba(100, 72, 10, 0.5));
+                                                .left-part {
+                                                    width: 33.8%;
+                                                    height: 100%;
+                                                    float: left;
+                                                    margin-left: 5px;
+                                                    text-align: center;
+                                                    .reduce-cost-field {
+                                                        line-height: 28px;
+                                                        font-size: 20px;
+                                                        color: @deepCoffeeColor;
+                                                        margin-top: 37px;
+                                                        p:before {
+                                                            content: "￥";
+                                                            font-size: 14px;
+                                                        }
+                                                    }
+                                                    .cost-field {
+                                                        line-height: 18px;
+                                                        font-size: 12px;
+                                                        span.price {
+                                                            color: @deepCoffeeColor;
+                                                            &:before {
+                                                                content: "￥";
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                .center-line {
+                                                    float: left;
+                                                    width: 5px;
+                                                    margin-top: 8px;
+                                                    .background-norm();
+                                                    .background-size(5px, 104px);
+                                                }
+                                                .right-part {
+                                                    float: left;
+                                                    width: 53.6%;
+                                                    height: 100%;
+                                                    margin-left: 15px;
+                                                    font-size: 12px;
+                                                    line-height: 18px;
+                                                    font-weight: 300;
+                                                    .name-field {
+                                                        margin-top: 10px;
+                                                        line-height: 25px;
+                                                        font-size: 18px;
+                                                        font-weight: bold;
+                                                    }
+                                                    .apply-field {
+                                                        margin-top: 4px;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

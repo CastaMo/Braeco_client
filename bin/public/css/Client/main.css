@@ -1251,6 +1251,141 @@
 .food-discount-wrapper ul.discount-list li .discount-wrapper .discount-money-field p.minus {
   margin-right: 3px;
 }
+/*common*/
+* {
+  padding: 0;
+  margin: 0;
+}
+html {
+  width: 100%;
+  height: 100%;
+}
+body {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  font-size: 16px;
+  font-family: Verdana, Arial, Helvetica;
+  background-color: #FFFCF6;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+li {
+  list-style-type: none;
+}
+img {
+  border: 0;
+}
+input {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.playAnimationForBook {
+  animation: animation-bounce-down 0.4s;
+  -moz-animation: animation-bounce-down 0.4s;
+  /* Firefox */
+  -webkit-animation: animation-bounce-down 0.4s;
+  /* Safari and Chrome */
+  -o-animation: animation-bounce-down 0.4s;
+  /* Opera */
+}
+.playAnimationForAdd {
+  animation: animation-bounce-up 0.4s;
+  -moz-animation: animation-bounce-up 0.4s;
+  /* Firefox */
+  -webkit-animation: animation-bounce-up 0.4s;
+  /* Safari and Chrome */
+  -o-animation: animation-bounce-up 0.4s;
+  /* Opera */
+}
+.font-number-word {
+  font-family: Helvetica, Arial, Verdana;
+}
+.fivePercentLeftLine {
+  margin-left: 5%;
+  width: 95%;
+  height: 1px;
+  background-color: #C8C7CC;
+}
+.money:before {
+  content: "¥";
+  font-size: 12px;
+}
+.nintyPercentCenter {
+  width: 90%;
+  margin: 0 auto 0 auto;
+}
+.parallel-container > *:not(.clear) {
+  float: left;
+}
+.arrow {
+  width: 15%;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 11.81px 20px;
+}
+.clear {
+  clear: both;
+}
+.hide-left {
+  transform: translate3d(-120%, 0, 0);
+  -webkit-transform: translate3d(-120%, 0, 0);
+  -moz-transform: translate3d(-120%, 0, 0);
+  -ms-transform: translate3d(-120%, 0, 0);
+  -o-transform: translate3d(-120%, 0, 0);
+}
+.hide-right {
+  transform: translate3d(120%, 0, 0);
+  -webkit-transform: translate3d(120%, 0, 0);
+  -moz-transform: translate3d(120%, 0, 0);
+  -ms-transform: translate3d(120%, 0, 0);
+  -o-transform: translate3d(120%, 0, 0);
+}
+.horizontal-center {
+  position: absolute;
+  left: 50%;
+  transform: translate3d(-50%, 0, 0);
+  -webkit-transform: translate3d(-50%, 0, 0);
+  -moz-transform: translate3d(-50%, 0, 0);
+  -ms-transform: translate3d(-50%, 0, 0);
+  -o-transform: translate3d(-50%, 0, 0);
+}
+.vertical-center {
+  position: absolute;
+  top: 50%;
+  transform: translate3d(0, -50%, 0);
+  -webkit-transform: translate3d(0, -50%, 0);
+  -moz-transform: translate3d(0, -50%, 0);
+  -ms-transform: translate3d(0, -50%, 0);
+  -o-transform: translate3d(0, -50%, 0);
+}
+.total-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  -webkit-transform: translate3d(-50%, -50%, 0);
+  -moz-transform: translate3d(-50%, -50%, 0);
+  -ms-transform: translate3d(-50%, -50%, 0);
+  -o-transform: translate3d(-50%, -50%, 0);
+}
+.adapt-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate3d(-50%, -70%, 0);
+  -webkit-transform: translate3d(-50%, -70%, 0);
+  -moz-transform: translate3d(-50%, -70%, 0);
+  -ms-transform: translate3d(-50%, -70%, 0);
+  -o-transform: translate3d(-50%, -70%, 0);
+}
+.hide {
+  display: none;
+}
 /*braeco-home-page*/
 #brae-home-page .all-page-field #Menu-page #Menu-activity-column {
   width: 100%;
@@ -1297,7 +1432,7 @@
   width: 100%;
 }
 #brae-home-page .all-page-field #Menu-page #Menu-category-column .category-head-wrapper {
-  margin-left: 20px;
+  margin-left: 4.8888888%;
   border-bottom: solid 1px #C8C7CC;
 }
 #brae-home-page .all-page-field #Menu-page #Menu-category-column .category-head-wrapper .category-head-container {
@@ -1532,9 +1667,9 @@
   margin: 0 11px;
 }
 #brae-home-page .all-page-field #Individual-page #Individual-content .Already-login-field #Individual-info-column .Individual-basic-info-wrapper .member-img-pos #rank-img {
-  height: 120px;
-  width: 138px;
-  background-size: 138px 120px;
+  height: 100px;
+  width: 115px;
+  background-size: 115px 100px;
 }
 #brae-home-page .all-page-field #Individual-page #Individual-content .Already-login-field #Individual-info-column .Individual-basic-info-wrapper .member-info-pos {
   width: calc(100% - 175px);
@@ -1542,9 +1677,8 @@
   width: -webkit-calc(100% - 175px);
 }
 #brae-home-page .all-page-field #Individual-page #Individual-content .Already-login-field #Individual-info-column .Individual-basic-info-wrapper .member-info-pos .id-field p.id {
-  line-height: 19px;
-  height: 19px;
-  font-size: 14px;
+  line-height: 27px;
+  font-size: 19px;
 }
 #brae-home-page .all-page-field #Individual-page #Individual-content .Already-login-field #Individual-info-column .Individual-basic-info-wrapper .member-info-pos .rank-field {
   height: auto;
@@ -1563,28 +1697,24 @@
   font-weight: bold;
 }
 #brae-home-page .all-page-field #Individual-page #Individual-content .Already-login-field #Individual-info-column .Individual-basic-info-wrapper .member-info-pos .discount-field {
-  margin-top: 1px;
-  font-size: 14px;
+  margin-top: 5px;
+  font-size: 16px;
 }
 #brae-home-page .all-page-field #Individual-page #Individual-content .Already-login-field #Individual-info-column .Individual-basic-info-wrapper .member-info-pos .discount-field p.discount {
-  line-height: 19px;
+  line-height: 22px;
   color: #910012;
   font-weight: bold;
 }
 #brae-home-page .all-page-field #Individual-page #Individual-content .Already-login-field #Individual-info-column .Individual-basic-info-wrapper .member-info-pos .remainder-EXP-Blend {
   font-size: 14px;
-  margin-top: 3px;
+  margin-top: 5px;
+  line-height: 18px;
 }
 #brae-home-page .all-page-field #Individual-page #Individual-content .Already-login-field #Individual-info-column .Individual-basic-info-wrapper .member-info-pos .remainder-EXP-Blend .remainder-field {
-  line-height: 18px;
-  font-size: 12px;
   float: left;
 }
 #brae-home-page .all-page-field #Individual-page #Individual-content .Already-login-field #Individual-info-column .Individual-basic-info-wrapper .member-info-pos .remainder-EXP-Blend .remainder-field > *:not(.clear) {
   float: left;
-}
-#brae-home-page .all-page-field #Individual-page #Individual-content .Already-login-field #Individual-info-column .Individual-basic-info-wrapper .member-info-pos .remainder-EXP-Blend .remainder-field p.name {
-  font-weight: bold;
 }
 #brae-home-page .all-page-field #Individual-page #Individual-content .Already-login-field #Individual-info-column .Individual-basic-info-wrapper .member-info-pos .remainder-EXP-Blend .remainder-field p.remainder-number {
   margin-left: 10px;
@@ -1595,20 +1725,13 @@
   font-size: 12px;
 }
 #brae-home-page .all-page-field #Individual-page #Individual-content .Already-login-field #Individual-info-column .Individual-basic-info-wrapper .member-info-pos .EXP-field {
-  margin-top: 2px;
+  margin-top: 4px;
   line-height: 18px;
-  font-size: 12px;
-}
-#brae-home-page .all-page-field #Individual-page #Individual-content .Already-login-field #Individual-info-column .Individual-basic-info-wrapper .member-info-pos .EXP-field p.current-value:before {
-  content: "当前积分：";
-}
-#brae-home-page .all-page-field #Individual-page #Individual-content .Already-login-field #Individual-info-column .Individual-basic-info-wrapper .member-info-pos .EXP-field p.full-value:before {
-  content: "升级积分：";
+  font-size: 14px;
 }
 #brae-home-page .all-page-field #Individual-page #Individual-content .Already-login-field #Individual-info-column .Individual-EXP-bar-wrapper .EXP-bar-field {
   width: 90%;
   margin: 0 auto;
-  border: solid 1px #C8C7CC;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   -ms-border-radius: 10px;
@@ -1622,9 +1745,21 @@
   -o-border-radius: 10px;
   border-radius: 10px;
   width: 100%;
-  height: 6px;
-  background-color: #fff;
+  height: 8px;
+  background-color: #F4F5F9;
   overflow-x: hidden;
+  position: relative;
+}
+#brae-home-page .all-page-field #Individual-page #Individual-content .Already-login-field #Individual-info-column .Individual-EXP-bar-wrapper .EXP-bar-field .full-bar .separators {
+  width: 100%;
+  position: absolute;
+  z-index: 5px;
+}
+#brae-home-page .all-page-field #Individual-page #Individual-content .Already-login-field #Individual-info-column .Individual-EXP-bar-wrapper .EXP-bar-field .full-bar .separators .separator-item {
+  float: left;
+  width: 9%;
+  height: 8px;
+  border-right: solid 2px #fff;
 }
 #brae-home-page .all-page-field #Individual-page #Individual-content .Already-login-field #Individual-info-column .Individual-EXP-bar-wrapper .EXP-bar-field .full-bar .inner-bar {
   -webkit-border-radius: 10px;
@@ -2172,6 +2307,9 @@
   font-size: 14px;
   float: left;
   color: #9B9B9B;
+}
+#brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field ul li .li-wrapper .info-field .down-field p.discount-recommond {
+  color: #910012;
 }
 #brae-detail-page .all-page-field #Book-page #Book-content .book-content-field #book-order-column #Choose-payment-method-page #Choose-payment-method-content .Choose-payment-method-content-field #choose-payment-via-member-column {
   background-color: #fff;
@@ -3159,43 +3297,43 @@
   z-index: 2;
   background-color: #FFFCF6;
 }
-#brae-payment-page #all-payment-content-field .all-page-field #Recharge-page {
+#brae-extra-content-page #all-payment-content-field .all-page-field #Recharge-page {
   width: 100%;
   padding-top: 15px;
   background-color: #FFFCF6;
 }
-#brae-payment-page #all-payment-content-field .all-page-field #Recharge-page #recharge-amount-column {
+#brae-extra-content-page #all-payment-content-field .all-page-field #Recharge-page #recharge-amount-column {
   background-color: #fff;
   border-top: solid 1px #C8C7CC;
   border-bottom: solid 1px #C8C7CC;
 }
-#brae-payment-page #all-payment-content-field .all-page-field #Recharge-page #recharge-amount-column .title-field {
+#brae-extra-content-page #all-payment-content-field .all-page-field #Recharge-page #recharge-amount-column .title-field {
   height: 37px;
   border-bottom: solid 1px #C8C7CC;
 }
-#brae-payment-page #all-payment-content-field .all-page-field #Recharge-page #recharge-amount-column .title-field p.title {
+#brae-extra-content-page #all-payment-content-field .all-page-field #Recharge-page #recharge-amount-column .title-field p.title {
   width: 90%;
   margin: 0 auto 0 auto;
   line-height: 37px;
   font-weight: bold;
 }
-#brae-payment-page #all-payment-content-field .all-page-field #Recharge-page #recharge-amount-column .amount-wrapper ul.amount-list li {
+#brae-extra-content-page #all-payment-content-field .all-page-field #Recharge-page #recharge-amount-column .amount-wrapper ul.amount-list li {
   height: 60px;
 }
-#brae-payment-page #all-payment-content-field .all-page-field #Recharge-page #recharge-amount-column .amount-wrapper ul.amount-list li .amount-li-field {
+#brae-extra-content-page #all-payment-content-field .all-page-field #Recharge-page #recharge-amount-column .amount-wrapper ul.amount-list li .amount-li-field {
   height: 100%;
   position: relative;
   width: 90%;
   margin: 0 auto 0 auto;
 }
-#brae-payment-page #all-payment-content-field .all-page-field #Recharge-page #recharge-amount-column .amount-wrapper ul.amount-list li .amount-li-field .basic-info-field {
+#brae-extra-content-page #all-payment-content-field .all-page-field #Recharge-page #recharge-amount-column .amount-wrapper ul.amount-list li .amount-li-field .basic-info-field {
   float: left;
 }
-#brae-payment-page #all-payment-content-field .all-page-field #Recharge-page #recharge-amount-column .amount-wrapper ul.amount-list li .amount-li-field .basic-info-field p.get-higher-rank {
+#brae-extra-content-page #all-payment-content-field .all-page-field #Recharge-page #recharge-amount-column .amount-wrapper ul.amount-list li .amount-li-field .basic-info-field p.get-higher-rank {
   color: #910012;
   font-size: 14px;
 }
-#brae-payment-page #all-payment-content-field .all-page-field #Recharge-page #recharge-amount-column .amount-wrapper ul.amount-list li .amount-li-field .choose-field {
+#brae-extra-content-page #all-payment-content-field .all-page-field #Recharge-page #recharge-amount-column .amount-wrapper ul.amount-list li .amount-li-field .choose-field {
   float: right;
   height: 100%;
   width: 20px;
@@ -3203,141 +3341,118 @@
   background-repeat: no-repeat;
   background-position: center;
 }
-#brae-payment-page #all-payment-content-field .all-page-field #Recharge-page #recharge-amount-column .amount-wrapper ul.amount-list li:active {
+#brae-extra-content-page #all-payment-content-field .all-page-field #Recharge-page #recharge-amount-column .amount-wrapper ul.amount-list li:active {
   background-color: #FFF5D6;
 }
-/*common*/
-* {
-  padding: 0;
-  margin: 0;
+#brae-extra-content-page #all-payment-content-field .all-page-field #Coupon-page #Coupon-lack {
+  text-align: center;
 }
-html {
-  width: 100%;
-  height: 100%;
+#brae-extra-content-page #all-payment-content-field .all-page-field #Coupon-page #Coupon-lack .Coupon-lack-wrapper .Coupon-lack-container {
+  padding: 88px 0;
 }
-body {
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  font-size: 16px;
-  font-family: Verdana, Arial, Helvetica;
-  background-color: #FFFCF6;
-  width: 100%;
-  height: 100%;
-  position: relative;
+#brae-extra-content-page #all-payment-content-field .all-page-field #Coupon-page #Coupon-lack .Coupon-lack-wrapper .Coupon-lack-container .icon-field {
+  width: 180px;
+  margin: 0 auto;
 }
-li {
-  list-style-type: none;
-}
-img {
-  border: 0;
-}
-input {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-}
-.playAnimationForBook {
-  animation: animation-bounce-down 0.4s;
-  -moz-animation: animation-bounce-down 0.4s;
-  /* Firefox */
-  -webkit-animation: animation-bounce-down 0.4s;
-  /* Safari and Chrome */
-  -o-animation: animation-bounce-down 0.4s;
-  /* Opera */
-}
-.playAnimationForAdd {
-  animation: animation-bounce-up 0.4s;
-  -moz-animation: animation-bounce-up 0.4s;
-  /* Firefox */
-  -webkit-animation: animation-bounce-up 0.4s;
-  /* Safari and Chrome */
-  -o-animation: animation-bounce-up 0.4s;
-  /* Opera */
-}
-.font-number-word {
-  font-family: Helvetica, Arial, Verdana;
-}
-.fivePercentLeftLine {
-  margin-left: 5%;
-  width: 95%;
-  height: 1px;
-  background-color: #C8C7CC;
-}
-.money:before {
-  content: "¥";
-  font-size: 12px;
-}
-.nintyPercentCenter {
-  width: 90%;
-  margin: 0 auto 0 auto;
-}
-.parallel-container > *:not(.clear) {
-  float: left;
-}
-.arrow {
-  width: 15%;
-  height: 100%;
-  position: absolute;
-  right: 0;
-  top: 0;
+#brae-extra-content-page #all-payment-content-field .all-page-field #Coupon-page #Coupon-lack .Coupon-lack-wrapper .Coupon-lack-container .icon-field .coupon-icon {
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 11.81px 20px;
+  height: 180px;
+  width: 180px;
+  background-size: 180px 180px;
 }
-.clear {
-  clear: both;
+#brae-extra-content-page #all-payment-content-field .all-page-field #Coupon-page #Coupon-lack .Coupon-lack-wrapper .Coupon-lack-container .word-field {
+  margin-top: 27px;
+  font-size: 16px;
+  line-height: 22px;
 }
-.hide-left {
-  transform: translate3d(-120%, 0, 0);
-  -webkit-transform: translate3d(-120%, 0, 0);
-  -moz-transform: translate3d(-120%, 0, 0);
-  -ms-transform: translate3d(-120%, 0, 0);
-  -o-transform: translate3d(-120%, 0, 0);
+#brae-extra-content-page #all-payment-content-field .all-page-field #Coupon-page #Coupon-lack .Coupon-lack-wrapper .Coupon-lack-container .btn-field {
+  width: 200px;
+  margin: 26px auto 0 auto;
 }
-.hide-right {
-  transform: translate3d(120%, 0, 0);
-  -webkit-transform: translate3d(120%, 0, 0);
-  -moz-transform: translate3d(120%, 0, 0);
-  -ms-transform: translate3d(120%, 0, 0);
-  -o-transform: translate3d(120%, 0, 0);
+#brae-extra-content-page #all-payment-content-field .all-page-field #Coupon-page #Coupon-lack .Coupon-lack-wrapper .Coupon-lack-container .btn-field a {
+  text-decoration: none;
 }
-.horizontal-center {
-  position: absolute;
-  left: 50%;
-  transform: translate3d(-50%, 0, 0);
-  -webkit-transform: translate3d(-50%, 0, 0);
-  -moz-transform: translate3d(-50%, 0, 0);
-  -ms-transform: translate3d(-50%, 0, 0);
-  -o-transform: translate3d(-50%, 0, 0);
+#brae-extra-content-page #all-payment-content-field .all-page-field #Coupon-page #Coupon-lack .Coupon-lack-wrapper .Coupon-lack-container .btn-field a .confirm-btn {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  line-height: 48px;
+  width: 200px;
+  background-color: #FFC107;
+  color: #fff;
+  font-size: 20px;
 }
-.vertical-center {
-  position: absolute;
-  top: 50%;
-  transform: translate3d(0, -50%, 0);
-  -webkit-transform: translate3d(0, -50%, 0);
-  -moz-transform: translate3d(0, -50%, 0);
-  -ms-transform: translate3d(0, -50%, 0);
-  -o-transform: translate3d(0, -50%, 0);
+#brae-extra-content-page #all-payment-content-field .all-page-field #Coupon-page #Coupon-regular .Coupon-regular-wrapper .Coupon-regular-container #Coupon .Coupon-wrapper {
+  width: 91.47%;
+  margin: 0 auto;
 }
-.total-center {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate3d(-50%, -50%, 0);
-  -webkit-transform: translate3d(-50%, -50%, 0);
-  -moz-transform: translate3d(-50%, -50%, 0);
-  -ms-transform: translate3d(-50%, -50%, 0);
-  -o-transform: translate3d(-50%, -50%, 0);
+#brae-extra-content-page #all-payment-content-field .all-page-field #Coupon-page #Coupon-regular .Coupon-regular-wrapper .Coupon-regular-container #Coupon .Coupon-wrapper .Coupon-container {
+  padding: 16px 0;
 }
-.adapt-center {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate3d(-50%, -70%, 0);
-  -webkit-transform: translate3d(-50%, -70%, 0);
-  -moz-transform: translate3d(-50%, -70%, 0);
-  -ms-transform: translate3d(-50%, -70%, 0);
-  -o-transform: translate3d(-50%, -70%, 0);
+#brae-extra-content-page #all-payment-content-field .all-page-field #Coupon-page #Coupon-regular .Coupon-regular-wrapper .Coupon-regular-container #Coupon .Coupon-wrapper .Coupon-container ul li {
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 120px;
+  width: 100%;
+  background-size: 100% 120px;
+  -moz-box-shadow: 0 5px 10px rgba(100, 72, 10, 0.5);
+  -webkit-box-shadow: 0 5px 10px rgba(100, 72, 10, 0.5);
+  box-shadow: 0 5px 10px rgba(100, 72, 10, 0.5);
 }
-.hide {
-  display: none;
+#brae-extra-content-page #all-payment-content-field .all-page-field #Coupon-page #Coupon-regular .Coupon-regular-wrapper .Coupon-regular-container #Coupon .Coupon-wrapper .Coupon-container ul li .left-part {
+  width: 33.8%;
+  height: 100%;
+  float: left;
+  margin-left: 5px;
+  text-align: center;
+}
+#brae-extra-content-page #all-payment-content-field .all-page-field #Coupon-page #Coupon-regular .Coupon-regular-wrapper .Coupon-regular-container #Coupon .Coupon-wrapper .Coupon-container ul li .left-part .reduce-cost-field {
+  line-height: 28px;
+  font-size: 20px;
+  color: #910012;
+  margin-top: 37px;
+}
+#brae-extra-content-page #all-payment-content-field .all-page-field #Coupon-page #Coupon-regular .Coupon-regular-wrapper .Coupon-regular-container #Coupon .Coupon-wrapper .Coupon-container ul li .left-part .reduce-cost-field p:before {
+  content: "￥";
+  font-size: 14px;
+}
+#brae-extra-content-page #all-payment-content-field .all-page-field #Coupon-page #Coupon-regular .Coupon-regular-wrapper .Coupon-regular-container #Coupon .Coupon-wrapper .Coupon-container ul li .left-part .cost-field {
+  line-height: 18px;
+  font-size: 12px;
+}
+#brae-extra-content-page #all-payment-content-field .all-page-field #Coupon-page #Coupon-regular .Coupon-regular-wrapper .Coupon-regular-container #Coupon .Coupon-wrapper .Coupon-container ul li .left-part .cost-field span.price {
+  color: #910012;
+}
+#brae-extra-content-page #all-payment-content-field .all-page-field #Coupon-page #Coupon-regular .Coupon-regular-wrapper .Coupon-regular-container #Coupon .Coupon-wrapper .Coupon-container ul li .left-part .cost-field span.price:before {
+  content: "￥";
+}
+#brae-extra-content-page #all-payment-content-field .all-page-field #Coupon-page #Coupon-regular .Coupon-regular-wrapper .Coupon-regular-container #Coupon .Coupon-wrapper .Coupon-container ul li .center-line {
+  float: left;
+  margin-top: 8px;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 104px;
+  width: 5px;
+  background-size: 5px 104px;
+}
+#brae-extra-content-page #all-payment-content-field .all-page-field #Coupon-page #Coupon-regular .Coupon-regular-wrapper .Coupon-regular-container #Coupon .Coupon-wrapper .Coupon-container ul li .right-part {
+  float: left;
+  width: 53.6%;
+  height: 100%;
+  margin-left: 15px;
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 300;
+}
+#brae-extra-content-page #all-payment-content-field .all-page-field #Coupon-page #Coupon-regular .Coupon-regular-wrapper .Coupon-regular-container #Coupon .Coupon-wrapper .Coupon-container ul li .right-part .name-field {
+  margin-top: 10px;
+  line-height: 25px;
+  font-size: 18px;
+  font-weight: bold;
+}
+#brae-extra-content-page #all-payment-content-field .all-page-field #Coupon-page #Coupon-regular .Coupon-regular-wrapper .Coupon-regular-container #Coupon .Coupon-wrapper .Coupon-container ul li .right-part .apply-field {
+  margin-top: 4px;
 }

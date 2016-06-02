@@ -47,7 +47,7 @@
                 border-top: solid 1px @borderColor;
                 width: 100%;
                 .category-head-wrapper {
-                    margin-left: 20px;
+                    margin-left: 4.8888888%;
                     border-bottom: solid 1px @borderColor;
                     .category-head-container {
                         padding: 10px 0;
@@ -268,7 +268,7 @@
                             .member-img-pos {
                                 margin: 0 11px;
                                 #rank-img {
-                                    .background-size(138px, 120px);
+                                    .background-size(115px, 100px);
                                 }
                             }
                             .member-info-pos {
@@ -277,9 +277,8 @@
                                 width: -webkit-calc(~"100% - 175px");
                                 .id-field {
                                     p.id {
-                                        line-height: 19px;
-                                        height: 19px;
-                                        font-size: 14px;
+                                        line-height: 27px;
+                                        font-size: 19px;
                                     }
                                 }
                                 .rank-field {
@@ -299,26 +298,24 @@
                                     }
                                 }
                                 .discount-field {
-                                    margin-top: 1px;
-                                    font-size: 14px;
+                                    margin-top: 5px;
+                                    font-size: 16px;
                                     p.discount {
-                                        line-height: 19px;
+                                        line-height: 22px;
                                         color: @deepCoffeeColor;
                                         font-weight: bold;
                                     }
                                 }
                                 .remainder-EXP-Blend {
                                     font-size: 14px;
-                                    margin-top: 3px;
+                                    margin-top: 5px;
+                                    line-height: 18px;
                                     .remainder-field {
-                                        line-height: 18px;
-                                        font-size: 12px;
                                         float: left;
                                         > *:not(.clear) {
                                             float: left;
                                         }
                                         p.name {
-                                            font-weight: bold;
                                         }
                                         p.remainder-number {
                                             margin-left: 10px;
@@ -331,15 +328,9 @@
                                     }
                                 }
                                 .EXP-field {
-                                    margin-top: 2px;
+                                    margin-top: 4px;
                                     line-height: 18px;
-                                    font-size: 12px;
-                                    p.current-value:before {
-                                        content: "当前积分：";
-                                    }
-                                    p.full-value:before {
-                                        content: "升级积分：";
-                                    }
+                                    font-size: 14px;
                                 }
                             }
                         }
@@ -347,14 +338,25 @@
                             .EXP-bar-field {
                                 width: 90%;
                                 margin: 0 auto;
-                                border: solid 1px @borderColor;
                                 .rounded-corners(10px);
                                 .full-bar {
                                     .rounded-corners(10px);
                                     width: 100%;
-                                    height: 6px;
-                                    background-color: #fff;
+                                    height: 8px;
+                                    background-color: #F4F5F9;
                                     overflow-x: hidden;
+                                    position: relative;
+                                    .separators {
+                                        width: 100%;
+                                        position: absolute;
+                                        z-index: 5px;
+                                        .separator-item {
+                                            float: left;
+                                            width: 9%;
+                                            height: 8px;
+                                            border-right: solid 2px #fff;
+                                        }
+                                    }
                                     .inner-bar {
                                         .rounded-corners(10px);
                                         height: 100%;
