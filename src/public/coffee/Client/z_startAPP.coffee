@@ -1,6 +1,6 @@
 	startAPP = do ->
 		_totalTime = 3
-		_ = null
+		_ = 0
 
 		_initCallback = {
 			"Need to rescan qrcode" 	:	->	window.location.pathname = "/Table/Confirm/rescan"
@@ -12,59 +12,62 @@
 
 		_initAllGetJSONFunc = (data)->
 			try
-				getDishJSON 		= -> return data.dish
-				getActivityJSON 	= -> return data.activity
-				getMemberJSON 		= -> return data.member
-				getComPreJSON 		= -> return data.compatible
-				getDinnerJSON 		= -> return data.covers
-				getChannelJSON 		= -> return data.channel
+				getDishJSON 				= -> return data.dish
+				getActivityJSON 		= -> return data.activity
+				getMemberJSON 			= -> return data.member
+				getComPreJSON 			= -> return data.compatible
+				getDinnerJSON 			= -> return data.covers
+				getChannelJSON 			= -> return data.channel
 				getHeaderLikeJSON 	= -> return data.sum_like
 				getDinnerInfoJSON 	= -> return data.dinner
+				getCouponJSON 			= -> return data.couponorder
 			catch e
 				alert "数据解析失败"
 				alert JSON.stringify(e)
 
 		_initAllModule = ->
 			try
-				_ = 0
+				_++
 				RequireManageSingleton.initial()
-				_ = 1
+				_++
 				ConfirmManageSingleton.initial()
-				_ = 2
+				_++
 				WebSockSingleton.initial()
-				_ = 3
+				_++
 				LockManageSingleton.initial()
-				_ = 4
+				_++
 				LocStorSingleton.initial()
-				_ = 5
+				_++
 				DinnerHeader.initial()
-				_ = 6
+				_++
 				User.initial()
-				_ = 7
+				_++
+				CouponManageSingleton.initial()
+				_++
 				Recharge.initial()
-				_ = 8
+				_++
 				Activity.initial()
-				_ = 9
+				_++
 				Category.initial()
-				_ = 10
+				_++
 				Food.initial()
-				_ = 11
+				_++
 				ComboManageSingleton.initial()
-				_ = 12
+				_++
 				ComboChooseDeleteManageSingleton.initial()
-				_ = 13
+				_++
 				FoodInfoSingleton.initial()
-				_ = 14
+				_++
 				BookChooseSingleton.initial()
-				_ = 15
+				_++
 				BookOrderSingleton.initial()
-				_ = 16
+				_++
 				AlreadyManageSingleton.initial()
-				_ = 17
+				_++
 				PaySingleton.initial()
-				_ = 18
+				_++
 			catch e
-				alert "模块加载失败:", _
+				alert "模块加载失败: #{_}"
 				alert e
 
 		_checkCurrentHash = ->

@@ -19,7 +19,7 @@
 			target = e.target || e.srcElement
 			parentNode = findParent(target, (parentNode)-> return ((hasClass parentNode, "book-choose") or (hasClass parentNode, "combo-choose-delete") or (hasClass parentNode, "form-page") or (hasClass parentNode, "category") ))
 			if !((hasClass parentNode, "book-choose") or (hasClass parentNode, "combo-choose-delete") or (hasClass parentNode, "category"))  then e.preventDefault()
-			else if !_judegeWouldScrollByHeight(parentNode.parentNode) then e.preventDefault()
+			#else if !_judegeWouldScrollByHeight(parentNode.parentNode) then e.preventDefault()
 
 		addListener _popupDom, "touchmove", _preventScrollFromOuter
 		addListener _coverDom, "click", -> if hashRoute.getCurrentState() is "categoryChoose" then hashRoute.back()

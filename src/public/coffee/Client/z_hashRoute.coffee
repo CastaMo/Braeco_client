@@ -114,7 +114,7 @@
 				"pop": -> _hideTarget("Recharge-page")
 			}
 			"Coupon": {
-				"push": -> _staticShowTarget("Coupon-page")
+				"push": -> _staticShowTarget("Coupon-page"); couponManage.judgeState()
 				"pop": -> _hideTarget("Coupon-page")
 			}
 			"Popup": {

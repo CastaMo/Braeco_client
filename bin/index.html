@@ -138,6 +138,16 @@
                             </div>
                             <div class="arrow"></div>
                           </li>
+                          <div class="fivePercentLeftLine"></div>
+                          <li id="Coupon-func" class="Individual-func">
+                            <div class="func-img-field">
+                              <div class="func-img coupon-image"></div>
+                            </div>
+                            <div class="name-field">
+                              <p class="name">我的卡券</p>
+                            </div>
+                            <div class="arrow"></div>
+                          </li>
                         </ul>
                       </div>
                     </div>
@@ -197,46 +207,48 @@
                       </div>
                       <div id="book-menu-wrap">
                         <div id="book-info-wrap">
-                          <div class="food-img-wrapper">
-                            <div class="img-field">
-                              <div border="0" class="img default-display-image"></div>
+                          <div id="book-info-container">
+                            <div class="food-img-wrapper">
+                              <div class="img-field">
+                                <div border="0" class="img default-display-image"></div>
+                              </div>
                             </div>
-                          </div>
-                          <div class="food-info-wrapper">
-                            <div class="food-info-field">
-                              <div class="full-part">
-                                <div class="top-wrap">
-                                  <div class="name-field">
-                                    <p class="c-name"></p>
-                                    <p class="e-name"></p>
+                            <div class="food-info-wrapper">
+                              <div class="food-info-field">
+                                <div class="full-part">
+                                  <div class="top-wrap">
+                                    <div class="name-field">
+                                      <p class="c-name"></p>
+                                      <p class="e-name"></p>
+                                    </div>
+                                    <div class="label-field">
+                                      <p class="dc-label"></p>
+                                      <p class="tag-label"></p>
+                                    </div>
                                   </div>
-                                  <div class="label-field">
-                                    <p class="dc-label"></p>
-                                    <p class="tag-label"></p>
-                                  </div>
-                                </div>
-                                <div class="bottom-wrap font-number-word">
-                                  <div class="price-field">
-                                    <p class="min-price money"></p>
-                                    <p class="init-price money"></p>
-                                  </div>
-                                  <div class="controll-field">
-                                    <div class="plus-field btn">
-                                      <div class="img"></div>
+                                  <div class="bottom-wrap font-number-word">
+                                    <div class="price-field">
+                                      <p class="min-price money"></p>
+                                      <p class="init-price money"></p>
+                                    </div>
+                                    <div class="controll-field">
+                                      <div class="plus-field btn">
+                                        <div class="img"></div>
+                                      </div>
                                     </div>
                                   </div>
                                 </div>
                               </div>
                             </div>
-                          </div>
-                          <div class="food-intro-wrapper">
-                            <div class="food-intro-field">
-                              <div class="title-wrap">
-                                <p class="title">餐品简介</p>
-                              </div>
-                              <div class="fivePercentLeftLine"></div>
-                              <div class="intro-wrap">
-                                <p class="intro"></p>
+                            <div class="food-intro-wrapper">
+                              <div class="food-intro-field">
+                                <div class="title-wrap">
+                                  <p class="title">餐品简介</p>
+                                </div>
+                                <div class="fivePercentLeftLine"></div>
+                                <div class="intro-wrap">
+                                  <p class="intro"></p>
+                                </div>
                               </div>
                             </div>
                           </div>
@@ -248,6 +260,18 @@
                         </div>
                         <div id="book-order-wrap">
                           <div class="food-order-wrapper"></div>
+                          <div class="coupon-choose">
+                            <div class="coupon-choose-wrapper">
+                              <div class="title-field">
+                                <p>代金券</p>
+                              </div>
+                              <div class="coupon-number-field">
+                                <p>有<span>1</span>张代金券可用</p>
+                              </div>
+                              <div class="clear"></div>
+                            </div>
+                            <div class="arrow"></div>
+                          </div>
                           <div class="food-discount-wrapper hide">
                             <div class="title-field">
                               <p class="title">优惠折扣</p>
@@ -733,37 +757,16 @@
                       <div id="Coupon">
                         <div class="Coupon-wrapper">
                           <div class="Coupon-container">
-                            <ul class="Coupon-list">
-                              <li class="Coupon display">
-                                <div class="left-part">
-                                  <div class="reduce-cost-field">
-                                    <p class="reduct-cost font-number-word">10.0</p>
-                                  </div>
-                                  <div class="cost-field">
-                                    <p class="cost"><span>满 </span><span class="price font-number-word">25 </span><span>可用</span></p>
-                                  </div>
-                                </div>
-                                <div class="center-line"></div>
-                                <div class="right-part">
-                                  <div class="name-field">
-                                    <p class="name">通用代金券</p>
-                                  </div>
-                                  <div class="apply-field">
-                                    <p class="apply">仅限在餐厅：杯口咖啡杯口咖啡杯口咖啡 使用</p>
-                                  </div>
-                                  <div class="composition-field">
-                                    <p class="composition"><span>最多可叠加使用 </span><span class="font-number-word">2 </span><span>张</span></p>
-                                  </div>
-                                  <div class="date-field">
-                                    <p class="date"><span>有效期至 </span><span class="font-number-word">2016.08.31</span></p>
-                                  </div>
-                                </div>
-                                <div class="clear"></div>
-                              </li>
-                            </ul>
+                            <ul class="Coupon-display-list"></ul>
+                            <ul class="Coupon-use-list"></ul>
                           </div>
                         </div>
                       </div>
+                    </div>
+                  </div>
+                  <div class="btn-field">
+                    <div class="confirm-btn">
+                      <p>确认使用</p>
                     </div>
                   </div>
                 </div>

@@ -16,7 +16,8 @@
 	webSock = null
 	comboManage = null
 	comboChooseDeleteManage = null
-	getDishJSON = getActivityJSON = getMemberJSON = getComPreJSON = getDinnerJSON = getChannelJSON = getHeaderLikeJSON = getDinnerInfoJSON = null
+	couponManage = null
+	getDishJSON = getActivityJSON = getMemberJSON = getComPreJSON = getDinnerJSON = getChannelJSON = getHeaderLikeJSON = getDinnerInfoJSON = getCouponJSON = null
 
 	compatibleCSSConfig = [
 		""

@@ -42,6 +42,9 @@
 			_memoClose = query "#remark-for-trolley-page .btn-field"
 			_memoConfirm = query "#remark-for-trolley-page .confirm-field"
 
+			_couponChooseDom = query ".coupon-choose", _bookPageDom
+			_couponNumberLenDom = query ".coupon-number-field span", _couponChooseDom
+
 			_orderFoods = {}
 
 			_giveFoodName = ""
@@ -66,6 +69,7 @@
 				"sale": "立减优惠"
 				"reduce": "满减优惠"
 				"membership": "会员优惠"
+				"coupon": "代金券"
 			}
 
 			_getOrCreateOrderFood = (options)->
@@ -215,7 +219,20 @@
 						tag 				:		""
 					}
 
-			
+			_calFinalPrice = ->
+				_allFinalPrice = _allInitPrice - _dcHalfSave - _dcDiscountSave - _dcSaleSave - _reduceSave - _membershipSave
+				locStor.set("bookOrderAllPrice", _allFinalPrice)
+
+			_updateCoupon = ->
+				len = couponManage.getAvailableCouponLength _allFinalPrice
+				_couponNumberLenDom.innerHTML = len
+				if len > 0 then removeClass _couponChooseDom, "hide"
+				else addClass _couponChooseDom, "hide"
+				couponId = Number locStor.get "couponId" || "0"
+				if couponId > 0
+					coupon = couponManage.getCouponById couponId
+					if coupon.cost > _allFinalPrice then locStor.rm "couponId"
+
 
 			_calAllSaveAndShow = ->
 				_getDiscountDom _dcHalfSave, "half"
@@ -223,8 +240,12 @@
 				_getDiscountDom _dcSaleSave, "sale"
 				_getDiscountDom _membershipSave, "membership"
 				_getDiscountDom _reduceSave, "reduce"
-				_allFinalPrice = _allInitPrice - _dcHalfSave - _dcDiscountSave - _dcSaleSave - _reduceSave - _membershipSave
-				locStor.set("bookOrderAllPrice", _allFinalPrice)
+				couponId = Number locStor.get "couponId" || "0"
+				if couponId > 0
+					coupon = couponManage.getCouponById couponId
+					_allFinalPrice -= coupon.costReduce
+					if _allFinalPrice < 0 then _allFinalPrice = 0
+					_getDiscountDom coupon.costReduce, "coupon"
 				_allNumDom.innerHTML = _allNum; _totalPriceDom.innerHTML = Number(_allFinalPrice.toFixed(2))
 				if _allNum > 0 then removeClass _orderBtnDom, "disabled"; removeClass _trolleyDom, "disabled"
 				if _allFinalPrice < _allInitPrice then removeClass _foodDiscountWrapper, "hide"
@@ -238,6 +259,8 @@
 				_updateMembershipSave()
 				_updateReduceSave()
 				_updateGive()
+				_calFinalPrice()
+				_updateCoupon()
 				_calAllSaveAndShow()
 
 			###
@@ -472,6 +495,11 @@
 				addListener _memoClose, "touchstart", -> hashRoute.back()
 				addListener _memoConfirm, "touchstart", -> _updateMemoFromInput(); hashRoute.back()
 
+				addListener _couponChooseDom, "click", ->
+					if couponManage.getAvailableCouponLength _allFinalPrice <= 0 then hashRoute.warn()
+					locStor.set "couponState", "use"
+					hashRoute.hashJump("-Extra-extraContent-Coupon")
+
 			toggleState: do ->
 				_stateConfig = {
 					"col" 		:		-> removeClass _orderBtnDom, "hide"
@@ -531,13 +559,18 @@
 				_updateMemoFromInput()
 
 			confirmPay: ->
-
+				_couponSave = 0
+				couponId = Number locStor.get "couponId" || "0"
+				if couponId > 0
+					coupon = couponManage.getCouponById couponId
+					_couponSave = coupon.costReduce
 				alreadyManage.confirmOrderAndUpdateAllInfo(JSON.parse(_getBookOrderJSON()), {
-					half 		:		_dcHalfSave
-					discount 	:		_dcDiscountSave
-					sale 		:		_dcSaleSave
-					reduce 		:		_reduceSave
+					half 				:		_dcHalfSave
+					discount 		:		_dcDiscountSave
+					sale 				:		_dcSaleSave
+					reduce 			:		_reduceSave
 					membership 	:		_membershipSave
+					coupon 			: 	_couponSave
 				}, _giveFoodName, Number(locStor.get("bookOrderAllPrice")), _memo)
 				@clearAllOrder()
 

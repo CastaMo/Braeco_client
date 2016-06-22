@@ -25,7 +25,7 @@
 			_bookCurrentInfo = []
 
 			_updateChooseInfo = ->
-				_chooseInfoDom.innerHTML = _bookCurrentInfo.join("、")
+				_chooseInfoDom.innerHTML = _bookCurrentInfo.join(" 、 ")
 
 			_updateFinalPrice = ->
 				price = _currentFood.defaultPrice
@@ -152,7 +152,7 @@
 							comboId 		:	_targetInfo.comboId
 							subItemSeqNum 	:	_targetInfo.subItemSeqNum
 							seqNum 			:	_targetInfo.seqNum
-							chooseInfo 		:	_bookCurrentInfo.join("、")
+							chooseInfo 		:	_bookCurrentInfo.join(" 、 ")
 							num 			:	1
 							price 			:	_minPrice
 						}
@@ -164,7 +164,7 @@
 						else
 							imgDom = foodInfo.getImgDom(); plusBtnDom = foodInfo.getPlusBtnDom()
 							imgDom.scrollIntoViewIfNeeded()
-						setTimeout (-> _currentFood.clickForBook 1, _bookCurrentInfo.join("、"), _price, {initLeft:clientWidth * 0.9 - 30, initTop: plusBtnDom.getBoundingClientRect().top - 7.5}), 10
+						setTimeout (-> _currentFood.clickForBook 1, _bookCurrentInfo.join(" 、 "), _price, {initLeft:clientWidth * 0.9 - 30, initTop: plusBtnDom.getBoundingClientRect().top - 7.5}), 10
 					, 10
 				addListener _closeBtnDom, "click", -> hashRoute.back()
 

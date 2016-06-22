@@ -66,12 +66,12 @@
 									_s = {}
 									_s.id = subItemFood.id
 									if subItemFood.chooseInfo is "" then _s.p = []
-									else _s.p = subItemFood.chooseInfo.split "、"
+									else _s.p = subItemFood.chooseInfo.split " 、 "
 									_t[i].push _s
 						target.p = _t
 					else
 						if elem.chooseInfo is "" then target.p = []
-						else target.p = elem.chooseInfo.split "、"
+						else target.p = elem.chooseInfo.split " 、 "
 					finalPrice = food.getAfterDiscountPrice elem.afterChoosePrice
 					if not food.dcType or food.dcType is "none" or isOverlap[food.dcType] or food.dcType is "half"
 						finalPrice *= (user.discount / 100)
