@@ -5,6 +5,7 @@
 		_couponPageDom 			= getById "Coupon-page"
 		_couponLackDom 			= query "#Coupon-lack", _couponPageDom
 		_couponRegularDom 	= query "#Coupon-regular", _couponPageDom
+		_couponAllDoms 			= [_couponLackDom, _couponRegularDom]
 
 		_couponDisplayDom 	= query "ul.Coupon-display-list", _couponRegularDom
 		_couponUseDom 			= query "ul.Coupon-use-list", _couponRegularDom
@@ -12,7 +13,7 @@
 		_confirmDom 				= query ".confirm-btn", _couponRegularDom
 
 		_allCoupons 				= {}
-		_currentCouponId 			= null
+		_currentCouponId 		= null
 
 		class Coupon extends Base
 
@@ -97,6 +98,11 @@
 
 			unchooseSelf: -> removeClass @useDom, "choose"
 
+			deleteSelf: ->
+				remove @displayDom
+				remove @useDom
+				delete _allCoupons[@id]
+
 		class CouponManage
 
 			constructor: (options)->
@@ -123,6 +129,7 @@
 						maxUse 				:				Number coupon.max_use
 						status 				:				Number coupon.status
 					}
+				@judgeCouponLen()
 				console.log _allCoupons
 
 			judgeState: ->
@@ -153,6 +160,23 @@
 				for id, coupon of _allCoupons
 					if coupon.cost <= totalPrice and temp < coupon.costReduce then _id = id; temp = coupon.costReduce
 				_allCoupons[_id].clickEvent()
+
+			useCouponFromLocStor: ->
+				couponId = locStor.get("couponId") || "0"
+				console.log couponId, _allCoupons[couponId]
+				if coupon = _allCoupons[couponId] then coupon.deleteSelf()
+				locStor.rm "couponId"
+				@judgeCouponLen()
+
+			judgeCouponLen: ->
+				for dom in _couponAllDoms
+					addClass dom, "hide"
+				len = 0
+				for id, coupon of _allCoupons
+					len++
+				if len is 0 then removeClass _couponLackDom, "hide"
+				else removeClass _couponRegularDom, "hide"
+
 
 
 		getInstance: ->

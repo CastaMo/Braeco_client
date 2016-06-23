@@ -80,8 +80,17 @@
 				JSON.stringify arrForBook
 
 			_getBookAllPriceFromLocStor = ->
-				_initTotalPrice = _totalPrice = Number(locStor.get("bookOrderAllPrice"))
-				_headPriceDom.innerHTML = Number(_totalPrice.toFixed(2))
+				temp = Number(locStor.get("bookOrderAllPrice"))
+				_initTotalPrice = temp
+				_couponSave = 0
+				couponId = Number locStor.get "couponId" || "0"
+				if couponId > 0
+					coupon = couponManage.getCouponById couponId
+					_couponSave = coupon.costReduce
+				temp -= _couponSave
+				if temp < 0 then temp = 0
+				_totalPrice = temp
+				_headPriceDom.innerHTML = Number(temp.toFixed(2))
 
 			_getRechargePriceFromLocStor = ->
 				_initTotalPrice = _totalPrice = Number(locStor.get("rechargePrice"))
@@ -145,6 +154,7 @@
 				else if _currentPay is "bookOrder"
 					_bookOrderCallBack ->
 						hashRoute.hashJump "-Home-Already"
+						couponManage.useCouponFromLocStor()
 						bookOrder.confirmPay()
 						if _moneyPaid is "prepayment" then user.consumeByBalance _totalPrice
 						else user.getEXPByPay(Math.floor(_totalPrice * 5))
@@ -161,7 +171,7 @@
 					, ->
 						lockManage.get(_currentPay).releaseLock()
 						_enabledConfirmBtn()
-					, locStor.get("memo"))
+					, locStor.get("memo"), Number(locStor.get("couponId") || "0"))
 
 				if not _moneyPaid then alert("请先选择支付方式"); return
 				if _moneyPaid not in _allMethods then alert("非法选择"); return
@@ -263,12 +273,20 @@
 						discount = payMethod.discount
 					else
 						discount = 100
-					_totalPrice = _initTotalPrice * discount / 100
-					_headPriceDom.innerHTML = _getFinalTotalDisplayPriceByDiscount discount
+					_couponSave = 0
+					couponId = Number locStor.get "couponId" || "0"
+					if couponId > 0
+						coupon = couponManage.getCouponById couponId
+						_couponSave = coupon.costReduce
+					_totalPrice = (_initTotalPrice - _couponSave) * discount / 100
+					if _totalPrice < 0 then _totalPrice = 0
+					_headPriceDom.innerHTML = _getFinalTotalDisplayPriceByDiscount discount, _couponSave
 
 
-				_getFinalTotalDisplayPriceByDiscount = (discount)->
-					return Number((_initTotalPrice * discount / 100).toFixed(2))
+				_getFinalTotalDisplayPriceByDiscount = (discount, _couponSave)->
+					totalPrice = Number(((_initTotalPrice - _couponSave) * discount / 100).toFixed(2))
+					if totalPrice < 0 then totalPrice = 0
+					return totalPrice
 
 				constructor: (options)->
 					deepCopy options, @

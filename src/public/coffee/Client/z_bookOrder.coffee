@@ -241,14 +241,15 @@
 				_getDiscountDom _membershipSave, "membership"
 				_getDiscountDom _reduceSave, "reduce"
 				couponId = Number locStor.get "couponId" || "0"
+				totalPrice = _allFinalPrice
 				if couponId > 0
 					coupon = couponManage.getCouponById couponId
-					_allFinalPrice -= coupon.costReduce
-					if _allFinalPrice < 0 then _allFinalPrice = 0
+					totalPrice -= coupon.costReduce
+					if totalPrice < 0 then totalPrice = 0
 					_getDiscountDom coupon.costReduce, "coupon"
-				_allNumDom.innerHTML = _allNum; _totalPriceDom.innerHTML = Number(_allFinalPrice.toFixed(2))
+				_allNumDom.innerHTML = _allNum; _totalPriceDom.innerHTML = Number(totalPrice.toFixed(2))
 				if _allNum > 0 then removeClass _orderBtnDom, "disabled"; removeClass _trolleyDom, "disabled"
-				if _allFinalPrice < _allInitPrice then removeClass _foodDiscountWrapper, "hide"
+				if totalPrice < _allInitPrice then removeClass _foodDiscountWrapper, "hide"
 			
 			_updateAllBookOrderNumAndPrice = ->
 				_resetAllBookOrder()

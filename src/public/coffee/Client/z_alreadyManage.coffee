@@ -181,6 +181,7 @@
 					"sale": "立减优惠"
 					"reduce": "满减优惠"
 					"membership": "会员优惠"
+					"coupon" : "代金券"
 				}
 
 				_getAlreadyOrderDom = (alreadyOrder)->
