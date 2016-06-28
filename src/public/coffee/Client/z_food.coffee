@@ -164,14 +164,14 @@
 				if hashRoute.getCurrentState() is "bookInfo" then return
 				_setCurrentChoose self.id, "foodCurrentChoose"; hashRoute.hashJump("-Detail-Book-bookInfo")
 			addListener (query ".plus-field", self.foodDom), "click", do ->
-				if  self.isCombo then return (e)->
+				if self.isCombo then return (e)->
 					_orderId = locStor.get "comboId" || "-1000"
 					if Number(_orderId) isnt self.id then locStor.set "comboOrder", "[]"
 					locStor.set "comboId", self.id; hashRoute.hashJump "-Detail-Book-chooseCombo"
 				else return (e)-> self.judgeForBook {initLeft:clientWidth * 0.9 - 30, initTop: @getBoundingClientRect().top - 7.5}, @
 
 		initSpecial: ->
-			@isCombo = _isCombo @dcType
+			@isCombo = _isCombo @type
 			@getAfterDiscountPrice = _getAfterDiscountPriceFunction @
 			@chooseAllFirstPrice = _getChooseAllFirstPrice @
 
@@ -300,10 +300,13 @@
 							newTemp.groupname = group.name
 							newTemp.property = group.content
 							newGroup.push newTemp
+					else if _isCombo temp.type
+						console.log temp
 					temp.groups = newGroup
 
 					food = new Food {
 						dc 				:		Number(temp.dc) || 0
+						type 			: 	temp.type
 						dcType 			:		temp.dc_type
 						defaultPrice	:		temp.default_price
 						id 				:		temp.id

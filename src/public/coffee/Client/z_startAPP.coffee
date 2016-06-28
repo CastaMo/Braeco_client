@@ -124,12 +124,11 @@
 			else hashRoute.parseAndExecuteHash()
 
 		mainInitBydata = (integrateData)->
-			console.log integrateData
 			_initCallbackForIntegrateData integrateData
 
 		_testIsDataReady = ->
 			integrateData = window.integrateData
-			if integrateData.signal is 0 then mainInitBydata integrateData
+			if integrateData and integrateData.signal is 0 then mainInitBydata integrateData
 			else window.mainInitBydata = mainInitBydata
 
 		initial: ->
