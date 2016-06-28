@@ -195,16 +195,16 @@
 				reduceList = Activity.getReduceList()
 				maxIndex = -1; maxLeast = 0
 				for elem, i in reduceList
-					if _currentAllPrice >= elem.least and elem.least > maxLeast then maxIndex = i; maxLeast = elem.least
-				if maxIndex >= 0 then _reduceSave = reduceList[maxIndex].reduce
+					if _currentAllPrice >= elem[0] and elem[0] > maxLeast then maxIndex = i; maxLeast = elem[0]
+				if maxIndex >= 0 then _reduceSave = reduceList[maxIndex][1]
 
 			_updateGive = ->
 				_currentAllPrice = _allInitPrice - _dcHalfSave - _dcDiscountSave - _dcSaleSave - _membershipSave - _reduceSave; cName = ""
 				giveList = Activity.getGiveList()
 				maxIndex = -1; maxLeast = 0
 				for elem, i in giveList
-					if _currentAllPrice >= elem.least and elem.least > maxLeast then maxIndex = i; maxLeast = elem.least
-				if maxIndex >= 0 then cName = giveList[maxIndex].dish
+					if _currentAllPrice >= elem[0] and elem[0] > maxLeast then maxIndex = i; maxLeast = elem[0]
+				if maxIndex >= 0 then cName = giveList[maxIndex][1]
 				if cName
 					_giveFoodName = cName
 					bookOrder.bookForFood {

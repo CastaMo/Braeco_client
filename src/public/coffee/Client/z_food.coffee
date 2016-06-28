@@ -285,15 +285,30 @@
 				_foodsArr[i] = []
 				_getImageBufferFlag.push false
 				for temp, j in tempOuter.dishes
-					if temp.dishpic then url = "#{temp.dishpic}?imageView2/1/w/95/h/95"; infoUrl = "#{temp.dishpic}?imageView2/1/w/#{Math.floor(clientWidth)}/h/#{Math.floor(clientWidth*200/375)}"
+					temp.groups = temp.groups || []
+					if temp.pic then url = "#{temp.pic}?imageView2/1/w/95/h/95"; infoUrl = "#{temp.pic}?imageView2/1/w/#{Math.floor(clientWidth)}/h/#{Math.floor(clientWidth*200/375)}"
 					else url = ""; infoUrl = ""
+
+					if temp.dc_type is "limit"
+						temp.dc = dishLimitManage.getDishLimitById(temp.id).dc
+
+					newGroup = []
+					if temp.type is "normal"
+						for groupId in temp.groups
+							group = groupManage.getGroupById groupId
+							newTemp = {}
+							newTemp.groupname = group.name
+							newTemp.property = group.content
+							newGroup.push newTemp
+					temp.groups = newGroup
+
 					food = new Food {
 						dc 				:		Number(temp.dc) || 0
 						dcType 			:		temp.dc_type
-						defaultPrice	:		temp.defaultprice
-						id 				:		temp.dishid
-						cName 			:		temp.dishname
-						eName 			:		temp.dishname2
+						defaultPrice	:		temp.default_price
+						id 				:		temp.id
+						cName 			:		temp.name
+						eName 			:		temp.name2
 						dishUrl 		:		url
 						infoUrl 		:		infoUrl
 						categorySeqNum 	:		i

@@ -154,8 +154,8 @@
 				else if _currentPay is "bookOrder"
 					_bookOrderCallBack ->
 						hashRoute.hashJump "-Home-Already"
-						couponManage.useCouponFromLocStor()
 						bookOrder.confirmPay()
+						couponManage.useCouponFromLocStor()
 						if _moneyPaid is "prepayment" then user.consumeByBalance _totalPrice
 						else user.getEXPByPay(Math.floor(_totalPrice * 5))
 
@@ -274,10 +274,11 @@
 					else
 						discount = 100
 					_couponSave = 0
-					couponId = Number locStor.get "couponId" || "0"
-					if couponId > 0
-						coupon = couponManage.getCouponById couponId
-						_couponSave = coupon.costReduce
+					if _currentPay is "bookOrder"
+						couponId = Number locStor.get "couponId" || "0"
+						if couponId > 0
+							coupon = couponManage.getCouponById couponId
+							_couponSave = coupon.costReduce
 					_totalPrice = (_initTotalPrice - _couponSave) * discount / 100
 					if _totalPrice < 0 then _totalPrice = 0
 					_headPriceDom.innerHTML = _getFinalTotalDisplayPriceByDiscount discount, _couponSave
@@ -363,11 +364,11 @@
 				}
 				allMehods = getChannelJSON() || '{}'
 				allMehods = getJSON allMehods
-				for method, value of allMehods
+				for method, discount of allMehods
 					payMethod = new PayMethod {
 						method 		:		method
-						discount 	:		value.discount
-						enable 		: 		value.enable
+						discount 	:		discount
+						enable 		: 	true
 					}
 				_checkViaOnlineMethod()
 				addListener _viaMemberRechargeDom, "click", _rechargeBtnClickEvent

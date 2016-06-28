@@ -130,7 +130,6 @@
 						status 				:				Number coupon.status
 					}
 				@judgeCouponLen()
-				console.log _allCoupons
 
 			judgeState: ->
 				state = locStor.get "couponState"
@@ -163,7 +162,6 @@
 
 			useCouponFromLocStor: ->
 				couponId = locStor.get("couponId") || "0"
-				console.log couponId, _allCoupons[couponId]
 				if coupon = _allCoupons[couponId] then coupon.deleteSelf()
 				locStor.rm "couponId"
 				@judgeCouponLen()

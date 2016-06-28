@@ -2,31 +2,47 @@
 		_totalTime = 3
 		_ = 0
 
-		_initCallback = {
-			"Need to rescan qrcode" 	:	->	window.location.pathname = "/Table/Confirm/rescan"
-			"success" 					:	(result)->
-				_initAllGetJSONFunc result.data
-				_initAllModule()
-				_checkCurrentHash()
-		}
+		_initCallbackForIntegrateData = (integrateData)->
+			if integrateData.signal isnt 0 then alert "加载失败，请重新刷新页面"; return
+			_initAllGetJSONFuncByIntegrateData integrateData.data
+			_initAllModule()
+			_checkCurrentHash()
 
-		_initAllGetJSONFunc = (data)->
+		_initAllGetJSONFuncByIntegrateData = (data)->
 			try
-				getDishJSON 				= -> return data.dish
-				getActivityJSON 		= -> return data.activity
-				getMemberJSON 			= -> return data.member
-				getComPreJSON 			= -> return data.compatible
-				getDinnerJSON 			= -> return data.covers
-				getChannelJSON 			= -> return data.channel
-				getHeaderLikeJSON 	= -> return data.sum_like
-				getDinnerInfoJSON 	= -> return data.dinner
-				getCouponJSON 			= -> return data.couponorder
+				getGroupJSON 					= -> return data.menu.groups
+				getDishLimitJSON 			= -> return data.dish_limit
+				getDishJSON		 				= -> return data.menu.categories
+				getDinnerJSON 				= -> return data.covers
+				getChannelJSON 				= -> return data.channel
+				getDinnerInfoJSON 		= -> return {
+					id 											: 		data.dinner.id
+					name										: 		data.dinner.name
+					need_phone_of_everyone 	: 		data.need_phone_of_everyone
+				}
+				getCouponJSON 				= -> return data.couponorder
+				getDcToolJSON 				= -> return data.dc_tool
+				getActivityJSON 			= -> return data.activity
+				getMemberJSON 				= -> return {
+					avatar 				: 		data.member_info.avatar
+					mobile 				: 		data.member_info.mobile
+					nickname 			: 		data.member_info.nickname
+					user 					: 		data.member_info.user
+					membership 		: 		{
+						EXP 				: 		data.member_info.EXP
+						balance 		: 		data.member_info.balance
+						ladder 			:			data.membership_rule.ladder
+					}
+				}
+				getComPreJSON 				= -> return 8
+				getHeaderLikeJSON 		= -> return 0
 			catch e
 				alert "数据解析失败"
 				alert JSON.stringify(e)
+			
 
 		_initAllModule = ->
-			try
+			# try
 				_++
 				RequireManageSingleton.initial()
 				_++
@@ -50,6 +66,10 @@
 				_++
 				Category.initial()
 				_++
+				DishLimitManageSingleton.initial()
+				_++
+				GroupManageSingleton.initial()
+				_++
 				Food.initial()
 				_++
 				ComboManageSingleton.initial()
@@ -66,9 +86,9 @@
 				_++
 				PaySingleton.initial()
 				_++
-			catch e
-				alert "模块加载失败: #{_}"
-				alert e
+			# catch e
+			# 	alert "模块加载失败: #{_}"
+			# 	alert e
 
 		_checkCurrentHash = ->
 			hash_ = location.hash.replace("#", "")
@@ -103,12 +123,14 @@
 			, 100)
 			else hashRoute.parseAndExecuteHash()
 
-		_mainInit = (result)->
-			_initCallback[result.message]?(result)
+		mainInitBydata = (integrateData)->
+			console.log integrateData
+			_initCallbackForIntegrateData integrateData
 
 		_testIsDataReady = ->
-			if window.allData then _mainInit JSON.parse window.allData; window.allData = null;
-			else window.mainInit = _mainInit
+			integrateData = window.integrateData
+			if integrateData.signal is 0 then mainInitBydata integrateData
+			else window.mainInitBydata = mainInitBydata
 
 		initial: ->
 			_testIsDataReady()

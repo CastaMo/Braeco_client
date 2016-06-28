@@ -171,7 +171,8 @@
 
 		initEvent: -> 
 			self = @
-			addListener self.displayDom, "click", -> _setCurrentChoose(self.seqNum); hashRoute.hashJump "-Detail-Book-bookCol"
+			if self.displayFlag
+				addListener self.displayDom, "click", -> _setCurrentChoose(self.seqNum); hashRoute.hashJump "-Detail-Book-bookCol"
 			addListener self.bookCategoryDom, "click", -> _setCurrentChoose(self.seqNum); _chooseBookCategoryByCurrentChoose(); hashRoute.back()
 
 		getImageBuffer: ->
@@ -186,11 +187,11 @@
 			dishJSON = getJSON getDishJSON()
 			for tempOuter, i in dishJSON
 				category = new Category {
-					name 		:		tempOuter.categoryname
-					id 			:		tempOuter.categoryid
+					name 		:		tempOuter.name
+					id 			:		tempOuter.id
 					seqNum 		:		i
-					url 		:		"#{tempOuter.categorypic}?imageView2/1/w/#{Math.floor(clientWidth * 160 / 375)}/h/#{Math.floor(clientWidth * 160 / 375)}"
-					displayFlag : 		tempOuter.display_flag
+					url 		:		"#{tempOuter.pic}?imageView2/1/w/#{Math.floor(clientWidth * 160 / 375)}/h/#{Math.floor(clientWidth * 160 / 375)}"
+					displayFlag : 		tempOuter.display_flag || true
 				}
 			clearDom = createDom "div"; clearDom.className = "clear"
 			append _catergoryDisplayUlDom, clearDom

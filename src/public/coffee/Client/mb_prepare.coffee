@@ -17,7 +17,12 @@
 	comboManage = null
 	comboChooseDeleteManage = null
 	couponManage = null
+	groupManage = null
+	dishLimitManage = null
 	getDishJSON = getActivityJSON = getMemberJSON = getComPreJSON = getDinnerJSON = getChannelJSON = getHeaderLikeJSON = getDinnerInfoJSON = getCouponJSON = null
+	getGroupJSON = null
+	getDishLimitJSON = null
+	getDcToolJSON = null
 
 	compatibleCSSConfig = [
 		""

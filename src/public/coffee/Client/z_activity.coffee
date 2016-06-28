@@ -169,6 +169,9 @@
 				activity.getImageBuffer type
 
 		@initial: ->
+			dcTool = getJSON getDcToolJSON()
+			_giveList = dcTool.give
+			_reduceList = dcTool.reduce
 			activityJSON = getJSON getActivityJSON()
 			_initContainerDomByAllActivity(activityJSON)
 			_initTypeUlDom()
@@ -183,7 +186,7 @@
 					dateEnd 		:		activity.date_end
 					intro 			:		activity.intro || ""
 					content 		:		activity.content
-					isValid 		:		activity.is_valid
+					isValid 		:		activity.is_valid || true
 					title 			:		activity.title
 					type 			:		activity.type
 					detail 			:		activity.detail

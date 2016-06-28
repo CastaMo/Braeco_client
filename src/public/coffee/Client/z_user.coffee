@@ -262,18 +262,18 @@
 			user = new User {
 				avatar 				:		MemberJSON.avatar
 				birthday 			:		MemberJSON.birthday
-				city 				:		MemberJSON.city
+				city 					:		MemberJSON.city
 				country 			:		MemberJSON.country
 				mobile 				:		MemberJSON.mobile
 				nickName 			:		MemberJSON.nickname
 				province 			:		MemberJSON.province
-				registerTime 		:		MemberJSON.register_time
-				sex 				:		MemberJSON.sex
-				signature 			:		MemberJSON.signature
-				id 					:		MemberJSON.user
-				EXP 				: 		MemberJSON.membership.EXP
+				registerTime 	:		MemberJSON.register_time
+				sex 					:		MemberJSON.sex
+				signature 		:		MemberJSON.signature
+				id 						:		MemberJSON.user
+				EXP 					: 	MemberJSON.membership.EXP
 				balance 			:		MemberJSON.membership.balance
-				like 				:		MemberJSON.like
+				like 					:		MemberJSON.like
 			}
 			user.needPhoneOfEveryone = getDinnerInfoJSON().need_phone_of_everyone
 
