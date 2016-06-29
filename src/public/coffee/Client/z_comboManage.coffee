@@ -70,7 +70,7 @@
 					_d = 0
 					for subItem in _subItems
 						_d += subItem.diff
-					_updateComboPrice _initPrice - _d
+					_updateComboPrice _initPrice + _d
 
 			_getComboChooseOptions = ->
 				_r = []
@@ -111,6 +111,7 @@
 				_id = Number locStor.get "comboId" || 0
 				if _id is 0 then return false
 				_currentCombo = Food.getFoodById _id
+				console.log _currentCombo
 				_clear()
 				_prepareCombo()
 				_update()
@@ -190,6 +191,7 @@
 					@isChoose = false
 					foodNum = @content.length; lineNum = foodNum - 1
 					@allHeight = foodNum * 120 + lineNum
+					@staticPrice = @price
 
 				initSubItemDom: ->
 					@subItemDom = _getSubItemDom @
@@ -301,7 +303,8 @@
 						@num = 0
 						@price = 0
 						@chooseAllFirstPrice = @food.chooseAllFirstPrice
-						@discount = _subItems[@subItemSeqNum].discount || 100
+						@discount = _subItems[@subItemSeqNum].discount || 10000
+						@staticPrice = _subItems[@subItemSeqNum].staticPrice || 0
 
 
 					initSubItemFoodDom: ->
@@ -317,19 +320,25 @@
 						if _lidom then remove _lidom
 
 					adjustPriceDom: ->
-						_getMinPriceForBottomWrapDom = (chooseAllFirstPrice, discount)->
-							minPrice = "<p class='min-price money'>#{Number((chooseAllFirstPrice * discount / 100).toFixed(2))}</p>"
+						_getMinPriceForBottomWrapDom = (chooseAllFirstPrice, afterSubitemDiscountPrice)->
+							minPrice = "<p class='min-price money'>#{Number((afterSubitemDiscountPrice).toFixed(2))}</p>"
 							minPrice
 
-						_getInitPriceForBottomWrapDom = (chooseAllFirstPrice, discount)->
-							initPrice = ""; afterDiscountPrice = chooseAllFirstPrice * discount / 100
-							if afterDiscountPrice < chooseAllFirstPrice then initPrice = "<p class='init-price money'>#{chooseAllFirstPrice}</p>"
+						_getInitPriceForBottomWrapDom = (chooseAllFirstPrice, afterSubitemDiscountPrice)->
+							initPrice = ""; 
+							if afterSubitemDiscountPrice isnt chooseAllFirstPrice
+								initPrice = "<p class='init-price money'>#{Number((chooseAllFirstPrice).toFixed(2))}</p>"
 							initPrice
-
 						if _currentCombo.type is "combo_static" then return
+						type = _subItems[@subItemSeqNum].type
+						afterSubitemDiscountPrice = 0
+						if type is "static_combo"
+							afterSubitemDiscountPrice = @staticPrice
+						else if type is "discount_combo"
+							afterSubitemDiscountPrice = @chooseAllFirstPrice * @discount / 10000
 						(query ".price-field", @subItemFoodDom).innerHTML = "
-								#{_getMinPriceForBottomWrapDom @chooseAllFirstPrice, @discount}
-								#{_getInitPriceForBottomWrapDom @chooseAllFirstPrice, @discount}
+								#{_getMinPriceForBottomWrapDom @chooseAllFirstPrice, afterSubitemDiscountPrice}
+								#{_getInitPriceForBottomWrapDom @chooseAllFirstPrice, afterSubitemDiscountPrice}
 								"
 
 					adjustControllDom: ->
@@ -350,11 +359,21 @@
 					addDomClickEvent: (e)->
 						if _subItems[@subItemSeqNum].getDemand() is 0 and not _subItems[@subItemSeqNum].isRandom() then alert "#{_subItems[@subItemSeqNum].name}品类选择已完成, 请先删除其他单品"; return
 						if @food.chooseArr.length is 0
-							@addOrder "", 1, @chooseAllFirstPrice * @discount / 100
+							price = 0
+							if _subItems[@subItemSeqNum].type is "static_combo" then price = @staticPrice
+							else if _subItems[@subItemSeqNum].type is "discount_combo" then price = @chooseAllFirstPrice * @discount / 10000
+							@addOrder "", 1, price
 							@changeOrderCallback()
 						else
 							locStor.set "bookFoodCurrentChoose", @food.id
-							targetInfo = {discount: @discount, subItemSeqNum: @subItemSeqNum, seqNum: @seqNum, comboId: _currentCombo.id}
+							targetInfo = {
+								discount: @discount
+								type: _subItems[@subItemSeqNum].type
+								staticPrice: @staticPrice
+								subItemSeqNum: @subItemSeqNum
+								seqNum: @seqNum
+								comboId: _currentCombo.id
+							}
 							locStor.set "bookChooseTargetInfo", JSON.stringify targetInfo
 							hashRoute.pushHashStr "Popup-Form-bookChoose"
 
@@ -390,7 +409,7 @@
 						for order in @orders
 							_n += order.num
 							_p += order.price * order.num
-							_d += (order.price - @food.defaultPrice) * order.num
+							_d += @food.getDiffByChooseInfo order.chooseInfo
 						@num = _n; @price = _p; @diff = _d
 						@numDom.innerHTML = @num
 						if _n >= 1 then removeClass @numDom, "hide"; removeClass @minusDom, "hide"

@@ -273,6 +273,14 @@
 				comboOptions		:		comboOptions || []
 			}
 
+		getDiffByChooseInfo: (chooseInfo)->
+			arr = chooseInfo.split " 、 "
+			diff = 0
+			for chooseElem, i in @chooseArr
+				for elem in chooseElem.property
+					if arr[i] is elem.name then diff += elem.price
+			return diff
+
 		@getImageBufferForCorresCategoryNum: (categorySeqNum)->
 			if _getImageBufferFlag[categorySeqNum] then return
 			_getImageBufferFlag[categorySeqNum] = true
@@ -311,10 +319,10 @@
 							newTemp.require = temp.require[index]
 							newTemp.name 	= group.name
 							newTemp.content = []
+							newTemp.type = group.type
 							deepCopy group.content, newTemp.content
 							newGroup.push newTemp
 						temp.combo = newGroup
-						console.log temp
 
 					food = new Food {
 						dc 				:		Number(temp.dc) || 0

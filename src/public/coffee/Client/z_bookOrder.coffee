@@ -156,7 +156,8 @@
 					for elem in orderFood.allChoose
 						filter?(orderFood, elem)
 
-			_updateInitPrice = -> _filterForAllOrderChoose (orderFood, elem)-> _allInitPrice += elem.num * elem.afterChoosePrice; _allNum += elem.num
+			_updateInitPrice = ->
+				_filterForAllOrderChoose (orderFood, elem)-> _allInitPrice += elem.num * elem.afterChoosePrice; _allNum += elem.num
 
 			_updateDcHalfSave = ->
 				for id, orderFood of _orderFoods
@@ -314,9 +315,12 @@
 				initOrderFoodDom: ->
 					@orderFoodDom = _getOrderFoodDom @
 
-				getOrderChooseIndexByChooseInfo: (chooseInfo)->
+				getOrderChooseIndexByChooseInfo: (chooseInfo, comboOptions)->
 					for elem, i in @allChoose
-						if elem.chooseInfo is chooseInfo then return i
+						if typeof comboOptions is "object"
+							if (JSON.stringify elem.comboOptions) is (JSON.stringify comboOptions) then return i
+						else
+							if elem.chooseInfo is chooseInfo then return i
 					return -1
 
 				checkIfNeedRemove: ->
@@ -357,7 +361,6 @@
 						return _s
 
 					type = _orderFoods[orderChoose.id].food.type
-					console.log _orderFoods[orderChoose.id].food
 					if type is "combo_static" or type is "combo_sum"
 						return "<ul class='combo-list'>
 									#{_getComboInfoByOptions orderChoose.comboOptions}
@@ -458,7 +461,7 @@
 					brotherDom = getBrotherDom @orderChooseDom
 					if brotherDom then remove brotherDom
 					remove @orderChooseDom
-					index = _orderFoods[@id].getOrderChooseIndexByChooseInfo @chooseInfo
+					index = _orderFoods[@id].getOrderChooseIndexByChooseInfo @chooseInfo, @comboOptions
 					if index >= 0 then _orderFoods[@id].allChoose.splice(index, 1)
 					_orderFoods[@id].checkIfNeedRemove()
 

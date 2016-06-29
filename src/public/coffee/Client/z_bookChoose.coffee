@@ -28,15 +28,21 @@
 				_chooseInfoDom.innerHTML = _bookCurrentInfo.join(" 、 ")
 
 			_updateFinalPrice = ->
-				price = _currentFood.defaultPrice
+				if _isCombo and _targetInfo.type is "static_combo"
+					price = _targetInfo.staticPrice
+				else
+					price = _currentFood.defaultPrice
 				for choose, i in _bookCurrentChoose
 					price += _bookChooseElem[i][choose].price
 				_price = price
-				if _isCombo then _minPrice = Number((_targetInfo.discount * price / 100).toFixed(2))
+				if _isCombo and _targetInfo.type is "discount_combo"
+					_minPrice = Number((_targetInfo.discount * price / 10000).toFixed(2))
+				else if _isCombo and _targetInfo.type is "static_combo"
+					_minPrice = price
 				else _minPrice = _currentFood.getAfterDiscountPrice price
 				minPriceStr = "<p class='min-price money'>#{Number(_minPrice.toFixed(2))}</p>"
 				initPriceStr = ""
-				if _minPrice < _price then initPriceStr = "<p class='init-price money'>#{Number(_price.toFixed(2))}</p>"
+				if _minPrice isnt _price then initPriceStr = "<p class='init-price money'>#{Number(_price.toFixed(2))}</p>"
 				_priceDom.innerHTML = "#{minPriceStr}#{initPriceStr}"
 
 
