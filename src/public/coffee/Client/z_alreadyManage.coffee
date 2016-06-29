@@ -40,6 +40,7 @@
 						foodDom 			:		options.foodDom
 						cName 				:		options.cName
 						dcType 				:		options.dcType
+						type 					: 	options.type
 						dc 					:		options.dc
 						tag 				:		options.tag
 					}
@@ -113,6 +114,7 @@
 							cName 				:	food.cName
 							dc 					:	food.dc
 							dcType 				:	food.dcType
+							type 				: food.type
 							tag 				:	food.tag
 							num 				:	elem.num
 							afterChoosePrice	:	elem.afterChoosePrice
@@ -343,8 +345,8 @@
 											<div class='clear'></div>
 										</li>"
 						return _s
-					dcType = _alreadyOrders[alreadyChoose.orderId].allFood[alreadyChoose.id].food.dcType
-					if dcType is "combo_static" or dcType is "combo_sum"
+					type = _alreadyOrders[alreadyChoose.orderId].allFood[alreadyChoose.id].food.type
+					if type is "combo_static" or type is "combo_sum"
 						return "<ul class='combo-list'>
 									#{_getComboInfoByOptions alreadyChoose.comboOptions}
 								</ul>"

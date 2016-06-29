@@ -84,6 +84,7 @@
 						dcType 				:		options.dcType
 						dc 					:		options.dc
 						tag 				:		options.tag
+						type 				: 	options.type
 					}
 					allChoose 				:		[]
 				}
@@ -215,6 +216,7 @@
 						num 				:		1
 						chooseInfo 			:		""
 						dcType 				:		"give"
+						type 				: 	"normal"
 						dc 					:		""
 						tag 				:		""
 					}
@@ -354,8 +356,9 @@
 										</li>"
 						return _s
 
-					dcType = _orderFoods[orderChoose.id].food.dcType
-					if dcType is "combo_static" or dcType is "combo_sum"
+					type = _orderFoods[orderChoose.id].food.type
+					console.log _orderFoods[orderChoose.id].food
+					if type is "combo_static" or type is "combo_sum"
 						return "<ul class='combo-list'>
 									#{_getComboInfoByOptions orderChoose.comboOptions}
 								</ul>"

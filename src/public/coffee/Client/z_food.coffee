@@ -252,6 +252,7 @@
 				num 				:		num
 				chooseInfo 			:		chooseInfo
 				dcType 				:		@dcType
+				type 				: 	@type
 				dc 					:		@dc
 				tag 				:		@tag
 				comboOptions		:		comboOptions || []
@@ -293,16 +294,27 @@
 						temp.dc = dishLimitManage.getDishLimitById(temp.id).dc
 
 					newGroup = []
-					if temp.type is "normal"
+					if temp.type is "normal" or temp.type is "combo_only"
 						for groupId in temp.groups
 							group = groupManage.getGroupById groupId
 							newTemp = {}
 							newTemp.groupname = group.name
 							newTemp.property = group.content
 							newGroup.push newTemp
+						temp.chooseArr = newGroup
 					else if _isCombo temp.type
+						for groupId, index in temp.groups
+							newTemp = {}
+							group = groupManage.getGroupById groupId
+							newTemp.discount = group.discount || 0
+							newTemp.price = group.price || 0
+							newTemp.require = temp.require[index]
+							newTemp.name 	= group.name
+							newTemp.content = []
+							deepCopy group.content, newTemp.content
+							newGroup.push newTemp
+						temp.combo = newGroup
 						console.log temp
-					temp.groups = newGroup
 
 					food = new Food {
 						dc 				:		Number(temp.dc) || 0
@@ -318,7 +330,7 @@
 						seqNum 			:		j
 						tag 			:		temp.tag
 						intro 			: 		temp.detail || ""
-						chooseArr 		:		temp.groups || []
+						chooseArr 		:		temp.chooseArr || []
 						like 			:		temp.like
 						combo 			:		temp.combo  || []
 					}

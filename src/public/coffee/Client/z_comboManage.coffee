@@ -6,6 +6,8 @@
 
 			_totalPrice = 0
 
+			_initPrice = 0
+
 			_currentCombo = null
 
 			_subItems = []
@@ -29,7 +31,9 @@
 				_subItems[0].chooseSelfDom()
 				_updateComboPrice 0
 				_disableBtn()
-				if _currentCombo.dcType is "combo_static" then _updateComboPrice _currentCombo.defaultPrice
+				if _currentCombo.type is "combo_static"
+					_initPrice = _currentCombo.defaultPrice
+					_updateComboPrice _currentCombo.defaultPrice
 
 			_isFinish = ->
 				for subItem in _subItems
@@ -57,11 +61,16 @@
 				if _isFinish() then removeClass _confirmDom, "disabled"
 				else addClass _confirmDom, "disabled"
 
-				if _currentCombo.dcType is "combo_sum"
+				if _currentCombo.type is "combo_sum"
 					_p = 0
 					for subItem in _subItems
 						_p += subItem.price
 					_updateComboPrice _p
+				else if _currentCombo.type is "combo_static"
+					_d = 0
+					for subItem in _subItems
+						_d += subItem.diff
+					_updateComboPrice _initPrice - _d
 
 			_getComboChooseOptions = ->
 				_r = []
@@ -235,10 +244,12 @@
 
 
 				update: ->
-					_n = 0; _p = 0
+					_n = 0; _p = 0; _d = 0
 					for subItemFood in @subItemFoods
-						_n += subItemFood.num; _p += subItemFood.price
-					@num = _n; @price = _p
+						_n += subItemFood.num
+						_p += subItemFood.price
+						_d += subItemFood.diff
+					@num = _n; @price = _p; @diff = _d
 					if @isRandom() then addClass @chooseDom, "r-ready"
 					else 
 						if @isFinish() then @chooseDom.innerHTML = "已选好"; addClass @chooseDom, "y-ready"; @unchooseSelfDom(); _findUnfinishSubItemAndChoose()
@@ -315,7 +326,7 @@
 							if afterDiscountPrice < chooseAllFirstPrice then initPrice = "<p class='init-price money'>#{chooseAllFirstPrice}</p>"
 							initPrice
 
-						if _currentCombo.dcType is "combo_static" then return
+						if _currentCombo.type is "combo_static" then return
 						(query ".price-field", @subItemFoodDom).innerHTML = "
 								#{_getMinPriceForBottomWrapDom @chooseAllFirstPrice, @discount}
 								#{_getInitPriceForBottomWrapDom @chooseAllFirstPrice, @discount}
@@ -375,10 +386,12 @@
 						hashRoute.warn()
 
 					update: ->
-						_n = 0; _p = 0
+						_n = 0; _p = 0; _d = 0
 						for order in @orders
-							_n += order.num; _p += order.price * order.num
-						@num = _n; @price = _p
+							_n += order.num
+							_p += order.price * order.num
+							_d += (order.price - @food.defaultPrice) * order.num
+						@num = _n; @price = _p; @diff = _d
 						@numDom.innerHTML = @num
 						if _n >= 1 then removeClass @numDom, "hide"; removeClass @minusDom, "hide"
 						else addClass @numDom, "hide"; addClass @minusDom, "hide"
