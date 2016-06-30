@@ -153,11 +153,16 @@
 
 				else if _currentPay is "bookOrder"
 					_bookOrderCallBack ->
+						currentOrderId = Math.abs(Math.floor(locStor.get("orderId"))) || 0
+						console.log currentOrderId
 						hashRoute.hashJump "-Home-Already"
 						bookOrder.confirmPay()
 						couponManage.useCouponFromLocStor()
 						if _moneyPaid is "prepayment" then user.consumeByBalance _totalPrice
 						else user.getEXPByPay(Math.floor(_totalPrice * 5))
+						requireManage.get("couponAdd").require(currentOrderId, (result)->
+							#location.href = "/coupon/add/#{result.couponid}"
+						)
 
 
 			_confirmPayBtnClickEvent = ->
