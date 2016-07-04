@@ -186,6 +186,7 @@
 				if not user.isLogin() then return
 				isOverlap = user.getIsOverlap()
 				for id, orderFood of _orderFoods
+					console.log orderFood
 					if orderFood.food.dcType is "half" then continue
 					else if (not orderFood.food.dcType) or (orderFood.food.dcType is "none") or (isOverlap[orderFood.food.dcType])
 						for elem in orderFood.allChoose
