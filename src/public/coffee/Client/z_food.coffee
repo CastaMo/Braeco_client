@@ -7,7 +7,7 @@
 
 		_getImageBufferFlag = []
 
-		_ComboType = ['combo_only', 'combo_sum', 'combo_static']
+		_ComboType = ['combo_sum', 'combo_static']
 
 		_isCombo = (type)-> return (type in _ComboType)
 
@@ -17,7 +17,7 @@
 				num = food.dc; if food.dc % 10 is 0 then num = numToChinese[Math.round(food.dc / 10)] else num = food.dc/10
 				dcDom = "<p class='dc-label'>#{num}折</p>"
 			else if food.dcType is "sale" then dcDom = "<p class='dc-label'>减#{food.dc}元</p>"
-			else if food.dcType is "half" then dcDom = "<p class='dc-label'>第二杯半价</p>"
+			else if food.dcType is "half" then dcDom = "<p class='dc-label'>第二份半价</p>"
 			else if food.dcType is "limit" then dcDom = "<p class='dc-label'>剩#{food.dc}件</p>"
 			return dcDom
 
@@ -302,7 +302,7 @@
 						temp.dc = dishLimitManage.getDishLimitById(temp.id).dc
 
 					newGroup = []
-					if temp.type is "normal" or temp.type is "combo_only"
+					if temp.type is "normal"
 						for groupId in temp.groups
 							group = groupManage.getGroupById groupId
 							newTemp = {}

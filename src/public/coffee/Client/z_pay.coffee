@@ -161,7 +161,7 @@
 						if _moneyPaid is "prepayment" then user.consumeByBalance _totalPrice
 						else user.getEXPByPay(Math.floor(_totalPrice * 5))
 						requireManage.get("couponAdd").require(currentOrderId, (result)->
-							#location.href = "/coupon/add/#{result.couponid}"
+							location.href = "/coupon/add/#{result.couponid}"
 						)
 
 

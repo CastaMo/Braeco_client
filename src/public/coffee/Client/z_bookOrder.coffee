@@ -64,7 +64,7 @@
 			_allFinalPrice = 0
 
 			_typeForName = {
-				"half": "第二杯半价"
+				"half": "第二份半价"
 				"discount": "折扣优惠"
 				"sale": "立减优惠"
 				"reduce": "满减优惠"
@@ -315,14 +315,6 @@
 				initOrderFoodDom: ->
 					@orderFoodDom = _getOrderFoodDom @
 
-				getOrderChooseIndexByChooseInfo: (chooseInfo, comboOptions)->
-					for elem, i in @allChoose
-						if typeof comboOptions is "object"
-							if (JSON.stringify elem.comboOptions) is (JSON.stringify comboOptions) then return i
-						else
-							if elem.chooseInfo is chooseInfo then return i
-					return -1
-
 				checkIfNeedRemove: ->
 					if @allChoose.length is 0
 						remove @orderFoodDom
@@ -336,7 +328,7 @@
 						num = food.dc; if food.dc % 10 is 0 then num = numToChinese[Math.round(food.dc / 10)] else num = food.dc/10
 						dcDom = "<p class='dc-label'>#{num}折</p>"
 					else if food.dcType is "sale" then dcDom = "<p class='dc-label'>减#{food.dc}元</p>"
-					else if food.dcType is "half" then dcDom = "<p class='dc-label'>第二杯半价</p>"
+					else if food.dcType is "half" then dcDom = "<p class='dc-label'>第二份半价</p>"
 					#else if food.dcType is "limit" then dcDom = "<p class='dc-label'>剩#{food.dc}件</p>"
 					else if food.dcType is "give" then dcDom = "<p class='dc-label'>满送</p>"
 					return dcDom
@@ -461,7 +453,8 @@
 					brotherDom = getBrotherDom @orderChooseDom
 					if brotherDom then remove brotherDom
 					remove @orderChooseDom
-					index = _orderFoods[@id].getOrderChooseIndexByChooseInfo @chooseInfo, @comboOptions
+					index = _orderFoods[@id].allChoose.indexOf @
+					#index = _orderFoods[@id].getOrderChooseIndexByChooseInfo @chooseInfo, @comboOptions
 					if index >= 0 then _orderFoods[@id].allChoose.splice(index, 1)
 					_orderFoods[@id].checkIfNeedRemove()
 

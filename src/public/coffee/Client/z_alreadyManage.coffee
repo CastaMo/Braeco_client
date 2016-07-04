@@ -178,7 +178,7 @@
 			class AlreadyOrder extends Base
 
 				_typeForName = {
-					"half": "第二杯半价"
+					"half": "第二份半价"
 					"discount": "折扣优惠"
 					"sale": "立减优惠"
 					"reduce": "满减优惠"
@@ -322,7 +322,7 @@
 						num = food.dc; if food.dc % 10 is 0 then num = numToChinese[Math.round(food.dc / 10)] else num = food.dc/10
 						dcDom = "<p class='dc-label'>#{num}折</p>"
 					else if food.dcType is "sale" then dcDom = "<p class='dc-label'>减#{food.dc}元</p>"
-					else if food.dcType is "half" then dcDom = "<p class='dc-label'>第二杯半价</p>"
+					else if food.dcType is "half" then dcDom = "<p class='dc-label'>第二份半价</p>"
 					#else if food.dcType is "limit" then dcDom = "<p class='dc-label'>剩#{food.dc}件</p>"
 					else if food.dcType is "give" then dcDom = "<p class='dc-label'>满送</p>"
 					return dcDom
