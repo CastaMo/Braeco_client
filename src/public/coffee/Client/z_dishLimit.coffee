@@ -21,7 +21,6 @@
 						id 		: 		id
 						dc 		: 		dc
 					}
-				console.log _allDishLimits
 
 			getDishLimitById: (id)-> return _allDishLimits[id]
 

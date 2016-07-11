@@ -27,7 +27,6 @@
 						price 			: 		group.price 		|| 0
 						discount 		: 		group.discount 	|| 0
 					}
-				console.log _allGroups
 
 			getGroupById: (id)-> return _allGroups[id]
 

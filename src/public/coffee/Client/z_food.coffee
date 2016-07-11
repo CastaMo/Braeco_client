@@ -342,7 +342,6 @@
 						like 			:		temp.like
 						combo 			:		temp.combo  || []
 					}
-			console.log dishJSON
 
 
 		@getFoodByCategorySeqNumAndSeqNum: (categorySeqNum, seqNum)-> _foodsArr[categorySeqNum][seqNum]

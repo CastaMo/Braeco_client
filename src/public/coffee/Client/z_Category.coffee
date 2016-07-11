@@ -42,6 +42,7 @@
 		###
 		_getDisplayDom = (category)->
 			dom = createDom("li"); dom.id = "category-#{category.seqNum}"
+			if not category.displayFlag then dom.className = "hide"
 
 			domWidth = clientWidth * 160 / 375; domHeight = domWidth
 			imgDomStr = "<div class='category-img default-category-image' style='background-size:#{domWidth}px #{domHeight}px;'></div>"
@@ -49,7 +50,7 @@
 			nameDomStr = "<div class='category-name-field'><p class='category-name total-center'>#{category.name}</p></div>"
 			dom.innerHTML = "#{imgDomStr}#{nameDomStr}"
 			dom.style.height = "#{domHeight}px"; dom.style.width = "#{domWidth}px"
-			if category.seqNum % 2 is 0 then dom.style.float = "left"
+			if category.state is 1 then dom.style.float = "left"
 			else dom.style.float = "right"
 			dom.style.marginBottom = "#{Math.floor(clientWidth * 55 / 375 / 3)}px"
 			append _catergoryDisplayUlDom, dom
@@ -185,13 +186,16 @@
 
 		@initial: ->
 			dishJSON = getJSON getDishJSON()
+			state = 0
 			for tempOuter, i in dishJSON
+				if tempOuter.display_flag then state ^= 1
 				category = new Category {
 					name 		:		tempOuter.name
 					id 			:		tempOuter.id
 					seqNum 		:		i
 					url 		:		"#{tempOuter.pic}?imageView2/1/w/#{Math.floor(clientWidth * 160 / 375)}/h/#{Math.floor(clientWidth * 160 / 375)}"
-					displayFlag : 		tempOuter.display_flag || true
+					displayFlag : 		tempOuter.display_flag
+					state 	: 	state
 				}
 			clearDom = createDom "div"; clearDom.className = "clear"
 			append _catergoryDisplayUlDom, clearDom
