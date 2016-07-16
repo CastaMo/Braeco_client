@@ -162,7 +162,7 @@
 						if _moneyPaid is "prepayment" then user.consumeByBalance _totalPrice
 						else user.getEXPByPay(Math.floor(_totalPrice * 5))
 						requireManage.get("couponAdd").require(currentOrderId, (result)->
-							location.href = "/coupon/add/#{result.couponid}"
+							location.href = "/coupon/add/afterpay/#{result.couponid}"
 						)
 
 
@@ -177,7 +177,7 @@
 					, ->
 						lockManage.get(_currentPay).releaseLock()
 						_enabledConfirmBtn()
-					, locStor.get("memo"), Number(locStor.get("couponId") || "0"))
+					, locStor.get("memo"), locStor.get("couponId") || "0")
 
 				if not _moneyPaid then alert("请先选择支付方式"); return
 				if _moneyPaid not in _allMethods then alert("非法选择"); return
