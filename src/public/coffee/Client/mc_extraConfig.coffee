@@ -206,7 +206,7 @@
 				delete _imageBuffers[self.id]
 			@image.onabort = ->
 				delete _imageBuffers[self.id]
-		
+
 		initLoad: ->
 			@image.src = @url
 

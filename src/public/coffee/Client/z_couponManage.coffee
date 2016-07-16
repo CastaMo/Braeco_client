@@ -161,9 +161,9 @@
 				_allCoupons[_id].clickEvent()
 
 			useCouponFromLocStor: ->
-				couponId = locStor.get("couponId") || "0"
+				couponId = locStor.get("deleteCouponId") || "0"
 				if coupon = _allCoupons[couponId] then coupon.deleteSelf()
-				locStor.rm "couponId"
+				locStor.rm "deleteCouponId"
 				@judgeCouponLen()
 
 			judgeCouponLen: ->
