@@ -280,4 +280,3 @@
 		@getLoginInfoFromLocStor : _getLoginInfoFromLocStor
 
 		@getCorresIndexFromLadder: _getCorresIndexFromLadder
-
