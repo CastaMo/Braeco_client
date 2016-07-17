@@ -149,7 +149,8 @@
 			_confirmPaySuccessCallBack = (_currentPay, _moneyPaid)->
 				if _currentPay is "recharge"
 					_rechargeCallBack ->
-						user.rechargeRemainder _totalPrice
+						recharge = Recharge.getRecharge (locStor.get("rechargeIndex") || 0)
+						user.rechargeRemainder recharge.get, recharge.EXP
 
 				else if _currentPay is "bookOrder"
 					_bookOrderCallBack ->
@@ -159,8 +160,11 @@
 						hashRoute.hashJump "-Home-Already"
 						bookOrder.confirmPay()
 						couponManage.useCouponFromLocStor()
+
+						EXPRate = Recharge.getEXPRateByType(_moneyPaid)
+
 						if _moneyPaid is "prepayment" then user.consumeByBalance _totalPrice
-						else user.getEXPByPay(Math.floor(_totalPrice * 5))
+						else user.getEXPByPay(Math.floor(_totalPrice * EXPRate))
 						requireManage.get("couponAdd").require(currentOrderId, (result)->
 							location.href = "/coupon/add/afterpay/#{result.couponid}"
 						)

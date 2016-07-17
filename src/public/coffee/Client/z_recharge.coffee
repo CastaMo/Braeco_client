@@ -1,15 +1,17 @@
 	class Recharge
-		_amountValue = [50, 150, 450, 750, 950]
-		_rechargeUlDom = query "#Recharge-page .amount-list"
-		_rechargeNum = 0
-		_ladder = []
-		_recharges = []
+		_rechargeUlDom 	= query "#Recharge-page .amount-list"
+		_rechargeNum 	= 0
+		_ladder 		= []
+		_allRecharges 	= []
+		_EXPRateMapType = {}
 
 		_getRechargeDom = (recharge)->
-			dom = createDom "li"; dom.id = "amount-#{recharge.seqNum}"
+			dom = createDom "li"
 			dom.innerHTML = "<div class='amount-li-field'>
 								<div class='basic-info-field vertical-center'>
-									<p class='money price'>#{recharge.amountValue}</p>
+									<p>
+										<span class='money price'>#{recharge.pay}</span> #{if recharge.get > recharge.pay then "<span class='give'>(立送<span class='money price'>#{recharge.get - recharge.pay} </span>)</span>" else ""}
+									</p>
 									<p class='get-higher-rank'></p>
 								</div>
 								<div class='choose-field'></div>
@@ -19,18 +21,19 @@
 				append _rechargeUlDom, line
 			append _rechargeUlDom, dom
 			_rechargeNum++
-			dom
+			return dom
 
 		_rechargeBtnClickEvent = (recharge)->
 			->
 				locStor.set("currentPay", "recharge")
-				locStor.set("rechargePrice", recharge.amountValue)
+				locStor.set("rechargeIndex", recharge.index)
+				locStor.set("rechargePrice", recharge.pay)
 				hashRoute.hashJump "-Detail-Book-choosePaymentMethod"
 
 		constructor: (options)->
 			deepCopy options, @
 			@init()
-			_recharges.push @
+			_allRecharges.push @
 
 		init: ->
 			@initRechargeDom()
@@ -45,7 +48,7 @@
 			addListener self.rechargeDom, "click", _rechargeBtnClickEvent @
 
 		updateHigherInfo: ->
-			result = User.getCorresIndexFromLadder(user.EXP + (@amountValue)*10)
+			result = User.getCorresIndexFromLadder(user.EXP + @EXP)
 			higherStr = ""; index = result.index
 			if index > user.currentRank then higherStr = "充值后可升级为 Lv.#{index} #{_ladder[index].name}级会员"
 			@higherDom.innerHTML = higherStr
@@ -54,11 +57,19 @@
 		@initial: ->
 			ladder = User.getLadder()
 			deepCopy ladder, _ladder
-			for amount, i in _amountValue
-				recharge = new Recharge {
-					seqNum 			:		i
-					amountValue 	:		amount
-				}
+
+			_EXPRateMapType.cash = getRechargeJSON().EXPRate
+			allRechargeDatas = getRechargeJSON().charge_ladder
+
+			for recharge, i in allRechargeDatas
+				recharge.index = i
+				new Recharge recharge
+
 			Recharge.updateAllRechargeHigherInfo()
 
-		@updateAllRechargeHigherInfo: -> recharge.updateHigherInfo() for recharge in _recharges
+		@updateAllRechargeHigherInfo: -> recharge.updateHigherInfo() for recharge in _allRecharges
+
+		@getRecharge: (index)-> return _allRecharges[index]
+
+		@getEXPRateByType: (type)-> return _EXPRateMapType[type] || 5
+

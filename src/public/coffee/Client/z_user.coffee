@@ -225,9 +225,9 @@
 			if @like then DinnerHeader.setLikeState()
 			else DinnerHeader.setUnlikeState()
 
-		rechargeRemainder: (price)->
+		rechargeRemainder: (price, EXP)->
 			@setBalance(@balance+price)
-			@getEXPByPay price*10
+			@getEXPByPay EXP
 
 		getEXPByPay: (EXP)->
 			@setCurrentEXP(@EXP + EXP)

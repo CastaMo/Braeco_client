@@ -10,14 +10,14 @@
 
 		_initAllGetJSONFuncByIntegrateData = (data)->
 			try
-				getGroupJSON 					= -> return data.menu.groups
+				getGroupJSON 				= -> return data.menu.groups
 				getDishLimitJSON 			= -> return data.dish_limit
-				getDishJSON		 				= -> return data.menu.categories
+				getDishJSON		 			= -> return data.menu.categories
 				getDinnerJSON 				= -> return data.covers
 				getChannelJSON 				= -> return data.channel
-				getDinnerInfoJSON 		= -> return {
-					id 											: 		data.dinner.id
-					name										: 		data.dinner.name
+				getDinnerInfoJSON 			= -> return {
+					id 						: 		data.dinner.id
+					name					: 		data.dinner.name
 					need_phone_of_everyone 	: 		data.need_phone_of_everyone
 				}
 				getCouponJSON 				= -> return data.couponorder
@@ -27,15 +27,16 @@
 					avatar 				: 		data.member_info.avatar
 					mobile 				: 		data.member_info.mobile
 					nickname 			: 		data.member_info.nickname
-					user 					: 		data.member_info.user
-					membership 		: 		{
-						EXP 				: 		data.member_info.EXP
-						balance 		: 		data.member_info.balance
-						ladder 			:			data.membership_rule.ladder
+					user 				: 		data.member_info.user
+					membership 			: 		{
+						EXP 		: 		data.member_info.EXP
+						balance 	: 		data.member_info.balance
+						ladder 		:		data.membership_rule.ladder
 					}
 				}
 				getComPreJSON 				= -> return 8
-				getHeaderLikeJSON 		= -> return 0
+				getHeaderLikeJSON 			= -> return 0
+				getRechargeJSON 			= -> return data.membership_rule
 			catch e
 				alert "数据解析失败"
 				alert JSON.stringify(e)
