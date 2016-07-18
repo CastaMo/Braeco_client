@@ -326,7 +326,7 @@
 
 					food = new Food {
 						dc 				:		Number(temp.dc) || 0
-						type 			: 	temp.type
+						type 			: 		temp.type
 						dcType 			:		temp.dc_type
 						defaultPrice	:		temp.default_price
 						id 				:		temp.id
