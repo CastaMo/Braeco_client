@@ -161,6 +161,7 @@
 						bookOrder.confirmPay()
 						couponManage.useCouponFromLocStor()
 
+						debugger;
 						EXPRate = Recharge.getEXPRateByType(_moneyPaid)
 
 						if _moneyPaid is "prepayment" then user.consumeByBalance _totalPrice

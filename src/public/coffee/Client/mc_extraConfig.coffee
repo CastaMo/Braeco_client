@@ -142,7 +142,7 @@
 			@currentChoose = 0
 			@allChooseDom[0].className = "active"
 			for dom, i in @allChooseDom
-				addListener dom, "click", do (i)-> (e)-> e.preventDefault(); e.stopPropagation(); self._autoFlag = false; self.setCurrentChooseAndTranslate(i)
+				fastClick dom, do (i)-> -> self._autoFlag = false; self.setCurrentChooseAndTranslate(i)
 
 		initAutoRotate: ->
 			###
