@@ -326,7 +326,7 @@
 
 				initAllEvent: ->
 					self = @
-					addListener self.methodDom, "touchstart", _payMethodChooseEvent @
+					fastClick self.methodDom, _payMethodChooseEvent @
 
 				getDiscountInfo: ->
 					if @discount < 100
@@ -381,9 +381,9 @@
 						enable 		: 	true
 					}
 				_checkViaOnlineMethod()
-				addListener _viaMemberRechargeDom, "click", _rechargeBtnClickEvent
-				addListener _confirmPayBtnDom, "touchstart", ->
-					if hasClass @, "disabled" then return
+				fastClick _viaMemberRechargeDom, _rechargeBtnClickEvent
+				fastClick _confirmPayBtnDom, ->
+					if hasClass _confirmPayBtnDom, "disabled" then return
 					_confirmPayBtnClickEvent()
 
 		getInstance: ->

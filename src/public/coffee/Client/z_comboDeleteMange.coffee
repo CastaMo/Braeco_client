@@ -78,7 +78,7 @@
 
 				initAllEvent: ->
 					self = @
-					addListener @comboChooseDeleteDom, "click", -> self.chooseSelfEvent()
+					fastClick @comboChooseDeleteDom, -> self.chooseSelfEvent()
 
 				chooseSelfEvent: ->
 					_unchooseAllComboChooseDelete()
@@ -92,8 +92,8 @@
 
 
 			constructor: ->
-				addListener _closeBtnDom, "click", -> hashRoute.back()
-				addListener _confirmBtnDom, "click", _confirmBtnClickEvent
+				fastClick _closeBtnDom, -> hashRoute.back()
+				fastClick _confirmBtnDom, _confirmBtnClickEvent
 
 
 		getInstance: ->

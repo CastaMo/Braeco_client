@@ -197,12 +197,6 @@ module.exports = function(grunt) {
                 dest: '<%= dirs.dest_path %>',
                 expand: true
             },
-            backup: {
-                cwd: '../braeco_client',
-                src: ['**/*', '!./node_modules/*'],
-                dest: '../backup/braeco_client',
-                expand: true
-            },
 
             versioncontrol: {
                 options: {

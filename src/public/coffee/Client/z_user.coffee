@@ -196,11 +196,11 @@
 		isLogin: -> Number(@id) isnt 0
 
 		initAllEvent: ->
-			addListener _notYetLoginBtnDom, "touchstart", -> hashRoute.pushHashStr("Popup-Form-Login")
-			addListener _closeBtnDom, "touchstart", -> hashRoute.back()
-			addListener _getIdDom, "touchstart", _getIdClickEvent
-			addListener _confirmLoginBtnDom, "touchstart", _loginBtnClickEvent
-			addListener _getPicIdDom, "touchstart", _clickGetPicIdEvent
+			fastClick _notYetLoginBtnDom, -> hashRoute.pushHashStr("Popup-Form-Login")
+			fastClick _closeBtnDom, -> hashRoute.back()
+			fastClick _getIdDom, _getIdClickEvent
+			fastClick _confirmLoginBtnDom, _loginBtnClickEvent
+			fastClick _getPicIdDom, _clickGetPicIdEvent
 			addClass _closeBtnDom, "click", -> hashRoute.back()
 
 		initBasicInfo: ->

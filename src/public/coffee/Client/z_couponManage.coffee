@@ -83,7 +83,7 @@
 
 			initAllEvent: ->
 				self = @
-				addListener @useDom, "click", ->
+				fastClick @useDom, ->
 					if not self.able then return
 					self.clickEvent()
 
@@ -110,7 +110,7 @@
 				@initAllData()
 
 			initAllEvent: ->
-				addListener _confirmDom, "click", ->
+				fastClick _confirmDom, ->
 					locStor.set "couponId", _currentCouponId;
 					hashRoute.back()
 					bookOrder.refreshOrder()

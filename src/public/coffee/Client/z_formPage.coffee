@@ -21,8 +21,8 @@
 			if !((hasClass parentNode, "book-choose") or (hasClass parentNode, "combo-choose-delete") or (hasClass parentNode, "category"))  then e.preventDefault()
 			#else if !_judegeWouldScrollByHeight(parentNode.parentNode) then e.preventDefault()
 
-		addListener _popupDom, "touchmove", _preventScrollFromOuter
-		addListener _coverDom, "click", -> if hashRoute.getCurrentState() is "categoryChoose" then hashRoute.back()
+		fastClick _popupDom, "touchmove", _preventScrollFromOuter
+		fastClick _coverDom, -> if hashRoute.getCurrentState() is "categoryChoose" then hashRoute.back()
 
 		_fixNeedPages = ['book-choose-page', 'combo-choose-delete-page', 'category-choose-page']
 

@@ -14,10 +14,6 @@ app.set('view engine', 'jade');
 app.use(logger("dev"));
 app.use(compression());
 
-app.use(require('connect-livereload')({
-    port: 35729
-}));
-
 app.use(route);
 
 app.disable('etag');

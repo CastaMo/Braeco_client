@@ -104,7 +104,7 @@
 						delay: 3000
 					}
 			_getLikeNum()
-			addListener _likeFieldDom, "click", ->
+			fastClick _likeFieldDom, ->
 				if not user.isLogin() then locStor.set("loginFlag", 0); hashRoute.pushHashStr("Popup-Form-Login"); return
 				if not lockManage.get("like").getLock() then return
 				if _isLike then x = 0

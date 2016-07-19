@@ -89,7 +89,7 @@
 
 
 			constructor: -> 
-				addListener _confirmDom, "click", (e)->
+				fastClick _confirmDom, (e)->
 					if not _isFinish() then return
 					_currentCombo.addBookToOrder 1, "套餐", _totalPrice, _getComboChooseOptions(); locStor.set "comboOrder", "[]"; hashRoute.back()
 
@@ -211,7 +211,7 @@
 
 				initEvent: ->
 					self = @
-					addListener self.dropDownDom, "click", -> self.dropDownClickEvent()
+					fastClick self.dropDownDom, -> self.dropDownClickEvent()
 
 				dropDownClickEvent: ->
 					_unchooseAllSubItemExceptGiven @
@@ -353,10 +353,10 @@
 
 					initAllEvent: ->
 						self = @
-						addListener @addDom, "click", (e)-> self.addDomClickEvent e
-						addListener @minusDom, "click", (e)-> self.minusDomClickEvent e
+						fastClick @addDom, -> self.addDomClickEvent()
+						fastClick @minusDom, -> self.minusDomClickEvent()
 
-					addDomClickEvent: (e)->
+					addDomClickEvent: ->
 						if _subItems[@subItemSeqNum].getDemand() is 0 and not _subItems[@subItemSeqNum].isRandom() then alert "#{_subItems[@subItemSeqNum].name}品类选择已完成, 请先删除其他单品"; return
 						if @food.chooseArr.length is 0
 							price = 0
@@ -377,7 +377,7 @@
 							locStor.set "bookChooseTargetInfo", JSON.stringify targetInfo
 							hashRoute.pushHashStr "Popup-Form-bookChoose"
 
-					minusDomClickEvent: (e)->
+					minusDomClickEvent: ->
 						if @orders.length is 0 then hashRoute.warn(); return
 						if @orders.length is 1
 							f_order = @orders[0]

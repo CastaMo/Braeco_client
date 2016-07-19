@@ -423,8 +423,8 @@
 
 				initAllEvent: ->
 					self = @
-					addListener (query ".minus-field", self.orderChooseDom), "touchstart", -> self.subtractOrderByNum 1
-					addListener (query ".plus-field", self.orderChooseDom), "touchstart", -> self.addOrderByNum 1
+					fastClick (query ".minus-field", self.orderChooseDom), -> self.subtractOrderByNum 1
+					fastClick (query ".plus-field", self.orderChooseDom), -> self.addOrderByNum 1
 
 				addOrderByNum: (num)->
 					food = _orderFoods[@id].food
@@ -460,18 +460,18 @@
 
 
 			constructor: ->
-				addListener _orderBtnDom, "click", -> 
-					if hasClass @, "disabled" or hashRoute.getCurrentState() is "bookOrder" then return
+				fastClick _orderBtnDom, -> 
+					if hasClass _orderBtnDom, "disabled" or hashRoute.getCurrentState() is "bookOrder" then return
 					if hashRoute.getCurrentState() is "bookInfo" then setTimeout((-> hashRoute.hashJump "-Detail-Book-bookCol"; setTimeout((-> hashRoute.hashJump "-Detail-Book-bookOrder"), 10)), 0)
 					else hashRoute.hashJump "-Detail-Book-bookOrder"
 
-				addListener _trolleyDom, "click", ->
+				fastClick _trolleyDom, ->
 					if hashRoute.getCurrentState() is "bookOrder" then return
-					if hasClass @, "disabled" then return
+					if hasClass _orderBtnDom, "disabled" then return
 					if hashRoute.getCurrentState() is "bookInfo" then setTimeout((-> hashRoute.hashJump "-Detail-Book-bookCol"; setTimeout((-> hashRoute.hashJump "-Detail-Book-bookOrder"), 10)), 0)
 					else hashRoute.hashJump "-Detail-Book-bookOrder"
 
-				addListener _payBtnDom, "click", ->
+				fastClick _payBtnDom, ->
 					try
 						_ = 0
 						if hashRoute.getCurrentState() is "Login" then hashRoute.warn(); return
@@ -489,13 +489,13 @@
 						alert _
 				
 
-				addListener _memoBtnDom, "touchstart", ->
+				fastClick _memoBtnDom, ->
 					_insertMemoToInput()
 					hashRoute.pushHashStr "Popup-Form-remarkForTrolley"
-				addListener _memoClose, "touchstart", -> hashRoute.back()
-				addListener _memoConfirm, "touchstart", -> _updateMemoFromInput(); hashRoute.back()
+				fastClick _memoClose, -> hashRoute.back()
+				fastClick _memoConfirm, -> _updateMemoFromInput(); hashRoute.back()
 
-				addListener _couponChooseDom, "click", ->
+				fastClick _couponChooseDom, ->
 					if couponManage.getAvailableCouponLength _allFinalPrice <= 0 then hashRoute.warn()
 					locStor.set "couponState", "use"
 					hashRoute.hashJump("-Extra-extraContent-Coupon")

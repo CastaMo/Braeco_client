@@ -157,18 +157,15 @@
 
 		initAllEvent: ->
 			self = @
-			addListener self.foodDom, "click", (e)->
-				target = e.target || e.srcElement
-				parentNode = findParent(target, (parent)-> return (hasClass(parent, "controll-field") || hasClass(parent, "food-list-wrap")))
-				if parentNode and (hasClass(parentNode, "controll-field")) then return
+			fastClick self.foodDom, ->
 				if hashRoute.getCurrentState() is "bookInfo" then return
 				_setCurrentChoose self.id, "foodCurrentChoose"; hashRoute.hashJump("-Detail-Book-bookInfo")
-			addListener (query ".plus-field", self.foodDom), "click", do ->
+			fastClick (query ".plus-field", self.foodDom), do ->
 				if self.isCombo then return (e)->
 					_orderId = locStor.get "comboId" || "-1000"
 					if Number(_orderId) isnt self.id then locStor.set "comboOrder", "[]"
 					locStor.set "comboId", self.id; hashRoute.hashJump "-Detail-Book-chooseCombo"
-				else return (e)-> self.judgeForBook {initLeft:clientWidth * 0.9 - 30, initTop: @getBoundingClientRect().top - 7.5}, @
+				else return (e)-> self.judgeForBook {initLeft:clientWidth * 0.9 - 30, initTop: (query ".plus-field", self.foodDom).getBoundingClientRect().top - 7.5}, (query ".plus-field", self.foodDom)
 
 		initSpecial: ->
 			@isCombo = _isCombo @type

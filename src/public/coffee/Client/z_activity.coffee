@@ -140,7 +140,7 @@
 
 		initAllEvent: ->
 			self = @
-			addListener self._activityDetailInfoDom, "click", ->
+			fastClick self._activityDetailInfoDom,  ->
 				if hashRoute.getCurrentState() is "activityInfo" then return
 				_setCurrentChoose self.seqNum; hashRoute.pushHashStr("activityInfo")
 
@@ -198,7 +198,7 @@
 					scale: 200/375
 					delay: 3000
 				}
-			addListener _activityColumnDom, "click", -> hashRoute.hashJump("-Detail-Activity")
+			fastClick _activityColumnDom, -> hashRoute.hashJump("-Detail-Activity")
 
 		@chooseActivityByCurrentChoose: -> _getCurrentChooseFromLocStor(); _selectActivityDisplayByCurrentChoose()
 

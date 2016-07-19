@@ -29,9 +29,9 @@
 				_cancelCallback = options.cancel
 
 			constructor: ->
-				addListener _closeBtnDom, "touchstart", -> hashRoute.back(); _cancelCallback?()
-				addListener _cancelBtnDom, "touchstart", -> hashRoute.back(); _cancelCallback?()
-				addListener _confirmBtnDom, "touchstart", -> hashRoute.back(); _confirmCallback?(_inputDom.value)
+				fastClick _closeBtnDom, -> hashRoute.back(); _cancelCallback?()
+				fastClick _cancelBtnDom, -> hashRoute.back(); _cancelCallback?()
+				fastClick _confirmBtnDom, -> hashRoute.back(); _confirmCallback?(_inputDom.value)
 
 			simulateConfirm: (options)->
 				_setConfig options

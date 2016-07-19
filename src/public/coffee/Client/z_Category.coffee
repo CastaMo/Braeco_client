@@ -173,8 +173,8 @@
 		initEvent: -> 
 			self = @
 			if self.displayFlag
-				addListener self.displayDom, "click", -> _setCurrentChoose(self.seqNum); hashRoute.hashJump "-Detail-Book-bookCol"
-			addListener self.bookCategoryDom, "click", -> _setCurrentChoose(self.seqNum); _chooseBookCategoryByCurrentChoose(); hashRoute.back()
+				fastClick self.displayDom, -> _setCurrentChoose(self.seqNum); hashRoute.hashJump "-Detail-Book-bookCol"
+			fastClick self.bookCategoryDom, -> _setCurrentChoose(self.seqNum); _chooseBookCategoryByCurrentChoose(); hashRoute.back()
 
 		getImageBuffer: ->
 			self = @
@@ -199,8 +199,8 @@
 				}
 			clearDom = createDom "div"; clearDom.className = "clear"
 			append _catergoryDisplayUlDom, clearDom
-			addListener _categoryChooseCloseBtnDom, "click", (e)-> hashRoute.back()
-			addListener _categoryChooseSwitchBtnDom, "click", (e)-> if hashRoute.getCurrentState() isnt "categoryChoose" then hashRoute.pushHashStr "Popup-Form-categoryChoose"
+			fastClick _categoryChooseCloseBtnDom, (e)-> hashRoute.back()
+			fastClick _categoryChooseSwitchBtnDom, (e)-> if hashRoute.getCurrentState() isnt "categoryChoose" then hashRoute.pushHashStr "Popup-Form-categoryChoose"
 			(query "#category-choose-page .container-field-wrapper").style.height = "#{clientHeight - 50}px"
 			_catergoryDisplayUlDom.parentNode.parentNode.style.margin = "0 #{Math.floor(clientWidth * 55 / 375 / 3)}px"
 			#addListener _leftCoverDom, "click", (e)-> _coverDomClickEvent(e)

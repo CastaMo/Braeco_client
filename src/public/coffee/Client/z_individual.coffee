@@ -1,8 +1,8 @@
 	Individual = do ->
 		_rechargeFuncDom 	= getById "Recharge-func"
 		_couponFucDom 		= getById "Coupon-func"
-		addListener _rechargeFuncDom, "click", -> hashRoute.hashJump("-Extra-extraContent-Recharge")
-		addListener _couponFucDom, "click", ->
+		fastClick _rechargeFuncDom, -> hashRoute.hashJump("-Extra-extraContent-Recharge")
+		fastClick _couponFucDom, ->
 			locStor.set "couponState", "display"
 			hashRoute.hashJump("-Extra-extraContent-Coupon")
 		

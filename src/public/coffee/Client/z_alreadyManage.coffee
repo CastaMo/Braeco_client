@@ -148,8 +148,8 @@
 
 
 			constructor: ->
-				addListener _bookBtnDom, "click", -> hashRoute.hashJump "-Detail-Book-bookCol"
-				addListener _serviceBtnDom, "click", ->
+				fastClick _bookBtnDom, -> hashRoute.hashJump "-Detail-Book-bookCol"
+				fastClick _serviceBtnDom, ->
 					if not lockManage.get("callWaiter").getLock() then alert("服务员正火速赶来, 请耐心等候"); return
 					confirmManage.simulateConfirm {
 						title 			:		"呼叫服务"
@@ -282,7 +282,7 @@
 
 				initAllEvent: ->
 					self = @
-					addListener (query ".already-header", @alreadyOrderDom), "click", ->
+					fastClick (query ".already-header", @alreadyOrderDom), ->
 						_touchAlreadyOrderHeaderEvent self
 					_touchAlreadyOrderHeaderEvent @
 

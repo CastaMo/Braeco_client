@@ -139,7 +139,7 @@
 
 				initAllEvent: ->
 					self = @
-					addListener self.bookChooseElemDom, "click", -> self.chooseEvent()
+					fastClick self.bookChooseElemDom, -> self.chooseEvent()
 
 				chooseEvent: ->
 					_unChooseAllBookChooseFromList @listSeqNum
@@ -151,7 +151,7 @@
 
 
 			constructor: ->
-				addListener _confirmDom, "click", (e)->
+				fastClick _confirmDom, (e)->
 					hashRoute.back()
 					if _isCombo
 						comboManage.addItemFoodByChoose {
@@ -172,7 +172,7 @@
 							imgDom.scrollIntoViewIfNeeded()
 						setTimeout (-> _currentFood.clickForBook 1, _bookCurrentInfo.join(" 、 "), _price, {initLeft:clientWidth * 0.9 - 30, initTop: plusBtnDom.getBoundingClientRect().top - 7.5}), 10
 					, 10
-				addListener _closeBtnDom, "click", -> hashRoute.back()
+				fastClick _closeBtnDom, -> hashRoute.back()
 
 			chooseFoodByCurrentChoose: -> if _getCurrentChooseFromLocStor() then _selectBookFoodDisplayByCurrentChoose()
 

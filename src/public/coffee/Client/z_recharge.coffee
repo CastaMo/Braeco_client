@@ -45,7 +45,7 @@
 
 		initRechargeEvent: ->
 			self = @
-			addListener self.rechargeDom, "click", _rechargeBtnClickEvent @
+			fastClick self.rechargeDom, _rechargeBtnClickEvent self
 
 		updateHigherInfo: ->
 			result = User.getCorresIndexFromLadder(user.EXP + @EXP)

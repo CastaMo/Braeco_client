@@ -34,7 +34,7 @@
 				_foodInfoImgDom.style.height = "#{imgHeight}px"
 				_foodInfoImgDom.style.backgroundSize = "#{clientWidth}px #{imgHeight}px"
 
-				addListener _plusBtnDom, "click", (e)-> _currentFood.judgeForBook {initLeft:clientWidth * 0.9 - 30, initTop: e.y-15}, @
+				fastClick _plusBtnDom, (e)-> _currentFood.judgeForBook {initLeft:clientWidth * 0.9 - 30, initTop: e.y-15}, _plusBtnDom
 
 			chooseFoodByCurrentChoose: -> if _getCurrentChooseFromLocStor() then _selectFoodDisplayByCurrentChoose()
 
