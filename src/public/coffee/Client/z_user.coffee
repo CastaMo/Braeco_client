@@ -139,7 +139,7 @@
 			if lastTime and lastTime isnt 0 and currentTime - lastTime < 60*1000 then _toggleToGetIdState (Math.ceil((60*1000 - currentTime + lastTime) / 1000))
 
 		_loginBtnClickEvent = ->
-			if hasClass @, "disabled" then return
+			if hasClass _confirmLoginBtnDom, "disabled" then return
 			id = _idDom.value
 			if id.length isnt 6 then alert "请输入6位验证码"; return
 			if not lockManage.get("login").getLock() then return
@@ -156,7 +156,7 @@
 				if picId.length isnt 5 then alert "请输入5位图片验证码"; return
 				Regx = /^[A-Za-z0-9]*$/
 				if not Regx.test(picId) then alert "请输入数字或字母"; return
-			if hasClass @, "hide" then return
+			if hasClass _getIdDom, "hide" then return
 			if not lockManage.get("getId").getLock() then return
 			phoneNum = _phoneDom.value
 			if phoneNum.length isnt 11 or not isPhone(phoneNum) then alert "请输入正确的11位手机号码"; lockManage.get("getId").releaseLock(); return

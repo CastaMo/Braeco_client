@@ -14,6 +14,7 @@ module.exports = function(passport) {
 		res.render('./jade/formPage');
 	});
 
+	router.get('/Table/Data', getCallbackHandleForRequest("GET"));
 
 	router.get('/Table/Data', function(req, res) {
 		setTimeout(function() {
