@@ -5,14 +5,14 @@ var BufferHelper    = require('./BufferHelper.js');
 var StringDecoder   = require('string_decoder').StringDecoder;
 var zlib            = require('zlib');
 var fs              = require('fs');
-var cookie          = 'sid=mkkhikchg8q67rra8wjt6sflnsxkyo3l;DMt=d909bdfedb38ac9d9788fce268e68b5c;TMv=54';
+var cookie          = 'sid=w2flv3x2i1n25je81hc4lxaa6ttjm2hj;DMt=d909bdfedb38ac9d9788fce268e68b5c;TMv=54';
 var flag            = true;
 
 
 function getOptionsForProxySendRequestConfig(url, method) {
   method = method.toUpperCase();
   var options = {
-    hostname: 'brae.co',
+    hostname: 'devel.brae.co',
     path: url,
     headers: {
       'Cookie': cookie

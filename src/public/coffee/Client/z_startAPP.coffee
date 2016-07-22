@@ -36,11 +36,7 @@
 				}
 				getComPreJSON 				= -> return 8
 				getHeaderLikeJSON 			= -> return 0
-				getRechargeJSON 			= -> return {
-						charge_ladder 	: 		data.membership_rule.charge_ladder
-						ladder 			: 		data.membership_rule.ladder
-						EXPRate 		: 		data.EXPRate
-					}
+				getRechargeJSON 			= -> return data.membership_rule
 			catch e
 				alert "数据解析失败"
 				alert JSON.stringify(e)

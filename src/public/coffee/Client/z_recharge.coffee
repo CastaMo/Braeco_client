@@ -60,7 +60,7 @@
 
 			_EXPRateMapType = getRechargeJSON().EXPRate
 			allRechargeDatas = getRechargeJSON().charge_ladder
-
+			console.log _EXPRateMapType
 			for recharge, i in allRechargeDatas
 				recharge.index = i
 				new Recharge recharge
