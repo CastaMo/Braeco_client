@@ -58,7 +58,7 @@
 			ladder = User.getLadder()
 			deepCopy ladder, _ladder
 
-			_EXPRateMapType.cash = getRechargeJSON().EXPRate
+			_EXPRateMapType = getRechargeJSON().EXPRate
 			allRechargeDatas = getRechargeJSON().charge_ladder
 
 			for recharge, i in allRechargeDatas
