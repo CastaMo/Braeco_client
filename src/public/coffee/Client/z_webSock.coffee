@@ -17,7 +17,7 @@
 							responseObj = {"content": "Order printed notified", "orderid": message.orderid}
 							response = {"type": "feedback", "msg": responseObj}
 							_ws.send JSON.stringify(response)
-							setTimeout (-> alert "服务员已接单, 请您耐心等候"), 2000
+							setTimeout (-> alert "服务员已接单, 请您耐心等候, 不要更换桌位"), 2000
 					else if option.type is "error"
 						message = option.msg
 						if message is "Someone login your account" then _lastRec = 0
