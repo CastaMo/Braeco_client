@@ -114,7 +114,11 @@
 			_activityInfoTypeDom.innerHTML = typeName
 			_activityInfoTitleNameDom.innerHTML = corresActivity.title
 			_activityInfoIntroDom.innerHTML = corresActivity.intro
-			_activityInfoTimeDom.innerHTML = "#{corresActivity.dateBegin} - #{corresActivity.dateEnd}"
+			if Number(corresActivity.dateBegin) is 0 and Number(corresActivity.dateEnd) is 0
+				_activityInfoTimeDom.innerHTML = "永久"
+			else
+				_activityInfoTimeDom.innerHTML = "	#{new Date(corresActivity.dateBegin*1000).Format('yyyy.MM.dd')} - 
+													#{new Date(corresActivity.dateEnd*1000).Format('yyyy.MM.dd')}"
 			_activityInfoContentDom.innerHTML = corresActivity.content
 
 
