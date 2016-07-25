@@ -85,7 +85,7 @@
 				JSON.stringify result
 
 			_tryGetCurrentOrderId = ->
-				currentOrderId = Math.abs(Math.floor(locStor.get("orderId"))) || 0
+				currentOrderId = locStor.get("orderId") || 0
 				locStor.rm "orderId"
 				#"#{(new Date()).Format('yyyy-MM-dd hh:mm:ss')}"
 				"#{currentOrderId}号"
@@ -191,7 +191,7 @@
 					hideClassStr = ""
 					dom.innerHTML = "<div class='already-header'>
 										<div class='already-id-field font-number-word'>
-											<p class='id'>#{alreadyOrder.id}</p>
+											<p class='id'>#{String(alreadyOrder.id).substr(8)}</p>
 										</div>
 										<div class='img-field'>
 											<div class='img'></div>

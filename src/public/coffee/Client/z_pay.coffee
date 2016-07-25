@@ -155,7 +155,7 @@
 				else if _currentPay is "bookOrder"
 					_bookOrderCallBack ->
 						locStor.set("deleteCouponId", locStor.get("couponId"))
-						currentOrderId = Math.abs(Math.floor(locStor.get("orderId"))) || 0
+						currentOrderId = locStor.get("orderId") || "0"
 						console.log currentOrderId
 						hashRoute.hashJump "-Home-Already"
 						bookOrder.confirmPay()

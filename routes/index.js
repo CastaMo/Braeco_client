@@ -42,7 +42,7 @@ module.exports = function(passport) {
 	router.post('/Order/Add', function(req, res) {
 		res.json({
 	        message: "success",
-	        id: Number(Math.floor(100000 + Math.random() * 100000))
+	        id: String(Math.floor(10000000000 + Math.random() * 10000000000))
 	    });
 	});
 
