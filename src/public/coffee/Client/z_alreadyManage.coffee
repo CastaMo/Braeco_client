@@ -87,7 +87,6 @@
 			_tryGetCurrentOrderId = ->
 				currentOrderId = locStor.get("orderId") || 0
 				locStor.rm "orderId"
-				#"#{(new Date()).Format('yyyy-MM-dd hh:mm:ss')}"
 				"#{currentOrderId}号"
 
 			_addAlreadyOrder = (orderId, allAlreadyOrderElem, discountList, giveName, allFinalPrice, memo)->
