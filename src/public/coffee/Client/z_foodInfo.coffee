@@ -34,7 +34,9 @@
 				_foodInfoImgDom.style.height = "#{imgHeight}px"
 				_foodInfoImgDom.style.backgroundSize = "#{clientWidth}px #{imgHeight}px"
 
-				fastClick _plusBtnDom, (e)-> _currentFood.judgeForBook {initLeft:clientWidth * 0.9 - 30, initTop: event.y-15}, _plusBtnDom; console.log(event)
+				fastClick _plusBtnDom, (e)->
+					y = _plusBtnDom.getBoundingClientRect().top - 7.5
+					_currentFood.judgeForBook {initLeft:clientWidth * 0.9 - 30, initTop: y-15}, _plusBtnDom
 
 			chooseFoodByCurrentChoose: -> if _getCurrentChooseFromLocStor() then _selectFoodDisplayByCurrentChoose()
 

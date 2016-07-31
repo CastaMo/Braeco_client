@@ -42,21 +42,21 @@
 
 	function fastClick(el, fn) {
 		var clickFlag = true;
-		addListener(el, "touchstart", function(event) {
-			event.stopPropagation();
+		addListener(el, "touchstart", function(e) {
+			e.stopPropagation();
 			clickFlag = true;
 			return false;
 		});
-		addListener(el, "touchmove", function(event) {
-			event.stopPropagation();
+		addListener(el, "touchmove", function(e) {
+			e.stopPropagation();
 			clickFlag = false;
 			return false;
 		});
-		addListener(el, "touchend", function(event) {
-			event.stopPropagation();
+		addListener(el, "touchend", function(e) {
+			e.stopPropagation();
 			if (clickFlag) {
 				if (typeof fn === "function") {
-					fn();
+					fn(e);
 				}
 			}
 			return false;
