@@ -136,9 +136,13 @@
 
 		_getChooseAllFirstPrice = (food)->
 			extraPrice = 0
-			for tempOuter in food.chooseArr
-				extraPrice += tempOuter.property[0].price
-			(extraPrice + food.defaultPrice)
+			try
+				for tempOuter in food.chooseArr
+					extraPrice += tempOuter.property[0].price
+				(extraPrice + food.defaultPrice)
+			catch e
+				console.log(food)
+			
 
 		constructor: (options)->
 			deepCopy options, @
@@ -302,6 +306,7 @@
 					if temp.type is "normal"
 						for groupId in temp.groups
 							group = groupManage.getGroupById groupId
+							if not group.content then continue
 							newTemp = {}
 							newTemp.groupname = group.name
 							newTemp.property = group.content
