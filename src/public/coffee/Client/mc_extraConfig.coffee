@@ -295,6 +295,7 @@
 			wx.error (res)-> options.always?(); wxConfigFailed = true; innerCallback("fail", error("wx_config_error", res.errMsg))
 
 	innerCallback = (result, err)->
+		if result is "fail" then alert("支付失败: " + err)
 		if typeof @_resultCallback is "function"
 			if typeof err is "undefined" then err = @_error()
 			@_resultCallback(result, err)
