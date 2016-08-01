@@ -277,9 +277,9 @@
 			},
 			(res)->
 				options.always?()
-				if res.err_msg is "get_brand_wcpay_request：ok"
+				if res.err_msg is "get_brand_wcpay_request:ok"
 					options.callback?()
-				else if res.err_msg is "get_brand_wcpay_request：fail"
+				else if res.err_msg is "get_brand_wcpay_request:fail"
 					alert "支付失败, #{JSON.stringify(res)}"
 		)
 
