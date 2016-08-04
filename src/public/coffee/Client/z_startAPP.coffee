@@ -3,7 +3,6 @@
 		_ = 0
 
 		_initCallbackForIntegrateData = (integrateData)->
-			if integrateData.signal isnt 0 then alert "加载失败，请重新刷新页面"; return
 			_initAllGetJSONFuncByIntegrateData integrateData.data
 			_initAllModule()
 			_checkCurrentHash()
@@ -40,7 +39,7 @@
 			catch e
 				alert "数据解析失败"
 				alert JSON.stringify(e)
-			
+
 
 		_initAllModule = ->
 			# try
@@ -124,14 +123,5 @@
 			, 100)
 			else hashRoute.parseAndExecuteHash()
 
-		mainInitBydata = (integrateData)->
-			_initCallbackForIntegrateData integrateData
-
-		_testIsDataReady = ->
-			integrateData = window.integrateData
-			if integrateData and integrateData.signal is 0 then mainInitBydata integrateData
-			else window.mainInitBydata = mainInitBydata
-
-		initial: ->
-			_testIsDataReady()
-			
+		initial: (integrateData)->
+			_initCallbackForIntegrateData(integrateData)

@@ -1,0 +1,46 @@
+script.
+    (function(win, doc) {
+        var loadDatas = ["/Table/Dinner", "/Table/Limit", "/Table/Member"],
+            integrateData;
+        var testIsReadyToRun = function() {
+            if (integrateData && mainInitBydata) {
+                win.onload = function() {
+                    mainInitBydata(integrateData);    
+                }
+            }
+        }
+        seajs.config({
+            alias: {
+                "main"      :       "/public/js/Client/main.min.js",
+                "extra"     :       "/public/js/ClientCommon/extra.min.js"
+            }
+        });
+        seajs.use("extra", function() {
+            seajs.use("main", function() {
+                testIsReadyToRun();
+            });
+        });
+
+        seajs.use(loadDatas, function() {
+            integrateData = {data:{}};
+            for (var i = 0, len = arguments.length; i < len; i++) {
+                var ref_ = arguments[i];
+                onDataCallback(ref_, integrateData);
+            }
+            testIsReadyToRun();
+            function onDataCallback(result_, integrateData) {
+                var result = result_;
+                if (typeof result_ === "string") {
+                    result = JSON.parse(result_);
+                }
+                if (result.message === "success") {
+                    var data = result.data;
+                    for (var key in data) {
+                        integrateData.data[key] = data[key];
+                    }
+                }
+            };
+        });
+    })(window, document);
+
+link(rel='stylesheet' type='text/css' href='/public/css/Client/main.min.css')

@@ -1,9 +1,9 @@
 doctype html
 html
 	head
-		include asyncScript
 		include jade/head
-		block css
+		include jade/commonScript
+		block headComponent
 
 	body
 		#braeco
@@ -17,5 +17,4 @@ html
 
 			#extra.hide
 				include jade/extraPage
-
 		block script

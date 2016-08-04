@@ -1,1 +1,1 @@
-	startAPP.initial()
+	window.mainInitBydata = startAPP.initial

@@ -163,7 +163,7 @@ module.exports = function(grunt) {
             dist: {
                 files: {
                     '<%= dirs.dest_path %><%= dirs.js %>Client/main.min.js': ['<%= dirs.dest_path %><%= dirs.js %>Client/*.js', '!<%= dirs.dest_path %><%= dirs.js %>Client/*.min.js'],
-                    '<%= dirs.dest_path %><%= dirs.js %>ClientCommon/extra.min.js': ['<%= dirs.dest_path %><%= dirs.js %>ClientCommon/*.js', '!<%= dirs.dest_path %><%= dirs.js %>ClientCommon/*.min.js']
+                    '<%= dirs.dest_path %><%= dirs.js %>ClientCommon/extra.min.js': ['<%= dirs.dest_path %><%= dirs.js %>ClientCommon/extra.js']
                 }
             }
         },
@@ -177,8 +177,7 @@ module.exports = function(grunt) {
             compress: {
                 files: {
                     '<%= dirs.dest_path %><%= dirs.css %>Client/main.min.css': ['<%= dirs.dest_path %><%= dirs.css %>Client/main.css'],
-                    '<%= dirs.dest_path %><%= dirs.css %>Client/base64.min.css': ['<%= dirs.dest_path %><%= dirs.css %>Client/base64.css'],
-                    '<%= dirs.dest_path %><%= dirs.css %>Client/common/extra.min.css': ['<%= dirs.dest_path %><%= dirs.css %>ClientCommon/*.css', '!<%= dirs.dest_path %><%= dirs.css %>ClientCommon/*.min.css']
+                    '<%= dirs.dest_path %><%= dirs.css %>Client/base64.min.css': ['<%= dirs.dest_path %><%= dirs.css %>Client/base64.css']
                 }
             }
         },
@@ -257,6 +256,13 @@ module.exports = function(grunt) {
                 }]
             }
 
+        },
+
+        concat: {
+            lib: {
+                src: ['<%= dirs.dest_path %><%= dirs.js %>ClientCommon/*.js'],
+                dest: '<%= dirs.dest_path %><%= dirs.js %>ClientCommon/extra.js'
+            }
         },
 
         /*编译jade，源文件路径设为src的根目录，src/jade里面装jade的option部分(比如你把head和script分离出来)，编译后放在bin中*/
@@ -357,6 +363,7 @@ module.exports = function(grunt) {
                 files: {
                     "./": ["<%= dirs.dest_path %>public/<%= dirs.version %>**/main.min*.js",
                             "<%= dirs.dest_path %>public/<%= dirs.version %>**/extra.min*.js",
+                            "<%= dirs.dest_path %><%= dirs.js %>specialCommon/*.js",
                             "<%= dirs.dest_path %>public/<%= dirs.version %>**/main.min*.css",
                             "<%= dirs.dest_path %>public/<%= dirs.version %>**/base64.min*.css",
                             "<%= dirs.dest_path %>public/<%= dirs.version %>**/hash.json"]
@@ -398,7 +405,8 @@ module.exports = function(grunt) {
     grunt.registerTask('default', [
         'clean:build',
         'express',
-        'copy:build',
+        'copy',
+        'concat',
         'less',
         'coffee',
         'jade',
@@ -415,7 +423,8 @@ module.exports = function(grunt) {
     ]);
     grunt.registerTask('upload', [
         'clean',
-        'copy:build',
+        'copy',
+        'concat',
         'less',
         'coffee',
         'cssmin',

@@ -126,7 +126,10 @@
 
 
 	})(window, document);
-
+	define(function(require, exports, module) {
+		var result = 'php_str';
+		return result;
+	});
 	(function(win) {
 		var result = 'php_str';
 		var integrateData = win.integrateData || (win.integrateData = {data: {}, signal: 4});

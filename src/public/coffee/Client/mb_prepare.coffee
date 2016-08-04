@@ -19,7 +19,7 @@
 	couponManage = null
 	groupManage = null
 	dishLimitManage = null
-	
+
 	getDishJSON = getActivityJSON = getMemberJSON = getComPreJSON = getDinnerJSON = getChannelJSON = getHeaderLikeJSON = getDinnerInfoJSON = getCouponJSON = null
 	getGroupJSON = null
 	getDishLimitJSON = null
@@ -41,3 +41,23 @@
 	now = -> +new Date()
 
 	numToChinese = ["零","一","二","三","四","五","六","七","八","九","十"]
+
+	Date.prototype.Format = (fmt)->
+		o = {
+			"M+" : this.getMonth()+1
+			"d+" : this.getDate()
+			"h+" : this.getHours()
+			"m+" : this.getMinutes()
+			"s+" : this.getSeconds()
+			"q+" : Math.floor((this.getMonth()+3)/3)
+			"S"  : this.getMilliseconds()
+		}
+		if /(y+)/.test(fmt)
+			fmt = fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length))
+		for k of o when new RegExp("(#{k})").test(fmt)
+
+			if RegExp.$1.length is 1 then str = o[k]
+			else str = ("00"+ o[k]).substr((""+ o[k]).length)
+
+			fmt = fmt.replace(RegExp.$1, str)
+		return fmt
