@@ -139,7 +139,7 @@ module.exports = function(grunt) {
                     '<%= dirs.source_path %><%= dirs.css %>*.css',
                     '<%= dirs.source_path %><%= dirs.js %>*.js'
                 ],
-                tasks: ['copy:build', 'copy:origin']
+                tasks: ['copy:build']
             }
         },
 
@@ -186,14 +186,8 @@ module.exports = function(grunt) {
         /*复制预设文件，比如jquery，util*/
         copy: {
             build: {
-                cwd: '<%= dirs.source_path %>',
-                src: ['<%= dirs.js %>ClientCommon/*', '<%= dirs.css %>ClientCommon/*'],
-                dest: '<%= dirs.dest_path %>',
-                expand: true
-            },
-            origin: {
-                cwd: '<%= dirs.source_path %>',
-                src: ['<%= dirs.js %>*.js', '<%= dirs.css %>*.css', '*.html'],
+                cwd: '<%= dirs.lib_path %>',
+                src: ['<%= dirs.js %>**/*'],
                 dest: '<%= dirs.dest_path %>',
                 expand: true
             },
@@ -405,7 +399,6 @@ module.exports = function(grunt) {
         'clean:build',
         'express',
         'copy:build',
-        'copy:origin',
         'less',
         'coffee',
         'jade',
@@ -413,7 +406,6 @@ module.exports = function(grunt) {
     ]);
     grunt.registerTask('ready', [
         'copy:build',
-        'copy:origin',
         'less',
         'coffee',
         'uglify',
@@ -437,6 +429,6 @@ module.exports = function(grunt) {
     grunt.registerTask('backup', [
         'copy:backup',
     ]);
-    
+
 
 };
