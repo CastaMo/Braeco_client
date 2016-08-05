@@ -1,8 +1,9 @@
 script.
     (function(win, doc) {
-        var loadDatas = ["/Table/Dinner", "/Table/Limit", "/Table/Member"],
+        var loadDatas = ["/Table/Dinner?", "/Table/Limit?", "/Table/Member?"],
             integrateData;
         var testIsReadyToRun = function() {
+            var mainInitBydata = win.mainInitBydata;
             if (integrateData && mainInitBydata) {
                 win.onload = function() {
                     mainInitBydata(integrateData);    
