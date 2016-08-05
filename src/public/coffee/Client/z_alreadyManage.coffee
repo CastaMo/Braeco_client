@@ -1,5 +1,5 @@
 	AlreadyManageSingleton = do ->
-		_instance = null			
+		_instance = null
 
 		class AlreadyManage
 
@@ -27,7 +27,7 @@
 
 			_getOrCreateAlreadyFood = (options, alreadyOrder)->
 				alreadyFood = null
-				try 
+				try
 					alreadyFood = _alreadyOrders[alreadyOrder.orderId].allFood[options.id]
 				catch e
 					alreadyFood = null
@@ -86,8 +86,9 @@
 
 			_tryGetCurrentOrderId = ->
 				currentOrderId = locStor.get("orderId") || 0
+				time = new Date().Format("yyyy-MM-dd hh:mm:ss")
 				locStor.rm "orderId"
-				"#{currentOrderId}号"
+				"#{time} --- #{currentOrderId}号"
 
 			_addAlreadyOrder = (orderId, allAlreadyOrderElem, discountList, giveName, allFinalPrice, memo)->
 
@@ -190,7 +191,7 @@
 					hideClassStr = ""
 					dom.innerHTML = "<div class='already-header'>
 										<div class='already-id-field font-number-word'>
-											<p class='id'>#{String(alreadyOrder.id).substr(8)}</p>
+											<p class='id'>#{alreadyOrder.id}</p>
 										</div>
 										<div class='img-field'>
 											<div class='img'></div>
@@ -276,7 +277,7 @@
 						_createDiscountDomIfExist save, type, @
 					if @allSaleNum is 0 then addClass @alreadyDiscountDom, "hide"
 
-				initAlreadyAllFinalPrice: -> 
+				initAlreadyAllFinalPrice: ->
 					(query ".food-total-price-wrapper .price", @alreadyOrderDom).innerHTML = Number @allFinalPrice.toFixed 2
 
 				initAllEvent: ->
@@ -387,7 +388,7 @@
 											</div>
 										</div>
 									</div>"
-					
+
 					lineDom = createDom "div"; lineDom.className = 'fivePercentLeftLine'
 					append alreadyFoodDom, lineDom
 

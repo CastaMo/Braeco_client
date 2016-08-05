@@ -19,7 +19,7 @@
 			_headerDom.style.width = "#{clientWidth}px"
 
 			_viaOnlineDom = getById "choose-payment-via-online-column"
-			_viaOnlineUlDom = query "ul.via-online-list", _choosePaymentDom			
+			_viaOnlineUlDom = query "ul.via-online-list", _choosePaymentDom
 
 			_viaCashDom = getById "choose-payment-via-cash-column"
 			_viaCashWarnDom = getById "remind-via-cash-column"
@@ -137,7 +137,7 @@
 				else setTimeout((-> hashRoute.back(); _asyncBackForCount --count, delay, callback), delay)
 
 			_rechargeCallBack = (func)-> _asyncBackForCount 2, 200, func
-				
+
 
 			_bookOrderCallBack = (func)-> _asyncBackForCount 4, 200, func
 
@@ -153,20 +153,22 @@
 						user.rechargeRemainder recharge.get, recharge.EXP
 
 				else if _currentPay is "bookOrder"
-					_bookOrderCallBack ->
-						locStor.set("deleteCouponId", locStor.get("couponId"))
-						currentOrderId = locStor.get("orderId") || "0"
-						console.log currentOrderId
-						hashRoute.hashJump "-Home-Already"
-						bookOrder.confirmPay()
-						couponManage.useCouponFromLocStor()
+					currentOrderId = locStor.get("orderId") || "0"
+					locStor.set("deleteCouponId", locStor.get("couponId"))
+					requireManage.get("couponAdd").require(currentOrderId, (result)->
+						locStor.set("orderId", result.serial)
+						_bookOrderCallBack ->
+							hashRoute.hashJump "-Home-Already"
+							bookOrder.confirmPay()
+							couponManage.useCouponFromLocStor()
 
-						EXPRate = Recharge.getEXPRateByType(_moneyPaid)
-						if _moneyPaid is "prepayment" then user.consumeByBalance _totalPrice
-						else user.getEXPByPay(Math.floor(_totalPrice * EXPRate))
-						requireManage.get("couponAdd").require(currentOrderId, (result)->
-							location.href = "/coupon/add/afterpay/#{result.couponid}"
-						)
+							EXPRate = Recharge.getEXPRateByType(_moneyPaid)
+							if _moneyPaid is "prepayment" then user.consumeByBalance _totalPrice
+							else user.getEXPByPay(Math.floor(_totalPrice * EXPRate))
+
+							if result.couponid
+								setTimeout (-> location.href = "/coupon/add/afterpay/#{result.couponid}"), 1000
+					)
 
 
 			_confirmPayBtnClickEvent = ->
@@ -191,7 +193,7 @@
 				if _moneyPaid is "alipay_qr_f2f" then content = "请扫描订单小票二维码支付(稍后服务员将随餐品一并送上)"
 				else if _moneyPaid is "cash" then content = "确认使用现金下单吗?\n(请您备好#{Number(_totalPrice.toFixed(2))}元稍后买单)"
 				else if _moneyPaid is "prepayment" then content = "是否使用会员卡余额支付?\n(需支付#{Number(_totalPrice.toFixed(2))}元)"
-				
+
 				if not user.needPhoneOfEveryone
 					if _moneyPaid is "cash" and not user.mobile then lockManage.get(_currentPay).releaseLock(); locStor.set("loginFlag", 1); hashRoute.pushHashStr("Popup-Form-Login"); return
 					else if _currentPay is "recharge" and not user.mobile then lockManage.get(_currentPay).releaseLock(); locStor.set("loginFlag", 2); hashRoute.pushHashStr("Popup-Form-Login"); return
@@ -390,4 +392,3 @@
 			return _instance
 		initial: ->
 			pay = PaySingleton.getInstance()
-		

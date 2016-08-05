@@ -2,12 +2,9 @@
 
 var http            = require('http');
 var BufferHelper    = require('./BufferHelper.js');
-var StringDecoder   = require('string_decoder').StringDecoder;
+var defaultCookie   = 'sid=1w3ybzgxtabbhdpz1kh9j4sjwzhsg16h;auth=2147483647';
+var cookie;
 var zlib            = require('zlib');
-var fs              = require('fs');
-var cookie          = 'sid=1w3ybzgxtabbhdpz1kh9j4sjwzhsg16h';
-var flag            = true;
-
 
 function getOptionsForProxySendRequestConfig(url, method) {
   method = method.toUpperCase();
@@ -27,45 +24,51 @@ function getOptionsForProxySendRequestConfig(url, method) {
 
 function getCallbackProxyHandleResponse(res) {
   return function(remoteRes) {
-    console.log("remoteRes.headers: \n");
-    console.log(remoteRes.headers);
-    var decoder = new StringDecoder('utf8');
-
+    var headers = remoteRes.headers;
+    for (var header in headers) {
+      res.setHeader(header, headers[header]);
+    }
     //延时抛出异常
-    var timer = setTimeout(function () {
-      err(new Error('timeout'));
-    }, 30000);
-
-    var bufferHelper = new BufferHelper();
-
-    remoteRes.on('data', function(chunk) {
-      bufferHelper.concat(chunk);
-    });
-
-    remoteRes.on('end', function() {
-      var buffer = bufferHelper.toBuffer();
-      try {
-        var encode = remoteRes.headers['content-encoding'];
-        if (encode === "gzip") {
-          zlib.unzip(buffer, function(err, buffer) {
-            var result = buffer.toString();
-            res.send(result);
-          });
-        } else {
-          var result = buffer.toString();
-          res.send(result);
-        }
-      } catch (e) {
-        clearTimeout(timer);
-        err(new Error('The result has syntax error. ' + e));
-        return;
-      }
-      clearTimeout(timer);
-    });
+    // var timer = setTimeout(function () {
+    //   err(new Error('timeout'));
+    // }, 30000);
+    //
+    // var bufferHelper = new BufferHelper();
+    //
+    // remoteRes.on('data', function(chunk) {
+    //   bufferHelper.concat(chunk);
+    // });
+    //
+    // remoteRes.on('end', function() {
+    //   var buffer = bufferHelper.toBuffer();
+    //   try {
+    //     var encode = remoteRes.headers['content-encoding'];
+    //     if (encode === "gzip") {
+    //       // zlib.unzip(buffer, function(err, buffer) {
+    //       // });
+    //       var result = buffer.toString();
+    //       //console.log(result);
+    //       res.set({
+    //           "Content-Encoding": "gzip"
+    //       });
+    //       res.send(buffer);
+    //     } else {
+    //       var result = buffer.toString();
+    //       res.send(result);
+    //     }
+    //   } catch (e) {
+    //     clearTimeout(timer);
+    //     err(new Error('The result has syntax error. ' + e));
+    //     return;
+    //   }
+    //   clearTimeout(timer);
+    // });
+    remoteRes.pipe(res);
   }
 }
 
 function proxySendRequest(options, callbackProxyHandleResponse, body) {
+  console.log(options);
   var request = http.request(options, callbackProxyHandleResponse);
   request.on('error', function(e) {console.log('Remote server error:', e);});
   if (options.method === "POST" && body) {
@@ -76,9 +79,10 @@ function proxySendRequest(options, callbackProxyHandleResponse, body) {
 }
 
 function getCallbackHandleForRequest(method, devCookie) {
-  if (devCookie) cookie = devCookie;
 
   return function(req, res) {
+    cookie = defaultCookie;
+    if (devCookie) cookie = devCookie;
     var options = getOptionsForProxySendRequestConfig(req.url, method),
         callback = getCallbackProxyHandleResponse(res);
     console.log('\nAt url:', req.url);

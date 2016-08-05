@@ -39,12 +39,7 @@ module.exports = function(passport) {
 		res.json({"message":"success","user":4,"birthday":0,"nickname":"Casta","sex":"\u7537","province":"\u5e7f\u4e1c","city":"\u4e1c\u839e","country":"\u4e2d\u56fd","avatar":"http:\/\/static.brae.co\/images\/avatar\/q13xybp6x3102no7pn8r6g91gz070oeq.png?imageView2\/1\/w\/60\/h\/60","signature":"\u5929\u6daf\u54ab\u5c3a","register_time":1436878924,"mobile":"18819473259","membership":{"ladder":[{"name":"\u9ed1\u94c1","EXP":0,"discount":100},{"name":"\u9752\u94dc","EXP":100,"discount":98},{"name":"\u767d\u94f6","EXP":1000,"discount":90},{"name":"\u9ec4\u91d1","EXP":3000,"discount":85},{"name":"\u767d\u91d1","EXP":5000,"discount":80},{"name":"\u94bb\u77f3","EXP":8000,"discount":75}],"EXP":3965,"balance":0},"like":false});
 	});
 
-	router.post('/Order/Add', function(req, res) {
-		res.json({
-	        message: "success",
-	        id: String(Math.floor(10000000000 + Math.random() * 10000000000))
-	    });
-	});
+	router.post('/Order/Add', getCallbackHandleForRequest("POST"));
 
 	router.post('/Membership/Card/Charge', function(req, res) {
 		res.json({
@@ -63,6 +58,8 @@ module.exports = function(passport) {
 	router.get('/Table/Dinner', getCallbackHandleForRequest("GET"));
 
 	router.post('/Coupon/Add', getCallbackHandleForRequest("POST"));
+
+	router.post('/Coupon/Add/Afterpay/:couponId', getCallbackHandleForRequest("POST"));
 
 	router.get('/Coupon/Add/:couponId', getCallbackHandleForRequest("GET"));
 
