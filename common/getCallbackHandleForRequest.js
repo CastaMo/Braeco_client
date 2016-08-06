@@ -63,7 +63,18 @@ function getCallbackProxyHandleResponse(res) {
     //   }
     //   clearTimeout(timer);
     // });
+
+
     remoteRes.pipe(res);
+    // 约等于下方的操作
+    // remoteRes.on("data", function(chunk) {
+    //     res.write(chunk);
+    //     console.log(chunk.toString());
+    //     console.log(chunk);
+    // });
+    // remoteRes.on("end", function() {
+    //     res.end();
+    // });
   }
 }
 

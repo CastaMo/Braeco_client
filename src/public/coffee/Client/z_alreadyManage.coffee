@@ -86,7 +86,7 @@
 
 			_tryGetCurrentOrderId = ->
 				currentOrderId = locStor.get("orderId") || 0
-				time = new Date().Format("yyyy-MM-dd hh:mm:ss")
+				time = new Date().Format("MM-dd hh:mm:ss")
 				locStor.rm "orderId"
 				"#{time} --- #{currentOrderId}号"
 

@@ -363,5 +363,53 @@
                 }
             }
         }
+        #choose-address-page {
+            .call-wrapper, .address-wrapper {
+                width: 90%;
+                margin: 0 auto;
+            }
+            .call-wrapper {
+                margin-top: 16px;
+                input {
+                    border: solid 1px @borderColor;
+                    height: 32px;
+                    padding-left: 6px;
+                    .rounded-corners(5px);
+                    background-color: #fff;
+                    max-width: 110px;
+                }
+                .sex-select {
+                    .rounded-corners(5px);
+                    background-color: #fff;
+                    width: 48px;
+                    line-height: 30px;
+                    text-align: center;
+                    margin-left: 8px;
+                    border: solid 1px @borderColor;
+                    color: #AF9F95;
+                    &.choose {
+                        line-height: 32px;
+                        background-color: @orangeColor;
+                        color: #fff;
+                        border: none;
+                    }
+                }
+            }
+            .address-wrapper {
+                margin-top: 8px;
+                textarea {
+                    max-width: -moz-calc(~"100% - 12px");
+                    max-width: -webkit-calc(~"100% - 12px");
+                    max-width: calc(~"100% - 12px");
+                    min-width: -moz-calc(~"100% - 12px");
+                    min-width: -webkit-calc(~"100% - 12px");
+                    min-width: calc(~"100% - 12px");
+                    max-height: 84px;
+                    min-height: 84px;
+                    border: solid 1px @borderColor;
+                    padding: 6px;
+                }
+            }
+        }
     }
 }

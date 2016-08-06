@@ -9,7 +9,7 @@
 
 		_allExtraDoms = querys ".extra-page"
 		_allExtraContentDoms = querys ".extra-content-page"
-		
+
 		_allPopupFormDoms = querys ".popup-form-page"
 
 		_activityInfoDom = query ".Activity-information-field"
@@ -62,14 +62,14 @@
 					bookOrder.toggleState "col"
 					Category.chooseBookCategoryByCurrentChoose()
 					DetailPage.togglePage "bookCol"
-				"pop": -> 
+				"pop": ->
 			}
 			"bookInfo": {
 				"push": ->
 					bookOrder.toggleState "info"
 					foodInfo.chooseFoodByCurrentChoose()
 					DetailPage.togglePage "bookInfo"
-				"pop": -> 
+				"pop": ->
 			}
 			"bookOrder": {
 				"push": ->
@@ -82,7 +82,7 @@
 					pay.selectPayInfoByCurrentChoose()
 					DetailPage.togglePage "choosePaymentMethod"
 					if not user.isLogin() then hashRoute.back()
-				"pop": -> 
+				"pop": ->
 			}
 			"chooseCombo": {
 				"push": ->
@@ -157,6 +157,12 @@
 					FormPage.togglePage "combo-choose-delete-page"
 					comboChooseDeleteManage.getSubItemFoodChoose()
 				"pop": -> _hideTarget "combo-choose-delete-page"
+			}
+			"chooseAddress": {
+				"push": ->
+					_staticShowTarget "choose-address-page"
+				"pop": ->
+					_hideTarget "choose-address-page"
 			}
 			"x": {
 				"push": -> setTimeout(->
@@ -294,7 +300,7 @@
 		_instance = null
 
 		class RouteManage
-			
+
 			_hashStateFunc = {}
 
 			_loc = window.location
@@ -315,7 +321,7 @@
 					_loc.hash = _r
 				catch e
 					@warn()
-				
+
 
 			parseAndExecuteHash: (str)->
 				hash_arr = str.split("-")

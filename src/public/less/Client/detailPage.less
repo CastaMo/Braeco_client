@@ -266,6 +266,42 @@
                             z-index: 3;
                             background-color: @homePageBackgroundColor;
                             padding-bottom: 80px;
+
+                            .book-order-additional {
+                                .addtional-wrapper {
+                                    background-color: #fff;
+                                    margin-top: 16px;
+                                    .borderTopBottom();
+                                    .address-field, .time-field {
+                                        margin-left: 5%;
+                                    }
+                                    .address-field {
+                                        padding: 8px 0 7px 0;
+                                        position: relative;
+                                        .title-field {
+                                            line-height: 22px;
+                                        }
+                                        .content-field {
+                                            line-height: 21px;
+                                            font-size: 14px;
+                                            color: #8D8D8D;
+                                            width: 85%;
+                                            .ellipsisWithLineNum(2);
+                                        }
+                                    }
+                                    .time-field {
+                                        position: relative;
+                                        line-height: 22px;
+                                        padding: 11px 0;
+                                        .right-part {
+                                            font-size: 14px;
+                                            color: #8D8D8D;
+                                            margin-right: 9%;
+                                        }
+                                    }
+                                }
+                            }
+
                             .food-order-wrapper {
                                 .top-wrap {
                                     height: auto;
@@ -284,6 +320,7 @@
                                     }
                                 }
                             }
+
                             .coupon-choose {
                                 position: relative;
                                 margin-top: 16px;

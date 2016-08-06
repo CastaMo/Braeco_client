@@ -76,11 +76,11 @@ input {
 }
 
 .box-shadow (@str) {
-    //Firefox4.0-  
+    //Firefox4.0-
     -moz-box-shadow: @str;
-    //Safariand Google chrome10.0-  
+    //Safariand Google chrome10.0-
     -webkit-box-shadow: @str;
-    //Firefox4.0+、 Google chrome 10.0+ 、 Oprea10.5+ and IE9  
+    //Firefox4.0+、 Google chrome 10.0+ 、 Oprea10.5+ and IE9
     box-shadow: @str;
 }
 
@@ -109,6 +109,20 @@ input {
 .borderTopBottom (@size: 1px, @color: @borderColor) {
     border-top: solid @size @color;
     border-bottom: solid @size @color;
+}
+
+.left-part {
+    float: left;
+}
+
+.right-part {
+    float: right;
+}
+
+.parallel-container {
+    > *:not(.clear) {
+        float: left;
+    }
 }
 
 .calcWidth (@width: 0) {

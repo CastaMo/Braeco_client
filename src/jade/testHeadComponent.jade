@@ -6,6 +6,7 @@ script.
             var mainInitBydata = win.mainInitBydata;
             if (integrateData && mainInitBydata) {
                 win.onload = function() {
+                    console.log(integrateData);
                     mainInitBydata(integrateData);    
                 }
             }
