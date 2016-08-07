@@ -24,7 +24,7 @@
 		fastClick _popupDom, "touchmove", _preventScrollFromOuter
 		fastClick _coverDom, -> if hashRoute.getCurrentState() is "categoryChoose" then hashRoute.back()
 
-		_fixNeedPages = ['book-choose-page', 'combo-choose-delete-page', 'category-choose-page']
+		_fixNeedPages = ['book-choose-page', 'combo-choose-delete-page', 'category-choose-page', 'choose-date-page']
 
 		_togglePageCallback = (pageId)->
 			if pageId in _fixNeedPages then _popupDom.style.position = "fixed"

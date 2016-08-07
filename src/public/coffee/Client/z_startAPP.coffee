@@ -36,6 +36,10 @@
 				getComPreJSON 				= -> return 8
 				getHeaderLikeJSON 			= -> return 0
 				getRechargeJSON 			= -> return data.membership_rule
+				getBusinessJSON 			= -> return {
+					type 				: 		data.type
+					timestamp 			: 		Number(data.timestamp) * 1000
+				}
 			catch e
 				alert "数据解析失败"
 				alert JSON.stringify(e)
@@ -85,6 +89,8 @@
 				AlreadyManageSingleton.initial()
 				_++
 				PaySingleton.initial()
+				_++
+				BusinessManageSingle.initial()
 				_++
 			# catch e
 			# 	alert "模块加载失败: #{_}"

@@ -15,7 +15,7 @@
 					food.addBookToOrder elem.num, elem.chooseInfo, elem.afterChoosePrice, elem.comboOptions
 				catch e
 					isFail = true
-			#if isFail then alert "存在非法餐品"					
+			#if isFail then alert "存在非法餐品"
 
 		class BookOrder
 
@@ -253,7 +253,7 @@
 				_allNumDom.innerHTML = _allNum; _totalPriceDom.innerHTML = Number(totalPrice.toFixed(2))
 				if _allNum > 0 then removeClass _orderBtnDom, "disabled"; removeClass _trolleyDom, "disabled"
 				if totalPrice < _allInitPrice then removeClass _foodDiscountWrapper, "hide"
-			
+
 			_updateAllBookOrderNumAndPrice = ->
 				_resetAllBookOrder()
 				_updateInitPrice()
@@ -460,7 +460,7 @@
 
 
 			constructor: ->
-				fastClick _orderBtnDom, -> 
+				fastClick _orderBtnDom, ->
 					if hasClass _orderBtnDom, "disabled" or hashRoute.getCurrentState() is "bookOrder" then return
 					if hashRoute.getCurrentState() is "bookInfo" then setTimeout((-> hashRoute.hashJump "-Detail-Book-bookCol"; setTimeout((-> hashRoute.hashJump "-Detail-Book-bookOrder"), 10)), 0)
 					else hashRoute.hashJump "-Detail-Book-bookOrder"
@@ -472,22 +472,13 @@
 					else hashRoute.hashJump "-Detail-Book-bookOrder"
 
 				fastClick _payBtnDom, ->
-					try
-						_ = 0
-						if hashRoute.getCurrentState() is "Login" then hashRoute.warn(); return
-						_ = 1
-						if _allNum is 0 then alert "请先点餐品"; return
-						_ = 2
-						if not user.isLogin() then locStor.set("loginFlag", 0); hashRoute.hashJump("-Detail-Book-bookOrder-Popup-Form-Login"); return
-						_ = 3
-						locStor.set("currentPay", "bookOrder")
-						_ = 4
-						hashRoute.hashJump "-Detail-Book-choosePaymentMethod"
-						_ = 5
-					catch e
-						alert JSON.stringify(e)
-						alert _
-				
+					if hashRoute.getCurrentState() is "Login" then hashRoute.warn(); return
+					if _allNum is 0 then alert "请先点餐品"; return
+					if not businessManage.getIsValid() then return
+					if not user.isLogin() then locStor.set("loginFlag", 0); hashRoute.hashJump("-Detail-Book-bookOrder-Popup-Form-Login"); return
+					locStor.set("currentPay", "bookOrder")
+					hashRoute.hashJump "-Detail-Book-choosePaymentMethod"
+
 
 				fastClick _memoBtnDom, ->
 					_insertMemoToInput()
@@ -529,7 +520,7 @@
 				else if type is "disabled" then msg = "下架"
 				alert "#{dishNames} 已#{msg}";
 				hashRoute.back()
-					
+
 
 			bookForFood: (options)->
 				if options.id isnt 3
@@ -587,4 +578,3 @@
 		initial: ->
 			bookOrder = @getInstance()
 			_initAllBookOrder()
-
