@@ -164,6 +164,12 @@
 				"pop": ->
 					_hideTarget "choose-address-page"
 			}
+			"chooseDate": {
+				"push": ->
+					_staticShowTarget "choose-date-page"
+				"pop": ->
+					_hideTarget "choose-date-page"
+			}
 			"x": {
 				"push": -> setTimeout(->
 					popHashStr("x")

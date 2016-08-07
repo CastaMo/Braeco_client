@@ -411,5 +411,58 @@
                 }
             }
         }
+        #choose-date-page {
+            .choose-date-wrapper {
+                background-color: #fff;
+                height: 200px;
+                border-bottom: solid 1px @borderColor;
+                .left-part {
+                    width: 100px;
+                    height: 100%;
+                    background-color: #F4F5F9;
+                    border-right: solid 1px @borderColor;
+                    line-height: 44px;
+                    text-align: center;
+                    .day-choose-field .day-choose {
+                        &.choose {
+                            border-bottom: solid 1px @borderColor;
+                            p {
+                                width: 102px;
+                                background-color: #fff;
+                            }
+                        }
+                    }
+                }
+                .right-part {
+                    width: -moz-calc(~"100% - 115px");
+                    width: -webkit-calc(~"100% - 115px");
+                    width: calc(~"100% - 115px");
+                    .time-choose-wrapper {
+                        width: 100%;
+                        height: 200px;
+                        overflow: auto;
+                        .overflowScrolling();
+                        .time-choose-container {
+                            padding-bottom: 20px;
+                            ul li {
+                                border-bottom: solid 1px @borderColor;
+                                line-height: 42px;
+                                &.choose {
+                                    p {
+                                        float: left;
+                                    }
+                                    .tick {
+                                        .background-norm();
+                                        .background-size(24px, 24px);
+                                        float: right;
+                                        margin: 9px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
