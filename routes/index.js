@@ -59,6 +59,8 @@ module.exports = function(passport) {
 
 	router.post('/Coupon/Add', getCallbackHandleForRequest("POST"));
 
+	router.post('/Table/Service', getCallbackHandleForRequest("POST"));
+
 	router.post('/Coupon/Add/Afterpay/:couponId', getCallbackHandleForRequest("POST"));
 
 	router.get('/Coupon/Add/:couponId', getCallbackHandleForRequest("GET"));

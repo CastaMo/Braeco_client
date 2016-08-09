@@ -157,9 +157,13 @@
 						confirmContent 	:		"呼叫"
 						needInput 		:		true
 						cancel 			:		-> lockManage.get("callWaiter").releaseLock()
-						success 		:		(content)-> webSock.sendCallWaiter(content); setTimeout((-> alert("服务员正火速赶来, 请耐心等候")), 0); setTimeout(->
-							lockManage.get("callWaiter").releaseLock()
-						, 60*1000)
+						success 		:		(content)->
+							requireManage.get("service").require(content, ->
+								setTimeout((-> alert("服务员正火速赶来, 请耐心等候")), 0)
+								setTimeout(->
+									lockManage.get("callWaiter").releaseLock()
+								, 60*1000)
+							)
 					}
 
 			initAlready: ->

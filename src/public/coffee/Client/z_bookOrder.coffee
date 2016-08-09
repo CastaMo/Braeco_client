@@ -470,7 +470,6 @@
 					if hasClass _orderBtnDom, "disabled" then return
 					if hashRoute.getCurrentState() is "bookInfo" then setTimeout((-> hashRoute.hashJump "-Detail-Book-bookCol"; setTimeout((-> hashRoute.hashJump "-Detail-Book-bookOrder"), 10)), 0)
 					else hashRoute.hashJump "-Detail-Book-bookOrder"
-
 				fastClick _payBtnDom, ->
 					if hashRoute.getCurrentState() is "Login" then hashRoute.warn(); return
 					if _allNum is 0 then alert "请先点餐品"; return
