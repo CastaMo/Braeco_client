@@ -44,7 +44,7 @@
 					@optionSex = @optionSex || user.sex
 					@optionName = @optionName || user.nickName
 				@optionName = @optionName || "请填写您的姓名"
-				if name is "请填写您的姓名" then @optionSex = "-1"
+				if @optionName is "请填写您的姓名" then @optionSex = -1
 				else @optionSex = @optionSex || 0
 				@_setAddress()
 
@@ -168,7 +168,9 @@
 				locStor.set "orderAddress"	  , @address
 				locStor.set "orderSex"		  , @sex
 				locStor.set "orderName"		 , @name
-				@validFlag = @validFlag | 2
+				@sexChoose(if @sex is -1 then 0 else @sex)
+				if sexStr and @address isnt "请填写您的地址" and @name isnt "请填写您的姓名"
+					@validFlag = @validFlag | 2
 
 			_setTime: ->
 				dateIndex = @optionTime[0]
