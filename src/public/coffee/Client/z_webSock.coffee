@@ -26,7 +26,7 @@
 
 			_resetWS = ->
 				if _ws then _ws.close()
-				if location.hostname is "localhost" or location.hostname is "devel.brae.co" then return
+				return
 				_ws = new ReconnectingWebSocket("ws://#{location.hostname}:8587")
 				deepCopy _configForWS, _ws
 
