@@ -46,7 +46,7 @@
 
 			domWidth = clientWidth * 160 / 375; domHeight = domWidth
 			imgDomStr = "<div class='category-img default-category-image' style='background-size:#{domWidth}px #{domHeight}px;'></div>"
-			
+
 			nameDomStr = "<div class='category-name-field'><p class='category-name total-center'>#{category.name}</p></div>"
 			dom.innerHTML = "#{imgDomStr}#{nameDomStr}"
 			dom.style.height = "#{domHeight}px"; dom.style.width = "#{domWidth}px"
@@ -102,7 +102,7 @@
 			allSpaceLength = allSpace.length
 			allChineseWordLength = str.length - allLetterLength - allNumberLength - allSpaceLength
 
-			return (_widthByContent["letter"] * allLetterLength + 
+			return (_widthByContent["letter"] * allLetterLength +
 					_widthByContent["number"] * allNumberLength +
 					_widthByContent["space"] * allSpaceLength +
 					_widthByContent["chinese"] * allChineseWordLength + 1)
@@ -170,7 +170,7 @@
 
 		initFoodListDom: -> @foodListDom = _getFoodListDom @
 
-		initEvent: -> 
+		initEvent: ->
 			self = @
 			if self.displayFlag
 				fastClick self.displayDom, -> _setCurrentChoose(self.seqNum); hashRoute.hashJump "-Detail-Book-bookCol"
@@ -193,7 +193,7 @@
 					name 		:		tempOuter.name
 					id 			:		tempOuter.id
 					seqNum 		:		i
-					url 		:		"#{tempOuter.pic}?imageView2/1/w/#{Math.floor(clientWidth * 160 / 375)}/h/#{Math.floor(clientWidth * 160 / 375)}"
+					url 		:		"#{tempOuter.pic}?imageView2/1/w/#{Math.floor(clientWidth * 160 / 375) * 2}/h/#{Math.floor(clientWidth * 160 / 375) * 2}"
 					displayFlag : 		tempOuter.display_flag
 					state 	: 	state
 				}

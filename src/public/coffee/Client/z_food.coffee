@@ -36,7 +36,7 @@
 							#{_getDCLabelForTopWrapDom(food)}
 							#{_getTagLabelForTopWrapDom(food)}
 						</div>"
-				
+
 			append topWrapDom, nameField
 			append topWrapDom, labelField
 			return topWrapDom
@@ -142,7 +142,7 @@
 				(extraPrice + food.defaultPrice)
 			catch e
 				console.log(food)
-			
+
 
 		constructor: (options)->
 			deepCopy options, @
@@ -296,7 +296,7 @@
 				_getImageBufferFlag.push false
 				for temp, j in tempOuter.dishes
 					temp.groups = temp.groups || []
-					if temp.pic then url = "#{temp.pic}?imageView2/1/w/95/h/95"; infoUrl = "#{temp.pic}?imageView2/1/w/#{Math.floor(clientWidth)}/h/#{Math.floor(clientWidth*200/375)}"
+					if temp.pic then url = "#{temp.pic}?imageView2/1/w/#{95 * 2}/h/#{95 * 2}"; infoUrl = "#{temp.pic}?imageView2/1/w/#{Math.floor(clientWidth) * 2}/h/#{Math.floor(clientWidth*200/375) * 2}"
 					else url = ""; infoUrl = ""
 
 					if temp.dc_type is "limit"
@@ -348,5 +348,3 @@
 
 		@getFoodByCategorySeqNumAndSeqNum: (categorySeqNum, seqNum)-> _foodsArr[categorySeqNum][seqNum]
 		@getFoodById: (id)-> _foodsMap[id]
-
-		

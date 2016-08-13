@@ -2,7 +2,7 @@
 
 var http            = require('http');
 var BufferHelper    = require('./BufferHelper.js');
-var defaultCookie   = 'sid=pr1o7hijp2p30he9bo3zlbbi6nwwxacm;auth=2147483647';
+var defaultCookie   = 'sid=ye395ec1lvjpk8ej4mk9at909ls3jn6i;auth=2147483647';
 var cookie;
 var zlib            = require('zlib');
 

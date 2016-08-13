@@ -94,7 +94,7 @@
 				for elem, i in dinnerJSON
 					dinnerHeader = new DinnerHeader {
 						seqNum 			:		i
-						url 			:		"#{elem}?imageView2/1/w/#{Math.floor(clientWidth)}/h/#{Math.floor((clientWidth)*200/375)}"
+						url 			:		"#{elem}?imageView2/1/w/#{Math.floor(clientWidth) * 2}/h/#{Math.floor((clientWidth)*200/375) * 2}"
 					}
 				if dinnerJSON.length >= 1
 					new rotateDisplay {

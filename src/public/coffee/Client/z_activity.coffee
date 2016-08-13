@@ -117,7 +117,7 @@
 			if Number(corresActivity.dateBegin) is 0 and Number(corresActivity.dateEnd) is 0
 				_activityInfoTimeDom.innerHTML = "永久"
 			else
-				_activityInfoTimeDom.innerHTML = "	#{new Date(corresActivity.dateBegin*1000).Format('yyyy.MM.dd')} - 
+				_activityInfoTimeDom.innerHTML = "	#{new Date(corresActivity.dateBegin*1000).Format('yyyy.MM.dd')} -
 													#{new Date(corresActivity.dateEnd*1000).Format('yyyy.MM.dd')}"
 			_activityInfoContentDom.innerHTML = corresActivity.content
 
@@ -183,9 +183,9 @@
 				activity = new Activity {
 					seqNum 			:		i
 					id 				:		activity.id
-					displayUrl 		:		"#{activity.pic}?imageView2/1/w/#{Math.floor(clientWidth)}/h/#{Math.floor(clientWidth * 200 / 375)}"
-					infoUrl 		:		"#{activity.pic}?imageView2/1/w/80/h/80"
-					detailUrl 		:		"#{activity.pic}?imageView2/1/w/#{Math.floor(clientWidth * 0.9)}/h/#{Math.floor(clientWidth * 0.9 * 167 / 343)}"
+					displayUrl 		:		"#{activity.pic}?imageView2/1/w/#{Math.floor(clientWidth) * 2}/h/#{Math.floor(clientWidth * 200 / 375) * 2}"
+					infoUrl 		:		"#{activity.pic}?imageView2/1/w/#{80 * 2}/h/#{80 * 2}"
+					detailUrl 		:		"#{activity.pic}?imageView2/1/w/#{Math.floor(clientWidth * 0.9) * 2}/h/#{Math.floor(clientWidth * 0.9 * 167 / 343) * 2}"
 					dateBegin 		:		activity.date_begin
 					dateEnd 		:		activity.date_end
 					intro 			:		activity.intro || ""
