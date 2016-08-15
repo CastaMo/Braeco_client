@@ -37,6 +37,7 @@
 				fastClick _plusBtnDom, (e)->
 					y = _plusBtnDom.getBoundingClientRect().top - 7.5
 					_currentFood.judgeForBook {initLeft:clientWidth * 0.9 - 30, initTop: y-15}, _plusBtnDom
+					setTimeout (-> if hashRoute.getCurrentState() isnt "chooseCombo" then hashRoute.back()), 100
 
 			chooseFoodByCurrentChoose: -> if _getCurrentChooseFromLocStor() then _selectFoodDisplayByCurrentChoose()
 

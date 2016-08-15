@@ -170,6 +170,7 @@
 						else
 							imgDom = foodInfo.getImgDom(); plusBtnDom = foodInfo.getPlusBtnDom()
 							imgDom.scrollIntoViewIfNeeded()
+							setTimeout (-> hashRoute.back()), 100
 						setTimeout (-> _currentFood.clickForBook 1, _bookCurrentInfo.join(" 、 "), _price, {initLeft:clientWidth * 0.9 - 30, initTop: plusBtnDom.getBoundingClientRect().top - 7.5}), 10
 					, 10
 				fastClick _closeBtnDom, -> hashRoute.back()
