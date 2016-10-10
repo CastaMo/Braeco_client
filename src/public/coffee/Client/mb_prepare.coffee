@@ -27,6 +27,7 @@
 	getDcToolJSON = null
 	getRechargeJSON = null
 	getBusinessJSON = null
+	getStartPriceJSON = null
 
 	compatibleCSSConfig = [
 		""

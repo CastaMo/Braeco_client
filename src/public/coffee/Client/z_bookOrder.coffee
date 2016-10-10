@@ -2,6 +2,7 @@
 		_instance = null
 		_bookCount = 0
 		_ = null
+		_startPrice = -1
 
 		_initAllBookOrder = ->
 			BookOrder.readMemoFromLocStor()
@@ -62,6 +63,8 @@
 			_allSaleNum = 0
 
 			_allFinalPrice = 0
+
+			totalPrice = 0
 
 			_typeForName = {
 				"half": "第二份半价"
@@ -150,6 +153,8 @@
 				_allInitPrice = _dcHalfSave = _dcDiscountSave = _dcSaleSave = _reduceSave = _membershipSave = 0
 				_foodDiscountDom.innerHTML = ""; _allSaleNum = 0; _allNum = 0
 				addClass _orderBtnDom, "disabled"; addClass _trolleyDom, "disabled"
+				if _startPrice isnt -1
+					(query "p.order", _orderBtnDom).innerHTML = "#{_startPrice}元起送"
 
 			_filterForAllOrderChoose = (filter)->
 				for id, orderFood of _orderFoods
@@ -251,8 +256,12 @@
 					if totalPrice < 0 then totalPrice = 0
 					_getDiscountDom coupon.costReduce, "coupon"
 				_allNumDom.innerHTML = _allNum; _totalPriceDom.innerHTML = Number(totalPrice.toFixed(2))
-				if _allNum > 0 then removeClass _orderBtnDom, "disabled"; removeClass _trolleyDom, "disabled"
 				if totalPrice < _allInitPrice then removeClass _foodDiscountWrapper, "hide"
+				if _allNum > 0
+					if _startPrice isnt -1
+						if _startPrice > totalPrice then return false
+					(query "p.order", _orderBtnDom).innerHTML = "结账"
+					removeClass _orderBtnDom, "disabled"; removeClass _trolleyDom, "disabled"
 
 			_updateAllBookOrderNumAndPrice = ->
 				_resetAllBookOrder()
@@ -447,6 +456,9 @@
 					if @num is 0 then @deleteDomAndSelf()
 					if dcType isnt "give" then _updateAllBookOrderNumAndPrice()
 					bookOrder.saveForBook()
+					if _startPrice isnt -1
+						if _startPrice > totalPrice
+							return setTimeout(hashRoute.back, 10)
 					if _allNum is 0 then setTimeout(hashRoute.back, 10)
 
 				deleteDomAndSelf: ->
@@ -460,6 +472,7 @@
 
 
 			constructor: ->
+				_startPrice = getStartPriceJSON()
 				fastClick _orderBtnDom, ->
 					if hasClass _orderBtnDom, "disabled" or hashRoute.getCurrentState() is "bookOrder" then return
 					if hashRoute.getCurrentState() is "bookInfo" then setTimeout((-> hashRoute.hashJump "-Detail-Book-bookCol"; setTimeout((-> hashRoute.hashJump "-Detail-Book-bookOrder"), 10)), 0)
@@ -489,6 +502,8 @@
 					if couponManage.getAvailableCouponLength _allFinalPrice <= 0 then hashRoute.warn()
 					locStor.set "couponState", "use"
 					hashRoute.hashJump("-Extra-extraContent-Coupon")
+
+				@refreshOrder()
 
 			toggleState: do ->
 				_stateConfig = {

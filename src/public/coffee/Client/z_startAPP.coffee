@@ -9,6 +9,7 @@
 
 		_initAllGetJSONFuncByIntegrateData = (data)->
 			try
+				getStartPriceJSON 			= -> return data.startprice
 				getGroupJSON 				= -> return data.menu.groups
 				getDishLimitJSON 			= -> return data.dish_limit
 				getDishJSON		 			= -> return data.menu.categories
@@ -32,6 +33,7 @@
 						balance 	: 		data.member_info.balance
 						ladder 		:		data.membership_rule.ladder
 					}
+					address 			: 		data.member_info.address
 				}
 				getComPreJSON 				= -> return 8
 				getHeaderLikeJSON 			= -> return 0
@@ -124,6 +126,15 @@
 					hashRoute.pushHashStr("Individual")
 					setTimeout(->
 						hashRoute.pushHashStr("x")
+					, 100)
+				, 100)
+			, 100)
+			else if hash_ is "chooseAddress" then setTimeout(->
+				hashRoute.hashJump("-Home-Menu-x")
+				setTimeout(->
+					hashRoute.hashJump("-Detail-Book-bookCol")
+					setTimeout(->
+						hashRoute.hashJump("-Detail-Book-bookOrder")
 					, 100)
 				, 100)
 			, 100)

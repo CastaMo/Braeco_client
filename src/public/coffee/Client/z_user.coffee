@@ -125,8 +125,10 @@
 				EXP 				: 		result.membership.EXP
 				balance 			:		result.membership.balance
 				like 				:		result.like
+				address 			: 		result.address
 			}
 			bookOrder.refreshOrder()
+			businessManage._setAddress()
 
 		_setWaitTimeToLocStor = ->
 			currentTime = new Date()
@@ -274,6 +276,7 @@
 				EXP 					: 	MemberJSON.membership.EXP
 				balance 			:		MemberJSON.membership.balance
 				like 					:		MemberJSON.like
+				address 			: 		MemberJSON.address
 			}
 			user.needPhoneOfEveryone = getDinnerInfoJSON().need_phone_of_everyone
 

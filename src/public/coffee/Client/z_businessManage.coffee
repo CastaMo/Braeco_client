@@ -18,7 +18,6 @@
 
 			constructor: (options)->
 				@assign(options)
-				console.log @
 				@init()
 
 			assign: (options)->
@@ -31,6 +30,7 @@
 
 
 			init: ->
+				console.log user
 				@initPrepare()
 				if @type is "eatin" or @type is "takeout" then return
 				@initDomByType()
@@ -86,7 +86,10 @@
 
 			initAllEvent: ->
 				self = @
-				fastClick @addressDom, -> hashRoute.pushHashStr "Popup-Form-chooseAddress"
+				addListener @addressDom, "click", ->
+					if not user.isLogin() then return alert "请先登录\n在【主页面】->【我】中进行操作"
+					allFinalPrice = locStor.get("bookOrderAllPrice")
+					location.href = "/Table/Location?orderPrice=#{allFinalPrice}"
 				fastClick @timeDom, -> hashRoute.pushHashStr "Popup-Form-chooseDate"
 
 				fastClick (query ".close-btn-image" , @$dateEl), -> hashRoute.back()
@@ -158,19 +161,17 @@
 				return false
 
 			_setAddress: ->
-				@address	= @optionAddress
-				@name	   = @optionName
-				@sex		= @optionSex
-				sexStr = ""
-				if Number(@sex) is 0 then sexStr = "先生"
-				else if Number(@sex) is 1 then sexStr = "女生"
-				@addressContentDom.innerHTML = "<p>#{@name} #{sexStr}</p><p>#{@address}</p>"
-				locStor.set "orderAddress"	  , @address
-				locStor.set "orderSex"		  , @sex
-				locStor.set "orderName"		 , @name
-				@sexChoose(if @sex is -1 then 0 else @sex)
-				if sexStr and @address isnt "请填写您的地址" and @name isnt "请填写您的姓名"
+				if not user.isLogin() then return false
+				nameStr = ""
+				addressStr = "<p>请选择配送地址</p>"
+				if user.sex = 0 then sexStr = " 先生"
+				else sexStr = " 女士"
+				if user.nickName
+					nameStr = "<p>#{user.nickName}#{sexStr}</p>"
+				if user.address
+					addressStr = "<p>#{user.address.address} #{user.address.detail || ""}</p>"
 					@validFlag = @validFlag | 2
+				@addressContentDom.innerHTML = "#{nameStr}#{addressStr}"
 
 			_setTime: ->
 				dateIndex = @optionTime[0]
