@@ -53,7 +53,7 @@
 
 			initDomByType: ->
 				addressTitleStr = "配送地址 (必填)"
-				timeTitleStr = "送达时间"
+				timeTitleStr = "出餐时间"
 				@$el.innerHTML = "<div class='addtional-wrapper'>
 										<div class='address-field'>
 											<div class='title-field'>
@@ -96,14 +96,12 @@
 				fastClick (query ".day-choose-field", @$dateEl), (target)->
 					target = findParent target, (ele)-> hasClass ele, "day-choose"
 					if not target then return false
-					console.log target
 					index = target.id.replace("day-choose-", "")
 					self.dateChoose(Number(index))
 				fastClick (query ".time-choose-container", @$dateEl), (target)->
 					target = findParent target, (ele)-> hasClass ele, "time-choose"
 					indexArray = target.id.replace("time-choose-", "").split("-")
 					self.timeChoose Number(indexArray[0]), Number(indexArray[1])
-					console.log target
 				fastClick (query ".confirm-field", @$dateEl), ->
 					self._setTime()
 					hashRoute.back()
@@ -112,7 +110,6 @@
 				fastClick (query ".right-part", @$addressEl), (target)->
 					target = findParent target, (ele)-> hasClass ele, "sex-select"
 					if not target then return false
-					console.log target
 					index = target.id.replace("sex-select-", "")
 					self.sexChoose(Number(index))
 				fastClick (query ".confirm-field", @$addressEl), ->
@@ -128,7 +125,7 @@
 
 				nowTimestamp = @_getNowServerTimestamp()
 				startTimeStamp = @_getStartTimestamp nowTimestamp
-				@arrayForTimestamp = arrayForTimestamp = @_getArrayForTimestamp startTimeStamp, ONE_QUARTER_TIMESTAMP, 24
+				@arrayForTimestamp = arrayForTimestamp = @_getArrayForTimestamp startTimeStamp, HALF_AN_HOUR_TIMESTAMP, 12
 				@_initDateEl arrayForTimestamp
 				arrayForTimestamp.forEach((elem)-> console.log elem)
 				@dateChoose 0
@@ -179,9 +176,9 @@
 				@timestamp = @arrayForTimestamp[dateIndex].data[timeIndex]
 				immediateStr = ""
 				timestampStr = new Date(@timestamp).Format("hh:mm")
-				if Number(dateIndex) is 0 and Number(timeIndex) is 0 then immediateStr = "立即送出"
-				if immediateStr then timeStr = "#{immediateStr} (约#{timestampStr}送达)"
-				else timeStr = "约#{timestampStr}送达"
+				if Number(dateIndex) is 0 and Number(timeIndex) is 0 then immediateStr = "立即出餐"
+				if immediateStr then timeStr = "#{immediateStr} (约#{timestampStr}送出)"
+				else timeStr = "约#{timestampStr}送出"
 				@timeContentDom.innerHTML = timeStr
 				locStor.set "orderTimestamp", @timestamp
 				@validFlag = @validFlag | 1

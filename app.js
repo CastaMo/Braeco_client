@@ -4,12 +4,14 @@ var logger = require('morgan');
 var passport = require("passport");
 var route = require("./routes")(passport);
 var compression = require("compression");
+var bodyParser = require('body-parser');
 
 
 app.use(express.static('bin'));
 app.set('views', './src');
 app.set('view engine', 'jade');
 
+app.use(bodyParser());
 
 app.use(logger("dev"));
 app.use(compression());

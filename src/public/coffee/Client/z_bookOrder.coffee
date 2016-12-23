@@ -260,7 +260,7 @@
 				if _allNum > 0
 					if _startPrice isnt -1
 						if _startPrice > totalPrice then return false
-					(query "p.order", _orderBtnDom).innerHTML = "结账"
+					(query "p.order", _orderBtnDom).innerHTML = "选好了"
 					removeClass _orderBtnDom, "disabled"; removeClass _trolleyDom, "disabled"
 
 			_updateAllBookOrderNumAndPrice = ->
